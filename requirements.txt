@@ -1,0 +1,5 @@
+polyline~=2.0.2
+lxml==5.4.0
+xml2python==0.1.1
+jsonschema==4.23.0
+check-jsonschema==0.33.0
