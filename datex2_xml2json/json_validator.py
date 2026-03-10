@@ -6,7 +6,8 @@ from check_jsonschema.schema_loader import SchemaLoader
 from check_jsonschema.cli.param_types import CustomLazyFile
 from check_jsonschema.regex_variants import RegexImplementation, RegexVariantName
 
-DEFAULT_DATEX_JSON = 'schema/DATEXII_3.6_Profile_2026-03-08/DATEXII_3_D2Payload.json'
+DEFAULT_DATEX_JSON = 'schema/DATEXII_3_Profile/DATEXII_3_D2Payload.json' 
+#DEFAULT_DATEX_JSON = 'schema/DATEXII_3.6_Profile_2026-03-08/DATEXII_3_D2Payload.json'
 
 class JsonValidator:
     def __init__(self):
@@ -34,4 +35,5 @@ class JsonValidator:
                 disabled_formats=[],
                 ),
             regex_impl=RegexImplementation(RegexVariantName.default))
-        checker.run()
+        
+        return checker.run()

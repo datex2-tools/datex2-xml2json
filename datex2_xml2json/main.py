@@ -4,7 +4,9 @@ from pathlib import Path
 from lxml import etree
 from enum import StrEnum
 from .json_validator import JsonValidator
-from .transformer import Transformer
+from .transformer import TransformerPipeline, RulesTransformer
+from .transformation_rules import TransformationRuleFactory
+from .roads_regio_transformer import RoadsRegioTransformer
 
 import logging
 logger= logging.getLogger(__name__)
@@ -27,14 +29,15 @@ def main(filename:str, outDir:str, format: OutputFormat, validate:bool):
         with open(filename) as f:
             json_input = json.load(f)
 
-    result = Transformer().transform(json_input)
+    transformer = TransformerPipeline([RulesTransformer(TransformationRuleFactory().xmlv2_to_json3_6()), RoadsRegioTransformer()])
+    result = transformer.transform(json_input)
 
     outfile_name.parent.mkdir(parents=True, exist_ok=True)
     with open(outfile_name, 'w') as f:
         json.dump(result, f, indent=2)
 
     if validate:
-        JsonValidator().validate(outfile_name)
+        exit(JsonValidator().validate(outfile_name))
        
 if __name__ == '__main__':
     parser = ArgumentParser()
