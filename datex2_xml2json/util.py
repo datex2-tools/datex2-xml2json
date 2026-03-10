@@ -9,6 +9,45 @@ def find(a_dict, simplified_xpath, default_value = None):
 
     return elem
 
+def xpath_dict(data, path):
+    """
+    Simple XPath-like lookup for nested dict/list structures.
+
+    Supported:
+    - "/" path separator
+    """
+
+    parts = [p for p in path.strip("/").split("/") if p]
+
+    def _search(current, remaining):
+        
+        if not remaining:
+            if isinstance(current, list):
+                return current
+            else:
+                return [current]
+
+        key = remaining[0]
+        rest = remaining[1:]
+        results = []
+
+        if isinstance(current, dict):
+            if key in current:
+                results.extend(_search(current[key], rest))
+
+        elif isinstance(current, list):
+            try:
+                idx = int(key)
+                if 0 <= idx < len(current):
+                    results.extend(_search(current[idx], rest))
+            except ValueError:
+                for item in current:
+                    results.extend(_search(item, remaining))
+
+        return results
+
+    return _search(data, parts)
+
 def replace(value, current_key, renamings: dict[str,str], value_transforms: dict, keys_to_drop: dict[str,str|None], type_mappings: dict[str, str], keys_to_pull_up: list[str]):
     # renamings: dict of old keys which shall be replaced by new keys
     # keys_to_drop: dict of keys which should be removed from dicts, if their parent key equals keys_to_drop[key]'s value (or value is None)
@@ -34,25 +73,6 @@ def replace(value, current_key, renamings: dict[str,str], value_transforms: dict
             return value_transforms[current_key](new_dict)
         return new_dict
     if isinstance(value, list):
-        new_list = [replace(v, current_key, renamings, value_transforms, keys_to_drop, type_mappings, keys_to_pull_up) for v in value if v is not None]
-        #return value_transforms[current_key](new_list) if current_key is not None and current_key in value_transforms else new_list
-        return new_list
+        return [replace(v, current_key, renamings, value_transforms, keys_to_drop, type_mappings, keys_to_pull_up) for v in value if v is not None]
     else:
         return value_transforms[current_key](value) if current_key is not None and current_key in value_transforms else value
-
-def pull_up_first_length_affected(v: dict):
-    if 'carriageway' in v:
-        for c in v['carriageway']:
-            lengthAffected = c.pop('lengthAffected', None)
-            if lengthAffected is not None:
-                return v | {'lengthAffected': float(lengthAffected)}
-    return v
-
-def wrap_lroffset(lr_dict: dict):
-    new_dict = {}
-    for k in lr_dict:
-        if k == 'openlrPositiveOffset':
-            new_dict['openlrOffsets'] = {k: lr_dict[k]}
-        else:
-            new_dict[k] = lr_dict[k]
-    return new_dict
