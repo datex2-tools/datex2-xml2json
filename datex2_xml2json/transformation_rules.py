@@ -149,8 +149,8 @@ class TransformationRuleFactory:
             # value transformations
             # v3 requires timezone information in time values which are not provided in v2 xml
             # TODO this should be fixed in a more complex post processing
-            'endTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v, 
-            'startTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v,
+            #'endTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v, 
+            #'startTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v,
             # v3 removed some v2 enum values which need to be mapped
             'commentType':  lambda v: { 'value': 'other' if v == 'locationDescriptor' else v },
             'vehicleObstructionType': lambda v: { 'value': 'brokenDownVehicle'} if v == 'brokenDownHeavyLorry' else { 'value': 'dangerousSlowMovingVehicle'} if v=='slowMovingMaintenanceVehicle' else {'value': v },
