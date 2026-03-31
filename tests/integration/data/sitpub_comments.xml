@@ -1,0 +1,58 @@
+<d2LogicalModel xmlns="http://datex2.eu/schema/2/2_0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" modelBaseVersion="2" xsi:schemaLocation="http://datex2.eu/schema/2/2_0 http://datex2.eu/schema/2/2_0 https://datex2schema.s3.eu-central-1.amazonaws.com/DATEXIISchema_2_2_0.xsd">
+      <payloadPublication lang="de-DE" xsi:type="SituationPublication">
+        <publicationTime>2026-03-24T19:30:55Z</publicationTime>
+        <publicationCreator>
+          <country>de</country>
+          <nationalIdentifier>VIZ.NRW</nationalIdentifier>
+        </publicationCreator>
+        <situation id="TIC-WZEX/22/DE-MDM-Landesbetrieb Mobilität Rheinland-Pfalz/LBMTR_722IV51-21/06/006-K48-K42 Rive_BAUSITUATION_G_01471115" version="1771927573">
+          <headerInformation>
+            <confidentiality>noRestriction</confidentiality>
+            <informationStatus>real</informationStatus>
+            <urgency>normalUrgency</urgency>
+          </headerInformation>
+          <situationRecord id="TIC-WZEX/22/DE-MDM-Landesbetrieb Mobilität Rheinland-Pfalz/LBMTR_722IV51-21/06/006-K48-K42 Rive_BAUSITUATION_G_01471115.0" version="1771927573" xsi:type="MaintenanceWorks">
+            <situationRecordCreationTime>2024-01-10T10:01:36Z</situationRecordCreationTime>
+            <situationRecordVersionTime>2024-01-10T10:01:36Z</situationRecordVersionTime>
+            <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+            <validity>
+              <validityStatus>definedByValidityTimeSpec</validityStatus>
+              <validityTimeSpecification>
+                <overallStartTime>2021-06-15T04:00:00Z</overallStartTime>
+              </validityTimeSpecification>
+            </validity>
+            
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <!-- Value without lang attribute results in string instead of object with @lang and _text, need special handling -->
+                  <value>Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Klüsserath und Rivenich Baustelle, Richtungsfahrbahn gesperrt, bis 16.06.2026 00:59 Uhr Grund: Hangrutsch
+</value>
+                </values>
+              </comment>
+              <commentType>description</commentType>
+            </generalPublicComment>
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <value lang="de-DE">Grund: Hangrutsch
+</value>
+                </values>
+              </comment>
+              <commentType>other</commentType>
+            </generalPublicComment>
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <value lang="de-DE">Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Klüsserath und Rivenich</value>
+                </values>
+              </comment>
+              <commentType>locationDescriptor</commentType>
+            </generalPublicComment>
+            <groupOfLocations xsi:type="Linear">
+            </groupOfLocations>
+            <roadMaintenanceType>roadworks</roadMaintenanceType>
+          </situationRecord>
+        </situation>
+      </payloadPublication>
+    </d2LogicalModel>

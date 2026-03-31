@@ -1,0 +1,2358 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "ActionByReference": {
+      "title": "ActionByReference",
+      "description": "A reference to a Traffic Management Plan action.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the measure was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "actionReference": {
+          "title": "actionReference",
+          "description": "A reference to a Traffic Management Plan action.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionDefinitionVersionedReferenceG"
+        },
+        "tmpActionExtensionG": {
+          "title": "tmpActionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpActionByReferenceExtensionG": {
+          "title": "tmpActionByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "versionTime",
+        "actionReference"
+      ]
+    },
+    "ActionDefinition": {
+      "title": "ActionDefinition",
+      "description": "Element of a Traffic Management Plan table which refers to the definition of an action.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the measure was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "externalIdentification": {
+          "title": "externalIdentification",
+          "description": "An external identifier for an action defined shared between data supplier and recepient during the Traffic Management Plan design phase.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "Description of the action in natural language.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "actionImplementer": {
+          "title": "actionImplementer",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "operatorActionDefinition": {
+          "title": "operatorActionDefinition",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/OperatorActionDefinitionG"
+        },
+        "activationDelay": {
+          "title": "activationDelay",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActivationDelay"
+        },
+        "tmpActionExtensionG": {
+          "title": "tmpActionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpActionDefinitionExtensionG": {
+          "title": "tmpActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "description"
+      ]
+    },
+    "ActionDefinitionVersionedReferenceG": {
+      "title": "ActionDefinitionVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ActionDefinition"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ActionG": {
+      "title": "ActionG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpActionByReference": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionByReference"
+        },
+        "tmpActionDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionDefinition"
+        }
+      }
+    },
+    "ActivationConditions": {
+      "title": "ActivationConditions",
+      "description": "Conditions governing the activation of a traffic management response element",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "automaticallyApproved": {
+          "title": "automaticallyApproved",
+          "description": "Whether the association traffic management response element shall be automatically approved for implementation when the specified sccenario occurs and any specified trigger conditions are met. If false then manual approval is needed before implementation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "automaticallyImplemented": {
+          "title": "automaticallyImplemented",
+          "description": "Whether the associated traffic management response element is automatically implemented (after acceptance). If false, further triggering will be needed to fully implement the response.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "automaticallyDeactivated": {
+          "title": "automaticallyDeactivated",
+          "description": "Whether the traffic management response elements that have been implemented are automatically deactivated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "activationDelay": {
+          "title": "activationDelay",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActivationDelay"
+        },
+        "activationTrigger": {
+          "title": "activationTrigger",
+          "description": "conditions that trigger activation",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ConditionG"
+        },
+        "deactivationTrigger": {
+          "title": "deactivationTrigger",
+          "description": "conditions that trigger deactivation",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ConditionG"
+        },
+        "tmpActivationConditionsExtensionG": {
+          "title": "tmpActivationConditionsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ActivationDelay": {
+      "title": "ActivationDelay",
+      "description": "Intentional delays between trigger condition being met and a traffic management action or measure being implemented or deactivated.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activationDelay": {
+          "title": "activationDelay",
+          "description": "Intentional delay between trigger condition being met and a traffic management action or measure being implemented",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "deactivationDelay": {
+          "title": "deactivationDelay",
+          "description": "Intentional delay between trigger condition being met and a traffic management action or measure being deactivated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "tmpActivationDelayExtensionG": {
+          "title": "tmpActivationDelayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "activationDelay",
+        "deactivationDelay"
+      ]
+    },
+    "CompositeMeasure": {
+      "title": "CompositeMeasure",
+      "description": "Measure that consists of a number of Measures",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the measure was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "measure": {
+          "title": "measure",
+          "description": "Measures that make up the composite measure. Where processing order is important and is not entailed by specified timing, the collection of Measure objects should be ordered to indicate processing order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureG"
+          },
+          "minItems": 2
+        },
+        "tmpMeasureExtensionG": {
+          "title": "tmpMeasureExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpCompositeMeasureExtensionG": {
+          "title": "tmpCompositeMeasureExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "measure"
+      ]
+    },
+    "ConditionG": {
+      "title": "ConditionG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpTriggerCondition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TriggerCondition"
+        },
+        "tmpConditionSet": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ConditionSet"
+        }
+      }
+    },
+    "ConditionOperator": {
+      "title": "ConditionOperator",
+      "description": "Logical operator",
+      "type": "string",
+      "enum": [
+        "and",
+        "or",
+        "xor",
+        "extendedG"
+      ]
+    },
+    "ConditionOperatorG": {
+      "title": "ConditionOperatorG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ConditionOperator"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConditionSet": {
+      "title": "ConditionSet",
+      "description": "A condition that is a logical expression of other conditions",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "Specifies the operator to be applied between the conditions in the set.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ConditionOperatorG"
+        },
+        "condition": {
+          "title": "condition",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ConditionG"
+          },
+          "minItems": 1
+        },
+        "tmpConditionExtensionG": {
+          "title": "tmpConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpConditionSetExtensionG": {
+          "title": "tmpConditionSetExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operator",
+        "condition"
+      ]
+    },
+    "GeneralInstructionOrMessageToRoadUsersDefinition": {
+      "title": "GeneralInstructionOrMessageToRoadUsersDefinition",
+      "description": "Definition of a general instruction or message to road users",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "generalInstructionToRoadUsersType": {
+          "title": "generalInstructionToRoadUsersType",
+          "description": "General instruction that is issued by the network/road operator which is applicable to drivers and sometimes passengers.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/GeneralInstructionToRoadUsersTypeEnumG"
+        },
+        "generalMessageToRoadUsers": {
+          "title": "generalMessageToRoadUsers",
+          "description": "General message that is issued by the network/road operator which is applicable to drivers and sometimes passengers, e.g. details about an amber alert (missing or abducted child alert).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpGeneralInstructionOrMessageToRoadUsersDefinitionExtensionG": {
+          "title": "tmpGeneralInstructionOrMessageToRoadUsersDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption"
+      ]
+    },
+    "GeneralNetworkManagementDefinition": {
+      "title": "GeneralNetworkManagementDefinition",
+      "description": "Definition of a general network management action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "generalNetworkManagementType": {
+          "title": "generalNetworkManagementType",
+          "description": "The type of traffic management action instigated by the network/road operator.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/GeneralNetworkManagementTypeEnumG"
+        },
+        "trafficManuallyDirectedBy": {
+          "title": "trafficManuallyDirectedBy",
+          "description": "Type of person that is manually directing traffic (applicable if generalNetworkManagementType is set to \"trafficBeingManuallyDirected\").",
+          "$ref": "DATEXII_3_Situation.json#/$defs/PersonCategoryEnumG"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpGeneralNetworkManagementDefinitionExtensionG": {
+          "title": "tmpGeneralNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption",
+        "generalNetworkManagementType"
+      ]
+    },
+    "ImpactKind": {
+      "title": "ImpactKind",
+      "description": "The kind of impact on traffic.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capacityReduced": {
+          "title": "capacityReduced",
+          "description": "Whether the capacity of the affected section would be reduced by the related scenario or situation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "impactDetail": {
+          "title": "impactDetail",
+          "description": "Further details of the kind of impact.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/Impact"
+        },
+        "tmpImpactKindExtensionG": {
+          "title": "tmpImpactKindExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MeasureByReference": {
+      "title": "MeasureByReference",
+      "description": "A reference to a Traffic Management Plan measure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the measure was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "measureReference": {
+          "title": "measureReference",
+          "description": "A reference to a Traffic Management Plan measure.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureDefinitionVersionedReferenceG"
+        },
+        "tmpMeasureExtensionG": {
+          "title": "tmpMeasureExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpMeasureByReferenceExtensionG": {
+          "title": "tmpMeasureByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "versionTime",
+        "measureReference"
+      ]
+    },
+    "MeasureDefinition": {
+      "title": "MeasureDefinition",
+      "description": "Element of a Traffic Management Plan table which refers to the definition of a measure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the measure was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "externalIdentification": {
+          "title": "externalIdentification",
+          "description": "An external identifier for a measure defined shared between data supplier and recipient during the Traffic Management Plan design phase.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "Description of the measure in natural language.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "responsibleRoadOperator": {
+          "title": "responsibleRoadOperator",
+          "description": "Road operator responsible for performing the measure",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/OrganisationReferenceG"
+        },
+        "shortName": {
+          "title": "shortName",
+          "description": "Short human readable name for the Measure",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "action": {
+          "title": "action",
+          "description": "Actions that make up the measure. Where processing order is important and is not entailed by specified timing, the collection of Action objects should be ordered to indicate processing order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionG"
+          },
+          "minItems": 1
+        },
+        "responseType": {
+          "title": "responseType",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ResponseType"
+        },
+        "activationConditions": {
+          "title": "activationConditions",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActivationConditions"
+        },
+        "tmpMeasureExtensionG": {
+          "title": "tmpMeasureExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpMeasureDefinitionExtensionG": {
+          "title": "tmpMeasureDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "description",
+        "responsibleRoadOperator",
+        "action"
+      ]
+    },
+    "MeasureDefinitionVersionedReferenceG": {
+      "title": "MeasureDefinitionVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasureDefinition"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "MeasureG": {
+      "title": "MeasureG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpMeasureDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureDefinition"
+        },
+        "tmpCompositeMeasure": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/CompositeMeasure"
+        },
+        "tmpMeasureByReference": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureByReference"
+        }
+      }
+    },
+    "NetworkManagementDefinitionG": {
+      "title": "NetworkManagementDefinitionG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpSignSettingDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SignSettingDefinition"
+        },
+        "tmpGeneralInstructionOrMessageToRoadUsersDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/GeneralInstructionOrMessageToRoadUsersDefinition"
+        },
+        "tmpTrafficSignalSettingDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TrafficSignalSettingDefinition"
+        },
+        "tmpGeneralNetworkManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/GeneralNetworkManagementDefinition"
+        },
+        "tmpRoadOrCarriagewayOrLaneManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/RoadOrCarriagewayOrLaneManagementDefinition"
+        },
+        "tmpWinterDrivingManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/WinterDrivingManagementDefinition"
+        },
+        "tmpSpeedManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SpeedManagementDefinition"
+        },
+        "tmpReroutingManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ReroutingManagementDefinition"
+        }
+      }
+    },
+    "NonPredefinedAction": {
+      "title": "NonPredefinedAction",
+      "description": "An action needed to implement a non-predefined Traffic Management Plan scenario and/or strategy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nonPredefinedActionDescription": {
+          "title": "nonPredefinedActionDescription",
+          "description": "Description of the action needed to implement a specific non-predefined strategy.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "nonPredefinedActionId": {
+          "title": "nonPredefinedActionId",
+          "description": "The common reference to an external identifier for a non-predefined action among, shared between data supplier and recepient, defined during the Traffic Management Plan design phase",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "actionImplementingSituationRecord": {
+          "title": "actionImplementingSituationRecord",
+          "description": "Reference to a SituationRecord which has been created to implement the requested action by the action implementer.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SituationRecordVersionedReferenceG"
+        },
+        "internationalIdentifier": {
+          "title": "internationalIdentifier",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "operatorActionDefinition": {
+          "title": "operatorActionDefinition",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/OperatorActionDefinitionG"
+        },
+        "tmpNonPredefinedActionExtensionG": {
+          "title": "tmpNonPredefinedActionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "nonPredefinedActionDescription",
+        "internationalIdentifier"
+      ]
+    },
+    "NonPredefinedTmplanOperation": {
+      "title": "NonPredefinedTmplanOperation",
+      "description": "Operational status of a non-predefined Traffic Management Plan.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "creationTime": {
+          "title": "creationTime",
+          "description": "Creation time of the Traffic Management Plan life cycle, i.e. the time when either an agreement or an implementation was requested.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "expiryTime": {
+          "title": "expiryTime",
+          "description": "A timestamp after which the Traffic Management Plan is no further to be implemented.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "status": {
+          "title": "status",
+          "description": "The operational status of the Traffic Management Plan.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanOperationStatusEnumG"
+        },
+        "statusReason": {
+          "title": "statusReason",
+          "description": "Textual description for the reason of the current Traffic Management Plan operation status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Timestamp for this current version of the operational status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "involvedRoadOperatorConsensusRate": {
+          "title": "involvedRoadOperatorConsensusRate",
+          "description": "Ratio of agreement to participation of all partners affected by the TMP in the coordination process. Partners are those organisations whose approval is required to enact the TMP.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "nonPredefinedScenarioDescription": {
+          "title": "nonPredefinedScenarioDescription",
+          "description": "Description of the non-predefined scenario in natural language",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "nonPredefinedScenarioId": {
+          "title": "nonPredefinedScenarioId",
+          "description": "An identifier to be used as a common reference for the non-predefined scenario shared between data supplier and recepient.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "nonPredefinedStrategyDescription": {
+          "title": "nonPredefinedStrategyDescription",
+          "description": "Description of the non-predefined strategy in natural language.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "nonPredefinedStrategyId": {
+          "title": "nonPredefinedStrategyId",
+          "description": "The common reference to an external identifier for the non-predefined strategy shared between data supplier and recepient.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "nonPredefinedAction": {
+          "title": "nonPredefinedAction",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/NonPredefinedAction"
+          },
+          "minItems": 1
+        },
+        "tmpTmplanOperationExtensionG": {
+          "title": "tmpTmplanOperationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNonPredefinedTmplanOperationExtensionG": {
+          "title": "tmpNonPredefinedTmplanOperationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "creationTime",
+        "status",
+        "versionTime",
+        "nonPredefinedScenarioDescription",
+        "nonPredefinedStrategyDescription",
+        "headerInformation",
+        "nonPredefinedAction"
+      ]
+    },
+    "OperatorActionDefinitionG": {
+      "title": "OperatorActionDefinitionG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpSignSettingDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SignSettingDefinition"
+        },
+        "tmpGeneralInstructionOrMessageToRoadUsersDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/GeneralInstructionOrMessageToRoadUsersDefinition"
+        },
+        "tmpTrafficSignalSettingDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TrafficSignalSettingDefinition"
+        },
+        "tmpGeneralNetworkManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/GeneralNetworkManagementDefinition"
+        },
+        "tmpRoadOrCarriagewayOrLaneManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/RoadOrCarriagewayOrLaneManagementDefinition"
+        },
+        "tmpWinterDrivingManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/WinterDrivingManagementDefinition"
+        },
+        "tmpSpeedManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SpeedManagementDefinition"
+        },
+        "tmpReroutingManagementDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ReroutingManagementDefinition"
+        },
+        "tmpRoadsideAssistanceDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/RoadsideAssistanceDefinition"
+        }
+      }
+    },
+    "OperatorActionExtendedTmplan": {
+      "title": "OperatorActionExtendedTmplan",
+      "description": "Extension class for OperatorAction.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmplanImplementingAction": {
+          "title": "tmplanImplementingAction",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanImplementingAction"
+        }
+      }
+    },
+    "OrganisationReferenceG": {
+      "title": "OrganisationReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "Organisation"
+        },
+        "idG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PredefinedAction": {
+      "title": "PredefinedAction",
+      "description": "Information about predefined action in Traffic Management Plan activation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "actionImplementingSituationRecord": {
+          "title": "actionImplementingSituationRecord",
+          "description": "Reference to a situationRecord which has been created to implement the requested action by the action implementer.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SituationRecordVersionedReferenceG"
+        },
+        "predefinedActionReference": {
+          "title": "predefinedActionReference",
+          "description": "The reference to the specific action defined in a predefined Traffic Management Plan for which the situation record is an implementation.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionDefinitionVersionedReferenceG"
+        },
+        "tmpPredefinedActionExtensionG": {
+          "title": "tmpPredefinedActionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "predefinedActionReference"
+      ]
+    },
+    "PredefinedMeasureSelected": {
+      "title": "PredefinedMeasureSelected",
+      "description": "Reference to the specific measure chosen to implement the requested Traffic Management Plan strategy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "predefinedMeasureReference": {
+          "title": "predefinedMeasureReference",
+          "description": "Reference to the specific Measure chosen to implement the requested Traffic Management Plan strategy.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureDefinitionVersionedReferenceG"
+        },
+        "predefinedAction": {
+          "title": "predefinedAction",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/PredefinedAction"
+          },
+          "minItems": 0
+        },
+        "tmpPredefinedMeasureSelectedExtensionG": {
+          "title": "tmpPredefinedMeasureSelectedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "predefinedMeasureReference"
+      ]
+    },
+    "PredefinedTmplanOperation": {
+      "title": "PredefinedTmplanOperation",
+      "description": "Operation status of a predefined Traffic Management Plan.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "creationTime": {
+          "title": "creationTime",
+          "description": "Creation time of the Traffic Management Plan life cycle, i.e. the time when either an agreement or an implementation was requested.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "expiryTime": {
+          "title": "expiryTime",
+          "description": "A timestamp after which the Traffic Management Plan is no further to be implemented.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "status": {
+          "title": "status",
+          "description": "The operational status of the Traffic Management Plan.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanOperationStatusEnumG"
+        },
+        "statusReason": {
+          "title": "statusReason",
+          "description": "Textual description for the reason of the current Traffic Management Plan operation status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Timestamp for this current version of the operational status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "involvedRoadOperatorConsensusRate": {
+          "title": "involvedRoadOperatorConsensusRate",
+          "description": "Ratio of agreement to participation of all partners affected by the TMP in the coordination process. Partners are those organisations whose approval is required to enact the TMP.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "tmplanTableReference": {
+          "title": "tmplanTableReference",
+          "description": "Reference to the Traffic Management Plan table which defines the Traffic Management Plan design information and references.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanTableVersionedReferenceG"
+        },
+        "predefinedScenarioReference": {
+          "title": "predefinedScenarioReference",
+          "description": "Reference to a predefined Traffic Management Plan scenario which requires the current Traffic Management Plan activation.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ScenarioVersionedReferenceG"
+        },
+        "predefinedStrategyReference": {
+          "title": "predefinedStrategyReference",
+          "description": "Reference to the predefined Traffic Management Plan strategy which is requested or implemented.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyVersionedReferenceG"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "predefinedMeasureSelected": {
+          "title": "predefinedMeasureSelected",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/PredefinedMeasureSelected"
+        },
+        "problemLocationOverride": {
+          "title": "problemLocationOverride",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "tmpTmplanOperationExtensionG": {
+          "title": "tmpTmplanOperationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpPredefinedTmplanOperationExtensionG": {
+          "title": "tmpPredefinedTmplanOperationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "creationTime",
+        "status",
+        "versionTime",
+        "tmplanTableReference",
+        "headerInformation"
+      ]
+    },
+    "ReroutingManagementDefinition": {
+      "title": "ReroutingManagementDefinition",
+      "description": "Definition of a rerouting action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "name": {
+          "title": "name",
+          "description": "A given name for the specific route management.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "type": {
+          "title": "type",
+          "description": "The type of rerouting.",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/$defs/ReroutingTypeEnumG"
+        },
+        "bindingTrafficRegulation": {
+          "title": "bindingTrafficRegulation",
+          "description": "Indicates that the rerouting information is a binding traffic regulation (i.e. shall be followed).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "preventiveMeasure": {
+          "title": "preventiveMeasure",
+          "description": "Indicates an action that is taken in advance (e.g. before an incident or traffic disruption occurs).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "routingOrigin": {
+          "title": "routingOrigin",
+          "description": "A location serving as a geo-filter for routing itineraries that have their starting point within this location and for which this rerouting management should become applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationG"
+          },
+          "minItems": 0
+        },
+        "routingThrough": {
+          "title": "routingThrough",
+          "description": "A location serving as a geo-filter for routing itineraries that touch or pass through this location and for which this rerouting management should become applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationG"
+          },
+          "minItems": 0
+        },
+        "routingDestination": {
+          "title": "routingDestination",
+          "description": "A location serving as a geo-filter for routing itineraries that have their end point within this location and for which this rerouting management should become applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationG"
+          },
+          "minItems": 0
+        },
+        "originalRoute": {
+          "title": "originalRoute",
+          "description": "The original route, for which alternative routes are specified, which may be congested, blocked or closed.",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/$defs/RouteDescription"
+        },
+        "alternativeRoute": {
+          "title": "alternativeRoute",
+          "description": "An alternative route on the transport network that provides a functionally equivalent but distinct route from the original route.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/$defs/RouteDescription"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpReroutingManagementDefinitionExtensionG": {
+          "title": "tmpReroutingManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption"
+      ]
+    },
+    "ResponseEffectTypeEnum": {
+      "title": "ResponseEffectTypeEnum",
+      "description": "Type of effect that a traffic management response is intended to have.",
+      "type": "string",
+      "enum": [
+        "capacityIncrease",
+        "inflowReduction",
+        "outflowIncrease",
+        "prewarning",
+        "rerouting",
+        "extendedG"
+      ]
+    },
+    "ResponseEffectTypeEnumG": {
+      "title": "ResponseEffectTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ResponseEffectTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ResponseStageEnum": {
+      "title": "ResponseStageEnum",
+      "description": "Stage at which response is used",
+      "type": "string",
+      "enum": [
+        "basic",
+        "prewarning",
+        "trafficCondition",
+        "extendedG"
+      ]
+    },
+    "ResponseStageEnumG": {
+      "title": "ResponseStageEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ResponseStageEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ResponseType": {
+      "title": "ResponseType",
+      "description": "Classifications of traffic management response type",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "effect": {
+          "title": "effect",
+          "description": "Intended effect of the associated response element(s).",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ResponseEffectTypeEnumG"
+        },
+        "stage": {
+          "title": "stage",
+          "description": "Stage at which the associated response is used.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ResponseStageEnumG"
+        },
+        "tmpResponseTypeExtensionG": {
+          "title": "tmpResponseTypeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "effect"
+      ]
+    },
+    "RoadOrCarriagewayOrLaneManagementDefinition": {
+      "title": "RoadOrCarriagewayOrLaneManagementDefinition",
+      "description": "Definition of a road or carriageway or lane management action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "roadOrCarriagewayOrLaneManagementType": {
+          "title": "roadOrCarriagewayOrLaneManagementType",
+          "description": "Type of road, carriageway or lane management action instigated by operator.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/RoadOrCarriagewayOrLaneManagementTypeEnumG"
+        },
+        "minimumCarOccupancy": {
+          "title": "minimumCarOccupancy",
+          "description": "The minimum number of persons required in a vehicle in order for it to be allowed to transit the specified road section.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpRoadOrCarriagewayOrLaneManagementDefinitionExtensionG": {
+          "title": "tmpRoadOrCarriagewayOrLaneManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption",
+        "roadOrCarriagewayOrLaneManagementType"
+      ]
+    },
+    "RoadsideAssistanceDefinition": {
+      "title": "RoadsideAssistanceDefinition",
+      "description": "Definition of a roadside assistance action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roadsideAssistanceType": {
+          "title": "roadsideAssistanceType",
+          "description": "Indicates the nature of the road side assistance that will be, is or has been provided.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/RoadsideAssistanceTypeEnumG"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpRoadsideAssistanceDefinitionExtensionG": {
+          "title": "tmpRoadsideAssistanceDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadsideAssistanceType"
+      ]
+    },
+    "Scenario": {
+      "title": "Scenario",
+      "description": "Predefined kind of road network situation with potential impact that would lead road operators to initiate traffic management. Identifies a subset of possible traffic situations. May be arbitrarily specific yet not fixed to a specific instance in time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "externalIdentification": {
+          "title": "externalIdentification",
+          "description": "An external identifier for a Traffic Management Plan scenario, defined during the Traffic Management Plan design phase.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the scenario was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "description": {
+          "title": "description",
+          "description": "Description of Traffic Management Plan scenario in natural language.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "situationType": {
+          "title": "situationType",
+          "description": "The type(s) of situation that this scenario represents",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/CauseTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "emergencyServicesAccessibility": {
+          "title": "emergencyServicesAccessibility",
+          "description": "Description of whether and how the emergency services can still use the road network in this scenario",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "name": {
+          "title": "name",
+          "description": "Human-readable name for the Scenario",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "scenarioDirector": {
+          "title": "scenarioDirector",
+          "description": "Organisation responsible for directing the scenario",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/OrganisationReferenceG"
+        },
+        "situationFilter": {
+          "title": "situationFilter",
+          "description": "Filter expressions for traffic related situations to trigger this scenario. The filter language/expressions have to be defined individually.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/String"
+          },
+          "minItems": 0
+        },
+        "strategy": {
+          "title": "strategy",
+          "description": "Traffic anagement strategies in response to the scenario. Where processing order is important and is not entailed by timing specifications, the collection of Strategy objects should be ordered to indicate processing order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyG"
+          },
+          "minItems": 0
+        },
+        "impactKind": {
+          "title": "impactKind",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ImpactKind"
+        },
+        "problemLocation": {
+          "title": "problemLocation",
+          "description": "Location of the problem in this scenario",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "scheduledScenarioValidity": {
+          "title": "scheduledScenarioValidity",
+          "description": "the time period(s) in which the scenario applies",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "situationTypeDetail": {
+          "title": "situationTypeDetail",
+          "description": "The specific kind(s) of situation which the scenario represents.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/DetailedCauseType"
+          },
+          "minItems": 0
+        },
+        "tmpScenarioExtensionG": {
+          "title": "tmpScenarioExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime"
+      ]
+    },
+    "ScenarioVersionedReferenceG": {
+      "title": "ScenarioVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "Scenario"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "SignSetting": {
+      "title": "SignSetting",
+      "description": "An operator action that sets the status of a VMS unit.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "signSettingDefinition": {
+          "title": "signSettingDefinition",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/SignSettingDefinition"
+        }
+      },
+      "required": [
+        "signSettingDefinition"
+      ]
+    },
+    "SignSettingDefinition": {
+      "title": "SignSettingDefinition",
+      "description": "Definition of a sign setting action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "setting": {
+          "title": "setting",
+          "description": "The setting to be made",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Vms.json#/$defs/VmsControllerStatus"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpSignSettingDefinitionExtensionG": {
+          "title": "tmpSignSettingDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption"
+      ]
+    },
+    "SituationRecordVersionedReferenceG": {
+      "title": "SituationRecordVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "SituationRecord"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "SpeedManagementDefinition": {
+      "title": "SpeedManagementDefinition",
+      "description": "Definition of a speed management action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "speedManagementType": {
+          "title": "speedManagementType",
+          "description": "Type of speed management action instigated by operator.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/SpeedManagementTypeEnumG"
+        },
+        "temporarySpeedLimit": {
+          "title": "temporarySpeedLimit",
+          "description": "Temporary limit defining the maximum advisory or mandatory speed of vehicles.",
+          "$ref": "DATEXII_3_Common.json#/$defs/KilometresPerHour"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpSpeedManagementDefinitionExtensionG": {
+          "title": "tmpSpeedManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption",
+        "speedManagementType"
+      ]
+    },
+    "StrategyByReference": {
+      "title": "StrategyByReference",
+      "description": "A reference to a Traffic Management Plan strategy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the strategy was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "strategyReference": {
+          "title": "strategyReference",
+          "description": "A reference to a Traffic Management Plan strategy.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyDefinitionVersionedReferenceG"
+        },
+        "tmpStrategyExtensionG": {
+          "title": "tmpStrategyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpStrategyByReferenceExtensionG": {
+          "title": "tmpStrategyByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "versionTime",
+        "strategyReference"
+      ]
+    },
+    "StrategyDefinition": {
+      "title": "StrategyDefinition",
+      "description": "Element of a Traffic Management Plan table which refers to the definition of a strategy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp indicating when this version of the strategy was created or updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "externalIdentification": {
+          "title": "externalIdentification",
+          "description": "An external identifier for a strategy defined shared between data supplier and recipient during the Traffic Management Plan design phase.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "Description of the strategy in natural language.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "shortName": {
+          "title": "shortName",
+          "description": "Short human readable name",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "priority": {
+          "title": "priority",
+          "description": "Priority of this strategy compared to all other strategies that may exist. The higher the number, the higher the priority.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "strategyMeasure": {
+          "title": "strategyMeasure",
+          "description": "A Measure and how it is to be used in this strategy. Where processing order is important and this is not entailed by specified timing, the collection of StrategyMeasure objects should be ordered to indicate processing order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyMeasure"
+          },
+          "minItems": 1
+        },
+        "responseType": {
+          "title": "responseType",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ResponseType"
+        },
+        "overallActivation": {
+          "title": "overallActivation",
+          "description": "conditions for the activation of the Strategy overall",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActivationConditions"
+        },
+        "tmpStrategyExtensionG": {
+          "title": "tmpStrategyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpStrategyDefinitionExtensionG": {
+          "title": "tmpStrategyDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "description",
+        "strategyMeasure"
+      ]
+    },
+    "StrategyDefinitionVersionedReferenceG": {
+      "title": "StrategyDefinitionVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "StrategyDefinition"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "StrategyG": {
+      "title": "StrategyG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpStrategyByReference": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyByReference"
+        },
+        "tmpStrategyDefinition": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyDefinition"
+        }
+      }
+    },
+    "StrategyMeasure": {
+      "title": "StrategyMeasure",
+      "description": "A measure and how it is to be used within context of a strategy",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "processingIndex": {
+          "title": "processingIndex",
+          "description": "Indicates the order of processing of Measures within a Strategy. When implementing the Strategy, the Measure for a StrategyMeasure with a low processing index should be processed before that for a StrategyMeasure with a higher processing index.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "essentialForStrategy": {
+          "title": "essentialForStrategy",
+          "description": "Whether the Measure is essential for this Strategy, i.e. whether if the Measure cannot be implemented then the Stragegy shall not be implemented (or if running, shall not continue).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "activationConditions": {
+          "title": "activationConditions",
+          "description": "Activation conditions for the measure within the associated strategy. For that strategy only, these take precedence over any activation conditions specified by the Measure.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActivationConditions"
+        },
+        "measure": {
+          "title": "measure",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureG"
+        },
+        "tmpStrategyMeasureExtensionG": {
+          "title": "tmpStrategyMeasureExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "measure"
+      ]
+    },
+    "StrategyVersionedReferenceG": {
+      "title": "StrategyVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "Strategy"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "TmplanImplementingAction": {
+      "title": "TmplanImplementingAction",
+      "description": "Represents the information of an OperatorAction which has been implemented or is planned based on a Traffic Management Plan activation request.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nonPredefinedActionIdReference": {
+          "title": "nonPredefinedActionIdReference",
+          "description": "The common reference to an external identifier for a non-predefined action, shared between data supplier and recepient, defined during the Traffic Management Plan design phase.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "predefinedActionReference": {
+          "title": "predefinedActionReference",
+          "description": "The reference to the specific action defined in a predefined Traffic Management Plan for which the SituationRecord is an implementation.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionDefinitionVersionedReferenceG"
+        },
+        "predefinedMeasureReference": {
+          "title": "predefinedMeasureReference",
+          "description": "The reference to the specific measure chosen to be implemented.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureDefinitionVersionedReferenceG"
+        },
+        "predefinedStrategyReference": {
+          "title": "predefinedStrategyReference",
+          "description": "Reference to a strategy chosen to be implemented.",
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/StrategyDefinitionVersionedReferenceG"
+        },
+        "tmpTmplanImplementingActionExtensionG": {
+          "title": "tmpTmplanImplementingActionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TmplanOperationG": {
+      "title": "TmplanOperationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tmpNonPredefinedTmplanOperation": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/NonPredefinedTmplanOperation"
+        },
+        "tmpPredefinedTmplanOperation": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/PredefinedTmplanOperation"
+        }
+      }
+    },
+    "TmplanOperationPublication": {
+      "title": "TmplanOperationPublication",
+      "description": "Publication to define a Traffic Management Plan operation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "tmplanOperation": {
+          "title": "tmplanOperation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanOperationG"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpTmplanOperationPublicationExtensionG": {
+          "title": "tmpTmplanOperationPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "tmplanOperation"
+      ]
+    },
+    "TmplanOperationStatusEnum": {
+      "title": "TmplanOperationStatusEnum",
+      "description": "The status of operation for a Traffic Management Plan.",
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "schedulingAborted",
+        "schedulingRejected",
+        "schedulingRequested",
+        "extendedG"
+      ]
+    },
+    "TmplanOperationStatusEnumG": {
+      "title": "TmplanOperationStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanOperationStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TmplanTable": {
+      "title": "TmplanTable",
+      "description": "A set of consistent Traffic Management Plan information agreed among implementers when designing a Traffic Management Plan.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "externalIdentification": {
+          "title": "externalIdentification",
+          "description": "Identification of the Traffic Management Plan table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Time stamp of this version of the Traffic Management Plan table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for the Traffic Management Plan.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "scenario": {
+          "title": "scenario",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/Scenario"
+          },
+          "minItems": 0
+        },
+        "measure": {
+          "title": "measure",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/MeasureG"
+          },
+          "minItems": 0
+        },
+        "action": {
+          "title": "action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/ActionG"
+          },
+          "minItems": 0
+        },
+        "tmpTmplanTableExtensionG": {
+          "title": "tmpTmplanTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime"
+      ]
+    },
+    "TmplanTablePublication": {
+      "title": "TmplanTablePublication",
+      "description": "Publication to convey information about static definition of Traffic Management Plan related information defined at design phase.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "tmplanTable": {
+          "title": "tmplanTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficManagementPlan.json#/$defs/TmplanTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpTmplanTablePublicationExtensionG": {
+          "title": "tmpTmplanTablePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation",
+        "tmplanTable"
+      ]
+    },
+    "TmplanTableVersionedReferenceG": {
+      "title": "TmplanTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "TmplanTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "TrafficSignalSettingDefinition": {
+      "title": "TrafficSignalSettingDefinition",
+      "description": "Action to affect traffic signals (of the red/amber/green variety)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "setting": {
+          "title": "setting",
+          "description": "Definition of the setting. This may be the identifier of a preset timing plan or command, or even a complete definition using an agreed expression language.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpTrafficSignalSettingDefinitionExtensionG": {
+          "title": "tmpTrafficSignalSettingDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption",
+        "setting"
+      ]
+    },
+    "TriggerCondition": {
+      "title": "TriggerCondition",
+      "description": "Specifies a condition for triggering traffic management - either to activate or deactivate",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "triggerDefinition": {
+          "title": "triggerDefinition",
+          "description": "A formal or informal definition of a trigger condition, either human readable or machine-interpretable. If the definition is machine interpretable, the expression language should be specified in documention of the service publishing the conditions.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "Human-readable description of the trigger",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "tmpConditionExtensionG": {
+          "title": "tmpConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpTriggerConditionExtensionG": {
+          "title": "tmpTriggerConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "triggerDefinition"
+      ]
+    },
+    "WinterDrivingManagementDefinition": {
+      "title": "WinterDrivingManagementDefinition",
+      "description": "Definition of a winter driving management action",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "complianceOption": {
+          "title": "complianceOption",
+          "description": "Defines whether the network management instruction or the control resulting from a network management action is advisory or mandatory.",
+          "$ref": "DATEXII_3_Situation.json#/$defs/ComplianceOptionEnumG"
+        },
+        "applicableForTrafficDirection": {
+          "title": "applicableForTrafficDirection",
+          "description": "The ultimate traffic direction to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+          },
+          "minItems": 0
+        },
+        "applicableForTrafficType": {
+          "title": "applicableForTrafficType",
+          "description": "The type of traffic to which the network management is applicable.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "placesAtWhichApplicable": {
+          "title": "placesAtWhichApplicable",
+          "description": "Places, in generic terms, at which the network management applies.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/$defs/PlacesEnumG"
+          },
+          "minItems": 0
+        },
+        "automaticallyInitiated": {
+          "title": "automaticallyInitiated",
+          "description": "Defines whether the network management is initiated by an automatic system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "winterEquipmentManagementType": {
+          "title": "winterEquipmentManagementType",
+          "description": "Type of winter equipment management action instigated by operator.",
+          "$ref": "DATEXII_3_Common.json#/$defs/WinterEquipmentManagementTypeEnumG"
+        },
+        "targetLocation": {
+          "title": "targetLocation",
+          "description": "Location that is the target of the operator action",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Characteristics of vehicles to which the network management applies",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "tmpOperatorActionDefinitionExtensionG": {
+          "title": "tmpOperatorActionDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpNetworkManagementDefinitionExtensionG": {
+          "title": "tmpNetworkManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "tmpWinterDrivingManagementDefinitionExtensionG": {
+          "title": "tmpWinterDrivingManagementDefinitionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "complianceOption",
+        "winterEquipmentManagementType"
+      ]
+    }
+  }
+}

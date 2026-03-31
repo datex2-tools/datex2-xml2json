@@ -1,0 +1,175 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "@xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "@xsi:schemaLocation": "http://datex2.eu/schema/2/2_0 http://datex2.eu/schema/2/2_0 https://datex2schema.s3.eu-central-1.amazonaws.com/DATEXIISchema_2_2_0.xsd",
+    "exchange": {
+      "subscription": {
+        "operatingMode": "operatingMode0",
+        "subscriptionStartTime": "2026-03-17T10:44:49Z",
+        "subscriptionState": "active",
+        "target": [
+          {
+            "address": null,
+            "protocol": null
+          }
+        ],
+        "updateMethod": "snapshot"
+      },
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "VIZ.NRW"
+      },
+      "target": {
+        "address": null,
+        "protocol": null
+      }
+    },
+    "payloadPublication": {
+      "@lang": "de-DE",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "VIZ.NRW"
+      },
+      "publicationTime": "2026-03-24T19:30:55Z",
+      "situation": [
+        {
+          "@id": "TIC-WZEX/22/DE-MDM-Landesbetrieb Mobilit\u00e4t Rheinland-Pfalz/LBMTR_722IV51-21/06/006-K48-K42 Rive_BAUSITUATION_G_01471115",
+          "@version": "1771927573",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real",
+            "urgency": "normalUrgency"
+          },
+          "situationRecord": [
+            {
+              "@id": "TIC-WZEX/22/DE-MDM-Landesbetrieb Mobilit\u00e4t Rheinland-Pfalz/LBMTR_722IV51-21/06/006-K48-K42 Rive_BAUSITUATION_G_01471115.0",
+              "@version": "1771927573",
+              "@xsi:type": "MaintenanceWorks",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich Baustelle, Richtungsfahrbahn gesperrt, bis 16.06.2026 00:59 Uhr Grund: Hangrutsch"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "description"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Grund: Hangrutsch"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "other"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "locationDescriptor"
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Linear",
+                "linearExtension": {
+                  "linearLineStringExtension": {
+                    "gmlLineString": {
+                      "coordinates": "6.8686747,49.8679635 6.86863,49.86794 6.86749,49.86718 6.86743,49.86719 6.86735,49.86718 6.86701,49.86701 6.86682,49.86694 6.86628,49.86682 6.86582,49.86674 6.86543,49.86674 6.86484,49.86678 6.86402,49.86678 6.86283,49.86671 6.8625,49.86666 6.86204,49.86647 6.86156,49.8663 6.861,49.86606 6.86035,49.86575 6.86001,49.86556 6.8593,49.86534 6.8588,49.86523 6.85829,49.86517 6.85775,49.86513 6.85693,49.8651 6.85682,49.86512 6.85657,49.86522 6.85603,49.86552 6.8559,49.86563 6.85571,49.86585 6.85561,49.866 6.85553,49.86616 6.85545,49.8665 6.85544,49.86723 6.85543,49.86758 6.85551,49.86803 6.85554,49.86811 6.85578,49.8688 6.85552,49.86931 6.85538,49.86914 6.85533,49.86888 6.85526,49.86872 6.85521,49.86867 6.85514,49.86864 6.85502,49.86866 6.85503,49.86869 6.85514,49.86902 6.85506,49.86952 6.85477,49.87018 6.8547,49.8705 6.85459,49.87065 6.85375,49.87156 6.85355,49.87165 6.85313,49.87219 6.853,49.87228 6.85287,49.87234 6.85274,49.87238 6.85258,49.87243 6.85223,49.87249 6.85196,49.8725 6.85179,49.87248 6.85157,49.87239 6.85096,49.87228 6.85075,49.87228 6.85053,49.87233 6.85039,49.87242 6.85027,49.8726 6.85027,49.8728 6.85036,49.87295 6.85049,49.87314 6.85048,49.87324 6.85037,49.87335 6.85003,49.87351 6.84996,49.87356 6.84993,49.87364 6.84991,49.87395 6.84983,49.87416 6.8498,49.87425 6.8497318,49.8743258"
+                    }
+                  }
+                },
+                "locationForDisplay": {
+                  "latitude": 49.86796,
+                  "longitude": 6.86867571
+                },
+                "tpegLinearLocation": {
+                  "from": {
+                    "@xsi:type": "TpegNonJunctionPoint",
+                    "name": [
+                      {
+                        "descriptor": {
+                          "values": {
+                            "value": [
+                              null
+                            ]
+                          }
+                        },
+                        "tpegOtherPointDescriptorType": "other"
+                      }
+                    ],
+                    "pointCoordinates": {
+                      "latitude": 49.86796,
+                      "longitude": 6.86867571
+                    }
+                  },
+                  "to": {
+                    "@xsi:type": "TpegNonJunctionPoint",
+                    "name": [
+                      {
+                        "descriptor": {
+                          "values": {
+                            "value": [
+                              null
+                            ]
+                          }
+                        },
+                        "tpegOtherPointDescriptorType": "other"
+                      }
+                    ],
+                    "pointCoordinates": {
+                      "latitude": 49.8743019,
+                      "longitude": 6.8497057
+                    }
+                  },
+                  "tpegDirection": "unknown",
+                  "tpegLinearLocationType": "segment"
+                }
+              },
+              "probabilityOfOccurrence": "certain",
+              "roadMaintenanceType": [
+                "roadworks"
+              ],
+              "situationRecordCreationTime": "2024-01-10T10:01:36Z",
+              "situationRecordVersionTime": "2024-01-10T10:01:36Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-06-15T22:59:00Z",
+                  "overallStartTime": "2021-06-15T04:00:00Z",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-06-15T22:59:00Z",
+                      "startOfPeriod": "2021-06-15T04:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2024-01-10T10:01:36Z"
+        }
+      ]
+    }
+  }
+}

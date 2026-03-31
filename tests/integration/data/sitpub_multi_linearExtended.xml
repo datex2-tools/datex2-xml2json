@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<d2LogicalModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://datex2.eu/schema/2/2_0" xsi:schemaLocation="http://datex2.eu/schema/2/2_0 https://mobilithek.info/mdp-api/files/aux/schemas/DATEX_2/Profile_Road_Works/MDM_Datenmodell_Baustellen_04-00-00.xsd" modelBaseVersion="2" extensionName="Baustellen" extensionVersion="04-00-00">
+  <exchange>
+    <supplierIdentification>
+      <country>de</country>
+      <nationalIdentifier>Export</nationalIdentifier>
+    </supplierIdentification>
+  </exchange>
+  <payloadPublication xsi:type="SituationPublication" lang="DE">
+    <publicationTime>2026-03-30T07:20:17Z</publicationTime>
+    <publicationCreator>
+      <country>de</country>
+      <nationalIdentifier>Export</nationalIdentifier>
+    </publicationCreator>
+    <situation id="31027-2020A2311" version="00235">
+      <situationVersionTime>2026-03-27T11:39:23Z</situationVersionTime>
+      <headerInformation>
+        <confidentiality>noRestriction</confidentiality>
+        <informationStatus>real</informationStatus>
+      </headerInformation>
+      <situationRecord xsi:type="ConstructionWorks" id="31027-2025V6541" version="00002">
+        <situationRecordCreationTime>2025-11-12T14:42:07Z</situationRecordCreationTime>
+        <situationRecordVersionTime>2025-12-08T16:01:34Z</situationRecordVersionTime>
+        <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+        <severity>medium</severity>
+        <validity>
+          <validityStatus>definedByValidityTimeSpec</validityStatus>
+          <validityTimeSpecification>
+            <overallStartTime>2025-11-19T00:00:00Z</overallStartTime>
+            <overallEndTime>2025-12-08T00:00:00Z</overallEndTime>
+          </validityTimeSpecification>
+        </validity>
+        <groupOfLocations xsi:type="NonOrderedLocationGroupByList">
+          <locationContainedInGroup xsi:type="Linear">
+            <linearExtension>
+              <linearExtended>
+                <gmlLineString>
+                  <srsName>WGS84 EPSG 4326</srsName>
+                  <posList>48.9855494 8.39272544 48.985768 8.39208757 48.98590625 8.39168623</posList>
+                </gmlLineString>
+              </linearExtended>
+            </linearExtension>
+          </locationContainedInGroup>
+          <locationContainedInGroup xsi:type="Linear">
+            <linearExtension>
+              <linearExtended>
+                <gmlLineString>
+                  <srsName>WGS84 EPSG 4326</srsName>
+                  <posList>48.98675584 8.39368136 48.9855494 8.39272544</posList>
+                </gmlLineString>
+              </linearExtended>
+            </linearExtension>
+          </locationContainedInGroup>
+        </groupOfLocations>
+        <actionPlanIdentifier>A3</actionPlanIdentifier>
+        <operatorActionStatus>requested</operatorActionStatus>
+        <constructionWorkType>roadImprovementOrUpgrading</constructionWorkType>
+      </situationRecord>
+      <situationExtension>
+        <situationExtended>
+          <overallSituation xsi:type="OperatorAction" id="31027-2020A2311_Gesamtmaßnahme" version="00002">
+            <situationRecordCreationTime>2025-02-18T11:42:27Z</situationRecordCreationTime>
+            <situationRecordVersionTime>2026-03-27T11:39:23Z</situationRecordVersionTime>
+            <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+            <validity>
+              <validityStatus>definedByValidityTimeSpec</validityStatus>
+              <validityTimeSpecification>
+                <overallStartTime>2025-05-05T00:00:00Z</overallStartTime>
+                <overallEndTime>2026-04-30T00:00:00Z</overallEndTime>
+              </validityTimeSpecification>
+            </validity>
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <value lang="de">Neckarstraße zwischen Enzstraße und Dreisamstraße</value>
+                </values>
+              </comment>
+              <commentDateTime>2026-03-27T11:38:31Z</commentDateTime>
+              <commentExtension>
+                <commentExtended>
+                  <commentType2>roadworksName</commentType2>
+                </commentExtended>
+              </commentExtension>
+            </generalPublicComment>
+          </overallSituation>
+        </situationExtended>
+      </situationExtension>
+    </situation>
+  </payloadPublication>
+</d2LogicalModel>

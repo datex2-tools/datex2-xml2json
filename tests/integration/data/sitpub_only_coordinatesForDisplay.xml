@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<d2LogicalModel modelBaseVersion="2" xmlns="http://datex2.eu/schema/2/2_0">
+    <exchange>
+        <supplierIdentification>
+            <country>de</country>
+            <nationalIdentifier>DE-MDM-Straßenbauverwaltung Baden-Württemberg - Ministerium für Verkehr Baden-Württemberg</nationalIdentifier>
+        </supplierIdentification>
+    </exchange>
+    <payloadPublication xsi:type="SituationPublication" lang="DE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <publicationTime>2026-03-19T10:32:27.818+01:00</publicationTime>
+        <publicationCreator>
+            <country>de</country>
+            <nationalIdentifier>DE-MDM-Straßenbauverwaltung Baden-Württemberg - Ministerium für Verkehr Baden-Württemberg</nationalIdentifier>
+        </publicationCreator>
+        <situation id="VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1" version="1773725494">
+          <situationVersionTime>2026-03-17T05:31:34Z</situationVersionTime>
+          <headerInformation>
+            <confidentiality>noRestriction</confidentiality>
+            <informationStatus>real</informationStatus>
+            <urgency>normalUrgency</urgency>
+          </headerInformation>
+          <situationRecord id="VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1.0" version="1773725494" xsi:type="PublicEvent">
+            <situationRecordCreationTime>2026-03-17T05:31:34Z</situationRecordCreationTime>
+            <situationRecordVersionTime>2026-03-17T05:31:34Z</situationRecordVersionTime>
+            <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+            <validity>
+              <validityStatus>definedByValidityTimeSpec</validityStatus>
+              <validityTimeSpecification>
+                <overallStartTime>2026-04-17T05:00:00Z</overallStartTime>
+                <overallEndTime>2026-05-10T06:00:00Z</overallEndTime>
+                <validPeriod>
+                  <startOfPeriod>2026-04-17T05:00:00Z</startOfPeriod>
+                  <endOfPeriod>2026-05-10T06:00:00Z</endOfPeriod>
+                </validPeriod>
+              </validityTimeSpecification>
+            </validity>
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <value lang="de-DE">Theresienwiese
+    Volksfest, von 17.04.2026 07:00 Uhr bis 10.05.2026 08:00 Uhr
+    M&#xFC;nchner Fr&#xFC;hlingsfest </value>
+                </values>
+              </comment>
+              <commentType>description</commentType>
+            </generalPublicComment>
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <value lang="de-DE">M&#xFC;nchner Fr&#xFC;hlingsfest </value>
+                </values>
+              </comment>
+              <commentType>other</commentType>
+            </generalPublicComment>
+            <generalPublicComment>
+              <comment>
+                <values>
+                  <value lang="de-DE">Theresienwiese</value>
+                </values>
+              </comment>
+              <commentType>locationDescriptor</commentType>
+            </generalPublicComment>
+            <groupOfLocations xsi:type="Area">
+              <locationForDisplay>
+                <latitude>48.1313</latitude>
+                <longitude>11.54941</longitude>
+              </locationForDisplay>
+              <tpegAreaLocation xsi:type="TpegGeometricArea">
+                <tpegAreaLocationType>largeArea</tpegAreaLocationType>
+                <radius>578</radius>
+                <centrePoint>
+                  <latitude>48.1313</latitude>
+                  <longitude>11.54941</longitude>
+                </centrePoint>
+              </tpegAreaLocation>
+            </groupOfLocations>
+            <publicEventType>fair</publicEventType>
+          </situationRecord>
+        </situation>
+    </payloadPublication>
+</d2LogicalModel>

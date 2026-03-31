@@ -1,0 +1,155 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "@xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "@xsi:schemaLocation": "http://datex2.eu/schema/2/2_0 http://datex2.eu/schema/2/2_0 https://datex2schema.s3.eu-central-1.amazonaws.com/DATEXIISchema_2_2_0.xsd",
+    "exchange": {
+      "subscription": {
+        "operatingMode": "operatingMode0",
+        "subscriptionStartTime": "2026-03-17T10:44:49Z",
+        "subscriptionState": "active",
+        "target": [
+          {
+            "address": null,
+            "protocol": null
+          }
+        ],
+        "updateMethod": "snapshot"
+      },
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "VIZ.NRW"
+      },
+      "target": {
+        "address": null,
+        "protocol": null
+      }
+    },
+    "payloadPublication": {
+      "@lang": "de-DE",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "VIZ.NRW"
+      },
+      "publicationTime": "2026-03-24T19:30:55Z",
+      "situation": [
+        {
+          "@id": "LMS-BR/r_LMS-BR/386922_LMS-BR/72",
+          "@version": "1771927589",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real",
+            "urgency": "normalUrgency"
+          },
+          "situationRecord": [
+            {
+              "@id": "LMS-BR/r_LMS-BR/386922_LMS-BR/72.0",
+              "@version": "1771927589",
+              "@xsi:type": "RoadOrCarriagewayOrLaneManagement",
+              "complianceOption": "mandatory",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Berlin-Lichterfelde, Goethestra\u00dfe\nin H\u00f6he Schillerstra\u00dfe\nVollsperrung, Baustelle, eine Umleitung ist eingerichtet, bis 31.03.2026"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "description"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Berlin, Goethestra\u00dfe in H\u00f6he Schillerstra\u00dfe"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "locationDescriptor"
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Point",
+                "locationForDisplay": {
+                  "latitude": 52.42855,
+                  "longitude": 13.31541
+                },
+                "pointByCoordinates": {
+                  "pointCoordinates": {
+                    "latitude": 52.42855,
+                    "longitude": 13.31541
+                  }
+                },
+                "pointExtension": {
+                  "openlrExtendedPoint": {
+                    "openlrPointLocationReference": {
+                      "openlrPointAlongLine": {
+                        "openlrLastLocationReferencePoint": {
+                          "openlrCoordinate": {
+                            "latitude": 52.428543,
+                            "longitude": 13.3154
+                          },
+                          "openlrLineAttributes": {
+                            "openlrBearing": 354,
+                            "openlrFormOfWay": "singleCarriageway",
+                            "openlrFunctionalRoadClass": "FRC4"
+                          }
+                        },
+                        "openlrLocationReferencePoint": {
+                          "openlrCoordinate": {
+                            "latitude": 52.429043,
+                            "longitude": 13.31529
+                          },
+                          "openlrLineAttributes": {
+                            "openlrBearing": 174,
+                            "openlrFormOfWay": "singleCarriageway",
+                            "openlrFunctionalRoadClass": "FRC4"
+                          },
+                          "openlrPathAttributes": {
+                            "openlrDistanceToNextLRPoint": 29,
+                            "openlrLowestFRCToNextLRPoint": "FRC4"
+                          }
+                        },
+                        "openlrOrientation": "noOrientationOrUnknown",
+                        "openlrPositiveOffset": 29,
+                        "openlrSideOfRoad": "onRoadOrUnknown"
+                      }
+                    }
+                  }
+                }
+              },
+              "probabilityOfOccurrence": "certain",
+              "roadOrCarriagewayOrLaneManagementExtension": null,
+              "roadOrCarriagewayOrLaneManagementType": "roadClosed",
+              "situationRecordCreationTime": "2025-10-16T07:59:07Z",
+              "situationRecordVersionTime": "2026-01-28T14:38:49Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-03-31T21:59:00Z",
+                  "overallStartTime": "2025-10-16T07:59:07Z",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-03-31T21:59:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-01-28T14:38:49Z"
+        }
+      ]
+    }
+  }
+}

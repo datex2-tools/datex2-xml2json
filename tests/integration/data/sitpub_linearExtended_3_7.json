@@ -1,0 +1,84 @@
+{
+  "payload": {
+    "modelBaseVersionG": "2",
+    "sitSituationPublication": {
+      "lang": "de",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      },
+      "publicationTime": "2026-03-19T10:32:27.818+01:00",
+      "situation": [
+        {
+          "idG": "88935924",
+          "headerInformation": {
+            "confidentiality": {
+              "value": "noRestriction"
+            },
+            "informationStatus": {
+              "value": "real"
+            }
+          },
+          "overallSeverity": {
+            "value": "low"
+          },
+          "situationRecord": [
+            {
+              "sitRoadOrCarriagewayOrLaneManagement": {
+                "idG": "88935924-88935926-88935929-88935940-gegen-sperrung",
+                "versionG": "6",
+                "actionPlanIdentifier": "SP1",
+                "cause": {
+                  "managedCause": {
+                    "objectReference": {
+                      "idG": "88935924-88935926-88935929-88935940-gegen",
+                      "targetClass": "SituationRecord",
+                      "versionG": "6"
+                    }
+                  }
+                },
+                "complianceOption": {
+                  "value": "mandatory"
+                },
+                "locationReference": {
+                  "locSingleRoadLinearLocation": {
+                    "gmlLineString": {
+                      "locGmlLineString": {
+                        "posList": "48.324560 9.729800 48.324570 9.729760 48.324590 9.729670 48.324600 9.729590 48.324611 9.729520 48.324640 9.729370"
+                      }
+                    },
+                    "coordinatesForDisplay": {
+                      "latitude": 48.32456,
+                      "longitude": 9.7298
+                    }
+                  }
+                },
+                "operatorActionStatus": {
+                  "value": "requested"
+                },
+                "probabilityOfOccurrence": {
+                  "value": "certain"
+                },
+                "roadOrCarriagewayOrLaneManagementType": {
+                  "value": "roadClosed"
+                },
+                "situationRecordCreationTime": "2026-03-19T10:11:07.055+01:00",
+                "situationRecordVersionTime": "2026-03-19T10:21:15.060+01:00",
+                "validity": {
+                  "validityStatus": {
+                    "value": "definedByValidityTimeSpec"
+                  },
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-04-09T18:00:00.000+02:00",
+                    "overallStartTime": "2026-04-08T16:00:00.000+02:00"
+                  }
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-03-19T10:25:49.563+01:00"
+        }
+      ]
+    }
+  }
+}

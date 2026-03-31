@@ -1,0 +1,89 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "@xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "@xsi:schemaLocation": "http://datex2.eu/schema/2/2_0 http://datex2.eu/schema/2/2_0 https://datex2schema.s3.eu-central-1.amazonaws.com/DATEXIISchema_2_2_0.xsd",
+    "payloadPublication": {
+      "@lang": "de-DE",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "VIZ.NRW"
+      },
+      "publicationTime": "2026-03-24T19:30:55Z",
+      "situation": [
+        {
+          "@id": "TIC-WZEX/22/DE-MDM-Landesbetrieb Mobilit\u00e4t Rheinland-Pfalz/LBMTR_722IV51-21/06/006-K48-K42 Rive_BAUSITUATION_G_01471115",
+          "@version": "1771927573",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real",
+            "urgency": "normalUrgency"
+          },
+          "situationRecord": [
+            {
+              "@id": "TIC-WZEX/22/DE-MDM-Landesbetrieb Mobilit\u00e4t Rheinland-Pfalz/LBMTR_722IV51-21/06/006-K48-K42 Rive_BAUSITUATION_G_01471115.0",
+              "@version": "1771927573",
+              "@xsi:type": "MaintenanceWorks",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich Baustelle, Richtungsfahrbahn gesperrt, bis 16.06.2026 00:59 Uhr Grund: Hangrutsch"
+                      ]
+                    }
+                  },
+                  "commentType": "description"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Grund: Hangrutsch"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "other"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "locationDescriptor"
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Linear"
+              },
+              "probabilityOfOccurrence": "certain",
+              "roadMaintenanceType": [
+                "roadworks"
+              ],
+              "situationRecordCreationTime": "2024-01-10T10:01:36Z",
+              "situationRecordVersionTime": "2024-01-10T10:01:36Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallStartTime": "2021-06-15T04:00:00Z"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

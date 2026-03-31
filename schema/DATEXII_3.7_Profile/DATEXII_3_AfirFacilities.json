@@ -1,0 +1,2809 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "AfirFacilityLocation": {
+      "title": "AfirFacilityLocation",
+      "description": "A location for which a time zone,an address and a NUTS-area can be specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeZone": {
+          "title": "timeZone",
+          "description": "The time zone the facility is located in.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/TimeZone"
+        },
+        "address": {
+          "title": "address",
+          "$ref": "DATEXII_3_LocationExtension.json#/$defs/Address"
+        },
+        "nutsArea": {
+          "title": "nutsArea",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/NutsArea"
+          },
+          "minItems": 0
+        }
+      }
+    },
+    "AmountInCurrency": {
+      "title": "AmountInCurrency",
+      "description": "A class supporting the definition of a unit of currency in a defined currency.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currencyValue": {
+          "title": "currencyValue",
+          "description": "The amount of currency specified in the given currency code type.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "currencyType": {
+          "title": "currencyType",
+          "description": "Code for the specified currency as defined in ISO 4217.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CurrencyCode"
+        },
+        "afacAmountInCurrencyExtensionG": {
+          "title": "afacAmountInCurrencyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "currencyType",
+        "currencyValue"
+      ]
+    },
+    "AmountOfMoney": {
+      "title": "AmountOfMoney",
+      "description": "A monetary value expressed to two decimal places.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Decimal"
+    },
+    "AnOrganisation": {
+      "title": "AnOrganisation",
+      "description": "An organisation. It can be specialised to be referenceable.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "legalName": {
+          "title": "legalName",
+          "description": "The legal name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "linkToGeneralInformation": {
+          "title": "linkToGeneralInformation",
+          "description": "An internet address from where further relevant information about this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "linkToLogo": {
+          "title": "linkToLogo",
+          "description": "An internet address from where the logo of this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "linkToWebform": {
+          "title": "linkToWebform",
+          "description": "An internet address pointing to a webform, which people can use to send messages to this organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "available24hours": {
+          "title": "available24hours",
+          "description": "Specifies if the availability is 24 hours a day. If omitted, this information is unknown or heterogeneous.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "responsibility": {
+          "title": "responsibility",
+          "description": "Specification of services or other duties the organisation is responsible for.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "publishingAgreement": {
+          "title": "publishingAgreement",
+          "description": "Indication whether the organisation accepted publishing its information.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "type": {
+          "title": "type",
+          "description": "Information whether the organisation in question belongs to the public or private sector.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationTypeEnumG"
+        },
+        "nationalOrganisationNumber": {
+          "title": "nationalOrganisationNumber",
+          "description": "The national organisation number in the specified national register, if applicable.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "nationalRegister": {
+          "title": "nationalRegister",
+          "description": "A national register where the organisation is registered.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "vatIdentificationNumber": {
+          "title": "vatIdentificationNumber",
+          "description": "The VAT identification number of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "organisationUnit": {
+          "title": "organisationUnit",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationUnit"
+          },
+          "minItems": 0
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "subOrganisation": {
+          "title": "subOrganisation",
+          "description": "An organisation that is subordinated to its parent organisation, defined likewise by the Organisation model structure.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacAnOrganisationExtensionG": {
+          "title": "afacAnOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "AnOrganisationG": {
+      "title": "AnOrganisationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacAnOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AnOrganisation"
+        },
+        "afacReferenceableOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReferenceableOrganisation"
+        }
+      }
+    },
+    "AssignedRightTimeRelativeG": {
+      "title": "AssignedRightTimeRelativeG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacRelativeOffsets": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RelativeOffsets"
+        },
+        "afacTimesOfDay": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/TimesOfDay"
+        }
+      }
+    },
+    "ClosureInformation": {
+      "title": "ClosureInformation",
+      "description": "Information about temporary or permanent closure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "permananentlyClosed": {
+          "title": "permananentlyClosed",
+          "description": "Permanently closed, i.e. it is not intended to open again.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "temporarilyClosed": {
+          "title": "temporarilyClosed",
+          "description": "Temporarily closed for an unspecified period.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "closedFrom": {
+          "title": "closedFrom",
+          "description": "Permanently or temporarily closed from the given date on. May lie in the future - in this case the scene is not closed now.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "temporarilyClosedUntil": {
+          "title": "temporarilyClosedUntil",
+          "description": "Temporarily closed until the given date (i.e. closure still includes this date).",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "afacClosureInformationExtensionG": {
+          "title": "afacClosureInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactInformation": {
+      "title": "ContactInformation",
+      "description": "Contact information.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "title": "language",
+          "description": "Language(s) that are supported via telephone or mail.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Language"
+          },
+          "minItems": 0
+        },
+        "telephoneNumber": {
+          "title": "telephoneNumber",
+          "description": "Telephone number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "faxNumber": {
+          "title": "faxNumber",
+          "description": "Fax number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "eMail": {
+          "title": "eMail",
+          "description": "E-Mail address, which can be a general mail address or the mail address of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "afacContactInformationExtensionG": {
+          "title": "afacContactInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactInformationG": {
+      "title": "ContactInformationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacContactInformation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ContactInformation"
+        },
+        "afacContactPerson": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ContactPerson"
+        }
+      }
+    },
+    "ContactPerson": {
+      "title": "ContactPerson",
+      "description": "A specific contact person.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "title": "language",
+          "description": "Language(s) that are supported via telephone or mail.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Language"
+          },
+          "minItems": 0
+        },
+        "telephoneNumber": {
+          "title": "telephoneNumber",
+          "description": "Telephone number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "faxNumber": {
+          "title": "faxNumber",
+          "description": "Fax number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "eMail": {
+          "title": "eMail",
+          "description": "E-Mail address, which can be a general mail address or the mail address of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "name": {
+          "title": "name",
+          "description": "The (last) name of the contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "firstName": {
+          "title": "firstName",
+          "description": "The first name of the contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "title": {
+          "title": "title",
+          "description": "Title information of the contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "position": {
+          "title": "position",
+          "description": "The position of the contact person.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "afacContactInformationExtensionG": {
+          "title": "afacContactInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacContactPersonExtensionG": {
+          "title": "afacContactPersonExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Credential": {
+      "title": "Credential",
+      "description": "Class containing reference to a credential (identifiable persistent identity).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "title": "type",
+          "description": "Type of credential.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CredentialTypeEnumG"
+        },
+        "otherType": {
+          "title": "otherType",
+          "description": "Some other type of credential.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "afacCredentialExtensionG": {
+          "title": "afacCredentialExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "CredentialAssigned": {
+      "title": "CredentialAssigned",
+      "description": "Information concerning a specific credential that is used for verification for one AssignedRight. Specialisation of a general credential.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "title": "type",
+          "description": "Type of credential.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CredentialTypeEnumG"
+        },
+        "otherType": {
+          "title": "otherType",
+          "description": "Some other type of credential.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "localIdentifier": {
+          "title": "localIdentifier",
+          "description": "Identifier issued by credential issuer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "issuer": {
+          "title": "issuer",
+          "description": "Identity of the credential issuer.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationVersionedReferenceG"
+        },
+        "afacCredentialExtensionG": {
+          "title": "afacCredentialExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacCredentialAssignedExtensionG": {
+          "title": "afacCredentialAssignedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "type",
+        "issuer"
+      ]
+    },
+    "CredentialG": {
+      "title": "CredentialG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacCredential": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Credential"
+        },
+        "afacCredentialAssigned": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CredentialAssigned"
+        }
+      }
+    },
+    "CredentialTypeEnum": {
+      "title": "CredentialTypeEnum",
+      "description": "A list of the supported credential types available for reference.",
+      "type": "string",
+      "enum": [
+        "hangtag",
+        "permit",
+        "licensePlate",
+        "ticket",
+        "eticket",
+        "barcode",
+        "bluetooth",
+        "rfid",
+        "qrCode",
+        "other",
+        "extendedG"
+      ]
+    },
+    "CredentialTypeEnumG": {
+      "title": "CredentialTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CredentialTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CurrencyCode": {
+      "title": "CurrencyCode",
+      "description": "Three letter code defining the currency according to ISO 4217:2015 (e.g. EUR for Euro).",
+      "$ref": "DATEXII_3_Common.json#/$defs/String",
+      "pattern": "[A-Z][A-Z][A-Z]"
+    },
+    "Duration": {
+      "title": "Duration",
+      "description": "A duration of time,which may consist of years,months,days,hours,minutes,and seconds components,as defined in ISO 8601.",
+      "type": "string",
+      "format": "duration"
+    },
+    "DurationValue": {
+      "title": "DurationValue",
+      "description": "A measured or calculated value of a period of time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "title": "duration",
+          "description": "A period of time expressed in seconds.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacDurationValueExtensionG": {
+          "title": "afacDurationValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "duration"
+      ]
+    },
+    "Eligibility": {
+      "title": "Eligibility",
+      "description": "Defines the combination of Eligibility requirements with RateTables and associates this combination to a RightSpecification.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "Free-text name for the eligibility name to assist data users to readily find the eligibility characteristics for a specific eligibility data set.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "noFeeToUse": {
+          "title": "noFeeToUse",
+          "description": "If TRUE indicates that the related RightSpecification may be used without charge or cost. If FALSE or not specified, costs and charges apply.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "description": {
+          "title": "description",
+          "description": "Free-text description for the eligibility definition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "priority": {
+          "title": "priority",
+          "description": "An integer value, starting at 1, indicating the order in which multiple relevant RateTables shall be considered, with 1 being the highest priority.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "combinable": {
+          "title": "combinable",
+          "description": "Boolean attribute that indicates (TRUE) if all RateTables associated to a RightSpecification with a common Eligibility can be combined to establish a lowest cost tariff or (FALSE) they cannot be combined.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "qualification": {
+          "title": "qualification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Qualification"
+          },
+          "minItems": 0
+        },
+        "rateDiscount": {
+          "title": "rateDiscount",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateDiscount"
+        },
+        "rightSpecification": {
+          "title": "rightSpecification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RightSpecification"
+          },
+          "minItems": 0
+        },
+        "afacEligibilityExtensionG": {
+          "title": "afacEligibilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "EnergySourceEnum": {
+      "title": "EnergySourceEnum",
+      "description": "Type of fuel used by a vehicle.",
+      "type": "string",
+      "enum": [
+        "all",
+        "battery",
+        "biodiesel",
+        "diesel",
+        "dieselBatteryHybrid",
+        "ethanol",
+        "hydrogen",
+        "liquidGas",
+        "lpg",
+        "methane",
+        "petrol",
+        "petrol95Octane",
+        "petrol98Octane",
+        "petrolBatteryHybrid",
+        "petrolLeaded",
+        "petrolUnleaded",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EnergySourceEnumG": {
+      "title": "EnergySourceEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/EnergySourceEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ExternalIdentifier": {
+      "title": "ExternalIdentifier",
+      "description": "An external (maybe national) identifier,optional with its specific type.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "title": "identifier",
+          "description": "An external (maybe national) identifier.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "typeOfIdentifier": {
+          "title": "typeOfIdentifier",
+          "description": "The type of identifier expressed as enumeration, which should be extended project specific.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/TypeOfIdentifierEnumG"
+        },
+        "otherTypeOfIdentifier": {
+          "title": "otherTypeOfIdentifier",
+          "description": "The type of identifier expressed as string.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "afacExternalIdentifierExtensionG": {
+          "title": "afacExternalIdentifierExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "FacilityG": {
+      "title": "FacilityG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiElectricChargingPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricChargingPoint"
+        },
+        "aegiPetrolRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PetrolRefillPoint"
+        },
+        "aegiDieselRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DieselRefillPoint"
+        },
+        "aegiAlternativeFuelsRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/AlternativeFuelsRefillPoint"
+        },
+        "aegiEnergyInfrastructureSite": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSite"
+        },
+        "aegiEnergyInfrastructureStation": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureStation"
+        }
+      }
+    },
+    "FacilityObjectG": {
+      "title": "FacilityObjectG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiElectricChargingPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricChargingPoint"
+        },
+        "aegiPetrolRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PetrolRefillPoint"
+        },
+        "aegiDieselRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DieselRefillPoint"
+        },
+        "aegiAlternativeFuelsRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/AlternativeFuelsRefillPoint"
+        },
+        "aegiEnergyInfrastructureSite": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSite"
+        },
+        "aegiEnergyInfrastructureStation": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureStation"
+        }
+      }
+    },
+    "FacilityObjectStatus": {
+      "title": "FacilityObjectStatus",
+      "description": "Dynamic status information for a facility object.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "FacilityObjectStatusG": {
+      "title": "FacilityObjectStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacFacilityObjectStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectStatus"
+        },
+        "afacFacilityStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityStatus"
+        },
+        "aegiEnergyInfrastructureSiteStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSiteStatus"
+        },
+        "aegiEnergyInfrastructureStationStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureStationStatus"
+        },
+        "aegiRefillPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatus"
+        },
+        "aegiElectricChargingPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricChargingPointStatus"
+        }
+      }
+    },
+    "FacilityObjectVersionedReferenceG": {
+      "title": "FacilityObjectVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "FacilityObject"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "FacilityStatus": {
+      "title": "FacilityStatus",
+      "description": "Dynamic status information for a facility.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "FacilityStatusG": {
+      "title": "FacilityStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacFacilityStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityStatus"
+        },
+        "aegiEnergyInfrastructureSiteStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSiteStatus"
+        },
+        "aegiEnergyInfrastructureStationStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureStationStatus"
+        },
+        "aegiRefillPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatus"
+        },
+        "aegiElectricChargingPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricChargingPointStatus"
+        }
+      }
+    },
+    "LinkedRightSpecification": {
+      "title": "LinkedRightSpecification",
+      "description": "Qualification criteria for eligibility based possession of a specified Right Specification - on the duration of time relative to a defined time-based qualification related to an assigned right.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "qualifyingRightSpec": {
+          "title": "qualifyingRightSpec",
+          "description": "Identifies a held RightSpecification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RightSpecificationVersionedReferenceG"
+        },
+        "assignedRightTimeRelative": {
+          "title": "assignedRightTimeRelative",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AssignedRightTimeRelativeG"
+        },
+        "afacLinkedRightSpecificationExtensionG": {
+          "title": "afacLinkedRightSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MeansOfPaymentEnum": {
+      "title": "MeansOfPaymentEnum",
+      "description": "Means of payment.",
+      "type": "string",
+      "enum": [
+        "paymentCreditCard",
+        "cashBillsOnly",
+        "cashCoinsOnly",
+        "tollTag",
+        "mobileAccount",
+        "cashCoinsAndBills",
+        "prepay",
+        "paymentDebitCard",
+        "paymentValueCard",
+        "nfc",
+        "emv",
+        "qrCode",
+        "website",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "MeansOfPaymentEnumG": {
+      "title": "MeansOfPaymentEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/MeansOfPaymentEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "NutsArea": {
+      "title": "NutsArea",
+      "description": "The NUTS-Code representation for the area (Nomenclature of territorial units for statistics) or its LAU code representation (Local Administrative Unit).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nutsCodeType": {
+          "title": "nutsCodeType",
+          "description": "The NUTS code type for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/NutsCodeTypeEnumG"
+        },
+        "nutsCode": {
+          "title": "nutsCode",
+          "description": "The NUTS code for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/NutsCode"
+        },
+        "afacNutsAreaExtensionG": {
+          "title": "afacNutsAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "nutsCode",
+        "nutsCodeType"
+      ]
+    },
+    "OpenAllHours": {
+      "title": "OpenAllHours",
+      "description": "Open or available all the time (24/7).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacOpenAllHoursExtensionG": {
+          "title": "afacOpenAllHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "OperatingHoursByReference": {
+      "title": "OperatingHoursByReference",
+      "description": "Operating hours information that is addressed via a reference.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingHoursReference": {
+          "title": "operatingHoursReference",
+          "description": "The reference to an operating hours specification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursSpecificationVersionedReferenceG"
+        },
+        "operatingHoursTableReference": {
+          "title": "operatingHoursTableReference",
+          "description": "Operation hours table in question defined by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursTableVersionedReferenceG"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacOperatingHoursByReferenceExtensionG": {
+          "title": "afacOperatingHoursByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingHoursReference"
+      ]
+    },
+    "OperatingHoursG": {
+      "title": "OperatingHoursG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacOperatingHoursByReference": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursByReference"
+        },
+        "afacUnknownOperatingHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UnknownOperatingHours"
+        },
+        "afacUndefinedOperatingHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UndefinedOperatingHours"
+        },
+        "afacOpenAllHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OpenAllHours"
+        },
+        "afacOperatingHoursSpecification": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursSpecification"
+        }
+      }
+    },
+    "OperatingHoursPublication": {
+      "title": "OperatingHoursPublication",
+      "description": "A publication defining one or more tables that have entries of operating hours specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "operatingHoursTable": {
+          "title": "operatingHoursTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacOperatingHoursPublicationExtensionG": {
+          "title": "afacOperatingHoursPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "operatingHoursTable"
+      ]
+    },
+    "OperatingHoursSpecification": {
+      "title": "OperatingHoursSpecification",
+      "description": "A specification of operating hours (e.g. for a parking site,a service facility,an access or the availability for equipment).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "label": {
+          "title": "label",
+          "description": "A label, name or identifier for this operating hours specification.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "operatingAllYear": {
+          "title": "operatingAllYear",
+          "description": "The facility or organisation is not closed on a seasonal base.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "urlLinkAddress": {
+          "title": "urlLinkAddress",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ClosureInformation"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "description": "The specification of operating hours by an overall period combined with valid or exceptional periods.",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacOperatingHoursSpecificationExtensionG": {
+          "title": "afacOperatingHoursSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "overallPeriod"
+      ]
+    },
+    "OperatingHoursSpecificationVersionedReferenceG": {
+      "title": "OperatingHoursSpecificationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursSpecification"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OperatingHoursTable": {
+      "title": "OperatingHoursTable",
+      "description": "A table comprising a number of operating hours specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of the operating hours table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "The date/time that this version of the operating hours table was defined by the supplier. The identity and version of the table are defined by the class stereotype implementation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "operatingHoursSpecification": {
+          "title": "operatingHoursSpecification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursSpecification"
+          },
+          "minItems": 1
+        },
+        "afacOperatingHoursTableExtensionG": {
+          "title": "afacOperatingHoursTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "operatingHoursSpecification"
+      ]
+    },
+    "OperatingHoursTableVersionedReferenceG": {
+      "title": "OperatingHoursTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OrganisationByReference": {
+      "title": "OrganisationByReference",
+      "description": "Organisation information that is based on a reference.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "organisationReference": {
+          "title": "organisationReference",
+          "description": "Organisation information provided by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReferenceableOrganisationVersionedReferenceG"
+        },
+        "organisationTableReference": {
+          "title": "organisationTableReference",
+          "description": "Organisation table in question defined by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationTableVersionedReferenceG"
+        },
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacOrganisationByReferenceExtensionG": {
+          "title": "afacOrganisationByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "organisationReference"
+      ]
+    },
+    "OrganisationG": {
+      "title": "OrganisationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacUndefinedOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UndefinedOrganisation"
+        },
+        "afacOrganisationByReference": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationByReference"
+        },
+        "afacUnknownOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UnknownOrganisation"
+        },
+        "afacAnOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AnOrganisation"
+        },
+        "afacReferenceableOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReferenceableOrganisation"
+        }
+      }
+    },
+    "OrganisationPublication": {
+      "title": "OrganisationPublication",
+      "description": "A publication defining one or more tables that have entries of organisation specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "organisationTable": {
+          "title": "organisationTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacOrganisationPublicationExtensionG": {
+          "title": "afacOrganisationPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "organisationTable"
+      ]
+    },
+    "OrganisationTable": {
+      "title": "OrganisationTable",
+      "description": "A table comprising a number of organisation specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of the organisation table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "The date/time that this version of the organisation table was defined by the supplier. The identity and version of the table are defined by the class stereotype implementation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "anOrganisation": {
+          "title": "anOrganisation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AnOrganisationG"
+          },
+          "minItems": 1
+        },
+        "afacOrganisationTableExtensionG": {
+          "title": "afacOrganisationTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "anOrganisation"
+      ]
+    },
+    "OrganisationTableVersionedReferenceG": {
+      "title": "OrganisationTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OrganisationTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OrganisationTypeEnum": {
+      "title": "OrganisationTypeEnum",
+      "description": "Type of organisation.",
+      "type": "string",
+      "enum": [
+        "publicSector",
+        "privateSector",
+        "extendedG"
+      ]
+    },
+    "OrganisationTypeEnumG": {
+      "title": "OrganisationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OrganisationUnit": {
+      "title": "OrganisationUnit",
+      "description": "A unit within the organisation,which has got seperate location,operating hours,address and/or contacts.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "A name for this organisation unit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "function": {
+          "title": "function",
+          "description": "Functions this unit is responsible for or a specific type, e.g. headquarter or sales.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "contactInformation": {
+          "title": "contactInformation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ContactInformationG"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OperatingHoursG"
+        },
+        "afacOrganisationUnitExtensionG": {
+          "title": "afacOrganisationUnitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "OrganisationVersionedReferenceG": {
+      "title": "OrganisationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "Organisation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Information on payment possibilities.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paymentMode": {
+          "title": "paymentMode",
+          "description": "Defines the timing of the parking or other mobility related payment.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/PaymentModeEnumG"
+          },
+          "minItems": 0
+        },
+        "paymentMeans": {
+          "title": "paymentMeans",
+          "description": "The means of payment available.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/MeansOfPaymentEnumG"
+          },
+          "minItems": 0
+        },
+        "otherPaymentMeans": {
+          "title": "otherPaymentMeans",
+          "description": "Other means of payment that are available.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "brandsAccepted": {
+          "title": "brandsAccepted",
+          "description": "Accepted brands for payment cards.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/PaymentBrandsEnumG"
+          },
+          "minItems": 0
+        },
+        "otherBrandsAccepted": {
+          "title": "otherBrandsAccepted",
+          "description": "Further accepted brands for payment cards.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/String"
+          },
+          "minItems": 0
+        },
+        "afacPaymentExtensionG": {
+          "title": "afacPaymentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "PaymentBrandsEnum": {
+      "title": "PaymentBrandsEnum",
+      "description": "Brands for payment cards.",
+      "type": "string",
+      "enum": [
+        "americanExpress",
+        "applePay",
+        "cirrus",
+        "dinersClub",
+        "discoverCard",
+        "giroCard",
+        "maestro",
+        "masterCard",
+        "visa",
+        "vpay",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PaymentBrandsEnumG": {
+      "title": "PaymentBrandsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/PaymentBrandsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PaymentModeEnum": {
+      "title": "PaymentModeEnum",
+      "description": "Details of when payment is required.",
+      "type": "string",
+      "enum": [
+        "prepay",
+        "payOnEntry",
+        "payPriorToExit",
+        "payAndExit",
+        "payAfterExit",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PaymentModeEnumG": {
+      "title": "PaymentModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/PaymentModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Qualification": {
+      "title": "Qualification",
+      "description": "A singular set of criteria used to test eligibility for use of a rate table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "withReservation": {
+          "title": "withReservation",
+          "description": "Indicates whether a reservation is required. [TRUE] reservation required.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "propulsionEnergyType": {
+          "title": "propulsionEnergyType",
+          "description": "Indicates eligible fuel types for applicable vehicles.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/EnergySourceEnumG"
+          },
+          "minItems": 0
+        },
+        "noFeeToUse": {
+          "title": "noFeeToUse",
+          "description": "Specific facility is free or not. [TRUE] (e.g. free to park).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "withMembership": {
+          "title": "withMembership",
+          "description": "Indicates that a membership is required. [TRUE] membership required.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "membershipName": {
+          "title": "membershipName",
+          "description": "Free-text description of the membership.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "memberOfOtherRateTable": {
+          "title": "memberOfOtherRateTable",
+          "description": "Indicates if this qualification can be used in combination with the use of another rate table. [TRUE]= member of (i.e., used) another rate table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "rateTableMember": {
+          "title": "rateTableMember",
+          "description": "Reference to another rate table membership.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateTableVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "activeAssignedRight": {
+          "title": "activeAssignedRight",
+          "description": "Indication of an assigned right.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "payment": {
+          "title": "payment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Payment"
+          },
+          "minItems": 0
+        },
+        "vehicleCharacteristics": {
+          "title": "vehicleCharacteristics",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "linkedRightSpecification": {
+          "title": "linkedRightSpecification",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/LinkedRightSpecification"
+        },
+        "userQualification": {
+          "title": "userQualification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UserQualification"
+          },
+          "minItems": 0
+        },
+        "afacQualificationExtensionG": {
+          "title": "afacQualificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "RateAvailabilityTypeEnum": {
+      "title": "RateAvailabilityTypeEnum",
+      "description": "A list of rate availability types.",
+      "type": "string",
+      "enum": [
+        "private",
+        "public",
+        "restricted",
+        "extendedG"
+      ]
+    },
+    "RateAvailabilityTypeEnumG": {
+      "title": "RateAvailabilityTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateAvailabilityTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RateDiscount": {
+      "title": "RateDiscount",
+      "description": "Class defining discount rates to be applied to a RateTable.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "discountRate": {
+          "title": "discountRate",
+          "description": "Proportionate discount (-) or surcharge (+) to be applied to all values in the referenced RateTable.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "fixedValue": {
+          "title": "fixedValue",
+          "description": "Fixed value discount (-) or surcharge (+) to be applied to all values in the referenced RateTable ",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountInCurrency"
+        },
+        "afacRateDiscountExtensionG": {
+          "title": "afacRateDiscountExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "RateLine": {
+      "title": "RateLine",
+      "description": "A specific rate element of a rate line collection within a specific rate table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sequence": {
+          "title": "sequence",
+          "description": "The ordered sequence of this RateLine instance within the RateLineCollection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "rateLineType": {
+          "title": "rateLineType",
+          "description": "Indicates the nature of the rate line.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateLineTypeEnumG"
+        },
+        "value": {
+          "title": "value",
+          "description": "The value of the fee to be charged in respect of this rate line.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "afacRateLineExtensionG": {
+          "title": "afacRateLineExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "rateLineType",
+        "sequence",
+        "value"
+      ]
+    },
+    "RateLineCollection": {
+      "title": "RateLineCollection",
+      "description": "A group of rate line elements that logically group together within one rate table,e.g. such as the rate lines for the different tiers of a time-based tier rate table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "collectionSequence": {
+          "title": "collectionSequence",
+          "description": "An indicator giving the place in sequence of this rate line collection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "The monetary currency that rates are specified in this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CurrencyCode"
+        },
+        "minValueCollection": {
+          "title": "minValueCollection",
+          "description": "The minimum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "maxValueCollection": {
+          "title": "maxValueCollection",
+          "description": "The maximum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "validStart": {
+          "title": "validStart",
+          "description": "The start time for the validity of this rate line collection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "validEnd": {
+          "title": "validEnd",
+          "description": "The end time for the validity of this rate line collection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "minTime": {
+          "title": "minTime",
+          "description": "A minimum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "maxTime": {
+          "title": "maxTime",
+          "description": "A maximum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "resetTime": {
+          "title": "resetTime",
+          "description": "Time that rate resets.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Time"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included within the total rate associated with this rate line collection. [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "taxValue": {
+          "title": "taxValue",
+          "description": "The monetary amount of tax to be applied.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "relativeTimes": {
+          "title": "relativeTimes",
+          "description": "[TRUE] Indicates whether times relative to the start of an external event are used as the basis for rate calculation. [FALSE] indicates that rate calculation definitions are based on local or UTC times (for example the duration of a parking session).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "rateLine": {
+          "title": "rateLine",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateLine"
+          },
+          "minItems": 1
+        },
+        "afacRateLineCollectionExtensionG": {
+          "title": "afacRateLineCollectionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "collectionSequence",
+        "rateLine"
+      ]
+    },
+    "RateLineCollectionG": {
+      "title": "RateLineCollectionG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacRateLineCollection": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateLineCollection"
+        },
+        "afacRelativeTimeRates": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RelativeTimeRates"
+        }
+      }
+    },
+    "RateLineTypeEnum": {
+      "title": "RateLineTypeEnum",
+      "description": "A list of rate line types.",
+      "type": "string",
+      "enum": [
+        "flatRate",
+        "incrementingRate",
+        "flatRateTier",
+        "perUnit",
+        "extendedG"
+      ]
+    },
+    "RateLineTypeEnumG": {
+      "title": "RateLineTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateLineTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RateMatrix": {
+      "title": "RateMatrix",
+      "description": "A collection of rateTables as supplied by the data supplier. These may relate to different locations.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "Supplier-defined name for the rate matrix.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "Supplier-defined free-text description for the rate matrix.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "Timestamp indicating the issuance of this rate matrix.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "rateTable": {
+          "title": "rateTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateTable"
+          },
+          "minItems": 1
+        },
+        "afacRatesExtensionG": {
+          "title": "afacRatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacRateMatrixExtensionG": {
+          "title": "afacRateMatrixExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "rateTable"
+      ]
+    },
+    "RatesG": {
+      "title": "RatesG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacRateMatrix": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateMatrix"
+        },
+        "afacRateTable": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateTable"
+        }
+      }
+    },
+    "RatesPublication": {
+      "title": "RatesPublication",
+      "description": "A publication to supply rate information.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "rateMatrix": {
+          "title": "rateMatrix",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateMatrix"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacRatesPublicationExtensionG": {
+          "title": "afacRatesPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "rateMatrix"
+      ]
+    },
+    "RateTable": {
+      "title": "RateTable",
+      "description": "A specific set of rate charges relating to one or more locations and optionally one set of eligibility criteria.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "rateTableName": {
+          "title": "rateTableName",
+          "description": "Name of the Rate Table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "activeTimes": {
+          "title": "activeTimes",
+          "description": "Periods when the rate table is to be applied.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+          },
+          "minItems": 0
+        },
+        "availability": {
+          "title": "availability",
+          "description": "Availability of Rate to the public.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateAvailabilityTypeEnumG"
+        },
+        "rateResponsibleParty": {
+          "title": "rateResponsibleParty",
+          "description": "Entity responsible for fee collection. Identifies the entity that actually collects payment (e.g. mobile payment provider, online reservation firm, on-site operations).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReferenceableOrganisationVersionedReferenceG"
+        },
+        "rateSupersedeLink": {
+          "title": "rateSupersedeLink",
+          "description": "Identify the rate table that this rate table supersedes. Temporarily supersedes the identified rate table. Use the Rate expiration times to define duration.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateTableVersionedReferenceG"
+        },
+        "validation": {
+          "title": "validation",
+          "description": "Are validations accepted when using this rate table? [TRUE] = validations can be applied to transactions using this rate table; [FALSE] validations cannot be applicated to transactions using this rate table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "rateType": {
+          "title": "rateType",
+          "description": "Defines the type of rate in use.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateTypeEnumG"
+        },
+        "validityStart": {
+          "title": "validityStart",
+          "description": "Valid start date/time of rate table.  This is when the rate table and pricing become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "validityEnd": {
+          "title": "validityEnd",
+          "description": "Expiration of rate table in date/time.  This is when the rate table and pricing expires and is no longer used.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "URI locator for supplementary additional information concerning use of the rate table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "rateLineCollection": {
+          "title": "rateLineCollection",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateLineCollectionG"
+          },
+          "minItems": 0
+        },
+        "eligibility": {
+          "title": "eligibility",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Eligibility"
+        },
+        "afacRatesExtensionG": {
+          "title": "afacRatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacRateTableExtensionG": {
+          "title": "afacRateTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "RateTableVersionedReferenceG": {
+      "title": "RateTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "RateTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "RateTypeEnum": {
+      "title": "RateTypeEnum",
+      "description": "A list of supported rate types.",
+      "type": "string",
+      "enum": [
+        "contract",
+        "daily",
+        "event",
+        "hourly",
+        "extendedG"
+      ]
+    },
+    "RateTypeEnumG": {
+      "title": "RateTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ReferenceableOrganisation": {
+      "title": "ReferenceableOrganisation",
+      "description": "A versioned identifiable organisation that can be referenced.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "legalName": {
+          "title": "legalName",
+          "description": "The legal name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "linkToGeneralInformation": {
+          "title": "linkToGeneralInformation",
+          "description": "An internet address from where further relevant information about this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "linkToLogo": {
+          "title": "linkToLogo",
+          "description": "An internet address from where the logo of this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "linkToWebform": {
+          "title": "linkToWebform",
+          "description": "An internet address pointing to a webform, which people can use to send messages to this organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "available24hours": {
+          "title": "available24hours",
+          "description": "Specifies if the availability is 24 hours a day. If omitted, this information is unknown or heterogeneous.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "responsibility": {
+          "title": "responsibility",
+          "description": "Specification of services or other duties the organisation is responsible for.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "publishingAgreement": {
+          "title": "publishingAgreement",
+          "description": "Indication whether the organisation accepted publishing its information.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "type": {
+          "title": "type",
+          "description": "Information whether the organisation in question belongs to the public or private sector.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationTypeEnumG"
+        },
+        "nationalOrganisationNumber": {
+          "title": "nationalOrganisationNumber",
+          "description": "The national organisation number in the specified national register, if applicable.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "nationalRegister": {
+          "title": "nationalRegister",
+          "description": "A national register where the organisation is registered.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "vatIdentificationNumber": {
+          "title": "vatIdentificationNumber",
+          "description": "The VAT identification number of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "organisationUnit": {
+          "title": "organisationUnit",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationUnit"
+          },
+          "minItems": 0
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "subOrganisation": {
+          "title": "subOrganisation",
+          "description": "An organisation that is subordinated to its parent organisation, defined likewise by the Organisation model structure.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacAnOrganisationExtensionG": {
+          "title": "afacAnOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacReferenceableOrganisationExtensionG": {
+          "title": "afacReferenceableOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "name"
+      ]
+    },
+    "ReferenceableOrganisationVersionedReferenceG": {
+      "title": "ReferenceableOrganisationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ReferenceableOrganisation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "RelativeOffsets": {
+      "title": "RelativeOffsets",
+      "description": "Time-based qualification criteria,linked to the possession of a specified Right Specification,defined using relative time offsets from the last use of the identified Right Specification.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "earliestStartRelative": {
+          "title": "earliestStartRelative",
+          "description": "Defines the earliest start eligibility period.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "latestStartRelative": {
+          "title": "latestStartRelative",
+          "description": "Defines the latest start eligibility period.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "earliestEndRelative": {
+          "title": "earliestEndRelative",
+          "description": "Defines the earliest end eligibility period.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "latestEndRelative": {
+          "title": "latestEndRelative",
+          "description": "Defines the latest start eligibility period.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "afacAssignedRightTimeRelativeExtensionG": {
+          "title": "afacAssignedRightTimeRelativeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacRelativeOffsetsExtensionG": {
+          "title": "afacRelativeOffsetsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "RelativeTimeRates": {
+      "title": "RelativeTimeRates",
+      "description": "A class supporting the specification of times for defining rate applicability that are relative to a defined referenceTimeStart of an event.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "collectionSequence": {
+          "title": "collectionSequence",
+          "description": "An indicator giving the place in sequence of this rate line collection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "The monetary currency that rates are specified in this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CurrencyCode"
+        },
+        "minValueCollection": {
+          "title": "minValueCollection",
+          "description": "The minimum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "maxValueCollection": {
+          "title": "maxValueCollection",
+          "description": "The maximum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "validStart": {
+          "title": "validStart",
+          "description": "The start time for the validity of this rate line collection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "validEnd": {
+          "title": "validEnd",
+          "description": "The end time for the validity of this rate line collection.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "minTime": {
+          "title": "minTime",
+          "description": "A minimum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "maxTime": {
+          "title": "maxTime",
+          "description": "A maximum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Duration"
+        },
+        "resetTime": {
+          "title": "resetTime",
+          "description": "Time that rate resets.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Time"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included within the total rate associated with this rate line collection. [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "taxValue": {
+          "title": "taxValue",
+          "description": "The monetary amount of tax to be applied.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "relativeTimes": {
+          "title": "relativeTimes",
+          "description": "[TRUE] Indicates whether times relative to the start of an external event are used as the basis for rate calculation. [FALSE] indicates that rate calculation definitions are based on local or UTC times (for example the duration of a parking session).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "referenceTimeStart": {
+          "title": "referenceTimeStart",
+          "description": "Event-related reference start time.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "referenceTimeEnd": {
+          "title": "referenceTimeEnd",
+          "description": "Event-related reference end time.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "rateLine": {
+          "title": "rateLine",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RateLine"
+          },
+          "minItems": 1
+        },
+        "afacRateLineCollectionExtensionG": {
+          "title": "afacRateLineCollectionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacRelativeTimeRatesExtensionG": {
+          "title": "afacRelativeTimeRatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "collectionSequence",
+        "rateLine"
+      ]
+    },
+    "ReservationTypeEnum": {
+      "title": "ReservationTypeEnum",
+      "description": "Different types of reservation.",
+      "type": "string",
+      "enum": [
+        "optional",
+        "mandatory",
+        "notAvailable",
+        "partly",
+        "unknown",
+        "unspecified",
+        "extendedG"
+      ]
+    },
+    "ReservationTypeEnumG": {
+      "title": "ReservationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReservationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RightSpecification": {
+      "title": "RightSpecification",
+      "description": "A Right Specification explicitly defines what the owner/manager of a Place is granting specific users or vehicles the ability to do (e.g. park,delivery,pick up).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "type": {
+          "title": "type",
+          "description": "Defines the type of Right Specification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RightTypeEnumG"
+        },
+        "description": {
+          "title": "description",
+          "description": "Free-text description of a RightSpecification.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "financialReference": {
+          "title": "financialReference",
+          "description": "Creater defined free-text reference to financial transactions associated to the specific Right Specification.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "issuer": {
+          "title": "issuer",
+          "description": "A versioned reference identifying the entity issuing the RightsSpecification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReferenceableOrganisationVersionedReferenceG"
+        },
+        "transferable": {
+          "title": "transferable",
+          "description": "Indication that the RightSpecification is available to be transferred between Assigned Right Holder(s) or users.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "transferableConditions": {
+          "title": "transferableConditions",
+          "description": "Statement of the conditions under which a RightSpecification may be transferred.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "credential": {
+          "title": "credential",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CredentialG"
+          },
+          "minItems": 0
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "afacRightSpecificationExtensionG": {
+          "title": "afacRightSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "RightSpecificationVersionedReferenceG": {
+      "title": "RightSpecificationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "RightSpecification"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "RightTypeEnum": {
+      "title": "RightTypeEnum",
+      "description": "A list of the supported RightSpecification types available for reference.",
+      "type": "string",
+      "enum": [
+        "oneTimeUseParking",
+        "permitParking",
+        "loadingUnloading",
+        "setdownPickup",
+        "waiting",
+        "accessPermission",
+        "doingReservation",
+        "electricCharging",
+        "extendedG"
+      ]
+    },
+    "RightTypeEnumG": {
+      "title": "RightTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/RightTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TimesOfDay": {
+      "title": "TimesOfDay",
+      "description": "Time-based qualification criteria,linked to the possession of a specified Right Specification,defined using absolute time of day offsets from the last use of the identified Right Specification.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "earliestStart": {
+          "title": "earliestStart",
+          "description": "Defines the earliest start eligibility period, defined as a time of day.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Time"
+        },
+        "latestStart": {
+          "title": "latestStart",
+          "description": "Defines the latest start eligibility.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Time"
+        },
+        "earliestEnd": {
+          "title": "earliestEnd",
+          "description": "Defines the earliest end eligibility.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Time"
+        },
+        "latestEnd": {
+          "title": "latestEnd",
+          "description": "Defines the latest end eligibility.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Time"
+        },
+        "afacAssignedRightTimeRelativeExtensionG": {
+          "title": "afacAssignedRightTimeRelativeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacTimesOfDayExtensionG": {
+          "title": "afacTimesOfDayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TimeZone": {
+      "title": "TimeZone",
+      "description": "Identifies a time zone by specifying the difference to UTC in hours and minutes,as defined in ISO 8601.",
+      "$ref": "DATEXII_3_Common.json#/$defs/String",
+      "pattern": "[-+][0-9][0-9]:[0-9][0-9]|Z"
+    },
+    "TypeOfIdentifierEnum": {
+      "title": "TypeOfIdentifierEnum",
+      "description": "An empty enumeration,which should be project-specifically extended to provide type of external identifiers.",
+      "type": "string",
+      "enum": [
+        "extendedG"
+      ]
+    },
+    "TypeOfIdentifierEnumExtensionTypeG": {
+      "title": "TypeOfIdentifierEnumExtensionTypeG",
+      "type": "string",
+      "enum": [
+        "evseId"
+      ]
+    },
+    "TypeOfIdentifierEnumG": {
+      "title": "TypeOfIdentifierEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/TypeOfIdentifierEnum"
+        },
+        "extendedValueG": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/TypeOfIdentifierEnumExtensionTypeG"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "UndefinedOperatingHours": {
+      "title": "UndefinedOperatingHours",
+      "description": "There are no operating hours specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacUndefinedOperatingHoursExtensionG": {
+          "title": "afacUndefinedOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "UndefinedOrganisation": {
+      "title": "UndefinedOrganisation",
+      "description": "The organisation for the specified association end (within the specified validity if applicable) is not defined.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacUndefinedOrganisationExtensionG": {
+          "title": "afacUndefinedOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownOperatingHours": {
+      "title": "UnknownOperatingHours",
+      "description": "The operating hours are not known.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacUnknownOperatingHoursExtensionG": {
+          "title": "afacUnknownOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownOrganisation": {
+      "title": "UnknownOrganisation",
+      "description": "The organisation for the specified association end (within the specified validity if applicable) is unknown.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacUnknownOrganisationExtensionG": {
+          "title": "afacUnknownOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "UserQualification": {
+      "title": "UserQualification",
+      "description": "Class supporting the definition of user group characteristics.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userGroup": {
+          "title": "userGroup",
+          "description": "Indicates the user-defined user group qualification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UserTypeEnumG"
+        },
+        "afacUserQualificationExtensionG": {
+          "title": "afacUserQualificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "userGroup"
+      ]
+    },
+    "UserTypeEnum": {
+      "title": "UserTypeEnum",
+      "description": "Types of different users,for example used in the context of parking.",
+      "type": "string",
+      "enum": [
+        "allUsers",
+        "commuters",
+        "customers",
+        "elderlyUsers",
+        "employees",
+        "families",
+        "personsWithDisabilities",
+        "hearingImpaired",
+        "hotelGuests",
+        "longTermParkers",
+        "members",
+        "men",
+        "overnightParkers",
+        "parkAndCycleUser",
+        "parkAndRideUsers",
+        "parkAndWalkUser",
+        "pensioners",
+        "pregnantPerson",
+        "registeredDisabledUsers",
+        "reservationHolders",
+        "residents",
+        "seasonTicketHolders",
+        "shoppers",
+        "shortTermParkers",
+        "sportEventAwaySupporters",
+        "sportEventHomeSupporters",
+        "students",
+        "staff",
+        "subscribers",
+        "visitors",
+        "visuallyImpaired",
+        "wheelchairUsers",
+        "women",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "UserTypeEnumG": {
+      "title": "UserTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UserTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

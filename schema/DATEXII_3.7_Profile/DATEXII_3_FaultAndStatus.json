@@ -1,0 +1,1415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "AllFaultsOfSingleDevice": {
+      "title": "AllFaultsOfSingleDevice",
+      "description": "A collection of all current faults of a service fulfilled by a single device. An empty structure means that there are no faults reported for the device.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingProperlySince": {
+          "title": "operatingProperlySince",
+          "description": "Time, since when the device is working properly (without fault).",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "deviceReference": {
+          "title": "deviceReference",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceReferenceG"
+        },
+        "deviceFault": {
+          "title": "deviceFault",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceFault"
+          },
+          "minItems": 0
+        },
+        "fstAllFaultsOfSingleDeviceExtensionG": {
+          "title": "fstAllFaultsOfSingleDeviceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "deviceReference"
+      ]
+    },
+    "CatalogueInformation": {
+      "title": "CatalogueInformation",
+      "description": "A reference to specific additional information by means of a predefined element out of a catalogue. The type of reference information depends on the data structure this class is aggregated to.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "catalogueReferenceByOID": {
+          "title": "catalogueReferenceByOID",
+          "description": "The reference to a catalogue by its OID according to ISO/IEC 8824-1:2015 using the dot-notation (example: \"1.2.250.1\").",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/ObjectIdentifier"
+        },
+        "catalogueElement": {
+          "title": "catalogueElement",
+          "description": "A reference to a specific element within the specified catalogue. The notation of this reference also depends on the specified catalogue.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "fstCatalogueInformationExtensionG": {
+          "title": "fstCatalogueInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "catalogueElement",
+        "catalogueReferenceByOID"
+      ]
+    },
+    "Component": {
+      "title": "Component",
+      "description": "Components of a device which have some special interest such as having status and faults of their own",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "typeOfDevice": {
+          "title": "typeOfDevice",
+          "description": "Information about the type of the device.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTypeEnumG"
+        },
+        "lastUpdateOfDeviceInformation": {
+          "title": "lastUpdateOfDeviceInformation",
+          "description": "Time of the last update of the device information, i.e. the time of the information in this class was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "externalDeviceId": {
+          "title": "externalDeviceId",
+          "description": "An external id or name for the device.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "lastDeviceCheck": {
+          "title": "lastDeviceCheck",
+          "description": "The time the device was last checked. Depending on local policies, this can be a physical check or just an online check.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "softwareVersion": {
+          "title": "softwareVersion",
+          "description": "Information on the current software version of the device.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "softwareVersionDate": {
+          "title": "softwareVersionDate",
+          "description": "Information on the date of the current software version of the device.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "additionalDeviceInformation": {
+          "title": "additionalDeviceInformation",
+          "description": "Any additional device information.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "ipAddress": {
+          "title": "ipAddress",
+          "description": "IP address associated with the device",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/IpAddress"
+        },
+        "portNumber": {
+          "title": "portNumber",
+          "description": "Primary TCP or UDP port number associated with device",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/PortNumber"
+        },
+        "componentType": {
+          "title": "componentType",
+          "description": "Type of device component",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceComponentEnumG"
+        },
+        "accountableAuthority": {
+          "title": "accountableAuthority",
+          "description": "Information about the authority accountable for this device. Use this attribute only in case it differs from the accountable authority of the table of devices or the information manager declared within the PayloadPublication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "pointLocation": {
+          "title": "pointLocation",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/PointLocationG"
+        },
+        "physicalDeviceDetails": {
+          "title": "physicalDeviceDetails",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/PhysicalDeviceDetails"
+        },
+        "component": {
+          "title": "component",
+          "description": "Components of this device which have some special interest such as having status and faults of their own",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/Component"
+          },
+          "minItems": 0
+        },
+        "dependsOn": {
+          "title": "dependsOn",
+          "description": "Other devices (other than components of this device) whose services this device depends on in order to deliver its service",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceReferenceG"
+          },
+          "minItems": 0
+        },
+        "fstDeviceExtensionG": {
+          "title": "fstDeviceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstComponentExtensionG": {
+          "title": "fstComponentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "lastUpdateOfDeviceInformation",
+        "typeOfDevice",
+        "componentType",
+        "pointLocation"
+      ]
+    },
+    "Device": {
+      "title": "Device",
+      "description": "Static information about a logical device that delivers a service. A device can announce itself, or the information can be enriched by operators.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "typeOfDevice": {
+          "title": "typeOfDevice",
+          "description": "Information about the type of the device.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTypeEnumG"
+        },
+        "lastUpdateOfDeviceInformation": {
+          "title": "lastUpdateOfDeviceInformation",
+          "description": "Time of the last update of the device information, i.e. the time of the information in this class was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "externalDeviceId": {
+          "title": "externalDeviceId",
+          "description": "An external id or name for the device.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "lastDeviceCheck": {
+          "title": "lastDeviceCheck",
+          "description": "The time the device was last checked. Depending on local policies, this can be a physical check or just an online check.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "softwareVersion": {
+          "title": "softwareVersion",
+          "description": "Information on the current software version of the device.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "softwareVersionDate": {
+          "title": "softwareVersionDate",
+          "description": "Information on the date of the current software version of the device.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "additionalDeviceInformation": {
+          "title": "additionalDeviceInformation",
+          "description": "Any additional device information.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "ipAddress": {
+          "title": "ipAddress",
+          "description": "IP address associated with the device",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/IpAddress"
+        },
+        "portNumber": {
+          "title": "portNumber",
+          "description": "Primary TCP or UDP port number associated with device",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/PortNumber"
+        },
+        "accountableAuthority": {
+          "title": "accountableAuthority",
+          "description": "Information about the authority accountable for this device. Use this attribute only in case it differs from the accountable authority of the table of devices or the information manager declared within the PayloadPublication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "pointLocation": {
+          "title": "pointLocation",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/PointLocationG"
+        },
+        "physicalDeviceDetails": {
+          "title": "physicalDeviceDetails",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/PhysicalDeviceDetails"
+        },
+        "component": {
+          "title": "component",
+          "description": "Components of this device which have some special interest such as having status and faults of their own",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/Component"
+          },
+          "minItems": 0
+        },
+        "dependsOn": {
+          "title": "dependsOn",
+          "description": "Other devices (other than components of this device) whose services this device depends on in order to deliver its service",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceReferenceG"
+          },
+          "minItems": 0
+        },
+        "fstDeviceExtensionG": {
+          "title": "fstDeviceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "lastUpdateOfDeviceInformation",
+        "typeOfDevice",
+        "pointLocation"
+      ]
+    },
+    "DeviceComponentEnum": {
+      "title": "DeviceComponentEnum",
+      "description": "Type of component of a device",
+      "type": "string",
+      "enum": [
+        "ambientLightMonitor",
+        "cabinet",
+        "communicationsEquipment",
+        "controller",
+        "display",
+        "fan",
+        "generalPurposeIoPort",
+        "heater",
+        "other",
+        "powerSupply",
+        "processor",
+        "sensor",
+        "extendedG"
+      ]
+    },
+    "DeviceComponentEnumG": {
+      "title": "DeviceComponentEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceComponentEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DeviceFault": {
+      "title": "DeviceFault",
+      "description": "Information about a fault relating to a specific device",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "faultLastUpdateTime": {
+          "title": "faultLastUpdateTime",
+          "description": "The date and time at which the fault information as specified in this instance was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "faultType": {
+          "title": "faultType",
+          "description": "The type of fault.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/FaultTypeEnumG"
+        },
+        "faultInstructions": {
+          "title": "faultInstructions",
+          "description": "Instructions to rectify this fault.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "faultImpactOnData": {
+          "title": "faultImpactOnData",
+          "description": "The impact on data of this fault.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/FaultImpactOnDataEnumG"
+          },
+          "minItems": 0
+        },
+        "faultComponent": {
+          "title": "faultComponent",
+          "description": "Identity of the component (if any), in which the fault occurred.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "faultComponentType": {
+          "title": "faultComponentType",
+          "description": "The fault comes from a component of this device, of the identified component type.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceComponentEnumG"
+        },
+        "faultObjectInformation": {
+          "title": "faultObjectInformation",
+          "description": "A reference to specific additional information on the fault by referencing a predefined element out of some catalogue.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/CatalogueInformation"
+        },
+        "comFaultExtensionG": {
+          "title": "comFaultExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceFaultExtensionG": {
+          "title": "fstDeviceFaultExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "faultLastUpdateTime",
+        "faultType"
+      ]
+    },
+    "DeviceG": {
+      "title": "DeviceG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fstDevice": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/Device"
+        },
+        "fstComponent": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/Component"
+        }
+      }
+    },
+    "DeviceHealthEnum": {
+      "title": "DeviceHealthEnum",
+      "description": "This enumeration provides information on the health status of a device, in terms of its ability to provide its functional service.",
+      "type": "string",
+      "enum": [
+        "ok",
+        "notOk",
+        "functionalityPartlyOk",
+        "intermittentlyOk",
+        "alarm",
+        "notResponding",
+        "offline",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "DeviceHealthEnumG": {
+      "title": "DeviceHealthEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceHealthEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DevicePower": {
+      "title": "DevicePower",
+      "description": "Power source for a device",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "health": {
+          "title": "health",
+          "description": "Health of the power supply",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceHealthEnumG"
+        },
+        "sourceType": {
+          "title": "sourceType",
+          "description": "Type of power supply",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/PowerSourceEnumG"
+        },
+        "fstDevicePowerExtensionG": {
+          "title": "fstDevicePowerExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "health",
+        "sourceType"
+      ]
+    },
+    "DevicePublication": {
+      "title": "DevicePublication",
+      "description": "This publication provides static information about devices, including its point-location. It can be used in case no specific publication for the type of device is available or suitable. Fault- and StatusPublication can reference to the specified devices.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "device": {
+          "title": "device",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceG"
+          },
+          "minItems": 0
+        },
+        "deviceTable": {
+          "title": "deviceTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTable"
+          },
+          "minItems": 0
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDevicePublicationExtensionG": {
+          "title": "fstDevicePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation"
+      ]
+    },
+    "DeviceReferenceG": {
+      "title": "DeviceReferenceG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fstVmsUnitReference": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/VmsUnitReference"
+        },
+        "fstMeasurementSiteReference": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/MeasurementSiteReference"
+        },
+        "fstGeneralDeviceReference": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/GeneralDeviceReference"
+        }
+      }
+    },
+    "DeviceTable": {
+      "title": "DeviceTable",
+      "description": "A table of devices grouped by any logical criteria, e.g. all traffic lights within a certain administrative area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "deviceTableName": {
+          "title": "deviceTableName",
+          "description": "The name of the table of devices.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "accountableAuthority": {
+          "title": "accountableAuthority",
+          "description": "Information about the authority accountable for this table of devices. Use this attribute only in the case where it differs from the information manager declared within the PayloadPublication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "device": {
+          "title": "device",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceG"
+          },
+          "minItems": 1
+        },
+        "fstDeviceTableExtensionG": {
+          "title": "fstDeviceTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "device"
+      ]
+    },
+    "DeviceTableReferenceG": {
+      "title": "DeviceTableReferenceG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fstMeasurementSiteTableReference": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/MeasurementSiteTableReference"
+        },
+        "fstGeneralDeviceTableReference": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/GeneralDeviceTableReference"
+        },
+        "fstVmsUnitTableReference": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/VmsUnitTableReference"
+        }
+      }
+    },
+    "DeviceTableVersionedReferenceG": {
+      "title": "DeviceTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "DeviceTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "DeviceTypeEnum": {
+      "title": "DeviceTypeEnum",
+      "description": "This enumeration provides information on types of field devices.",
+      "type": "string",
+      "enum": [
+        "accessControl",
+        "camera",
+        "fireDetection",
+        "firefightingDevice",
+        "itsStation",
+        "lighting",
+        "meteorological",
+        "roadsideTelephone",
+        "tollingDevice",
+        "trafficDetector",
+        "ventilation",
+        "parkingGuidance",
+        "parkingManagement",
+        "roadsideEquipment",
+        "trafficSignal",
+        "transportLink",
+        "transportRoute",
+        "tunnel",
+        "vehicle",
+        "vms",
+        "other",
+        "extendedG"
+      ]
+    },
+    "DeviceTypeEnumG": {
+      "title": "DeviceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DeviceVersionedReferenceG": {
+      "title": "DeviceVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "Device"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "FaultImpactOnDataEnum": {
+      "title": "FaultImpactOnDataEnum",
+      "description": "This enumeration provides information on the impact on data of a fault.",
+      "type": "string",
+      "enum": [
+        "downloadFailed",
+        "intermittentData",
+        "noData",
+        "unreliableData",
+        "unspecified",
+        "extendedG"
+      ]
+    },
+    "FaultImpactOnDataEnumG": {
+      "title": "FaultImpactOnDataEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/FaultImpactOnDataEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "FaultPublication": {
+      "title": "FaultPublication",
+      "description": "A publication containing fault information of devices or of tables of devices.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "allFaultsOfSingleDevice": {
+          "title": "allFaultsOfSingleDevice",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/AllFaultsOfSingleDevice"
+          },
+          "minItems": 0
+        },
+        "faultsOfAllDevicesFromTable": {
+          "title": "faultsOfAllDevicesFromTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/FaultsOfAllDevicesFromTable"
+          },
+          "minItems": 0
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstFaultPublicationExtensionG": {
+          "title": "fstFaultPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation"
+      ]
+    },
+    "FaultsOfAllDevicesFromTable": {
+      "title": "FaultsOfAllDevicesFromTable",
+      "description": "Fault information for a table of devices.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deviceTableReference": {
+          "title": "deviceTableReference",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTableReferenceG"
+        },
+        "allFaultsOfSingleDevice": {
+          "title": "allFaultsOfSingleDevice",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/AllFaultsOfSingleDevice"
+          },
+          "minItems": 1
+        },
+        "fstFaultsOfAllDevicesFromTableExtensionG": {
+          "title": "fstFaultsOfAllDevicesFromTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "deviceTableReference",
+        "allFaultsOfSingleDevice"
+      ]
+    },
+    "FaultTypeEnum": {
+      "title": "FaultTypeEnum",
+      "description": "This enumeration provides information on types of faults.",
+      "type": "string",
+      "enum": [
+        "internalCommunicationFault",
+        "synchronizationFault",
+        "componentFault",
+        "configurationError",
+        "disconnected",
+        "electronicsFault",
+        "generalSystemError",
+        "hardwareFault",
+        "controlFault",
+        "intermittentlyWorking",
+        "mechanicalFault",
+        "notWorking",
+        "operatingSystemFault",
+        "powerFailure",
+        "securityFault",
+        "softwareFault",
+        "timeOrClockFault",
+        "unspecifiedFault",
+        "unknownFault",
+        "otherFault",
+        "extendedG"
+      ]
+    },
+    "FaultTypeEnumG": {
+      "title": "FaultTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/FaultTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "GeneralDeviceReference": {
+      "title": "GeneralDeviceReference",
+      "description": "A reference to a device of any type.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deviceReference": {
+          "title": "deviceReference",
+          "description": "A reference to a device of any type.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceVersionedReferenceG"
+        },
+        "comGlobalReferenceExtensionG": {
+          "title": "comGlobalReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceReferenceExtensionG": {
+          "title": "fstDeviceReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstGeneralDeviceReferenceExtensionG": {
+          "title": "fstGeneralDeviceReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "deviceReference"
+      ]
+    },
+    "GeneralDeviceTableReference": {
+      "title": "GeneralDeviceTableReference",
+      "description": "A reference to a table of devices of any type.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deviceTableReference": {
+          "title": "deviceTableReference",
+          "description": "A reference to a table of devices of any type.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTableVersionedReferenceG"
+        },
+        "comGlobalReferenceExtensionG": {
+          "title": "comGlobalReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceTableReferenceExtensionG": {
+          "title": "fstDeviceTableReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstGeneralDeviceTableReferenceExtensionG": {
+          "title": "fstGeneralDeviceTableReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "deviceTableReference"
+      ]
+    },
+    "MeasurementSiteReference": {
+      "title": "MeasurementSiteReference",
+      "description": "A reference to a measurement site.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementSiteReference": {
+          "title": "measurementSiteReference",
+          "description": "A reference to a measurement site.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/MeasurementSiteVersionedReferenceG"
+        },
+        "comGlobalReferenceExtensionG": {
+          "title": "comGlobalReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceReferenceExtensionG": {
+          "title": "fstDeviceReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstMeasurementSiteReferenceExtensionG": {
+          "title": "fstMeasurementSiteReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "measurementSiteReference"
+      ]
+    },
+    "MeasurementSiteTableReference": {
+      "title": "MeasurementSiteTableReference",
+      "description": "A reference to a measurement site table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementSiteTableReference": {
+          "title": "measurementSiteTableReference",
+          "description": "A reference to a measurement site table.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/MeasurementSiteTableVersionedReferenceG"
+        },
+        "comGlobalReferenceExtensionG": {
+          "title": "comGlobalReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceTableReferenceExtensionG": {
+          "title": "fstDeviceTableReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstMeasurementSiteTableReferenceExtensionG": {
+          "title": "fstMeasurementSiteTableReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "measurementSiteTableReference"
+      ]
+    },
+    "MeasurementSiteTableVersionedReferenceG": {
+      "title": "MeasurementSiteTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSiteTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "MeasurementSiteVersionedReferenceG": {
+      "title": "MeasurementSiteVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSite"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ObjectIdentifier": {
+      "title": "ObjectIdentifier",
+      "description": "An OID according to ISO/IEC 9834-1:2012 and ISO/IEC 8824-1:2015 using the dot-notation. Example: (1.3.162) points to CEN. The presentation in ASN.1 would be: {iso(1) identified-organization(3) cen(162)}.",
+      "$ref": "DATEXII_3_Common.json#/$defs/String"
+    },
+    "OperationalDeviceStateEnum": {
+      "title": "OperationalDeviceStateEnum",
+      "description": "This enumeration provides information on the operational state of a device.",
+      "type": "string",
+      "enum": [
+        "maintenanceMode",
+        "on",
+        "off",
+        "powerSafeMode",
+        "specialMode",
+        "temporarilyDeactivated",
+        "permanentlyDeactivated",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "OperationalDeviceStateEnumG": {
+      "title": "OperationalDeviceStateEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/OperationalDeviceStateEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OperationalState": {
+      "title": "OperationalState",
+      "description": "Information about the operational state in which a device has been placed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operationalDeviceState": {
+          "title": "operationalDeviceState",
+          "description": "The operational state into which the device has been placed.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/OperationalDeviceStateEnumG"
+        },
+        "stateDescription": {
+          "title": "stateDescription",
+          "description": "A description of the operational state.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "lastStateChange": {
+          "title": "lastStateChange",
+          "description": "The time at which the last operational state change occurred.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "lastStateUpdate": {
+          "title": "lastStateUpdate",
+          "description": "The time the operational state information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "operationalStateCatalogueInformation": {
+          "title": "operationalStateCatalogueInformation",
+          "description": "A reference to specific additional information on the operational state by referencing a predefined element out of some catalogue.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/CatalogueInformation"
+        },
+        "fstOperationalStateExtensionG": {
+          "title": "fstOperationalStateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operationalDeviceState"
+      ]
+    },
+    "PhysicalDeviceDetails": {
+      "title": "PhysicalDeviceDetails",
+      "description": "Details of a specific physical device",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "barcode": {
+          "title": "barcode",
+          "description": "textual equivalent of the content on the machine-readable barcode for this device",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "installationDate": {
+          "title": "installationDate",
+          "description": "date that this device was installed",
+          "$ref": "DATEXII_3_Common.json#/$defs/Date"
+        },
+        "manufactureDate": {
+          "title": "manufactureDate",
+          "description": "date that this device was manufactured",
+          "$ref": "DATEXII_3_Common.json#/$defs/Date"
+        },
+        "manufacturer": {
+          "title": "manufacturer",
+          "description": "the identity of the manufacturer of this device",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "model": {
+          "title": "model",
+          "description": "model of device",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "name": {
+          "title": "name",
+          "description": "name of the individual device",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "serialNumber": {
+          "title": "serialNumber",
+          "description": "serial number of this device",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "stockCode": {
+          "title": "stockCode",
+          "description": "number or text used to identify this kind of device in stock",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "fstPhysicalDeviceDetailsExtensionG": {
+          "title": "fstPhysicalDeviceDetailsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "PowerSourceEnum": {
+      "title": "PowerSourceEnum",
+      "description": "Type of power source",
+      "type": "string",
+      "enum": [
+        "battery",
+        "generator",
+        "hydro",
+        "mains",
+        "solar",
+        "wind",
+        "extendedG"
+      ]
+    },
+    "PowerSourceEnumG": {
+      "title": "PowerSourceEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/PowerSourceEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Status": {
+      "title": "Status",
+      "description": "Status and operational state information for the service from a single device.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "health": {
+          "title": "health",
+          "description": "Health of the device in terms of its ability to provide its service.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceHealthEnumG"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description of the device status.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "lastStatusChange": {
+          "title": "lastStatusChange",
+          "description": "The time at which the last status change occurred.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "lastStatusUpdate": {
+          "title": "lastStatusUpdate",
+          "description": "The time the status information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "relatedFault": {
+          "title": "relatedFault",
+          "description": "A reference to one or more faults that recently occurred on this device (and are not yet cleared).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VersionedReference"
+          },
+          "minItems": 0
+        },
+        "deviceReference": {
+          "title": "deviceReference",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceReferenceG"
+        },
+        "operationalState": {
+          "title": "operationalState",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/OperationalState"
+        },
+        "statusCatalogueInformation": {
+          "title": "statusCatalogueInformation",
+          "description": "A reference to specific additional information on the device status by referencing a predefined element out of some catalogue.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/CatalogueInformation"
+        },
+        "devicePower": {
+          "title": "devicePower",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DevicePower"
+          },
+          "minItems": 0
+        },
+        "fstStatusExtensionG": {
+          "title": "fstStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "health",
+        "lastStatusUpdate",
+        "deviceReference"
+      ]
+    },
+    "StatusOfAllDevicesFromTable": {
+      "title": "StatusOfAllDevicesFromTable",
+      "description": "Status information for a table of devices.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deviceTableReference": {
+          "title": "deviceTableReference",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/DeviceTableReferenceG"
+        },
+        "status": {
+          "title": "status",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/Status"
+          },
+          "minItems": 1
+        },
+        "fstStatusOfAllDevicesFromTableExtensionG": {
+          "title": "fstStatusOfAllDevicesFromTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "deviceTableReference",
+        "status"
+      ]
+    },
+    "StatusPublication": {
+      "title": "StatusPublication",
+      "description": "A publication containing status information of devices or of tables of devices.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "status": {
+          "title": "status",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/Status"
+          },
+          "minItems": 0
+        },
+        "statusOfAllDevicesFromTable": {
+          "title": "statusOfAllDevicesFromTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/StatusOfAllDevicesFromTable"
+          },
+          "minItems": 0
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstStatusPublicationExtensionG": {
+          "title": "fstStatusPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation"
+      ]
+    },
+    "VmsControllerTableVersionedReferenceG": {
+      "title": "VmsControllerTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "VmsControllerTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "VmsControllerVersionedReferenceG": {
+      "title": "VmsControllerVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "VmsController"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "VmsUnitReference": {
+      "title": "VmsUnitReference",
+      "description": "A reference to a VMS unit record.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vmsUnitReference": {
+          "title": "vmsUnitReference",
+          "description": "A reference to a VMS controller record.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/VmsControllerVersionedReferenceG"
+        },
+        "comGlobalReferenceExtensionG": {
+          "title": "comGlobalReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceReferenceExtensionG": {
+          "title": "fstDeviceReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstVmsUnitReferenceExtensionG": {
+          "title": "fstVmsUnitReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vmsUnitReference"
+      ]
+    },
+    "VmsUnitTableReference": {
+      "title": "VmsUnitTableReference",
+      "description": "A reference to a VMS table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vmsUnitTableReference": {
+          "title": "vmsUnitTableReference",
+          "description": "A reference to a VMS controller table.",
+          "$ref": "DATEXII_3_FaultAndStatus.json#/$defs/VmsControllerTableVersionedReferenceG"
+        },
+        "comGlobalReferenceExtensionG": {
+          "title": "comGlobalReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstDeviceTableReferenceExtensionG": {
+          "title": "fstDeviceTableReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "fstVmsUnitTableReferenceExtensionG": {
+          "title": "fstVmsUnitTableReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vmsUnitTableReference"
+      ]
+    }
+  }
+}

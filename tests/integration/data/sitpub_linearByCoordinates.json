@@ -1,0 +1,336 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "exchange": {
+      "subscription": {
+        "operatingMode": "operatingMode0",
+        "subscriptionStartTime": "2026-03-18T11:19:11Z",
+        "subscriptionState": "active",
+        "target": [
+          {
+            "address": null,
+            "protocol": null
+          }
+        ],
+        "updateMethod": "snapshot"
+      },
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "VIZ-BY"
+      },
+      "target": {
+        "address": null,
+        "protocol": null
+      }
+    },
+    "payloadPublication": {
+      "@lang": "de-DE",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "ZVM"
+      },
+      "publicationTime": "2026-04-01T07:18:52Z",
+      "situation": [
+        {
+          "@id": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1",
+          "@version": "1774936964",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real",
+            "urgency": "normalUrgency"
+          },
+          "situationRecord": [
+            {
+              "@id": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1.0",
+              "@version": "1774936964",
+              "@xsi:type": "RoadOrCarriagewayOrLaneManagement",
+              "complianceOption": "mandatory",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "description"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Ingolstadt, Lutzstra\u00dfe in H\u00f6he Ende der Stra\u00dfe in beiden Richtungen"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "locationDescriptor"
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Linear",
+                "linearExtension": {
+                  "extendedLinear": {
+                    "linearByCoordinates": {
+                      "end": {
+                        "latitude": "48.7781359",
+                        "longitude": "11.4323583"
+                      },
+                      "intermediate": [
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77782",
+                            "longitude": "11.43173"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77785",
+                            "longitude": "11.43196"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77785",
+                            "longitude": "11.43203"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77783",
+                            "longitude": "11.43214"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.7779",
+                            "longitude": "11.43212"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77793",
+                            "longitude": "11.43213"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77796",
+                            "longitude": "11.43215"
+                          }
+                        },
+                        {
+                          "pointCoordinates": {
+                            "latitude": "48.77799",
+                            "longitude": "11.43218"
+                          }
+                        }
+                      ],
+                      "start": {
+                        "latitude": "48.7778043",
+                        "longitude": "11.431594"
+                      }
+                    }
+                  }
+                },
+                "locationForDisplay": {
+                  "latitude": 48.7778053,
+                  "longitude": 11.4315939
+                },
+                "tpegLinearLocation": {
+                  "from": {
+                    "@xsi:type": "TpegNonJunctionPoint",
+                    "name": [
+                      {
+                        "descriptor": {
+                          "values": {
+                            "value": [
+                              null
+                            ]
+                          }
+                        },
+                        "tpegOtherPointDescriptorType": "other"
+                      }
+                    ],
+                    "pointCoordinates": {
+                      "latitude": 48.7778053,
+                      "longitude": 11.4315939
+                    }
+                  },
+                  "to": {
+                    "@xsi:type": "TpegNonJunctionPoint",
+                    "name": [
+                      {
+                        "descriptor": {
+                          "values": {
+                            "value": [
+                              null
+                            ]
+                          }
+                        },
+                        "tpegOtherPointDescriptorType": "other"
+                      }
+                    ],
+                    "pointCoordinates": {
+                      "latitude": 48.7781372,
+                      "longitude": 11.4323587
+                    }
+                  },
+                  "tpegDirection": "bothWays",
+                  "tpegLinearLocationType": "segment"
+                }
+              },
+              "probabilityOfOccurrence": "certain",
+              "roadOrCarriagewayOrLaneManagementType": "singleAlternateLineTraffic",
+              "situationRecordCreationTime": "2026-03-31T06:02:45Z",
+              "situationRecordVersionTime": "2026-03-31T06:02:45Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-04-02T15:00:00Z",
+                  "overallStartTime": "2026-03-24T06:00:00Z",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-04-02T15:00:00Z",
+                      "startOfPeriod": "2026-03-24T06:00:00Z"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "@id": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1.0",
+              "@version": "1774936964",
+              "@xsi:type": "RoadOrCarriagewayOrLaneManagement",
+              "complianceOption": "mandatory",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "description"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Ingolstadt, Lutzstra\u00dfe in H\u00f6he Ende der Stra\u00dfe in beiden Richtungen"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "locationDescriptor"
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Linear",
+                "linearExtension": {
+                  "extendedLinear": {
+                    "linearByCoordinates": {
+                      "end": {
+                        "latitude": "48.7781359",
+                        "longitude": "11.4323583"
+                      },
+                      "intermediate": {
+                        "pointCoordinates": {
+                          "latitude": "48.77782",
+                          "longitude": "11.43173"
+                        }
+                      },
+                      "start": {
+                        "latitude": "48.7778043",
+                        "longitude": "11.431594"
+                      }
+                    }
+                  }
+                },
+                "locationForDisplay": {
+                  "latitude": 48.7778053,
+                  "longitude": 11.4315939
+                },
+                "tpegLinearLocation": {
+                  "from": {
+                    "@xsi:type": "TpegNonJunctionPoint",
+                    "name": [
+                      {
+                        "descriptor": {
+                          "values": {
+                            "value": [
+                              null
+                            ]
+                          }
+                        },
+                        "tpegOtherPointDescriptorType": "other"
+                      }
+                    ],
+                    "pointCoordinates": {
+                      "latitude": 48.7778053,
+                      "longitude": 11.4315939
+                    }
+                  },
+                  "to": {
+                    "@xsi:type": "TpegNonJunctionPoint",
+                    "name": [
+                      {
+                        "descriptor": {
+                          "values": {
+                            "value": [
+                              null
+                            ]
+                          }
+                        },
+                        "tpegOtherPointDescriptorType": "other"
+                      }
+                    ],
+                    "pointCoordinates": {
+                      "latitude": 48.7781372,
+                      "longitude": 11.4323587
+                    }
+                  },
+                  "tpegDirection": "bothWays",
+                  "tpegLinearLocationType": "segment"
+                }
+              },
+              "probabilityOfOccurrence": "certain",
+              "roadOrCarriagewayOrLaneManagementType": "singleAlternateLineTraffic",
+              "situationRecordCreationTime": "2026-03-31T06:02:45Z",
+              "situationRecordVersionTime": "2026-03-31T06:02:45Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-04-02T15:00:00Z",
+                  "overallStartTime": "2026-03-24T06:00:00Z",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-04-02T15:00:00Z",
+                      "startOfPeriod": "2026-03-24T06:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-03-31T06:02:45Z"
+        }
+      ]
+    }
+  }
+}

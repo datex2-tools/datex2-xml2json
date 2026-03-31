@@ -1,0 +1,3377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "AccessCondition": {
+      "title": "AccessCondition",
+      "description": "Conditions for the access of a road or carriageway or lane.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "accessConditionType": {
+          "title": "accessConditionType",
+          "description": "Type of access condition.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AccessConditionTypeEnumG"
+          },
+          "minItems": 1
+        },
+        "otherAccessRestriction": {
+          "title": "otherAccessRestriction",
+          "description": "Other access restriction not listed elsewhere.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "applicableLocation": {
+          "title": "applicableLocation",
+          "description": "Location where access condition applies.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troAccessConditionExtensionG": {
+          "title": "troAccessConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "accessConditionType"
+      ]
+    },
+    "AccessConditionTypeEnum": {
+      "title": "AccessConditionTypeEnum",
+      "description": "Access is only permitted under certain conditions.",
+      "type": "string",
+      "enum": [
+        "accessOnly",
+        "destinationTraffic",
+        "loadingAndUnloading",
+        "necessaryHospitalAndDoctorConsultations",
+        "passengerLoadingAndUnloading",
+        "snowChainsCompulsory",
+        "socialAndCareSupportServices",
+        "sourceAndDestinationTraffic",
+        "sourceTraffic",
+        "throughTraffic",
+        "extendedG"
+      ]
+    },
+    "AccessConditionTypeEnumG": {
+      "title": "AccessConditionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AccessConditionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AccessRestriction": {
+      "title": "AccessRestriction",
+      "description": "Access restriction, e.g. road closures for specific vehicle types.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "accessRestrictionType": {
+          "title": "accessRestrictionType",
+          "description": "Type of access restriction.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AccessRestrictionTypeEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troAccessRestrictionExtensionG": {
+          "title": "troAccessRestrictionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "accessRestrictionType"
+      ]
+    },
+    "AccessRestrictionTypeEnum": {
+      "title": "AccessRestrictionTypeEnum",
+      "description": "Types of access restrictions.",
+      "type": "string",
+      "enum": [
+        "laneUsageProhibited",
+        "noEntry",
+        "noPassingWithoutStopping",
+        "restrictedAccess",
+        "useOfAudibleWarningDevicesProhibited",
+        "extendedG"
+      ]
+    },
+    "AccessRestrictionTypeEnumG": {
+      "title": "AccessRestrictionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AccessRestrictionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ActivatedRegulation": {
+      "title": "ActivatedRegulation",
+      "description": "Traffic regulation currently active according to a traffic regulation by authorised actor.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "title": "actor",
+          "description": "Actor entitled by the regulation order to install traffic regulations.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "issuingAuthority": {
+          "title": "issuingAuthority",
+          "description": "The competent authority that issued a traffic regulation order that permits the actor to install traffic regulations.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "regulationId": {
+          "title": "regulationId",
+          "description": "A (external) unique identification of the traffic regulation order where the traffic regulation is defined.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "trafficRegulation": {
+          "title": "trafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationG"
+          },
+          "minItems": 1
+        },
+        "troActivatedRegulationExtensionG": {
+          "title": "troActivatedRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "actor",
+        "issuingAuthority",
+        "trafficRegulation"
+      ]
+    },
+    "ActivationStatusEnum": {
+      "title": "ActivationStatusEnum",
+      "description": "Implementation lifecycle values for traffic regulations.",
+      "type": "string",
+      "enum": [
+        "active",
+        "beingSetUp",
+        "beingShutDown",
+        "inactive",
+        "scheduled",
+        "extendedG"
+      ]
+    },
+    "ActivationStatusEnumG": {
+      "title": "ActivationStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ActivationStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AdHocTrafficRegulation": {
+      "title": "AdHocTrafficRegulation",
+      "description": "Ad hoc traffic regulations in urgent (usually safety relevant) situations without a traffic regulation order.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "installer": {
+          "title": "installer",
+          "description": "The actor that decided to install the traffic regulation without traffic regulation order.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationInstallerTypeEnumG"
+        },
+        "trafficRegulation": {
+          "title": "trafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationG"
+          },
+          "minItems": 1
+        },
+        "troAdHocTrafficRegulationExtensionG": {
+          "title": "troAdHocTrafficRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "installer",
+        "trafficRegulation"
+      ]
+    },
+    "AdHocTrafficRegulations": {
+      "title": "AdHocTrafficRegulations",
+      "description": "Traffic regulations implemented by road operators without formal order due to urgent safety requirements.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adHocTrafficRegulation": {
+          "title": "adHocTrafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AdHocTrafficRegulation"
+          },
+          "minItems": 1
+        },
+        "troAdHocTrafficRegulationsExtensionG": {
+          "title": "troAdHocTrafficRegulationsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "adHocTrafficRegulation"
+      ]
+    },
+    "ADRTunnelCategoryTypeEnum": {
+      "title": "ADRTunnelCategoryTypeEnum",
+      "description": "Tunnel categories according to ADR (European Agreement for transport of Dangerous Goods by Road).",
+      "type": "string",
+      "enum": [
+        "categoryA",
+        "categoryB",
+        "categoryC",
+        "categoryD",
+        "categoryE",
+        "extendedG"
+      ]
+    },
+    "ADRTunnelCategoryTypeEnumG": {
+      "title": "ADRTunnelCategoryTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ADRTunnelCategoryTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AdvisorySpeed": {
+      "title": "AdvisorySpeed",
+      "description": "Speed at which it is advisable to drive if circumstances permit and if the driver is not required to comply with a lower limit specific to his category of vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numericalValue": {
+          "title": "numericalValue",
+          "description": "The speed value as non negative integer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "unitOfMeasure": {
+          "title": "unitOfMeasure",
+          "description": "Numeric value of the speed.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/UnitOfSpeedEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troSpeedLimitExtensionG": {
+          "title": "troSpeedLimitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troNumercialSpeedValueExtensionG": {
+          "title": "troNumercialSpeedValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troAdvisorySpeedExtensionG": {
+          "title": "troAdvisorySpeedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "numericalValue",
+        "unitOfMeasure"
+      ]
+    },
+    "AlternateRoadOrCarriagewayOrLaneLayout": {
+      "title": "AlternateRoadOrCarriagewayOrLaneLayout",
+      "description": "A regulation where a road/carriageway/lane has temporarily another layout.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roadOrCarriagewayOrLaneLayoutType": {
+          "title": "roadOrCarriagewayOrLaneLayoutType",
+          "description": "Road or carriageway or lane layout type.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadOrCarriagewayOrLaneLayoutTypeG"
+        },
+        "roadOrCarriagewayOrLaneStatus": {
+          "title": "roadOrCarriagewayOrLaneStatus",
+          "description": "The status of the road or carriageway or lane.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadOrCarriagewayOrLaneStatusG"
+        },
+        "temporaryMarkings": {
+          "title": "temporaryMarkings",
+          "description": "This flag indicates whether the alternate road/carriageway/lane layout is indicated by temporary markings.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "newLayout": {
+          "title": "newLayout",
+          "description": "Location of alternate road or carriageway or lane.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/NetworkLocationG"
+        },
+        "speedLimit": {
+          "title": "speedLimit",
+          "description": "Speed limit for alternate road or carriageway or lane.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/SpeedLimitG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troAlternateRoadOrCarriagewayOrLaneLayoutExtensionG": {
+          "title": "troAlternateRoadOrCarriagewayOrLaneLayoutExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadOrCarriagewayOrLaneStatus"
+      ]
+    },
+    "AmbientWarning": {
+      "title": "AmbientWarning",
+      "description": "Warning about ambient factors i.e. conditions more likely to occur due to the location or surroundings of the road.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ambientWarningType": {
+          "title": "ambientWarningType",
+          "description": "Type of the ambient warning.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AmbientWarningTypeEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWarningExtensionG": {
+          "title": "troWarningExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troAmbientWarningExtensionG": {
+          "title": "troAmbientWarningExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "ambientWarningType"
+      ]
+    },
+    "AmbientWarningTypeEnum": {
+      "title": "AmbientWarningTypeEnum",
+      "description": "Types of environmental dangers.",
+      "type": "string",
+      "enum": [
+        "accompaniedHorsesCrossing",
+        "airfield",
+        "cattle",
+        "fallingRocks",
+        "insufficientStructureGauge",
+        "looseGravel",
+        "migratoryToadCrossing",
+        "otherDanger",
+        "pedestrianCrossing",
+        "poorVisibility",
+        "quaysideOrRiverBank",
+        "riskOfIce",
+        "sideWindsLeft",
+        "sideWindsRight",
+        "wildAnimalsCrossing",
+        "extendedG"
+      ]
+    },
+    "AmbientWarningTypeEnumG": {
+      "title": "AmbientWarningTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AmbientWarningTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AmountOfMoney": {
+      "title": "AmountOfMoney",
+      "description": "A monetary value expressed to two decimal places.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Decimal"
+    },
+    "CompulsoryMinSpeed": {
+      "title": "CompulsoryMinSpeed",
+      "description": "Specifies the compulsory minimum speed, aligned with the concept of compulsory minimum speed of the Vienna Convention on Road Signs, 1968.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numericalValue": {
+          "title": "numericalValue",
+          "description": "The speed value as non negative integer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "unitOfMeasure": {
+          "title": "unitOfMeasure",
+          "description": "Numeric value of the speed.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/UnitOfSpeedEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troSpeedLimitExtensionG": {
+          "title": "troSpeedLimitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troNumercialSpeedValueExtensionG": {
+          "title": "troNumercialSpeedValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troCompulsoryMinSpeedExtensionG": {
+          "title": "troCompulsoryMinSpeedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "numericalValue",
+        "unitOfMeasure"
+      ]
+    },
+    "ConditionG": {
+      "title": "ConditionG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troConditionSet": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionSet"
+        },
+        "czPeriodCondition": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/PeriodCondition"
+        },
+        "troVehicleCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/VehicleCondition"
+        },
+        "czTariffCondition": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/TariffCondition"
+        },
+        "troOccupantCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/OccupantCondition"
+        },
+        "troNonVehicularRoadUserCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/NonVehicularRoadUserCondition"
+        },
+        "troAccessCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AccessCondition"
+        },
+        "czNonCodableCondition": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/NonCodableCondition"
+        },
+        "troDriverCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DriverCondition"
+        },
+        "troWeatherCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/WeatherCondition"
+        },
+        "troStandingOrParkingCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/StandingOrParkingCondition"
+        },
+        "troConditionReference": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionReference"
+        },
+        "troTimeValidityCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TimeValidityCondition"
+        },
+        "troLocationCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LocationCondition"
+        },
+        "czRetrofittingCondition": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/RetrofittingCondition"
+        },
+        "troTunnelCategoryCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TunnelCategoryCondition"
+        },
+        "troRoadCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadCondition"
+        },
+        "troRequiredPermitCondition": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RequiredPermitCondition"
+        }
+      }
+    },
+    "ConditionOperator": {
+      "title": "ConditionOperator",
+      "description": "The logical operator to be used in a test of conditions.",
+      "type": "string",
+      "enum": [
+        "and",
+        "or",
+        "xor",
+        "extendedG"
+      ]
+    },
+    "ConditionOperatorG": {
+      "title": "ConditionOperatorG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionOperator"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConditionReference": {
+      "title": "ConditionReference",
+      "description": "Reference to a predefined condition instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "reference": {
+          "title": "reference",
+          "description": "Reference to a predefined condition.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PredefinedConditionVersionedReferenceG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troConditionReferenceExtensionG": {
+          "title": "troConditionReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "ConditionSet": {
+      "title": "ConditionSet",
+      "description": "Groups a number of conditions into a condition set.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "Specifies the operator to be applied between the conditions in the set.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionOperatorG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "conditions": {
+          "title": "conditions",
+          "description": "Specifies the conditions that are present in the set.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionG"
+          },
+          "minItems": 1
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troConditionSetExtensionG": {
+          "title": "troConditionSetExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operator",
+        "conditions"
+      ]
+    },
+    "DirectionRestriction": {
+      "title": "DirectionRestriction",
+      "description": "Restriction of direction to be followed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "directionToBeFollowed": {
+          "title": "directionToBeFollowed",
+          "description": "Indicating a mandatory route or turn to be followed.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DirectionRestrictionTypeEnumG"
+        },
+        "respectBicycle": {
+          "title": "respectBicycle",
+          "description": "Respect bicycles when turning into a priority road or following a priority road or driving on one-way road.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "respectPedestrian": {
+          "title": "respectPedestrian",
+          "description": "Respect pedestrians when turning into a priority road or following a priority road or driving on one-way road.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "respectMotorisedPersonalTransportDevices": {
+          "title": "respectMotorisedPersonalTransportDevices",
+          "description": "Respect motorised personal transport devices when turning into a priority road or following a priority road or driving on one-way road.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troDirectionRestrictionExtensionG": {
+          "title": "troDirectionRestrictionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "directionToBeFollowed"
+      ]
+    },
+    "DirectionRestrictionTypeEnum": {
+      "title": "DirectionRestrictionTypeEnum",
+      "description": "Direction to be followed.",
+      "type": "string",
+      "enum": [
+        "aheadOnly",
+        "keepLeft",
+        "keepRight",
+        "noLeftTurn",
+        "noReversing",
+        "noRightTurn",
+        "noThroughRoad",
+        "noUTurn",
+        "oneWayTraffic",
+        "passEitherSide",
+        "roundabout",
+        "straightAheadOrTurnLeft",
+        "straightAheadOrTurnRight",
+        "turnLeft",
+        "turnLeftAhead",
+        "turnLeftOrTurnRight",
+        "turnRight",
+        "turnRightAhead",
+        "extendedG"
+      ]
+    },
+    "DirectionRestrictionTypeEnumG": {
+      "title": "DirectionRestrictionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DirectionRestrictionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DriverCharacteristicsTypeEnum": {
+      "title": "DriverCharacteristicsTypeEnum",
+      "description": "Types of driver characteristics.",
+      "type": "string",
+      "enum": [
+        "disabledWithPermit",
+        "hotelGuest",
+        "learnerDriver",
+        "localResident",
+        "extendedG"
+      ]
+    },
+    "DriverCharacteristicsTypeEnumG": {
+      "title": "DriverCharacteristicsTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DriverCharacteristicsTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DriverCondition": {
+      "title": "DriverCondition",
+      "description": "Conditions for the driver, e.g. holding a disabled permit.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "driverCharacteristicsType": {
+          "title": "driverCharacteristicsType",
+          "description": "Type of driver characteristics.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DriverCharacteristicsTypeEnumG"
+        },
+        "licenceCharacteristics": {
+          "title": "licenceCharacteristics",
+          "description": "Characteristics of the driver's licence.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LicenceCharacteristicsEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "ageOfDriver": {
+          "title": "ageOfDriver",
+          "description": "The age of the driver.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/NonNegativeIntegerComparison"
+        },
+        "timeDriversLicenceHeld": {
+          "title": "timeDriversLicenceHeld",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TimeDriversLicenceHeld"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troDriverConditionExtensionG": {
+          "title": "troDriverConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "Duration": {
+      "title": "Duration",
+      "description": "A duration of time, which may consist of years, months, days, hours, minutes, and seconds components, as defined in ISO 8601-1.",
+      "type": "string",
+      "format": "duration"
+    },
+    "DynamicTrafficManagement": {
+      "title": "DynamicTrafficManagement",
+      "description": "Technical systems that perform traffic regulation (e.g. speed limits) automatically to manage traffic.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "issuingAuthority": {
+          "title": "issuingAuthority",
+          "description": "The competent authority that issued the corresponding traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "trafficRegulation": {
+          "title": "trafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationG"
+          },
+          "minItems": 0
+        },
+        "troDynamicTrafficRegulationExtensionG": {
+          "title": "troDynamicTrafficRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troDynamicTrafficManagementExtensionG": {
+          "title": "troDynamicTrafficManagementExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "DynamicTrafficRegulationG": {
+      "title": "DynamicTrafficRegulationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troDynamicTrafficManagement": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DynamicTrafficManagement"
+        }
+      }
+    },
+    "DynamicTrafficRegulations": {
+      "title": "DynamicTrafficRegulations",
+      "description": "This class describes traffic regulations, often dynamically changeable, implemented by means of an automated or controllable technical system.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dynamicTrafficRegulation": {
+          "title": "dynamicTrafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DynamicTrafficRegulationG"
+          },
+          "minItems": 1
+        },
+        "troDynamicTrafficRegulationsExtensionG": {
+          "title": "troDynamicTrafficRegulationsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "dynamicTrafficRegulation"
+      ]
+    },
+    "GddPictogramCategoryCode": {
+      "title": "GddPictogramCategoryCode",
+      "description": "A 3-digit code to identify a pictogram, as defined in EN ISO 14823-1 Graphic Data Dictionary. That standard is inconsistent in its definition of the value range; this model uses the more permissive definition where the bounds are 100 and 999.",
+      "type": "integer",
+      "exclusiveMinimum": 0.0
+    },
+    "GddPictogramIdentification": {
+      "title": "GddPictogramIdentification",
+      "description": "Group of codes that uniquely identifies a kind of pictogram, according to the EN ISO 14823-1 Graphic Data Dictionary.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "country": {
+          "title": "country",
+          "description": "Country code used to either allow associating a country-specific rendering with the coded pictogram or distinguish nationally-defined pictogram codes.",
+          "$ref": "DATEXII_3_Common.json#/$defs/CountryCode"
+        },
+        "serviceCategory": {
+          "title": "serviceCategory",
+          "description": "Category used to group pictograms for a given usage.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/GddServiceCategoryEnumG"
+        },
+        "pictogramCategoryCode": {
+          "title": "pictogramCategoryCode",
+          "description": "Code that identifies a pictogram for a given country and service category.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/GddPictogramCategoryCode"
+        },
+        "troGddPictogramIdentificationExtensionG": {
+          "title": "troGddPictogramIdentificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "country",
+        "pictogramCategoryCode",
+        "serviceCategory"
+      ]
+    },
+    "GddServiceCategoryEnum": {
+      "title": "GddServiceCategoryEnum",
+      "description": "Type of service offered by the pictogram, as defined in EN ISO 14823-1.",
+      "type": "string",
+      "enum": [
+        "ambientConditions",
+        "dangerWarning",
+        "informative",
+        "publicFacilities",
+        "regulatory",
+        "roadConditions",
+        "extendedG"
+      ]
+    },
+    "GddServiceCategoryEnumG": {
+      "title": "GddServiceCategoryEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/GddServiceCategoryEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "HardShoulderRunningRestriction": {
+      "title": "HardShoulderRunningRestriction",
+      "description": "Rush hour lane restrictions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clearHardShoulder": {
+          "title": "clearHardShoulder",
+          "description": "Traffic has to clear the hard shoulder.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "hardShoulderRunningActive": {
+          "title": "hardShoulderRunningActive",
+          "description": "The hard shoulder is open to traffic.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troHardShoulderRunningRestrictionExtensionG": {
+          "title": "troHardShoulderRunningRestrictionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "LegalBasis": {
+      "title": "LegalBasis",
+      "description": "Specification of a legal basis.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "Name of legal basis.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "version": {
+          "title": "version",
+          "description": "Version of legal basis.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "date": {
+          "title": "date",
+          "description": "Date of legal basis.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Date"
+        },
+        "troLegalBasisExtensionG": {
+          "title": "troLegalBasisExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "LicenceCharacteristicsEnum": {
+      "title": "LicenceCharacteristicsEnum",
+      "description": "Characteristics of the driver's licence.",
+      "type": "string",
+      "enum": [
+        "permanent",
+        "provisional",
+        "extendedG"
+      ]
+    },
+    "LicenceCharacteristicsEnumG": {
+      "title": "LicenceCharacteristicsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LicenceCharacteristicsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "LocationCondition": {
+      "title": "LocationCondition",
+      "description": "Conditions for the location of a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "implementedLocation": {
+          "title": "implementedLocation",
+          "description": "The actual (implemented) location of the traffic regulation.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "locationByOrder": {
+          "title": "locationByOrder",
+          "description": "The ordered (planned) location as defined in the original traffic regulation order, if existent.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "trafficImpactLocation": {
+          "title": "trafficImpactLocation",
+          "description": "The spatial location (typically area) of the road upon which the impact of a regulation is considered to be effective (which is not always the same as the implementedLocation).",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troLocationConditionExtensionG": {
+          "title": "troLocationConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MainSign": {
+      "title": "MainSign",
+      "description": "The main road sign.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pictureOfRoadSign": {
+          "title": "pictureOfRoadSign",
+          "description": "Picture of road sign.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Base64Binary"
+        },
+        "urlToRoadSign": {
+          "title": "urlToRoadSign",
+          "description": "URL pointing to a resource on the internet with picture of the road sign.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "nationalSignID": {
+          "title": "nationalSignID",
+          "description": "The ID of the sign from the national street code.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "Description of road sign.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "gddPictogramIdentification": {
+          "title": "gddPictogramIdentification",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/GddPictogramIdentification"
+        },
+        "locationOfSign": {
+          "title": "locationOfSign",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/PointLocationG"
+          },
+          "minItems": 0
+        },
+        "troRoadSignExtensionG": {
+          "title": "troRoadSignExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troMainSignExtensionG": {
+          "title": "troMainSignExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MandatoryRoadOrCarriagewayOrLaneUsage": {
+      "title": "MandatoryRoadOrCarriagewayOrLaneUsage",
+      "description": "A regulation where the use of a road or carriageway or lane is mandatory for specific vehicle types.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exclusive": {
+          "title": "exclusive",
+          "description": "Lane or carriageway or road exclusive for mandatory traffic.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "respectMandatoryTraffic": {
+          "title": "respectMandatoryTraffic",
+          "description": "Attribute indicating that other that the mandatory traffic should be respected by other traffic.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "segregatedLanes": {
+          "title": "segregatedLanes",
+          "description": "Mandatory lanes are segregated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "contraflowLane": {
+          "title": "contraflowLane",
+          "description": "Mandatory contraflow lane.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "otherObligation": {
+          "title": "otherObligation",
+          "description": "Other obligation not listed elsewhere (For instance \"Switch on headlights\").",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troMandatoryRoadOrCarriagewayOrLaneUsageExtensionG": {
+          "title": "troMandatoryRoadOrCarriagewayOrLaneUsageExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MaxSpeedLimit": {
+      "title": "MaxSpeedLimit",
+      "description": "The maximum speed limit according to the Vienna Convention on Road Signs, 1968, where this concept is defined as the maximum speed in the unit of measurement most commonly used to express the speed of vehicles in the country concerned.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numericalValue": {
+          "title": "numericalValue",
+          "description": "The speed value as non negative integer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "unitOfMeasure": {
+          "title": "unitOfMeasure",
+          "description": "Numeric value of the speed.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/UnitOfSpeedEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troSpeedLimitExtensionG": {
+          "title": "troSpeedLimitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troNumercialSpeedValueExtensionG": {
+          "title": "troNumercialSpeedValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troMaxSpeedLimitExtensionG": {
+          "title": "troMaxSpeedLimitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "numericalValue",
+        "unitOfMeasure"
+      ]
+    },
+    "MinimumDistanceRestriction": {
+      "title": "MinimumDistanceRestriction",
+      "description": "Driving of vehicles more than x metres apart prohibited.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "value",
+          "description": "Value of minimum distance between vehicles.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsFloat"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troMinimumDistanceRestrictionExtensionG": {
+          "title": "troMinimumDistanceRestrictionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "NonVehicularRoadUserCondition": {
+      "title": "NonVehicularRoadUserCondition",
+      "description": "Conditions for non-vehicular road users.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "nonVehicularRoadUser": {
+          "title": "nonVehicularRoadUser",
+          "description": "Types of non-vehicular road users for which the condition applies.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/NonVehicularRoadUserTypeEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troNonVehicularRoadUserConditionExtensionG": {
+          "title": "troNonVehicularRoadUserConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "nonVehicularRoadUser"
+      ]
+    },
+    "NonVehicularRoadUserTypeEnum": {
+      "title": "NonVehicularRoadUserTypeEnum",
+      "description": "Collection of non vehicular road user types.",
+      "type": "string",
+      "enum": [
+        "cattle",
+        "cattleDrive",
+        "equestrian",
+        "pedestrians",
+        "riddenOrAccompaniedHorses",
+        "extendedG"
+      ]
+    },
+    "NonVehicularRoadUserTypeEnumG": {
+      "title": "NonVehicularRoadUserTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/NonVehicularRoadUserTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "NumercialSpeedValueG": {
+      "title": "NumercialSpeedValueG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troMaxSpeedLimit": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/MaxSpeedLimit"
+        },
+        "troAdvisorySpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AdvisorySpeed"
+        },
+        "troCompulsoryMinSpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/CompulsoryMinSpeed"
+        }
+      }
+    },
+    "OccupantCondition": {
+      "title": "OccupantCondition",
+      "description": "Conditions for the occupants of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "numberOfOccupants": {
+          "title": "numberOfOccupants",
+          "description": "Number of occupants of a vehicle.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/NonNegativeIntegerComparison"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troOccupantConditionExtensionG": {
+          "title": "troOccupantConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "numberOfOccupants"
+      ]
+    },
+    "PermitInformation": {
+      "title": "PermitInformation",
+      "description": "Information on permits including registrations and stickers.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "applicationRequired": {
+          "title": "applicationRequired",
+          "description": "It is necessary to apply for the permit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the permit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "locationRelatedPermit": {
+          "title": "locationRelatedPermit",
+          "description": "Indication whether the permit is related to a specific location or route in the zone.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "maxDurationOfPermit": {
+          "title": "maxDurationOfPermit",
+          "description": "The maximum validity duration a permit could have in hours.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Duration"
+        },
+        "whereToApplyForPermit": {
+          "title": "whereToApplyForPermit",
+          "description": "URL of the competent authority where an application for a permit can be requested.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "whereToCallForPermit": {
+          "title": "whereToCallForPermit",
+          "description": "Phone number for contacting the railway operator (at level crossings without a dedicated phone).",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "permitOwnerType": {
+          "title": "permitOwnerType",
+          "description": "The target of the permit.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitOwnerTypeEnumG"
+        },
+        "urlForFurtherInformation": {
+          "title": "urlForFurtherInformation",
+          "description": "Further information on the permit and its application process.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "howToObtainPermit": {
+          "title": "howToObtainPermit",
+          "description": "Information on how to obtain the permit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "permitType": {
+          "title": "permitType",
+          "description": "The type of the permit.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitTypeEnumG"
+        },
+        "disabledParkingPermit": {
+          "title": "disabledParkingPermit",
+          "description": "The permit is a disabled parking permit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "minimumTimeToNextEntry": {
+          "title": "minimumTimeToNextEntry",
+          "description": "Minimum time between two entries of a controlled zone.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Duration"
+        },
+        "permitSubjectToFee": {
+          "title": "permitSubjectToFee",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitSubjectToFee"
+        },
+        "locationOfRegistrationMachine": {
+          "title": "locationOfRegistrationMachine",
+          "description": "Location of a machine where a registration can be made.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/PointLocationG"
+          },
+          "minItems": 0
+        },
+        "troPermitInformationExtensionG": {
+          "title": "troPermitInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "permitType"
+      ]
+    },
+    "PermitInformationVersionedReferenceG": {
+      "title": "PermitInformationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PermitInformation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PermitOwnerTypeEnum": {
+      "title": "PermitOwnerTypeEnum",
+      "description": "Types of permit owners.",
+      "type": "string",
+      "enum": [
+        "vehicle",
+        "vehicleOccupant",
+        "vehicleOwner",
+        "extendedG"
+      ]
+    },
+    "PermitOwnerTypeEnumG": {
+      "title": "PermitOwnerTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitOwnerTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PermitSubjectToFee": {
+      "title": "PermitSubjectToFee",
+      "description": "Access permitted when fee is paid.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amountDue": {
+          "title": "amountDue",
+          "description": "Amount due in Euro.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AmountOfMoney"
+        },
+        "maximumAccessDuration": {
+          "title": "maximumAccessDuration",
+          "description": "Maximum time permitted in the controlled zone after first entry.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Duration"
+        },
+        "paymentInformation": {
+          "title": "paymentInformation",
+          "description": "Link to the website where payment information can be found.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "troPermitSubjectToFeeExtensionG": {
+          "title": "troPermitSubjectToFeeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "PermitTypeEnum": {
+      "title": "PermitTypeEnum",
+      "description": "Types of permits.",
+      "type": "string",
+      "enum": [
+        "electronic",
+        "other",
+        "paper",
+        "sticker",
+        "extendedG"
+      ]
+    },
+    "PermitTypeEnumG": {
+      "title": "PermitTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PredefinedCondition": {
+      "title": "PredefinedCondition",
+      "description": "A predefined condition.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "condition": {
+          "title": "condition",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionG"
+        },
+        "troPredefinedConditionExtensionG": {
+          "title": "troPredefinedConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "condition"
+      ]
+    },
+    "PredefinedConditionPublication": {
+      "title": "PredefinedConditionPublication",
+      "description": "Publication of predefined conditions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "predefinedCondition": {
+          "title": "predefinedCondition",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PredefinedCondition"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troPredefinedConditionPublicationExtensionG": {
+          "title": "troPredefinedConditionPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "predefinedCondition"
+      ]
+    },
+    "PredefinedConditionPublicationVersionedReferenceG": {
+      "title": "PredefinedConditionPublicationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedConditionPublication"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PredefinedConditionVersionedReferenceG": {
+      "title": "PredefinedConditionVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedCondition"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PriorityRule": {
+      "title": "PriorityRule",
+      "description": "Priority rules.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "priorityRuleType": {
+          "title": "priorityRuleType",
+          "description": "Type of priority rule.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PriorityRuleTypeEnumG"
+          },
+          "minItems": 1
+        },
+        "respectBicycle": {
+          "title": "respectBicycle",
+          "description": "Give way and respect bicycles.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "giveWayTo": {
+          "title": "giveWayTo",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troPriorityRuleExtensionG": {
+          "title": "troPriorityRuleExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "priorityRuleType"
+      ]
+    },
+    "PriorityRuleTypeEnum": {
+      "title": "PriorityRuleTypeEnum",
+      "description": "Possible values for priority rules.",
+      "type": "string",
+      "enum": [
+        "giveWay",
+        "giveWayToOncomingVehicles",
+        "giveWayToRail",
+        "giveWayToSchoolCrossingPatrol",
+        "giveWayToTram",
+        "priorityAtNextJunction",
+        "priorityOverOncomingVehicles",
+        "priorityRoad",
+        "stop",
+        "extendedG"
+      ]
+    },
+    "PriorityRuleTypeEnumG": {
+      "title": "PriorityRuleTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PriorityRuleTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ProhibitionOfOvertaking": {
+      "title": "ProhibitionOfOvertaking",
+      "description": "Indicating a location where overtaking of other vehicles is prohibited.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "doNotOvertake": {
+          "title": "doNotOvertake",
+          "description": "Vehicles are prohibited to overtake vehicles with certain characteristics.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "permissionToOvertake": {
+          "title": "permissionToOvertake",
+          "description": "Vehicles are permitted to overtake vehicles with certain characteristics.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troProhibitionOfOvertakingExtensionG": {
+          "title": "troProhibitionOfOvertakingExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ReasonForRegulationEnum": {
+      "title": "ReasonForRegulationEnum",
+      "description": "This enumeration lists possible reasons for a road traffic authority to issue a traffic regulation order.",
+      "type": "string",
+      "enum": [
+        "other",
+        "protectionOfNoiseAndEmissions",
+        "protectionOfRoad",
+        "protectionOfWaters",
+        "publicSafety",
+        "researchAndTest",
+        "roadworks",
+        "trafficOrder",
+        "trafficSafety",
+        "extendedG"
+      ]
+    },
+    "ReasonForRegulationEnumG": {
+      "title": "ReasonForRegulationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ReasonForRegulationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RequiredPermitCondition": {
+      "title": "RequiredPermitCondition",
+      "description": "Characteristics of a required permit (the permit must be available).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "identifier": {
+          "title": "identifier",
+          "description": "A unique identifier for the permit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "issuingAuthority": {
+          "title": "issuingAuthority",
+          "description": "The competent authority that issued the permit.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "permitCharacteristics": {
+          "title": "permitCharacteristics",
+          "description": "A reference to the characteristics of the permit.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitInformationVersionedReferenceG"
+        },
+        "permitType": {
+          "title": "permitType",
+          "description": "The type of the permit.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitTypeEnumG"
+          },
+          "minItems": 1
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troRequiredPermitConditionExtensionG": {
+          "title": "troRequiredPermitConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "permitType"
+      ]
+    },
+    "Rerouting": {
+      "title": "Rerouting",
+      "description": "Rerouting.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troReroutingExtensionG": {
+          "title": "troReroutingExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "RoadCondition": {
+      "title": "RoadCondition",
+      "description": "Specification of road types (e.g. motorway, express way, etc.).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "roadType": {
+          "title": "roadType",
+          "description": "Type of road (e.g. motorway, express way, etc.).",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadTypeEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troRoadConditionExtensionG": {
+          "title": "troRoadConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadType"
+      ]
+    },
+    "RoadOrCarriagewayOrLaneLayoutType": {
+      "title": "RoadOrCarriagewayOrLaneLayoutType",
+      "description": "Layout types for road, carriageway or lane.",
+      "type": "string",
+      "enum": [
+        "carriageway",
+        "lane",
+        "road",
+        "extendedG"
+      ]
+    },
+    "RoadOrCarriagewayOrLaneLayoutTypeG": {
+      "title": "RoadOrCarriagewayOrLaneLayoutTypeG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadOrCarriagewayOrLaneLayoutType"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RoadOrCarriagewayOrLaneStatus": {
+      "title": "RoadOrCarriagewayOrLaneStatus",
+      "description": "The status of a lane.",
+      "type": "string",
+      "enum": [
+        "closed",
+        "deviatedToHardShoulder",
+        "deviatedToLeft",
+        "deviatedToOtherCarriageway",
+        "deviatedToRight",
+        "mergedToLeft",
+        "mergedToRight",
+        "open",
+        "extendedG"
+      ]
+    },
+    "RoadOrCarriagewayOrLaneStatusG": {
+      "title": "RoadOrCarriagewayOrLaneStatusG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadOrCarriagewayOrLaneStatus"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RoadSignG": {
+      "title": "RoadSignG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troSupplementaryPanel": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/SupplementaryPanel"
+        },
+        "troMainSign": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/MainSign"
+        }
+      }
+    },
+    "RoadTypeEnum": {
+      "title": "RoadTypeEnum",
+      "description": "Collection of road types.",
+      "type": "string",
+      "enum": [
+        "expressRoad",
+        "insideBuiltUpAreas",
+        "motorway",
+        "outsideBuiltUpAreas",
+        "extendedG"
+      ]
+    },
+    "RoadTypeEnumG": {
+      "title": "RoadTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RoadWarning": {
+      "title": "RoadWarning",
+      "description": "A warning concerning the road or the conditions of the road.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roadWarningType": {
+          "title": "roadWarningType",
+          "description": "Type of the road condition warning.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadWarningTypeEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWarningExtensionG": {
+          "title": "troWarningExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troRoadWarningExtensionG": {
+          "title": "troRoadWarningExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadWarningType"
+      ]
+    },
+    "RoadWarningTypeEnum": {
+      "title": "RoadWarningTypeEnum",
+      "description": "Types of road related dangers.",
+      "type": "string",
+      "enum": [
+        "accident",
+        "bendToLeft",
+        "bendToRight",
+        "crossroadsWithPriorityFromRight",
+        "doubleBendFirstToLeft",
+        "doubleBendFirstToRight",
+        "lateralStep",
+        "lightSignals",
+        "obstacleOnTheRoad",
+        "roadDip",
+        "roadHump",
+        "roadNarrowsBothSides",
+        "roadNarrowsLeft",
+        "roadNarrowsRight",
+        "roadWorks",
+        "roundaboutAntiClockwise",
+        "roundaboutClockwise",
+        "slipperyRoad",
+        "swingBridge",
+        "unevenRoad",
+        "extendedG"
+      ]
+    },
+    "RoadWarningTypeEnumG": {
+      "title": "RoadWarningTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadWarningTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RushHourLaneRestriction": {
+      "title": "RushHourLaneRestriction",
+      "description": "Rush hour lane restrictions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clearRushHourLane": {
+          "title": "clearRushHourLane",
+          "description": "Traffic to clear rush hour lane.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "rushHourLaneOpen": {
+          "title": "rushHourLaneOpen",
+          "description": "Rush hour lane open to traffic.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troRushHourLaneRestrictionExtensionG": {
+          "title": "troRushHourLaneRestrictionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "SpeedLimitG": {
+      "title": "SpeedLimitG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troWalkingSpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/WalkingSpeed"
+        },
+        "troMaxSpeedLimit": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/MaxSpeedLimit"
+        },
+        "troAdvisorySpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AdvisorySpeed"
+        },
+        "troCompulsoryMinSpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/CompulsoryMinSpeed"
+        }
+      }
+    },
+    "StandingOrParkingCondition": {
+      "title": "StandingOrParkingCondition",
+      "description": "Conditions for standing or parking restrictions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "standingOrParkingConditionType": {
+          "title": "standingOrParkingConditionType",
+          "description": "Type of standing or parking condition.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/StandingOrParkingConditionTypeEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troStandingOrParkingConditionExtensionG": {
+          "title": "troStandingOrParkingConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "standingOrParkingConditionType"
+      ]
+    },
+    "StandingOrParkingConditionTypeEnum": {
+      "title": "StandingOrParkingConditionTypeEnum",
+      "description": "Types of standing or parking conditions.",
+      "type": "string",
+      "enum": [
+        "electricVehicleDuringCharging",
+        "footwayAlso",
+        "footwayOnly",
+        "gettingInAndOutOfAVehicle",
+        "kerbsideAlso",
+        "kerbsideOnly",
+        "loadingAndUnloading",
+        "vergeAlso",
+        "vergeOnly",
+        "extendedG"
+      ]
+    },
+    "StandingOrParkingConditionTypeEnumG": {
+      "title": "StandingOrParkingConditionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/StandingOrParkingConditionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "StandingOrParkingControl": {
+      "title": "StandingOrParkingControl",
+      "description": "Standing and/or parking control.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "standingOrParkingControlType": {
+          "title": "standingOrParkingControlType",
+          "description": "Type of standing and/or parking control.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/StandingOrParkingControlTypeEnumG"
+        },
+        "permittedStandingTime": {
+          "title": "permittedStandingTime",
+          "description": "Duration for which standing is permitted.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Duration"
+        },
+        "permittedParkingTime": {
+          "title": "permittedParkingTime",
+          "description": "Duration for which parking is permitted.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Duration"
+        },
+        "paidParking": {
+          "title": "paidParking",
+          "description": "Parking for which payment is required.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troStandingOrParkingControlExtensionG": {
+          "title": "troStandingOrParkingControlExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "standingOrParkingControlType"
+      ]
+    },
+    "StandingOrParkingControlTypeEnum": {
+      "title": "StandingOrParkingControlTypeEnum",
+      "description": "Standing and/or parking control type.",
+      "type": "string",
+      "enum": [
+        "parkingOutsideDesignatedParkingSpacesProhibited",
+        "parkingPermitted",
+        "parkingProhibited",
+        "standingAndParkingProhibited",
+        "extendedG"
+      ]
+    },
+    "StandingOrParkingControlTypeEnumG": {
+      "title": "StandingOrParkingControlTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/StandingOrParkingControlTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SteepHill": {
+      "title": "SteepHill",
+      "description": "A steep hill ahead.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roadGradientValue": {
+          "title": "roadGradientValue",
+          "description": "Value of the road gradient in percent.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "steepHillDirectionType": {
+          "title": "steepHillDirectionType",
+          "description": "Direction of steep hill.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/SteepHillDirectionTypeEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWarningExtensionG": {
+          "title": "troWarningExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troSteepHillExtensionG": {
+          "title": "troSteepHillExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadGradientValue",
+        "steepHillDirectionType"
+      ]
+    },
+    "SteepHillDirectionTypeEnum": {
+      "title": "SteepHillDirectionTypeEnum",
+      "description": "Direction of steep hill,",
+      "type": "string",
+      "enum": [
+        "downwards",
+        "upwards",
+        "extendedG"
+      ]
+    },
+    "SteepHillDirectionTypeEnumG": {
+      "title": "SteepHillDirectionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/SteepHillDirectionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SupplementaryPanel": {
+      "title": "SupplementaryPanel",
+      "description": "An additional sign placed below the main sign to provide specific clarifications, conditions, or restrictions that modify or enhance the primary message of the road sign.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pictureOfRoadSign": {
+          "title": "pictureOfRoadSign",
+          "description": "Picture of road sign.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Base64Binary"
+        },
+        "urlToRoadSign": {
+          "title": "urlToRoadSign",
+          "description": "URL pointing to a resource on the internet with picture of the road sign.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "nationalSignID": {
+          "title": "nationalSignID",
+          "description": "The ID of the sign from the national street code.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "Description of road sign.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "gddPictogramIdentification": {
+          "title": "gddPictogramIdentification",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/GddPictogramIdentification"
+        },
+        "locationOfSign": {
+          "title": "locationOfSign",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/PointLocationG"
+          },
+          "minItems": 0
+        },
+        "troRoadSignExtensionG": {
+          "title": "troRoadSignExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troSupplementaryPanelExtensionG": {
+          "title": "troSupplementaryPanelExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TemporaryTrafficRegulationOrder": {
+      "title": "TemporaryTrafficRegulationOrder",
+      "description": "A temporary traffic regulation order.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "description": {
+          "title": "description",
+          "description": "Further textual description of the regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "issuingAuthority": {
+          "title": "issuingAuthority",
+          "description": "The competent authority that issued the traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "reason": {
+          "title": "reason",
+          "description": "The reason justifying the traffic regulation order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ReasonForRegulationEnumG"
+          },
+          "minItems": 0
+        },
+        "regulationId": {
+          "title": "regulationId",
+          "description": "A (external) unique identification of the traffic regulation order. ",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "status": {
+          "title": "status",
+          "description": "The current lifecycle status of the traffic regulation order. ",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrderStatusEnumG"
+        },
+        "overruledTrafficRegulationOrder": {
+          "title": "overruledTrafficRegulationOrder",
+          "description": "A reference to a traffic regulation order that is overruled by the temporary traffic regulation order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrderVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "implementedValidity": {
+          "title": "implementedValidity",
+          "description": "The actual (implemented) time period governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "validityByOrder": {
+          "title": "validityByOrder",
+          "description": "The ordered (planned) time period governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "implementedLocation": {
+          "title": "implementedLocation",
+          "description": "The actual (implemented) location governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "locationByOrder": {
+          "title": "locationByOrder",
+          "description": "The ordered (planned) location governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "trafficRegulation": {
+          "title": "trafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationG"
+          },
+          "minItems": 1
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "The legal basis of the Traffic Regulation Order.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troTrafficRegulationOrderExtensionG": {
+          "title": "troTrafficRegulationOrderExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troTemporaryTrafficRegulationOrderExtensionG": {
+          "title": "troTemporaryTrafficRegulationOrderExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "issuingAuthority",
+        "regulationId",
+        "status",
+        "trafficRegulation"
+      ]
+    },
+    "TimeDriversLicenceHeld": {
+      "title": "TimeDriversLicenceHeld",
+      "description": "The time a person has held their driving licence.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "value",
+          "description": "Period in which the driver has held and continues to hold a driving licence.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Duration"
+        },
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the time drivers licence held comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        },
+        "troTimeDriversLicenceHeldExtensionG": {
+          "title": "troTimeDriversLicenceHeldExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "value"
+      ]
+    },
+    "TimeValidityCondition": {
+      "title": "TimeValidityCondition",
+      "description": "Specifies timing applicability relating to a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "implementedValidity": {
+          "title": "implementedValidity",
+          "description": "The actual (implemented) validity of the traffic regulation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "validityByOrder": {
+          "title": "validityByOrder",
+          "description": "The ordered (planned) validity as defined in the original traffic regulation order, if existent.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troTimeValidityConditionExtensionG": {
+          "title": "troTimeValidityConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficAhead": {
+      "title": "TrafficAhead",
+      "description": "A warning of traffic ahead.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trafficAheadType": {
+          "title": "trafficAheadType",
+          "description": "Type of traffic ahead.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficAheadTypeEnumG"
+        },
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWarningExtensionG": {
+          "title": "troWarningExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troTrafficAheadExtensionG": {
+          "title": "troTrafficAheadExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "trafficAheadType"
+      ]
+    },
+    "TrafficAheadTypeEnum": {
+      "title": "TrafficAheadTypeEnum",
+      "description": "Types of traffic on the road.",
+      "type": "string",
+      "enum": [
+        "busCrossing",
+        "children",
+        "cycleRoute",
+        "levelCrossing",
+        "levelCrossingWithGate",
+        "pedestrianCrossing",
+        "ridingPath",
+        "trafficQueues",
+        "tramsCrossingAhead",
+        "twoWayTraffic",
+        "extendedG"
+      ]
+    },
+    "TrafficAheadTypeEnumG": {
+      "title": "TrafficAheadTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficAheadTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TrafficRegulation": {
+      "title": "TrafficRegulation",
+      "description": "Legal agreement or order that restricts or prohibits the use of the road network.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "status": {
+          "title": "status",
+          "description": "Implementation status of the traffic regulation.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ActivationStatusEnumG"
+        },
+        "roadSign": {
+          "title": "roadSign",
+          "description": "Indicating the presence of a road sign.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadSignG"
+          },
+          "minItems": 0
+        },
+        "typeOfRegulation": {
+          "title": "typeOfRegulation",
+          "description": "Type of traffic regulation.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TypeOfRegulationG"
+          },
+          "minItems": 0
+        },
+        "condition": {
+          "title": "condition",
+          "description": "Conditions for the validity of a traffic regulation.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionG"
+        },
+        "permitInformation": {
+          "title": "permitInformation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitInformation"
+          },
+          "minItems": 0
+        },
+        "troTrafficRegulationExtensionG": {
+          "title": "troTrafficRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "TrafficRegulationG": {
+      "title": "TrafficRegulationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troTrafficRegulation": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulation"
+        },
+        "czControlledZoneRegulation": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneRegulation"
+        }
+      }
+    },
+    "TrafficRegulationInstallerTypeEnum": {
+      "title": "TrafficRegulationInstallerTypeEnum",
+      "description": "Possible performers of traffic regulations without traffic regulation order.",
+      "type": "string",
+      "enum": [
+        "fireBrigade",
+        "police",
+        "publicWorkOrUtilityCompanies",
+        "roadOperator",
+        "extendedG"
+      ]
+    },
+    "TrafficRegulationInstallerTypeEnumG": {
+      "title": "TrafficRegulationInstallerTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationInstallerTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TrafficRegulationOrder": {
+      "title": "TrafficRegulationOrder",
+      "description": "A legally recognised document or publication issued to enact a specific traffic regulation or regulations by a competent authority.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "description": {
+          "title": "description",
+          "description": "Further textual description of the regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "issuingAuthority": {
+          "title": "issuingAuthority",
+          "description": "The competent authority that issued the traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "reason": {
+          "title": "reason",
+          "description": "The reason justifying the traffic regulation order.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ReasonForRegulationEnumG"
+          },
+          "minItems": 0
+        },
+        "regulationId": {
+          "title": "regulationId",
+          "description": "A (external) unique identification of the traffic regulation order. ",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "status": {
+          "title": "status",
+          "description": "The current lifecycle status of the traffic regulation order. ",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrderStatusEnumG"
+        },
+        "implementedValidity": {
+          "title": "implementedValidity",
+          "description": "The actual (implemented) time period governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "validityByOrder": {
+          "title": "validityByOrder",
+          "description": "The ordered (planned) time period governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "implementedLocation": {
+          "title": "implementedLocation",
+          "description": "The actual (implemented) location governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "locationByOrder": {
+          "title": "locationByOrder",
+          "description": "The ordered (planned) location governed by the traffic regulation order.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "trafficRegulation": {
+          "title": "trafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationG"
+          },
+          "minItems": 1
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "The legal basis of the Traffic Regulation Order.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troTrafficRegulationOrderExtensionG": {
+          "title": "troTrafficRegulationOrderExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "issuingAuthority",
+        "regulationId",
+        "status",
+        "trafficRegulation"
+      ]
+    },
+    "TrafficRegulationOrderG": {
+      "title": "TrafficRegulationOrderG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troTrafficRegulationOrder": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrder"
+        },
+        "troTemporaryTrafficRegulationOrder": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TemporaryTrafficRegulationOrder"
+        }
+      }
+    },
+    "TrafficRegulationOrderStatusEnum": {
+      "title": "TrafficRegulationOrderStatusEnum",
+      "description": "Lifecycle states of a traffic regulation order.",
+      "type": "string",
+      "enum": [
+        "madeAndImplemented",
+        "madeAndPartiallyImplemented",
+        "madeButNotImplemented",
+        "partiallyWithdrawn",
+        "planned",
+        "withdrawn",
+        "extendedG"
+      ]
+    },
+    "TrafficRegulationOrderStatusEnumG": {
+      "title": "TrafficRegulationOrderStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrderStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TrafficRegulationOrderVersionedReferenceG": {
+      "title": "TrafficRegulationOrderVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "TrafficRegulationOrder"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "TrafficRegulationPublication": {
+      "title": "TrafficRegulationPublication",
+      "description": "Publication of traffic regulations.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "predefinedConditionPublicationReference": {
+          "title": "predefinedConditionPublicationReference",
+          "description": "Reference to a publication of predefined conditions.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PredefinedConditionPublicationVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "trafficRegulationsFromCompetentAuthorities": {
+          "title": "trafficRegulationsFromCompetentAuthorities",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationsFromCompetentAuthorities"
+        },
+        "trafficRegulationsByAuthorisedActors": {
+          "title": "trafficRegulationsByAuthorisedActors",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationsByAuthorisedActors"
+        },
+        "adHocTrafficRegulations": {
+          "title": "adHocTrafficRegulations",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AdHocTrafficRegulations"
+        },
+        "dynamicTrafficRegulations": {
+          "title": "dynamicTrafficRegulations",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DynamicTrafficRegulations"
+        },
+        "trafficRegulationsWithoutTrafficRegulationOrder": {
+          "title": "trafficRegulationsWithoutTrafficRegulationOrder",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationsWithoutTrafficRegulationOrder"
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troTrafficRegulationPublicationExtensionG": {
+          "title": "troTrafficRegulationPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "lang",
+        "publicationTime",
+        "publicationCreator"
+      ]
+    },
+    "TrafficRegulationsByAuthorisedActors": {
+      "title": "TrafficRegulationsByAuthorisedActors",
+      "description": "Traffic regulations from an actor that has received a general permission from a competent authority.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activatedRegulation": {
+          "title": "activatedRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ActivatedRegulation"
+          },
+          "minItems": 1
+        },
+        "troTrafficRegulationsByAuthorisedActorsExtensionG": {
+          "title": "troTrafficRegulationsByAuthorisedActorsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "activatedRegulation"
+      ]
+    },
+    "TrafficRegulationsFromCompetentAuthorities": {
+      "title": "TrafficRegulationsFromCompetentAuthorities",
+      "description": "A traffic regulation ordered by a competent authority.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trafficRegulationOrder": {
+          "title": "trafficRegulationOrder",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrderG"
+          },
+          "minItems": 1
+        },
+        "troTrafficRegulationsFromCompetentAuthoritiesExtensionG": {
+          "title": "troTrafficRegulationsFromCompetentAuthoritiesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "trafficRegulationOrder"
+      ]
+    },
+    "TrafficRegulationsWithoutTrafficRegulationOrder": {
+      "title": "TrafficRegulationsWithoutTrafficRegulationOrder",
+      "description": "Traffic regulations that are not issued by a traffic regulation order.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trafficRegulation": {
+          "title": "trafficRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationG"
+          },
+          "minItems": 1
+        },
+        "troTrafficRegulationsWithoutTrafficRegulationOrderExtensionG": {
+          "title": "troTrafficRegulationsWithoutTrafficRegulationOrderExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "trafficRegulation"
+      ]
+    },
+    "TunnelCategoryCondition": {
+      "title": "TunnelCategoryCondition",
+      "description": "Tunnel categories according to ADR (European Agreement for transport of Dangerous Goods by Road).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "tunnelCategoryType": {
+          "title": "tunnelCategoryType",
+          "description": "Tunnel category type according to ADR.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ADRTunnelCategoryTypeEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troTunnelCategoryConditionExtensionG": {
+          "title": "troTunnelCategoryConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "tunnelCategoryType"
+      ]
+    },
+    "TypeOfRegulationG": {
+      "title": "TypeOfRegulationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troProhibitionOfOvertaking": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ProhibitionOfOvertaking"
+        },
+        "troAlternateRoadOrCarriagewayOrLaneLayout": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AlternateRoadOrCarriagewayOrLaneLayout"
+        },
+        "troMinimumDistanceRestriction": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/MinimumDistanceRestriction"
+        },
+        "troAccessRestriction": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AccessRestriction"
+        },
+        "troStandingOrParkingControl": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/StandingOrParkingControl"
+        },
+        "troDirectionRestriction": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/DirectionRestriction"
+        },
+        "troWalkingSpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/WalkingSpeed"
+        },
+        "troMaxSpeedLimit": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/MaxSpeedLimit"
+        },
+        "troAdvisorySpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AdvisorySpeed"
+        },
+        "troCompulsoryMinSpeed": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/CompulsoryMinSpeed"
+        },
+        "troMandatoryRoadOrCarriagewayOrLaneUsage": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/MandatoryRoadOrCarriagewayOrLaneUsage"
+        },
+        "troRerouting": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/Rerouting"
+        },
+        "troRoadWarning": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadWarning"
+        },
+        "troSteepHill": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/SteepHill"
+        },
+        "troAmbientWarning": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AmbientWarning"
+        },
+        "troTrafficAhead": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficAhead"
+        },
+        "troPriorityRule": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PriorityRule"
+        },
+        "troHardShoulderRunningRestriction": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/HardShoulderRunningRestriction"
+        },
+        "troRushHourLaneRestriction": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RushHourLaneRestriction"
+        }
+      }
+    },
+    "UnitOfSpeedEnum": {
+      "title": "UnitOfSpeedEnum",
+      "description": "Units of speed.",
+      "type": "string",
+      "enum": [
+        "kilometresPerHour",
+        "milesPerHour",
+        "extendedG"
+      ]
+    },
+    "UnitOfSpeedEnumG": {
+      "title": "UnitOfSpeedEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/UnitOfSpeedEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VehicleCondition": {
+      "title": "VehicleCondition",
+      "description": "Specifies vehicle characteristics condition applicability relating to a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "vehicleCharacteristics": {
+          "title": "vehicleCharacteristics",
+          "description": "Traffic regulation only for special vehicles.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troVehicleConditionExtensionG": {
+          "title": "troVehicleConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vehicleCharacteristics"
+      ]
+    },
+    "WalkingSpeed": {
+      "title": "WalkingSpeed",
+      "description": "Maximum speed limited to walking speed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troTypeOfRegulationExtensionG": {
+          "title": "troTypeOfRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troSpeedLimitExtensionG": {
+          "title": "troSpeedLimitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWalkingSpeedExtensionG": {
+          "title": "troWalkingSpeedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "WarningG": {
+      "title": "WarningG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "troRoadWarning": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadWarning"
+        },
+        "troSteepHill": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/SteepHill"
+        },
+        "troAmbientWarning": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AmbientWarning"
+        },
+        "troTrafficAhead": {
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficAhead"
+        }
+      }
+    },
+    "WarningPublication": {
+      "title": "WarningPublication",
+      "description": "Publication of warnings that are not subject to a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "warningWithoutRegulation": {
+          "title": "warningWithoutRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/WarningWithoutRegulation"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWarningPublicationExtensionG": {
+          "title": "troWarningPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "warningWithoutRegulation"
+      ]
+    },
+    "WarningWithoutRegulation": {
+      "title": "WarningWithoutRegulation",
+      "description": "A warning that is not a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "typeOfWarningWithoutRegulation": {
+          "title": "typeOfWarningWithoutRegulation",
+          "description": "The type of warning that is not a traffic regulation.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/WarningG"
+          },
+          "minItems": 1
+        },
+        "condition": {
+          "title": "condition",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionG"
+        },
+        "roadSign": {
+          "title": "roadSign",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadSignG"
+          },
+          "minItems": 0
+        },
+        "troWarningWithoutRegulationExtensionG": {
+          "title": "troWarningWithoutRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "typeOfWarningWithoutRegulation"
+      ]
+    },
+    "WeatherCondition": {
+      "title": "WeatherCondition",
+      "description": "Specifies weather type condition applicability relating to a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "weatherConditionType": {
+          "title": "weatherConditionType",
+          "description": "Specifies the weather type condition for a traffic regulation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/WeatherRelatedRoadConditionTypeEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "troWeatherConditionExtensionG": {
+          "title": "troWeatherConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "weatherConditionType"
+      ]
+    }
+  }
+}

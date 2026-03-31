@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-04-01T07:18:52Z",
+        "publicationCreator": "ZVM",
+        "situationId": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1",
+        "situationVersionTime": "2026-03-31T06:02:45Z",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "id": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1.0",
+        "version": "1774936964",
+        "situationRecordCreationTime": "2026-03-31T06:02:45Z",
+        "situationRecordVersionTime": "2026-03-31T06:02:45Z",
+        "probabilityOfOccurrence": "certain",
+        "description": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr",
+        "type": "RoadOrCarriagewayOrLaneManagement",
+        "complianceOption": "mandatory",
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2026-03-24T06:00:00Z",
+        "overallEndTime": "2026-04-02T15:00:00Z",
+        "validPeriod": [
+          {
+            "endOfPeriod": "2026-04-02T15:00:00Z",
+            "startOfPeriod": "2026-03-24T06:00:00Z"
+          }
+        ],
+        "situationSubtype": "singleAlternateLineTraffic"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.431594,
+            48.7778043
+          ],
+          [
+            11.43173,
+            48.77782
+          ],
+          [
+            11.43196,
+            48.77785
+          ],
+          [
+            11.43203,
+            48.77785
+          ],
+          [
+            11.43214,
+            48.77783
+          ],
+          [
+            11.43212,
+            48.7779
+          ],
+          [
+            11.43213,
+            48.77793
+          ],
+          [
+            11.43215,
+            48.77796
+          ],
+          [
+            11.43218,
+            48.77799
+          ],
+          [
+            11.4323583,
+            48.7781359
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-04-01T07:18:52Z",
+        "publicationCreator": "ZVM",
+        "situationId": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1",
+        "situationVersionTime": "2026-03-31T06:02:45Z",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "id": "VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1.0",
+        "version": "1774936964",
+        "situationRecordCreationTime": "2026-03-31T06:02:45Z",
+        "situationRecordVersionTime": "2026-03-31T06:02:45Z",
+        "probabilityOfOccurrence": "certain",
+        "description": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr",
+        "type": "RoadOrCarriagewayOrLaneManagement",
+        "complianceOption": "mandatory",
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2026-03-24T06:00:00Z",
+        "overallEndTime": "2026-04-02T15:00:00Z",
+        "validPeriod": [
+          {
+            "endOfPeriod": "2026-04-02T15:00:00Z",
+            "startOfPeriod": "2026-03-24T06:00:00Z"
+          }
+        ],
+        "situationSubtype": "singleAlternateLineTraffic"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.431594,
+            48.7778043
+          ],
+          [
+            11.43173,
+            48.77782
+          ],
+          [
+            11.4323583,
+            48.7781359
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,2455 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "AlternativeFuelsRefillPoint": {
+      "title": "AlternativeFuelsRefillPoint",
+      "description": "A refill point for alternative fules like CNG,LNG,LPG,biogas or hydrogen (liquid or gaseous).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "deliveryUnit": {
+          "title": "deliveryUnit",
+          "description": "Measurement unit that is used for delivery and accounting the energy provided at this refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DeliveryUnitEnumG"
+        },
+        "maximumDeliveryAmount": {
+          "title": "maximumDeliveryAmount",
+          "description": "Maximum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "minimumDeliveryAmount": {
+          "title": "minimumDeliveryAmount",
+          "description": "Minimum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "modelType": {
+          "title": "modelType",
+          "description": "A description of the refill point model type.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "reservation": {
+          "title": "reservation",
+          "description": "Information regarding options for reservation of a time frame.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReservationTypeEnumG"
+        },
+        "connector": {
+          "title": "connector",
+          "description": "Information on the alternative fuels type connector at the refill point.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/GasConnectorTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "otherConnector": {
+          "title": "otherConnector",
+          "description": "Any other type of alternative fuels connector.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/String"
+          },
+          "minItems": 0
+        },
+        "hydrogenProcessProtocol": {
+          "title": "hydrogenProcessProtocol",
+          "description": "Information on which protocol is used for the fuelling process for hydrogen.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/HydrogenFuellingProcessProtocolEnumG"
+        },
+        "renewableSourcesRatio": {
+          "title": "renewableSourcesRatio",
+          "description": "Percentage of renewable energy sources for the alternative fluel, to be indicated in %.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "pressure": {
+          "title": "pressure",
+          "description": "The pressure which is used for gaseous fuel.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Bar"
+        },
+        "energyProduct": {
+          "title": "energyProduct",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyProductG"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityExtensionG": {
+          "title": "afacFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiRefillPointExtensionG": {
+          "title": "aegiRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiAlternativeFuelsRefillPointExtensionG": {
+          "title": "aegiAlternativeFuelsRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "deliveryUnit"
+      ]
+    },
+    "Ampere": {
+      "title": "Ampere",
+      "description": "Ampere.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    },
+    "AuthenticationAndIdentificationEnum": {
+      "title": "AuthenticationAndIdentificationEnum",
+      "description": "A table of authentication and/or identification methods.",
+      "type": "string",
+      "enum": [
+        "activeRFIDChip",
+        "apps",
+        "calypso",
+        "cashPayment",
+        "creditCard",
+        "debitCard",
+        "mifareClassic",
+        "mifareDesfire",
+        "nfc",
+        "overTheAir",
+        "phoneDialog",
+        "phoneSMS",
+        "pinpad",
+        "plc",
+        "prepaidCard",
+        "rfid",
+        "website",
+        "unlimitedAccess",
+        "noAccess",
+        "extendedG"
+      ]
+    },
+    "AuthenticationAndIdentificationEnumG": {
+      "title": "AuthenticationAndIdentificationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/AuthenticationAndIdentificationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Bar": {
+      "title": "Bar",
+      "description": "A measure of pressure defined in bar.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    },
+    "BioethanolTypeEnum": {
+      "title": "BioethanolTypeEnum",
+      "description": "A table of different types of petrol with a share of bioethanol.",
+      "type": "string",
+      "enum": [
+        "superE5",
+        "superE10",
+        "e15",
+        "e85",
+        "e100",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "BioethanolTypeEnumG": {
+      "title": "BioethanolTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/BioethanolTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ChargingModeEnum": {
+      "title": "ChargingModeEnum",
+      "description": "Charging mode according to IEC 61851-1 terminology.",
+      "type": "string",
+      "enum": [
+        "mode1AC1p",
+        "mode1AC3p",
+        "mode2AC1p",
+        "mode2AC3p",
+        "mode3AC3p",
+        "mode4DC",
+        "legacyInductive",
+        "ccs",
+        "other",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "ChargingModeEnumG": {
+      "title": "ChargingModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ChargingModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ChargingPointUsageTypeEnum": {
+      "title": "ChargingPointUsageTypeEnum",
+      "description": "Type of usage for an electric charging point..",
+      "type": "string",
+      "enum": [
+        "electricBoat",
+        "electricBike",
+        "electricalDevices",
+        "electricMotorcycle",
+        "electricVehicle",
+        "lorryPowerConsumption",
+        "motorhomeOrCaravanSupply",
+        "overheadLineDrivenVehicles",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ChargingPointUsageTypeEnumG": {
+      "title": "ChargingPointUsageTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ChargingPointUsageTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Connector": {
+      "title": "Connector",
+      "description": "Parameters and description of an interface that is available at the given electric charging point to connect vehicles.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "connectorType": {
+          "title": "connectorType",
+          "description": "Specification of the connector, i.e. the charging interface type.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ConnectorTypeEnumG"
+        },
+        "otherConnector": {
+          "title": "otherConnector",
+          "description": "Some other connector / charging interface.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "countryOfDomesticSocket": {
+          "title": "countryOfDomesticSocket",
+          "description": "Countries for which the domestic socket is applicable. Only needed if explicit type of a domestic socket is not specified.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/CountryCode"
+          },
+          "minItems": 0
+        },
+        "connectorFormat": {
+          "title": "connectorFormat",
+          "description": "Information on the cable type used.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ConnectorFormatTypeEnumG"
+        },
+        "maxPowerAtSocket": {
+          "title": "maxPowerAtSocket",
+          "description": "Maximum power at the socket in watts.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Watt"
+        },
+        "voltage": {
+          "title": "voltage",
+          "description": "Voltage at the connector.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Volt"
+        },
+        "maximumCurrent": {
+          "title": "maximumCurrent",
+          "description": "Maximum current in ampere.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Ampere"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "aegiConnectorExtensionG": {
+          "title": "aegiConnectorExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "connectorType",
+        "maxPowerAtSocket"
+      ]
+    },
+    "ConnectorFormatTypeEnum": {
+      "title": "ConnectorFormatTypeEnum",
+      "description": "A list of cable types used during the charging process.",
+      "type": "string",
+      "enum": [
+        "cableMode2",
+        "cableMode3",
+        "otherCable",
+        "socket",
+        "extendedG"
+      ]
+    },
+    "ConnectorFormatTypeEnumG": {
+      "title": "ConnectorFormatTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ConnectorFormatTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConnectorTypeEnum": {
+      "title": "ConnectorTypeEnum",
+      "description": "A table of commonly used connectors / charging interfaces.",
+      "type": "string",
+      "enum": [
+        "cee3",
+        "cee5",
+        "chademo",
+        "yazaki",
+        "domestic",
+        "domesticAType",
+        "domesticBType",
+        "domesticCType",
+        "domesticDType",
+        "domesticEType",
+        "domesticFType",
+        "domesticGType",
+        "domesticHType",
+        "domesticIType",
+        "domesticJType",
+        "domesticKType",
+        "domesticLType",
+        "domesticMType",
+        "domesticNType",
+        "domesticOType",
+        "iec60309x2three16",
+        "iec60309x2three32",
+        "iec60309x2three64",
+        "iec60309x2single16",
+        "iec62196T1",
+        "iec62196T1COMBO",
+        "iec62196T2",
+        "iec62196T2COMBO",
+        "iec62196T3A",
+        "iec62196T3C",
+        "mcs",
+        "pantographBottomUp",
+        "pantographTopDown",
+        "teslaConnectorEurope",
+        "teslaConnectorAmerica",
+        "teslaR",
+        "teslaS",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ConnectorTypeEnumG": {
+      "title": "ConnectorTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ConnectorTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CurrentTypeEnum": {
+      "title": "CurrentTypeEnum",
+      "description": "The type of current (AC/DC).",
+      "type": "string",
+      "enum": [
+        "ac",
+        "dc",
+        "extendedG"
+      ]
+    },
+    "CurrentTypeEnumG": {
+      "title": "CurrentTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/CurrentTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DeliveryUnitEnum": {
+      "title": "DeliveryUnitEnum",
+      "description": "Table with diffrent units in which the delivery is measured.",
+      "type": "string",
+      "enum": [
+        "litre",
+        "kWh",
+        "kg",
+        "m3",
+        "imperialGallon",
+        "usGallon",
+        "gasGallonEquivalent",
+        "extendedG"
+      ]
+    },
+    "DeliveryUnitEnumG": {
+      "title": "DeliveryUnitEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DeliveryUnitEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DieselRefillPoint": {
+      "title": "DieselRefillPoint",
+      "description": "A refill point for diesel.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "deliveryUnit": {
+          "title": "deliveryUnit",
+          "description": "Measurement unit that is used for delivery and accounting the energy provided at this refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DeliveryUnitEnumG"
+        },
+        "maximumDeliveryAmount": {
+          "title": "maximumDeliveryAmount",
+          "description": "Maximum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "minimumDeliveryAmount": {
+          "title": "minimumDeliveryAmount",
+          "description": "Minimum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "modelType": {
+          "title": "modelType",
+          "description": "A description of the refill point model type.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "reservation": {
+          "title": "reservation",
+          "description": "Information regarding options for reservation of a time frame.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReservationTypeEnumG"
+        },
+        "dieselVehicleType": {
+          "title": "dieselVehicleType",
+          "description": "Specifies the type of diesel in terms of the applicable vehicle type.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DieselVehicleTypeEnumG"
+        },
+        "cetane": {
+          "title": "cetane",
+          "description": "Diesel's cetane value.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "bioDieselShare": {
+          "title": "bioDieselShare",
+          "description": "Share of vegetable oil or animal fat-based diesel fuel.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "energyProduct": {
+          "title": "energyProduct",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyProductG"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityExtensionG": {
+          "title": "afacFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiRefillPointExtensionG": {
+          "title": "aegiRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiDieselRefillPointExtensionG": {
+          "title": "aegiDieselRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "deliveryUnit"
+      ]
+    },
+    "DieselVehicleTypeEnum": {
+      "title": "DieselVehicleTypeEnum",
+      "description": "Car or truck diesel.",
+      "type": "string",
+      "enum": [
+        "carDiesel",
+        "truckDiesel",
+        "extendedG"
+      ]
+    },
+    "DieselVehicleTypeEnumG": {
+      "title": "DieselVehicleTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DieselVehicleTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ElectricChargingPoint": {
+      "title": "ElectricChargingPoint",
+      "description": "Technical infrastructure at a specific location that facilitates electric charging of one vehicle at a time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "deliveryUnit": {
+          "title": "deliveryUnit",
+          "description": "Measurement unit that is used for delivery and accounting the energy provided at this refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DeliveryUnitEnumG"
+        },
+        "maximumDeliveryAmount": {
+          "title": "maximumDeliveryAmount",
+          "description": "Maximum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "minimumDeliveryAmount": {
+          "title": "minimumDeliveryAmount",
+          "description": "Minimum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "modelType": {
+          "title": "modelType",
+          "description": "A description of the refill point model type.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "reservation": {
+          "title": "reservation",
+          "description": "Information regarding options for reservation of a time frame.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReservationTypeEnumG"
+        },
+        "currentType": {
+          "title": "currentType",
+          "description": "The type of current (AC/DC).",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/CurrentTypeEnumG"
+        },
+        "usageType": {
+          "title": "usageType",
+          "description": "Usage type of the electric charging point.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ChargingPointUsageTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "vehicleToGridCommunicationType": {
+          "title": "vehicleToGridCommunicationType",
+          "description": "Type of vehicle to grid communication used.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/VehicleToGridCommunicationTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "numberOfConnectors": {
+          "title": "numberOfConnectors",
+          "description": "Information on the numberof connectors at this charging point.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "availableVoltage": {
+          "title": "availableVoltage",
+          "description": "Possible degrees of voltage.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Volt"
+          },
+          "minItems": 0
+        },
+        "availableChargingPower": {
+          "title": "availableChargingPower",
+          "description": "Possible degrees of charging power in watts.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Watt"
+          },
+          "minItems": 0
+        },
+        "chargingMode": {
+          "title": "chargingMode",
+          "description": "Available charging mode.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ChargingModeEnumG"
+        },
+        "smartRechargingServices": {
+          "title": "smartRechargingServices",
+          "description": "Smart recharging services that are available.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/SmartRechargingServicesEnumG"
+          },
+          "minItems": 0
+        },
+        "otherSmartRechargingServices": {
+          "title": "otherSmartRechargingServices",
+          "description": "Other smart recharging services that are available.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "energyProduct": {
+          "title": "energyProduct",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyProductG"
+          },
+          "minItems": 0
+        },
+        "connector": {
+          "title": "connector",
+          "description": "Specify the connector(s).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Connector"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityExtensionG": {
+          "title": "afacFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiRefillPointExtensionG": {
+          "title": "aegiRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiElectricChargingPointExtensionG": {
+          "title": "aegiElectricChargingPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "deliveryUnit",
+        "currentType"
+      ]
+    },
+    "ElectricChargingPointStatus": {
+      "title": "ElectricChargingPointStatus",
+      "description": "Dynamic information on the status of the charging point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "status": {
+          "title": "status",
+          "description": "Status of the refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatusEnumG"
+        },
+        "unitsInStock": {
+          "title": "unitsInStock",
+          "description": "Amount of delivery units still in stock (with delivery units as defined in the static information model).",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "remainingChargingTime": {
+          "title": "remainingChargingTime",
+          "description": "If known, the approximate remaining charging time for the current vehicle on this refill point can be specified.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "currentVoltage": {
+          "title": "currentVoltage",
+          "description": "Currently used voltage.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Volt"
+        },
+        "currentChargingPower": {
+          "title": "currentChargingPower",
+          "description": "The current power in watts.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Watt"
+        },
+        "nextAvailableChargingSlots": {
+          "title": "nextAvailableChargingSlots",
+          "description": "One or more points of time in the future, at which the charging point will be available (not occupied and not reserved).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+          },
+          "minItems": 0
+        },
+        "energyRateUpdate": {
+          "title": "energyRateUpdate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRateUpdate"
+          },
+          "minItems": 0
+        },
+        "waitingTime": {
+          "title": "waitingTime",
+          "description": "Estimated waiting time for customers without reservation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/DurationValue"
+        },
+        "plannedRefillPointStatus": {
+          "title": "plannedRefillPointStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PlannedRefillPointStatus"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiRefillPointStatusExtensionG": {
+          "title": "aegiRefillPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiElectricChargingPointStatusExtensionG": {
+          "title": "aegiElectricChargingPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference",
+        "status"
+      ]
+    },
+    "ElectricEnergy": {
+      "title": "ElectricEnergy",
+      "description": "An electric energy product that is offered,optional described with its electrical mix and its rates.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "energyProductName": {
+          "title": "energyProductName",
+          "description": "A name for this energy product.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "isGreenEnergy": {
+          "title": "isGreenEnergy",
+          "description": "True if 100% from regenerative sources (CO2 and nuclear waste is zero).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "energyRateByReference": {
+          "title": "energyRateByReference",
+          "description": "Specifies one ore more rates for this type of energy by reference to exisiting EnergyRate specification.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRateReferenceG"
+          },
+          "minItems": 0
+        },
+        "energyProductInformation": {
+          "title": "energyProductInformation",
+          "description": "Further information on this energy product provided by a web link.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "renewableEnergyEvidence": {
+          "title": "renewableEnergyEvidence",
+          "description": "Proofs on the sources of renewable energy for this energy product provided by a web link.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "carbonDioxideImpact": {
+          "title": "carbonDioxideImpact",
+          "description": "Exhausted carbon dioxide in grams per kilowatt hour.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/GramsPerKilowattHour"
+        },
+        "nuclearWasteImpact": {
+          "title": "nuclearWasteImpact",
+          "description": "Produced nuclear waste in grams per kilowatt hour.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/GramsPerKilowattHour"
+        },
+        "mobilityServiceProvider": {
+          "title": "mobilityServiceProvider",
+          "description": "Mobility service providers offering contract-based recharging",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "energyRate": {
+          "title": "energyRate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRate"
+          },
+          "minItems": 0
+        },
+        "electricEnergySourceRatio": {
+          "title": "electricEnergySourceRatio",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricEnergySourceRatio"
+          },
+          "minItems": 0
+        },
+        "aegiEnergyProductExtensionG": {
+          "title": "aegiEnergyProductExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiElectricEnergyExtensionG": {
+          "title": "aegiElectricEnergyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ElectricEnergySourceRatio": {
+      "title": "ElectricEnergySourceRatio",
+      "description": "Ratio for the specified energy source.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "energySource": {
+          "title": "energySource",
+          "description": "An electric energy source.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricEnergySourceTypeEnumG"
+        },
+        "otherEnergySource": {
+          "title": "otherEnergySource",
+          "description": "Some other energy source.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "sourceRatioValue": {
+          "title": "sourceRatioValue",
+          "description": "The percentage ratio value of this energy source.",
+          "$ref": "DATEXII_3_Common.json#/$defs/PercentageValue"
+        },
+        "aegiElectricEnergySourceRatioExtensionG": {
+          "title": "aegiElectricEnergySourceRatioExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "energySource",
+        "sourceRatioValue"
+      ]
+    },
+    "ElectricEnergySourceTypeEnum": {
+      "title": "ElectricEnergySourceTypeEnum",
+      "description": "Electric energy sources.",
+      "type": "string",
+      "enum": [
+        "biogas",
+        "coal",
+        "gas",
+        "nuclear",
+        "solar",
+        "water",
+        "wind",
+        "generalGreen",
+        "generalFossil",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ElectricEnergySourceTypeEnumG": {
+      "title": "ElectricEnergySourceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricEnergySourceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EnergyBasedApplicability": {
+      "title": "EnergyBasedApplicability",
+      "description": "Price is only valid within the given charging boundaries in kWh.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fromKWh": {
+          "title": "fromKWh",
+          "description": "Price is valid from the given amount of kWh.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "toKWh": {
+          "title": "toKWh",
+          "description": "Price is valid up to the given amount of kWh.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "aegiEnergyBasedApplicabilityExtensionG": {
+          "title": "aegiEnergyBasedApplicabilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "EnergyInfrastructureSite": {
+      "title": "EnergyInfrastructureSite",
+      "description": "A site where vehicles can be supplied with energy,including all buildings,stations,parking spaces and other associated services.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "typeOfSite": {
+          "title": "typeOfSite",
+          "description": "Specifies the type of the site.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSiteTypeEnumG"
+        },
+        "brand": {
+          "title": "brand",
+          "description": "The brand of the site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "exclusiveUsers": {
+          "title": "exclusiveUsers",
+          "description": "Limitation to a set of users (exclusive).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UserTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "preferredUsers": {
+          "title": "preferredUsers",
+          "description": "Users that are preferred at this site (but not exclusive).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/UserTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "serviceType": {
+          "title": "serviceType",
+          "description": "Specify the type of service available at a EnergyInfrastructureSite",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ServiceType"
+          },
+          "minItems": 0
+        },
+        "entrance": {
+          "title": "entrance",
+          "description": "Possibility to specify the location of the site's entrance.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationG"
+          },
+          "minItems": 0
+        },
+        "exit": {
+          "title": "exit",
+          "description": "Possibility to specify the location of the site's exit.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationG"
+          },
+          "minItems": 0
+        },
+        "energyInfrastructureStation": {
+          "title": "energyInfrastructureStation",
+          "description": "Specifications of charging stations on the site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureStation"
+          },
+          "minItems": 0
+        },
+        "energyDistributor": {
+          "title": "energyDistributor",
+          "description": "The distributor of the energy. Valid for all attached EnergyInfrastructureStations.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+        },
+        "mobilityServiceProvider": {
+          "title": "mobilityServiceProvider",
+          "description": "Mobility service providers offering contract-based recharging. Valid for all attached EnergyInfrastructureStations.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "roamingPlatform": {
+          "title": "roamingPlatform",
+          "description": "Supported roaming platforms. Valid for all attached EnergyInfrastructureStations.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityExtensionG": {
+          "title": "afacFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureSiteExtensionG": {
+          "title": "aegiEnergyInfrastructureSiteExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "EnergyInfrastructureSiteStatus": {
+      "title": "EnergyInfrastructureSiteStatus",
+      "description": "Dynamic information on the status of the energy supplying site.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "availableCarParkingPlaces": {
+          "title": "availableCarParkingPlaces",
+          "description": "Parking places available for cars.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "availableTruckParkingPlaces": {
+          "title": "availableTruckParkingPlaces",
+          "description": "Parking places available for trucks.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "energyInfrastructureStationStatus": {
+          "title": "energyInfrastructureStationStatus",
+          "description": "Specify the status of a charging station with dynamic information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureStationStatus"
+          },
+          "minItems": 0
+        },
+        "serviceType": {
+          "title": "serviceType",
+          "description": "The service type for the site. If no period is given, the currently available service is meant.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ServiceType"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureSiteStatusExtensionG": {
+          "title": "aegiEnergyInfrastructureSiteStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "EnergyInfrastructureSiteTypeEnum": {
+      "title": "EnergyInfrastructureSiteTypeEnum",
+      "description": "The type of an energy infrastructure site.",
+      "type": "string",
+      "enum": [
+        "inBuilding",
+        "openSpace",
+        "onstreet",
+        "onCompanySite",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EnergyInfrastructureSiteTypeEnumG": {
+      "title": "EnergyInfrastructureSiteTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSiteTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EnergyInfrastructureStation": {
+      "title": "EnergyInfrastructureStation",
+      "description": "A collection of associated refill points (which can be of different type). An example would be a fuel dispenser that serves different types of fuel. Often the vehicle space of the station is shared between the different refill points.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "totalMaximumPower": {
+          "title": "totalMaximumPower",
+          "description": "The total maximum power of the station.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Watt"
+        },
+        "authenticationAndIdentificationMethods": {
+          "title": "authenticationAndIdentificationMethods",
+          "description": "Information on what methods of identification and/or authentication are accepted.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/AuthenticationAndIdentificationEnumG"
+          },
+          "minItems": 0
+        },
+        "numberOfRefillPoints": {
+          "title": "numberOfRefillPoints",
+          "description": "Number of refill points that can be used at the same time in this energy infrastructure station.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "userInterfaceLanguage": {
+          "title": "userInterfaceLanguage",
+          "description": "Languages, in which a user interface is available.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Language"
+          },
+          "minItems": 0
+        },
+        "renewableSources": {
+          "title": "renewableSources",
+          "description": "Specifies, if the energy sources (e.g. hydrogen or liquid methane) are 100 % renewable in accordance with rules established under Directive (EU) 2018/2001 and relevant secondary legislation (EU Guarantee of Origin (GO) scheme).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "energyDistributor": {
+          "title": "energyDistributor",
+          "description": "The distributor of the energy.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+        },
+        "mobilityServiceProvider": {
+          "title": "mobilityServiceProvider",
+          "description": "Mobility service providers offering contract-based recharging",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "roamingPlatform": {
+          "title": "roamingPlatform",
+          "description": "Supported roaming platforms",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "hydrogen": {
+          "title": "hydrogen",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Hydrogen"
+        },
+        "serviceType": {
+          "title": "serviceType",
+          "description": "Specify the type of service available at the EnergyInfrastructureStation.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ServiceType"
+          },
+          "minItems": 0
+        },
+        "refillPoint": {
+          "title": "refillPoint",
+          "description": "Specifications of refill points at a charging station. Note that the refillPointIndex must be unique within the complete site!",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointG"
+          },
+          "minItems": 0
+        },
+        "energyProduct": {
+          "title": "energyProduct",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyProductG"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityExtensionG": {
+          "title": "afacFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureStationExtensionG": {
+          "title": "aegiEnergyInfrastructureStationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "EnergyInfrastructureStationStatus": {
+      "title": "EnergyInfrastructureStationStatus",
+      "description": "Dynamic information on the status of the station.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "isAvailable": {
+          "title": "isAvailable",
+          "description": "Information whether the specific station is available or not. It might be unavailable for example because of a fault, damage or maintenance. It does not inform, if the corresponding refill points are currently occupied or not.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "limitedHydrogenAmount": {
+          "title": "limitedHydrogenAmount",
+          "description": "Indication about limited amount of hydrogen available (less than 100 kg) in the refuelling station.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "refillPointStatus": {
+          "title": "refillPointStatus",
+          "description": "Specify the status of a refill point with dynamic information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatusG"
+          },
+          "minItems": 0
+        },
+        "serviceType": {
+          "title": "serviceType",
+          "description": "The service type for the station. If no period is given, the currently available service is meant.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ServiceType"
+          },
+          "minItems": 0
+        },
+        "energyRateUpdate": {
+          "title": "energyRateUpdate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRateUpdate"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureStationStatusExtensionG": {
+          "title": "aegiEnergyInfrastructureStationStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "EnergyInfrastructureStatusPublication": {
+      "title": "EnergyInfrastructureStatusPublication",
+      "description": "Dynamic information on the status of energy supplying sites.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "tableReference": {
+          "title": "tableReference",
+          "description": "Reference to static tables containing the sites referenced in this publication.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureTableVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "energyInfrastructureSiteStatus": {
+          "title": "energyInfrastructureSiteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSiteStatus"
+          },
+          "minItems": 0
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureStatusPublicationExtensionG": {
+          "title": "aegiEnergyInfrastructureStatusPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator"
+      ]
+    },
+    "EnergyInfrastructureTable": {
+      "title": "EnergyInfrastructureTable",
+      "description": "A table of sites where vehicles can be supplied with energy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "tableName": {
+          "title": "tableName",
+          "description": "The name of the Energy Infrastructure Table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "energyInfrastructureSite": {
+          "title": "energyInfrastructureSite",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureSite"
+          },
+          "minItems": 1
+        },
+        "aegiEnergyInfrastructureTableExtensionG": {
+          "title": "aegiEnergyInfrastructureTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "energyInfrastructureSite"
+      ]
+    },
+    "EnergyInfrastructureTablePublication": {
+      "title": "EnergyInfrastructureTablePublication",
+      "description": "A publication of static information on the infrastructure for vehicle energy supply.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "energyInfrastructureTable": {
+          "title": "energyInfrastructureTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyInfrastructureTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureTablePublicationExtensionG": {
+          "title": "aegiEnergyInfrastructureTablePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "energyInfrastructureTable"
+      ]
+    },
+    "EnergyInfrastructureTableVersionedReferenceG": {
+      "title": "EnergyInfrastructureTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "EnergyInfrastructureTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "EnergyPrice": {
+      "title": "EnergyPrice",
+      "description": "A price definition for energy refueling. All prices (of a rate) with the same group index belong together (for example base price AND price per kWh). Prices with a different group index are alternative to each other (for example price per minute OR flat r",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "priceGroupIndex": {
+          "title": "priceGroupIndex",
+          "description": "All prices (of a rate) with the same group index belong together (for example base price AND price per kWh). Prices with a different group index are alternative to each other (for example price per minute OR flat rate instead).",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "priceType": {
+          "title": "priceType",
+          "description": "The type of price for the energy supply.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PriceTypeEnumG"
+        },
+        "value": {
+          "title": "value",
+          "description": "The price for the energy according to the price type.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "priceCap": {
+          "title": "priceCap",
+          "description": "An upper cap for this price which will be charged at maximum.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Free text field for additional information regarding the price.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "timeBasedApplicability": {
+          "title": "timeBasedApplicability",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/TimeBasedApplicability"
+        },
+        "energyBasedApplicability": {
+          "title": "energyBasedApplicability",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyBasedApplicability"
+        },
+        "aegiEnergyPriceExtensionG": {
+          "title": "aegiEnergyPriceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "priceGroupIndex",
+        "priceType",
+        "value"
+      ]
+    },
+    "EnergyProduct": {
+      "title": "EnergyProduct",
+      "description": "Specification of an energy product that is offered. It can be applied to all types of energy sources.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "energyProductName": {
+          "title": "energyProductName",
+          "description": "A name for this energy product.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "isGreenEnergy": {
+          "title": "isGreenEnergy",
+          "description": "True if 100% from regenerative sources (CO2 and nuclear waste is zero).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "energyRateByReference": {
+          "title": "energyRateByReference",
+          "description": "Specifies one ore more rates for this type of energy by reference to exisiting EnergyRate specification.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRateReferenceG"
+          },
+          "minItems": 0
+        },
+        "energyProductInformation": {
+          "title": "energyProductInformation",
+          "description": "Further information on this energy product provided by a web link.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "renewableEnergyEvidence": {
+          "title": "renewableEnergyEvidence",
+          "description": "Proofs on the sources of renewable energy for this energy product provided by a web link.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "mobilityServiceProvider": {
+          "title": "mobilityServiceProvider",
+          "description": "Mobility service providers offering contract-based recharging",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "energyRate": {
+          "title": "energyRate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRate"
+          },
+          "minItems": 0
+        },
+        "aegiEnergyProductExtensionG": {
+          "title": "aegiEnergyProductExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "EnergyProductG": {
+      "title": "EnergyProductG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiEnergyProduct": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyProduct"
+        },
+        "aegiElectricEnergy": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricEnergy"
+        }
+      }
+    },
+    "EnergyRate": {
+      "title": "EnergyRate",
+      "description": "A rate dedicated for the energy product.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "ratePolicy": {
+          "title": "ratePolicy",
+          "description": "Indication if contract based or ad hoc price.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RatePolicyEnumG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/$defs/CurrencyCode"
+          },
+          "minItems": 1
+        },
+        "rateName": {
+          "title": "rateName",
+          "description": "A name for this rate, for example the name of the specific energy contract.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "combinationWithParkingFee": {
+          "title": "combinationWithParkingFee",
+          "description": "Indicates whether vehicle charging and parking are included in one combined fee.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "maximumDeliveryFee": {
+          "title": "maximumDeliveryFee",
+          "description": "A maximum delivery fee.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "minimumDeliveryFee": {
+          "title": "minimumDeliveryFee",
+          "description": "A minimum delivery fee.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/AmountOfMoney"
+        },
+        "discount": {
+          "title": "discount",
+          "description": "Discount indicated in %.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Free text field for additional information regarding the energy rates.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "payment": {
+          "title": "payment",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/Payment"
+        },
+        "energyPrice": {
+          "title": "energyPrice",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyPrice"
+          },
+          "minItems": 0
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "aegiEnergyRateExtensionG": {
+          "title": "aegiEnergyRateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "applicableCurrency",
+        "lastUpdated",
+        "ratePolicy"
+      ]
+    },
+    "EnergyRateReferenceG": {
+      "title": "EnergyRateReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "EnergyRate"
+        },
+        "idG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "EnergyRateUpdate": {
+      "title": "EnergyRateUpdate",
+      "description": "Updates a rate defined in the static part of the model.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "energyRateReference": {
+          "title": "energyRateReference",
+          "description": "Specifies the EnergyRate that is updated here.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRateReferenceG"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Free text field for additional information regarding the energy rates.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "energyPrice": {
+          "title": "energyPrice",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyPrice"
+          },
+          "minItems": 0
+        },
+        "aegiEnergyRateUpdateExtensionG": {
+          "title": "aegiEnergyRateUpdateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "energyRateReference",
+        "lastUpdated"
+      ]
+    },
+    "GasConnectorTypeEnum": {
+      "title": "GasConnectorTypeEnum",
+      "description": "Available connectors that serve differen types of gas.",
+      "type": "string",
+      "enum": [
+        "gaseousHydrogen",
+        "liquidHydrogen",
+        "cng",
+        "lng",
+        "lpg",
+        "biogas",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "GasConnectorTypeEnumG": {
+      "title": "GasConnectorTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/GasConnectorTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "GramsPerKilowattHour": {
+      "title": "GramsPerKilowattHour",
+      "description": "Grams per kWh (e.g. for carbon dioxide impact).",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    },
+    "Hydrogen": {
+      "title": "Hydrogen",
+      "description": "Information for hydrogen stations.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "refuellingMode": {
+          "title": "refuellingMode",
+          "description": "Definition of the available refill solutions for hydrogen.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/HydrogenRefuellingModeEnumG"
+          },
+          "minItems": 1
+        },
+        "cumulativeCapacityperDay": {
+          "title": "cumulativeCapacityperDay",
+          "description": "Indication of the cumulative capacity per day (expressed in kg/day) of a hydrogen refuelling station.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/KilogramPerDay"
+        },
+        "aegiHydrogenExtensionG": {
+          "title": "aegiHydrogenExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "cumulativeCapacityperDay",
+        "refuellingMode"
+      ]
+    },
+    "HydrogenFuellingProcessProtocolEnum": {
+      "title": "HydrogenFuellingProcessProtocolEnum",
+      "description": "A table with different types of protocols that are used during the hydron fuelling process.",
+      "type": "string",
+      "enum": [
+        "saej2601v2010",
+        "saej2601v2014",
+        "saej2601v2016",
+        "mcMethod",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "HydrogenFuellingProcessProtocolEnumG": {
+      "title": "HydrogenFuellingProcessProtocolEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/HydrogenFuellingProcessProtocolEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "HydrogenRefuellingModeEnum": {
+      "title": "HydrogenRefuellingModeEnum",
+      "description": "A table of different refilling solutions for hydrogen.",
+      "type": "string",
+      "enum": [
+        "gaseousHydrogen350barCar",
+        "gaseousHydrogen350barTruck",
+        "gaseousHydrogen700barCar",
+        "gaseousHydrogen700barTruck",
+        "liquidHydrogen",
+        "cryoCompressedHydrogren",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "HydrogenRefuellingModeEnumG": {
+      "title": "HydrogenRefuellingModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/HydrogenRefuellingModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "KilogramPerDay": {
+      "title": "KilogramPerDay",
+      "description": "Kilogram per day (e.g. for hydrogen supply).",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    },
+    "OctaneTypeEnum": {
+      "title": "OctaneTypeEnum",
+      "description": "Types of octane rating.",
+      "type": "string",
+      "enum": [
+        "octane95",
+        "octane98",
+        "other",
+        "extendedG"
+      ]
+    },
+    "OctaneTypeEnumG": {
+      "title": "OctaneTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/OctaneTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PetrolRefillPoint": {
+      "title": "PetrolRefillPoint",
+      "description": "A refill point for petrol.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "deliveryUnit": {
+          "title": "deliveryUnit",
+          "description": "Measurement unit that is used for delivery and accounting the energy provided at this refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DeliveryUnitEnumG"
+        },
+        "maximumDeliveryAmount": {
+          "title": "maximumDeliveryAmount",
+          "description": "Maximum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "minimumDeliveryAmount": {
+          "title": "minimumDeliveryAmount",
+          "description": "Minimum delivery amount.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "modelType": {
+          "title": "modelType",
+          "description": "A description of the refill point model type.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "reservation": {
+          "title": "reservation",
+          "description": "Information regarding options for reservation of a time frame.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/ReservationTypeEnumG"
+        },
+        "petrolType": {
+          "title": "petrolType",
+          "description": "Leaded or unleaded petrol.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PetrolTypeEnumG"
+        },
+        "octaneType": {
+          "title": "octaneType",
+          "description": "Petrol's octane rating.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/OctaneTypeEnumG"
+        },
+        "octane": {
+          "title": "octane",
+          "description": "Petrol's octane value.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "bioethanolShare": {
+          "title": "bioethanolShare",
+          "description": "Share of bioethanol in petrol (typically 5% or 10%).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "bioethanolType": {
+          "title": "bioethanolType",
+          "description": "Listing of common types of petrol with bioethanol.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/BioethanolTypeEnumG"
+        },
+        "energyProduct": {
+          "title": "energyProduct",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyProductG"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityExtensionG": {
+          "title": "afacFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiRefillPointExtensionG": {
+          "title": "aegiRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiPetrolRefillPointExtensionG": {
+          "title": "aegiPetrolRefillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "deliveryUnit"
+      ]
+    },
+    "PetrolTypeEnum": {
+      "title": "PetrolTypeEnum",
+      "description": "Leaded or unleaded petrol.",
+      "type": "string",
+      "enum": [
+        "leaded",
+        "unleaded",
+        "extendedG"
+      ]
+    },
+    "PetrolTypeEnumG": {
+      "title": "PetrolTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PetrolTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PlannedRefillPointStatus": {
+      "title": "PlannedRefillPointStatus",
+      "description": "Planned status information for a refill point,for example reservatons.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "title": "status",
+          "description": "Status of the refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatusEnumG"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "aegiPlannedRefillPointStatusExtensionG": {
+          "title": "aegiPlannedRefillPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "status",
+        "overallPeriod"
+      ]
+    },
+    "PriceTypeEnum": {
+      "title": "PriceTypeEnum",
+      "description": "The type of price for energy.",
+      "type": "string",
+      "enum": [
+        "pricePerMinute",
+        "pricePerKg",
+        "pricePerKWh",
+        "basePrice",
+        "flatRate",
+        "free",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PriceTypeEnumG": {
+      "title": "PriceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PriceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RatePolicyEnum": {
+      "title": "RatePolicyEnum",
+      "description": "Contract based or ad hoc prices for energy.",
+      "type": "string",
+      "enum": [
+        "contract",
+        "adHoc",
+        "extendedG"
+      ]
+    },
+    "RatePolicyEnumG": {
+      "title": "RatePolicyEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RatePolicyEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RefillPointG": {
+      "title": "RefillPointG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiElectricChargingPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricChargingPoint"
+        },
+        "aegiPetrolRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PetrolRefillPoint"
+        },
+        "aegiDieselRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/DieselRefillPoint"
+        },
+        "aegiAlternativeFuelsRefillPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/AlternativeFuelsRefillPoint"
+        }
+      }
+    },
+    "RefillPointStatus": {
+      "title": "RefillPointStatus",
+      "description": "Dynamic information on the status of the refill point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "status": {
+          "title": "status",
+          "description": "Status of the refill point.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatusEnumG"
+        },
+        "unitsInStock": {
+          "title": "unitsInStock",
+          "description": "Amount of delivery units still in stock (with delivery units as defined in the static information model).",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/Units"
+        },
+        "energyRateUpdate": {
+          "title": "energyRateUpdate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/EnergyRateUpdate"
+          },
+          "minItems": 0
+        },
+        "waitingTime": {
+          "title": "waitingTime",
+          "description": "Estimated waiting time for customers without reservation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/$defs/DurationValue"
+        },
+        "plannedRefillPointStatus": {
+          "title": "plannedRefillPointStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/PlannedRefillPointStatus"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "aegiRefillPointStatusExtensionG": {
+          "title": "aegiRefillPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference",
+        "status"
+      ]
+    },
+    "RefillPointStatusEnum": {
+      "title": "RefillPointStatusEnum",
+      "description": "The status of a refill point.",
+      "type": "string",
+      "enum": [
+        "available",
+        "blocked",
+        "charging",
+        "faulted",
+        "inoperative",
+        "occupied",
+        "outOfOrder",
+        "outOfStock",
+        "planned",
+        "removed",
+        "reserved",
+        "unavailable",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "RefillPointStatusEnumG": {
+      "title": "RefillPointStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RefillPointStatusG": {
+      "title": "RefillPointStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiRefillPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/RefillPointStatus"
+        },
+        "aegiElectricChargingPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ElectricChargingPointStatus"
+        }
+      }
+    },
+    "ServiceType": {
+      "title": "ServiceType",
+      "description": "A specification of service types for the fuelling/charging and payment process.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "serviceType": {
+          "title": "serviceType",
+          "description": "Information on different service types for the fuelling/charging and payment process.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ServiceTypeEnumG"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "aegiServiceTypeExtensionG": {
+          "title": "aegiServiceTypeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "serviceType"
+      ]
+    },
+    "ServiceTypeEnum": {
+      "title": "ServiceTypeEnum",
+      "description": "A table of different service levels to be expected for fuelling/charging and payment.",
+      "type": "string",
+      "enum": [
+        "fullService",
+        "physicalAttendance",
+        "selfService",
+        "unattended",
+        "extendedG"
+      ]
+    },
+    "ServiceTypeEnumG": {
+      "title": "ServiceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/ServiceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SmartRechargingServicesEnum": {
+      "title": "SmartRechargingServicesEnum",
+      "description": "Smart recharging services.",
+      "type": "string",
+      "enum": [
+        "remoteMonitoring",
+        "powerOptimisationByUser",
+        "bidirectionalRecharging",
+        "plugAndCharge",
+        "extendedG"
+      ]
+    },
+    "SmartRechargingServicesEnumG": {
+      "title": "SmartRechargingServicesEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/SmartRechargingServicesEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TimeBasedApplicability": {
+      "title": "TimeBasedApplicability",
+      "description": "Price is only valid within the given charging time boundaries in minutes.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fromMinute": {
+          "title": "fromMinute",
+          "description": "Price is valid from the given minute.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "toMinute": {
+          "title": "toMinute",
+          "description": "Price is valid up to the given minute.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "aegiTimeBasedApplicabilityExtensionG": {
+          "title": "aegiTimeBasedApplicabilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "Units": {
+      "title": "Units",
+      "description": "Allows to specify amounts in generic terms of a Unit,which can be one of the elements in DeliveryUnitEnum.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    },
+    "VehicleToGridCommunicationTypeEnum": {
+      "title": "VehicleToGridCommunicationTypeEnum",
+      "description": "A list of communication types for communication between vehicles and the grid.",
+      "type": "string",
+      "enum": [
+        "none",
+        "iso15118",
+        "iec619802",
+        "other",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "VehicleToGridCommunicationTypeEnumG": {
+      "title": "VehicleToGridCommunicationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/$defs/VehicleToGridCommunicationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Volt": {
+      "title": "Volt",
+      "description": "Volt.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    },
+    "Watt": {
+      "title": "Watt",
+      "description": "Watt.",
+      "$ref": "DATEXII_3_Common.json#/$defs/Float"
+    }
+  }
+}
