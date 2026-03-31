@@ -1,0 +1,115 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "exchange": {
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      }
+    },
+    "payloadPublication": {
+      "@lang": "DE",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      },
+      "publicationTime": "2026-03-19T10:32:27.818+01:00",
+      "situation": [
+        {
+          "@id": "VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1",
+          "@version": "1773725494",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real",
+            "urgency": "normalUrgency"
+          },
+          "situationRecord": [
+            {
+              "@id": "VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1.0",
+              "@version": "1773725494",
+              "@xsi:type": "PublicEvent",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Theresienwiese\n    Volksfest, von 17.04.2026 07:00 Uhr bis 10.05.2026 08:00 Uhr\n    M\u00fcnchner Fr\u00fchlingsfest"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "description"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "M\u00fcnchner Fr\u00fchlingsfest"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "other"
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        {
+                          "@lang": "de-DE",
+                          "_text": "Theresienwiese"
+                        }
+                      ]
+                    }
+                  },
+                  "commentType": "locationDescriptor"
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Area",
+                "locationForDisplay": {
+                  "latitude": 48.1313,
+                  "longitude": 11.54941
+                },
+                "tpegAreaLocation": {
+                  "@xsi:type": "TpegGeometricArea",
+                  "centrePoint": {
+                    "latitude": 48.1313,
+                    "longitude": 11.54941
+                  },
+                  "radius": 578,
+                  "tpegAreaLocationType": "largeArea"
+                }
+              },
+              "probabilityOfOccurrence": "certain",
+              "publicEventType": "fair",
+              "situationRecordCreationTime": "2026-03-17T05:31:34Z",
+              "situationRecordVersionTime": "2026-03-17T05:31:34Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-05-10T06:00:00Z",
+                  "overallStartTime": "2026-04-17T05:00:00Z",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-05-10T06:00:00Z",
+                      "startOfPeriod": "2026-04-17T05:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-03-17T05:31:34Z"
+        }
+      ]
+    }
+  }
+}

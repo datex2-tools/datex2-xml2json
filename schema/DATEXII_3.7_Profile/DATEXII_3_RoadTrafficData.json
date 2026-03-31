@@ -1,0 +1,1938 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "AxleCharacteristics": {
+      "title": "AxleCharacteristics",
+      "description": "Characteristics of vehicle axles",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maximumWeight": {
+          "title": "maximumWeight",
+          "description": "Maximum axle weight",
+          "$ref": "DATEXII_3_Common.json#/$defs/Tonnes"
+        },
+        "minimumWeight": {
+          "title": "minimumWeight",
+          "description": "Minimum axle weight",
+          "$ref": "DATEXII_3_Common.json#/$defs/Tonnes"
+        },
+        "roaAxleCharacteristicsExtensionG": {
+          "title": "roaAxleCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "AxleFlowValue": {
+      "title": "AxleFlowValue",
+      "description": "A measured or calculated value of the flow rate of vehicle axles.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "axleFlowRate": {
+          "title": "axleFlowRate",
+          "description": "A value of the flow rate of vehicle axles expressed in axles per hour.",
+          "$ref": "DATEXII_3_Common.json#/$defs/AxlesPerHour"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaAxleFlowValueExtensionG": {
+          "title": "roaAxleFlowValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "axleFlowRate"
+      ]
+    },
+    "BasicDataG": {
+      "title": "BasicDataG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roaTrafficStatus": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficStatus"
+        },
+        "roaTravelTimeData": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TravelTimeData"
+        },
+        "roaPrecipitationInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PrecipitationInformation"
+        },
+        "roaHumidityInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/HumidityInformation"
+        },
+        "roaWindInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/WindInformation"
+        },
+        "roaVisibilityInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/VisibilityInformation"
+        },
+        "roaPollutionInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PollutionInformation"
+        },
+        "roaRoadSurfaceConditionInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/RoadSurfaceConditionInformation"
+        },
+        "roaTemperatureInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TemperatureInformation"
+        },
+        "roaPressureInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PressureInformation"
+        },
+        "roaTrafficGap": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficGap"
+        },
+        "roaTrafficFlow": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficFlow"
+        },
+        "roaTrafficSpeed": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficSpeed"
+        },
+        "roaTrafficHeadway": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficHeadway"
+        },
+        "roaTrafficConcentration": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficConcentration"
+        },
+        "roaIndividualVehicleDataValues": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/IndividualVehicleDataValues"
+        }
+      }
+    },
+    "DailyTrafficFlowValue": {
+      "title": "DailyTrafficFlowValue",
+      "description": "A measured or calculated value of daily traffic flow",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vehicleFlowRate": {
+          "title": "vehicleFlowRate",
+          "description": "Value of daily vehicle flow in units of vehicles per day",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/VehiclesPerDay"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaDailyTrafficFlowValueExtensionG": {
+          "title": "roaDailyTrafficFlowValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vehicleFlowRate"
+      ]
+    },
+    "DensityVehiclesPerKilometre": {
+      "title": "DensityVehiclesPerKilometre",
+      "description": "A measure of traffic density defined in number of vehicles per kilometre of road.",
+      "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+    },
+    "DurationValue": {
+      "title": "DurationValue",
+      "description": "A measured or calculated value of a period of time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "title": "duration",
+          "description": "A period of time expressed in seconds.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaDurationValueExtensionG": {
+          "title": "roaDurationValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "duration"
+      ]
+    },
+    "ElaboratedDataPublication": {
+      "title": "ElaboratedDataPublication",
+      "description": "A publication containing one or more elaborated data sets.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "forecastDefault": {
+          "title": "forecastDefault",
+          "description": "The default value for the publication of whether the elaborated data is a forecast (true = forecast).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "periodDefault": {
+          "title": "periodDefault",
+          "description": "The default value for the publication of the time elapsed between the beginning and the end of the sampling or measurement period. This item may differ from the unit attribute; e.g. an hourly flow can be estimated from a 5-minute measurement period.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "timeDefault": {
+          "title": "timeDefault",
+          "description": "The default for the publication of the time at which the values have been computed/derived.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "referenceSettings": {
+          "title": "referenceSettings",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/ReferenceSettings"
+        },
+        "physicalQuantity": {
+          "title": "physicalQuantity",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PhysicalQuantityG"
+          },
+          "minItems": 1
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaElaboratedDataPublicationExtensionG": {
+          "title": "roaElaboratedDataPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation",
+        "physicalQuantity"
+      ]
+    },
+    "HumidityInformation": {
+      "title": "HumidityInformation",
+      "description": "Measurements of atmospheric humidity.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "humidity": {
+          "title": "humidity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Humidity"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaHumidityInformationExtensionG": {
+          "title": "roaHumidityInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "humidity"
+      ]
+    },
+    "IndividualVehicleDataValues": {
+      "title": "IndividualVehicleDataValues",
+      "description": "Measured or calculated data values relating to individual vehicles derived from detectors at the specified measurement site.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "arrivalTime": {
+          "title": "arrivalTime",
+          "description": "The time of the arrival of an individual vehicle in a detection zone.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "distanceGap": {
+          "title": "distanceGap",
+          "description": "The measured distance between the front of this vehicle and the rear of the preceding one, in metres at the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsFloat"
+        },
+        "distanceHeadway": {
+          "title": "distanceHeadway",
+          "description": "The measured distance between one end (normally the front) of this vehicle and the same end of the preceding vehicle at the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsFloat"
+        },
+        "exitTime": {
+          "title": "exitTime",
+          "description": "The time when an individual vehicle leaves a detection zone.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "passageDuration": {
+          "title": "passageDuration",
+          "description": "The time elapsed between an individual vehicle entering a detection zone and exiting the same detection zone as detected by entry and exit sensors.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "presenceDuration": {
+          "title": "presenceDuration",
+          "description": "The period of time during which a vehicle activates a presence sensor.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "speed": {
+          "title": "speed",
+          "description": "The measured speed of the individual vehicle at the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/KilometresPerHour"
+        },
+        "timeGap": {
+          "title": "timeGap",
+          "description": "The time interval between the arrival of this vehicle's front at a point on the roadway, and that of the departure of the rear of the preceding one.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "timeHeadway": {
+          "title": "timeHeadway",
+          "description": "The measured time interval between this vehicle's arrival at (or departure from) a point on the roadway, and the equivalent event for the preceding vehicle.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "individualVehicle": {
+          "title": "individualVehicle",
+          "description": "Properties of the individual vehicle to which the measurement values relate",
+          "$ref": "DATEXII_3_Common.json#/$defs/Vehicle"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDataExtensionG": {
+          "title": "roaTrafficDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaIndividualVehicleDataValuesExtensionG": {
+          "title": "roaIndividualVehicleDataValuesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MeasuredDataPublication": {
+      "title": "MeasuredDataPublication",
+      "description": "A publication containing one or more measurement data sets, each set being measured at a single measurement site.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "measurementSiteTableReference": {
+          "title": "measurementSiteTableReference",
+          "description": "A reference to a versioned Measurement Site table.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementSiteTableVersionedReferenceG"
+          },
+          "minItems": 1
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "siteMeasurements": {
+          "title": "siteMeasurements",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/SiteMeasurements"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaMeasuredDataPublicationExtensionG": {
+          "title": "roaMeasuredDataPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "measurementSiteTableReference",
+        "publicationCreator",
+        "headerInformation",
+        "siteMeasurements"
+      ]
+    },
+    "MeasuredOrDerivedDataTypeEnum": {
+      "title": "MeasuredOrDerivedDataTypeEnum",
+      "description": "Types of measured or derived data.",
+      "type": "string",
+      "enum": [
+        "humidityInformation",
+        "individualVehicleMeasurements",
+        "pollutionInformation",
+        "precipitationInformation",
+        "pressureInformation",
+        "roadSurfaceConditionInformation",
+        "temperatureInformation",
+        "trafficConcentration",
+        "trafficFlow",
+        "trafficGap",
+        "trafficHeadway",
+        "trafficSpeed",
+        "trafficStatusInformation",
+        "travelTimeInformation",
+        "visibilityInformation",
+        "windInformation",
+        "extendedG"
+      ]
+    },
+    "MeasuredOrDerivedDataTypeEnumG": {
+      "title": "MeasuredOrDerivedDataTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasuredOrDerivedDataTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "MeasurementOrCalculationTime": {
+      "title": "MeasurementOrCalculationTime",
+      "description": "Describes the time at which a measured or calculated value or set of values was measured or calculated. It may be a future time at which a data value is predicted to apply.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeMeaning": {
+          "title": "timeMeaning",
+          "description": "Meaning of associated time value",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TimeMeaningEnumG"
+        },
+        "timePrecision": {
+          "title": "timePrecision",
+          "description": "The precision to which the time of measurement or calculation is given.",
+          "$ref": "DATEXII_3_Common.json#/$defs/TimePrecisionEnumG"
+        },
+        "timeValue": {
+          "title": "timeValue",
+          "description": "Point in time at which this specific value or set of values has been measured or calculated. It may also be a future time at which a data value is predicted.  It may be the time of the beginning, the end or the middle of a measurement period.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "period": {
+          "title": "period",
+          "description": "The measurement or calculation period",
+          "$ref": "DATEXII_3_Common.json#/$defs/Period"
+        },
+        "roaMeasurementOrCalculationTimeExtensionG": {
+          "title": "roaMeasurementOrCalculationTimeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MeasurementSite": {
+      "title": "MeasurementSite",
+      "description": "An identifiable single measurement site entry/record in the measurement site table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "measurementSiteRecordVersionTime": {
+          "title": "measurementSiteRecordVersionTime",
+          "description": "The date/time that this version of the measurement site record was defined. The identity and version of the measurement site record are defined by the class stereotype implementation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "measurementEquipmentReference": {
+          "title": "measurementEquipmentReference",
+          "description": "The reference given to the measurement equipment at the site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "measurementEquipmentTypeUsed": {
+          "title": "measurementEquipmentTypeUsed",
+          "description": "The type of equipment used to gather the raw information from which the data values are determined, e.g. 'loop', 'ANPR' (automatic number plate recognition) or 'urban traffic management system' (such as SCOOT).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "measurementSiteName": {
+          "title": "measurementSiteName",
+          "description": "Name of a measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "measurementSiteNumberOfLanes": {
+          "title": "measurementSiteNumberOfLanes",
+          "description": "The number of lanes over which the measured value is determined.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "measurementSiteIdentification": {
+          "title": "measurementSiteIdentification",
+          "description": "Identification of a measurement site used by the supplier or consumer systems.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "measurementSpecificCharacteristics": {
+          "title": "measurementSpecificCharacteristics",
+          "description": "Indexed measurement-specific characteristics associated with the measurement site. The index uniquely associates the measurement characteristics with the corresponding indexed measurement values for the measurement site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/measurementSiteIndexMeasurementSpecificCharacteristicsG"
+          },
+          "minItems": 0
+        },
+        "measurementSiteLocation": {
+          "title": "measurementSiteLocation",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "informationManagerOverride": {
+          "title": "informationManagerOverride",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content. This value overrides any value specified at a more general level.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "roaMeasurementSiteExtensionG": {
+          "title": "roaMeasurementSiteExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "measurementSiteLocation"
+      ]
+    },
+    "measurementSiteIndexMeasurementSpecificCharacteristicsG": {
+      "title": "measurementSiteIndexMeasurementSpecificCharacteristicsG",
+      "type": "object",
+      "properties": {
+        "measurementSpecificCharacteristics": {
+          "title": "measurementSpecificCharacteristics",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementSpecificCharacteristics"
+        },
+        "index": {
+          "title": "index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "measurementSpecificCharacteristics",
+        "index"
+      ]
+    },
+    "MeasurementSiteTable": {
+      "title": "MeasurementSiteTable",
+      "description": "A Measurement Site Table comprising a number of sets of data, each describing the location from where a stream of measured data may be derived.  Each location is known as a \"measurement site\" which can be a point, a linear road section or an area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "measurementSiteTableIdentification": {
+          "title": "measurementSiteTableIdentification",
+          "description": "An alphanumeric identification for the measurement site table, possibly human readable. ",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "measurementSite": {
+          "title": "measurementSite",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementSite"
+          },
+          "minItems": 1
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "roaMeasurementSiteTableExtensionG": {
+          "title": "roaMeasurementSiteTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "measurementSite"
+      ]
+    },
+    "MeasurementSiteTablePublication": {
+      "title": "MeasurementSiteTablePublication",
+      "description": "A publication containing one or more Measurement Site Tables.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "measurementSiteTable": {
+          "title": "measurementSiteTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementSiteTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaMeasurementSiteTablePublicationExtensionG": {
+          "title": "roaMeasurementSiteTablePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation",
+        "measurementSiteTable"
+      ]
+    },
+    "MeasurementSiteTableVersionedReferenceG": {
+      "title": "MeasurementSiteTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSiteTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "MeasurementSiteVersionedReferenceG": {
+      "title": "MeasurementSiteVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSite"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "MeasurementSpecificCharacteristics": {
+      "title": "MeasurementSpecificCharacteristics",
+      "description": "Characteristics which are specific to an individual measurement type (specified in a known order) at the given measurement site.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "title": "accuracy",
+          "description": "The extent to which the value is expected to be free from error, measured as a percentage of the data value. 100% means fully accurate.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "computationMethod": {
+          "title": "computationMethod",
+          "description": "Method of computation which is used to compute the measured value at the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComputationMethodEnumG"
+        },
+        "defaultMeasurementHeight": {
+          "title": "defaultMeasurementHeight",
+          "description": "Default height, above (positive value) or below (negative value) ground level, at which measurements are made. For example in wind measurement this could be the height of an anemometer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsFloat"
+        },
+        "measurementSide": {
+          "title": "measurementSide",
+          "description": "Side of the road on which measurements are acquired, corresponding to the direction of the road.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+        },
+        "period": {
+          "title": "period",
+          "description": "The time elapsed between the beginning and the end of the sampling or measurement period. This item may differ from the unit attribute; e.g. an hourly flow can be estimated from a 5-minute measurement period.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "smoothingFactor": {
+          "title": "smoothingFactor",
+          "description": "Coefficient required when a moving average is computed to give specific weights to the former average and the new data. A typical formula is, F being the smoothing factor: New average = (old average) F + (new data) (1 - F).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Float"
+        },
+        "specificMeasurementValueType": {
+          "title": "specificMeasurementValueType",
+          "description": "The type of this specific measurement at the measurement site.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasuredOrDerivedDataTypeEnumG"
+        },
+        "specificVehicleCharacteristics": {
+          "title": "specificVehicleCharacteristics",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "specificLane": {
+          "title": "specificLane",
+          "description": "The lane(s) to which the specific measurement at the measurement site relate(s). This overrides any lane specified for the measurement site as a whole.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/Lane"
+          },
+          "minItems": 0
+        },
+        "axleCharacteristics": {
+          "title": "axleCharacteristics",
+          "description": "Axle characteristics for which the measurement applies",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/AxleCharacteristics"
+        },
+        "roaMeasurementSpecificCharacteristicsExtensionG": {
+          "title": "roaMeasurementSpecificCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "specificMeasurementValueType"
+      ]
+    },
+    "PassengerCarUnitsPerHour": {
+      "title": "PassengerCarUnitsPerHour",
+      "description": "Passenger car units per hour.",
+      "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+    },
+    "PcuFlowValue": {
+      "title": "PcuFlowValue",
+      "description": "A measured or calculated value of the flow rate of passenger car units.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pcuFlowRate": {
+          "title": "pcuFlowRate",
+          "description": "A value of passenger car unit flow rate expressed in passenger car units per hour.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PassengerCarUnitsPerHour"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaPcuFlowValueExtensionG": {
+          "title": "roaPcuFlowValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "pcuFlowRate"
+      ]
+    },
+    "PhysicalQuantityFault": {
+      "title": "PhysicalQuantityFault",
+      "description": "Details of a fault related to the derivation of a quantity",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "faultLastUpdateTime": {
+          "title": "faultLastUpdateTime",
+          "description": "The date and time at which the fault information as specified in this instance was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "physicalQuantityFaultType": {
+          "title": "physicalQuantityFaultType",
+          "description": "The type of fault related to the measurement or calculation of the physical quantity",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PhysicalQuantityFaultEnumG"
+        },
+        "comFaultExtensionG": {
+          "title": "comFaultExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaPhysicalQuantityFaultExtensionG": {
+          "title": "roaPhysicalQuantityFaultExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "faultLastUpdateTime",
+        "physicalQuantityFaultType"
+      ]
+    },
+    "PhysicalQuantityFaultEnum": {
+      "title": "PhysicalQuantityFaultEnum",
+      "description": "Types of faults that may affect the measurement or calculation of physical quantities",
+      "type": "string",
+      "enum": [
+        "intermittentDataValues",
+        "noDataValuesAvailable",
+        "spuriousUnreliableDataValues",
+        "unspecifiedOrUnknownFault",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PhysicalQuantityFaultEnumG": {
+      "title": "PhysicalQuantityFaultEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PhysicalQuantityFaultEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PhysicalQuantityG": {
+      "title": "PhysicalQuantityG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roaTimeProfiledPhysicalQuantity": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TimeProfiledPhysicalQuantity"
+        },
+        "roaSinglePhysicalQuantity": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/SinglePhysicalQuantity"
+        }
+      }
+    },
+    "PollutionInformation": {
+      "title": "PollutionInformation",
+      "description": "Measurements of atmospheric pollution.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "pollution": {
+          "title": "pollution",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Pollution"
+          },
+          "minItems": 1
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaPollutionInformationExtensionG": {
+          "title": "roaPollutionInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "pollution"
+      ]
+    },
+    "PrecipitationInformation": {
+      "title": "PrecipitationInformation",
+      "description": "Measurements of precipitation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "noPrecipitation": {
+          "title": "noPrecipitation",
+          "description": "Indication of whether precipitation is present or not. True indicates that there is no precipitation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "precipitationDetail": {
+          "title": "precipitationDetail",
+          "$ref": "DATEXII_3_Common.json#/$defs/PrecipitationDetail"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaPrecipitationInformationExtensionG": {
+          "title": "roaPrecipitationInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "PredefinedLocationGroupVersionedReferenceG": {
+      "title": "PredefinedLocationGroupVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedLocationGroup"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PressureInformation": {
+      "title": "PressureInformation",
+      "description": "Measurements of atmospheric pressure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "pressure": {
+          "title": "pressure",
+          "$ref": "DATEXII_3_Common.json#/$defs/Pressure"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaPressureInformationExtensionG": {
+          "title": "roaPressureInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "pressure"
+      ]
+    },
+    "ReferenceSettings": {
+      "title": "ReferenceSettings",
+      "description": "Specification of default values for locations on the road network. Where a default status value is supplied, it shall apply for all specified locations, unless the publication includes an additional status value for a specified location.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "predefinedLocationGroupReference": {
+          "title": "predefinedLocationGroupReference",
+          "description": "A reference to a versioned instance of a predefined non-ordered location group as specified in a PredefinedLocationsPublication.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PredefinedLocationGroupVersionedReferenceG"
+        },
+        "trafficStatusDefault": {
+          "title": "trafficStatusDefault",
+          "description": "The default value of traffic status that can be assumed to apply to the locations defined by the associated predefined location set.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficStatusEnumG"
+        },
+        "roaReferenceSettingsExtensionG": {
+          "title": "roaReferenceSettingsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "predefinedLocationGroupReference"
+      ]
+    },
+    "RoadSurfaceConditionInformation": {
+      "title": "RoadSurfaceConditionInformation",
+      "description": "Measurements of road surface conditions which are related to the weather.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "weatherRelatedRoadConditionType": {
+          "title": "weatherRelatedRoadConditionType",
+          "description": "The type of road surface condition that is related to the weather which is affecting the driving conditions.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/WeatherRelatedRoadConditionTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "roadSurfaceConditionMeasurements": {
+          "title": "roadSurfaceConditionMeasurements",
+          "$ref": "DATEXII_3_Common.json#/$defs/RoadSurfaceConditionMeasurements"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaRoadSurfaceConditionInformationExtensionG": {
+          "title": "roaRoadSurfaceConditionInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadSurfaceConditionMeasurements"
+      ]
+    },
+    "SinglePhysicalQuantity": {
+      "title": "SinglePhysicalQuantity",
+      "description": "A measured or calculated physical quantity at a single instant or period in time, with related properties explaining its context, meaning or status",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "forecast": {
+          "title": "forecast",
+          "description": "Indication of whether this quantity data is a forecast (true = forecast).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "measurementEquipmentTypeUsed": {
+          "title": "measurementEquipmentTypeUsed",
+          "description": "The type of equipment used to gather the raw information from which the data values are determined, e.g. 'loop', 'ANPR' (automatic number plate recognition) or 'urban traffic management system' (such as SCOOT).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "pertinentLocation": {
+          "title": "pertinentLocation",
+          "description": "The location (e.g. the stretch of road or area) to which the data value(s) is or are pertinent/relevant. This may be different from the location of the measurement equipment (i.e. the measurement site location). ",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "physicalQuantityFault": {
+          "title": "physicalQuantityFault",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PhysicalQuantityFault"
+          },
+          "minItems": 0
+        },
+        "source": {
+          "title": "source",
+          "$ref": "DATEXII_3_Common.json#/$defs/Source"
+        },
+        "informationManagerOverride": {
+          "title": "informationManagerOverride",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content. This value overrides any value specified at a more general level.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "basicData": {
+          "title": "basicData",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/BasicDataG"
+        },
+        "roaPhysicalQuantityExtensionG": {
+          "title": "roaPhysicalQuantityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaSinglePhysicalQuantityExtensionG": {
+          "title": "roaSinglePhysicalQuantityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "SiteMeasurements": {
+      "title": "SiteMeasurements",
+      "description": "A  measurement data set derived from a specific measurement site.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementSiteReference": {
+          "title": "measurementSiteReference",
+          "description": "A reference to a versioned measurement site record defined in a Measurement Site table.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementSiteVersionedReferenceG"
+        },
+        "physicalQuantity": {
+          "title": "physicalQuantity",
+          "description": "Indexed measured value associated with the measurement site. The index uniquely associates the measurement value with the corresponding indexed measurement characteristics defined for the measurement site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/siteMeasurementsIndexPhysicalQuantityG"
+          },
+          "minItems": 0
+        },
+        "measurementTimeDefault": {
+          "title": "measurementTimeDefault",
+          "description": "The time associated with the set of measurements.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "roaSiteMeasurementsExtensionG": {
+          "title": "roaSiteMeasurementsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "measurementSiteReference",
+        "measurementTimeDefault"
+      ]
+    },
+    "siteMeasurementsIndexPhysicalQuantityG": {
+      "title": "siteMeasurementsIndexPhysicalQuantityG",
+      "type": "object",
+      "properties": {
+        "physicalQuantity": {
+          "title": "physicalQuantity",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PhysicalQuantityG"
+        },
+        "index": {
+          "title": "index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "physicalQuantity",
+        "index"
+      ]
+    },
+    "SpeedPercentile": {
+      "title": "SpeedPercentile",
+      "description": "Details of percentage (from an observation set) of vehicles whose speeds fall below a stated value.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vehiclePercentage": {
+          "title": "vehiclePercentage",
+          "description": "The percentage of vehicles from the observation set whose speeds fall below the stated speed (speedPercentile).",
+          "$ref": "DATEXII_3_Common.json#/$defs/PercentageValue"
+        },
+        "speedPercentile": {
+          "title": "speedPercentile",
+          "description": "The speed below which the associated percentage of vehicles in the measurement set are travelling at.",
+          "$ref": "DATEXII_3_Common.json#/$defs/SpeedValue"
+        },
+        "roaSpeedPercentileExtensionG": {
+          "title": "roaSpeedPercentileExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vehiclePercentage",
+        "speedPercentile"
+      ]
+    },
+    "TemperatureInformation": {
+      "title": "TemperatureInformation",
+      "description": "Measurements of atmospheric temperature.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "temperature": {
+          "title": "temperature",
+          "$ref": "DATEXII_3_Common.json#/$defs/Temperature"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTemperatureInformationExtensionG": {
+          "title": "roaTemperatureInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "temperature"
+      ]
+    },
+    "TimeMeaningEnum": {
+      "title": "TimeMeaningEnum",
+      "description": "Explains the meaning of a specific time value with respect to a time period",
+      "type": "string",
+      "enum": [
+        "beginTime",
+        "endTime",
+        "middleTime",
+        "extendedG"
+      ]
+    },
+    "TimeMeaningEnumG": {
+      "title": "TimeMeaningEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TimeMeaningEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TimeProfiledPhysicalQuantity": {
+      "title": "TimeProfiledPhysicalQuantity",
+      "description": "A set of values for a measured or calculated physical quantity over a set of measurement or calculation times",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "forecast": {
+          "title": "forecast",
+          "description": "Indication of whether this quantity data is a forecast (true = forecast).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "measurementEquipmentTypeUsed": {
+          "title": "measurementEquipmentTypeUsed",
+          "description": "The type of equipment used to gather the raw information from which the data values are determined, e.g. 'loop', 'ANPR' (automatic number plate recognition) or 'urban traffic management system' (such as SCOOT).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "pertinentLocation": {
+          "title": "pertinentLocation",
+          "description": "The location (e.g. the stretch of road or area) to which the data value(s) is or are pertinent/relevant. This may be different from the location of the measurement equipment (i.e. the measurement site location). ",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "physicalQuantityFault": {
+          "title": "physicalQuantityFault",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PhysicalQuantityFault"
+          },
+          "minItems": 0
+        },
+        "source": {
+          "title": "source",
+          "$ref": "DATEXII_3_Common.json#/$defs/Source"
+        },
+        "informationManagerOverride": {
+          "title": "informationManagerOverride",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content. This value overrides any value specified at a more general level.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "basicData": {
+          "title": "basicData",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/BasicDataG"
+          },
+          "minItems": 0
+        },
+        "roaPhysicalQuantityExtensionG": {
+          "title": "roaPhysicalQuantityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTimeProfiledPhysicalQuantityExtensionG": {
+          "title": "roaTimeProfiledPhysicalQuantityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficConcentration": {
+      "title": "TrafficConcentration",
+      "description": "Averaged measurements or calculations of traffic concentration.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "density": {
+          "title": "density",
+          "description": "An averaged measurement or calculation of the concentration of vehicles at the specified measurement site.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficDensityValue"
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "description": "An averaged measurement or calculation of the percentage of time that a section of road at the specified measurement site is occupied by vehicles.",
+          "$ref": "DATEXII_3_Common.json#/$defs/PercentageValue"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDataExtensionG": {
+          "title": "roaTrafficDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficConcentrationExtensionG": {
+          "title": "roaTrafficConcentrationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficDataG": {
+      "title": "TrafficDataG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roaTrafficGap": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficGap"
+        },
+        "roaTrafficFlow": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficFlow"
+        },
+        "roaTrafficSpeed": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficSpeed"
+        },
+        "roaTrafficHeadway": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficHeadway"
+        },
+        "roaTrafficConcentration": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficConcentration"
+        },
+        "roaIndividualVehicleDataValues": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/IndividualVehicleDataValues"
+        }
+      }
+    },
+    "TrafficDensityValue": {
+      "title": "TrafficDensityValue",
+      "description": "A measured or calculated value of the density of vehicles on a unit stretch of road in a given direction.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "densityOfVehicles": {
+          "title": "densityOfVehicles",
+          "description": "A value of traffic density expressed in the number of vehicles per kilometre of road.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DensityVehiclesPerKilometre"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDensityValueExtensionG": {
+          "title": "roaTrafficDensityValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "densityOfVehicles"
+      ]
+    },
+    "TrafficFlow": {
+      "title": "TrafficFlow",
+      "description": "Averaged measurements or calculations of traffic flow rates.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "axleFlow": {
+          "title": "axleFlow",
+          "description": "An averaged measurement or calculation of flow rate defined in terms of the number of vehicle axles passing the specified measurement site.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/AxleFlowValue"
+        },
+        "pcuFlow": {
+          "title": "pcuFlow",
+          "description": "An averaged measurement or calculation of flow rate defined in terms of the number of passenger car units passing the specified measurement site.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PcuFlowValue"
+        },
+        "percentageLongVehicles": {
+          "title": "percentageLongVehicles",
+          "description": "An averaged measurement or calculation of the percentage of long vehicles contained in the traffic flow at the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/PercentageValue"
+        },
+        "vehicleFlow": {
+          "title": "vehicleFlow",
+          "description": "An averaged measurement of flow rate defined in terms of the number of vehicles passing the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleFlowValue"
+        },
+        "normallyExpectedFlow": {
+          "title": "normallyExpectedFlow",
+          "description": "The vehicle flow which is expected for the given period (e.g. date/time, holiday status etc.) and any known quasi-static conditions (e.g. long-term roadworks). This value is derived from historical analysis.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleFlowValue"
+        },
+        "annualAverageDailyTraffic": {
+          "title": "annualAverageDailyTraffic",
+          "description": "Daily traffic flow averaged from the total over one year.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DailyTrafficFlowValue"
+        },
+        "monthlyAverageDailyTraffic": {
+          "title": "monthlyAverageDailyTraffic",
+          "description": "Daily traffic flow averaged from the total over one month.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DailyTrafficFlowValue"
+        },
+        "axleCharacteristics": {
+          "title": "axleCharacteristics",
+          "description": "Axle characteristics for which the flow measurement applies.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/AxleCharacteristics"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDataExtensionG": {
+          "title": "roaTrafficDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficFlowExtensionG": {
+          "title": "roaTrafficFlowExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficGap": {
+      "title": "TrafficGap",
+      "description": "Averaged measurements or calculations of traffic gap i.e. the distance or time interval between vehicles, measured between the rear of one vehicle and the front of the following vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "averageDistanceGap": {
+          "title": "averageDistanceGap",
+          "description": "The average distance between the front of one vehicle and the rear of the preceding vehicle, averaged for all vehicles within a defined measurement period at the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/FloatingPointMetreDistanceValue"
+        },
+        "averageTimeGap": {
+          "title": "averageTimeGap",
+          "description": "The average time gap between the front of one vehicle and the rear of the preceding vehicle, averaged for all vehicles within a defined measurement period at the specified measurement site.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DurationValue"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDataExtensionG": {
+          "title": "roaTrafficDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficGapExtensionG": {
+          "title": "roaTrafficGapExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficHeadway": {
+      "title": "TrafficHeadway",
+      "description": "Averaged measurements or calculations of traffic headway, i.e. the distance or time interval between vehicles. This is measured one end (normally the front) of one vehicle to the same end of the following vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "averageDistanceHeadway": {
+          "title": "averageDistanceHeadway",
+          "description": "The average distance between one end (normally the front) of this vehicle and the same end of the preceding vehicle, averaged for all vehicles within a defined measurement period at the specified measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/FloatingPointMetreDistanceValue"
+        },
+        "averageTimeHeadway": {
+          "title": "averageTimeHeadway",
+          "description": "The average time interval between one end (normally the front) of this vehicle and the same end of the preceding vehicle, averaged for all vehicles within a defined measurement period at the specified measurement site.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DurationValue"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDataExtensionG": {
+          "title": "roaTrafficDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficHeadwayExtensionG": {
+          "title": "roaTrafficHeadwayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficSpeed": {
+      "title": "TrafficSpeed",
+      "description": "Averaged measurements or calculations of traffic speed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "averageVehicleSpeed": {
+          "title": "averageVehicleSpeed",
+          "description": "An averaged measurement or calculation of the speed of vehicles at the specified location.",
+          "$ref": "DATEXII_3_Common.json#/$defs/SpeedValue"
+        },
+        "speedPercentile": {
+          "title": "speedPercentile",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/SpeedPercentile"
+          },
+          "minItems": 0
+        },
+        "normallyExpectedSpeed": {
+          "title": "normallyExpectedSpeed",
+          "description": "The average vehicle speed which is expected for the given period (e.g. date/time, holiday status etc.) and any known quasi-static conditions (e.g. long-term roadworks). This value is derived from historical analysis.",
+          "$ref": "DATEXII_3_Common.json#/$defs/SpeedValue"
+        },
+        "minimumSpeed": {
+          "title": "minimumSpeed",
+          "description": "The minimum speed",
+          "$ref": "DATEXII_3_Common.json#/$defs/SpeedValue"
+        },
+        "maximumSpeed": {
+          "title": "maximumSpeed",
+          "description": "The maximum speed",
+          "$ref": "DATEXII_3_Common.json#/$defs/SpeedValue"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficDataExtensionG": {
+          "title": "roaTrafficDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficSpeedExtensionG": {
+          "title": "roaTrafficSpeedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficStatus": {
+      "title": "TrafficStatus",
+      "description": "The status of traffic conditions on a specific section or at a specific point on the road network.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trafficTrendType": {
+          "title": "trafficTrendType",
+          "description": "A characterization of the trend in the traffic conditions at the specified location and direction.",
+          "$ref": "DATEXII_3_Common.json#/$defs/TrafficTrendTypeEnumG"
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "trafficStatus": {
+          "title": "trafficStatus",
+          "description": "Status of traffic conditions on the identified section of road in the specified direction.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficStatusValue"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficStatusExtensionG": {
+          "title": "roaTrafficStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TrafficStatusEnum": {
+      "title": "TrafficStatusEnum",
+      "description": "List of terms used to describe traffic conditions.",
+      "type": "string",
+      "enum": [
+        "stationary",
+        "queuing",
+        "slow",
+        "heavy",
+        "unspecifiedAbnormal",
+        "freeFlow",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "TrafficStatusEnumG": {
+      "title": "TrafficStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TrafficStatusValue": {
+      "title": "TrafficStatusValue",
+      "description": "A measured or calculated value of the status of traffic conditions on a section of road in a specified direction.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trafficStatusValue": {
+          "title": "trafficStatusValue",
+          "description": "A status value of traffic conditions on the identified section of road in the specified direction.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TrafficStatusEnumG"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTrafficStatusValueExtensionG": {
+          "title": "roaTrafficStatusValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "trafficStatusValue"
+      ]
+    },
+    "TravelTimeData": {
+      "title": "TravelTimeData",
+      "description": "Derived/computed travel time information relating to a linear section of the road network; forecast = true means a forecast for a vehicle at the start of the specified location, forecast = false means calculation/measurement at the end.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "travelTimeTrendType": {
+          "title": "travelTimeTrendType",
+          "description": "The current trend in the travel time between the defined locations in the specified direction.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TravelTimeTrendTypeEnumG"
+        },
+        "travelTimeType": {
+          "title": "travelTimeType",
+          "description": "Indication of the way in which the travel time is derived.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TravelTimeTypeEnumG"
+        },
+        "vehicleType": {
+          "title": "vehicleType",
+          "description": "Vehicle type.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/VehicleTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "travelTime": {
+          "title": "travelTime",
+          "description": "Derived/computed travel time information relating to a specific group of locations.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DurationValue"
+        },
+        "freeFlowTravelTime": {
+          "title": "freeFlowTravelTime",
+          "description": "The travel time which would be expected under ideal free flow conditions.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DurationValue"
+        },
+        "normallyExpectedTravelTime": {
+          "title": "normallyExpectedTravelTime",
+          "description": "The travel time which is expected for the given period (e.g. date/time, holiday status etc.) and any known quasi-static conditions (e.g. long-term roadworks). This value is derived from historical analysis.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DurationValue"
+        },
+        "travelTimeDelay": {
+          "title": "travelTimeDelay",
+          "description": "Delay in travel time compared to free-flow conditions",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/DurationValue"
+        },
+        "freeFlowSpeed": {
+          "title": "freeFlowSpeed",
+          "description": "The free flow speed expected under ideal conditions, corresponding to the freeFlowTravelTime.",
+          "$ref": "DATEXII_3_Common.json#/$defs/SpeedValue"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaTravelTimeDataExtensionG": {
+          "title": "roaTravelTimeDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "TravelTimeTrendTypeEnum": {
+      "title": "TravelTimeTrendTypeEnum",
+      "description": "List of terms used to describe the trend in travel times.",
+      "type": "string",
+      "enum": [
+        "decreasing",
+        "increasing",
+        "stable",
+        "extendedG"
+      ]
+    },
+    "TravelTimeTrendTypeEnumG": {
+      "title": "TravelTimeTrendTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TravelTimeTrendTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TravelTimeTypeEnum": {
+      "title": "TravelTimeTypeEnum",
+      "description": "List of ways in which travel times are derived.",
+      "type": "string",
+      "enum": [
+        "best",
+        "estimated",
+        "instantaneous",
+        "reconstituted",
+        "predictor",
+        "profile",
+        "sum",
+        "extendedG"
+      ]
+    },
+    "TravelTimeTypeEnumG": {
+      "title": "TravelTimeTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TravelTimeTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VehiclesPerDay": {
+      "title": "VehiclesPerDay",
+      "description": "A rate of vehicle flow in units of vehicles per day",
+      "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+    },
+    "VisibilityInformation": {
+      "title": "VisibilityInformation",
+      "description": "Measurements of atmospheric visibility.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "visibility": {
+          "title": "visibility",
+          "$ref": "DATEXII_3_Common.json#/$defs/Visibility"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaVisibilityInformationExtensionG": {
+          "title": "roaVisibilityInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "visibility"
+      ]
+    },
+    "WeatherDataG": {
+      "title": "WeatherDataG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roaPrecipitationInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PrecipitationInformation"
+        },
+        "roaHumidityInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/HumidityInformation"
+        },
+        "roaWindInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/WindInformation"
+        },
+        "roaVisibilityInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/VisibilityInformation"
+        },
+        "roaPollutionInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PollutionInformation"
+        },
+        "roaRoadSurfaceConditionInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/RoadSurfaceConditionInformation"
+        },
+        "roaTemperatureInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TemperatureInformation"
+        },
+        "roaPressureInformation": {
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/PressureInformation"
+        }
+      }
+    },
+    "WindInformation": {
+      "title": "WindInformation",
+      "description": "Measurements of wind conditions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "wind": {
+          "title": "wind",
+          "$ref": "DATEXII_3_Common.json#/$defs/Wind"
+        },
+        "roaBasicDataExtensionG": {
+          "title": "roaBasicDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWeatherDataExtensionG": {
+          "title": "roaWeatherDataExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "roaWindInformationExtensionG": {
+          "title": "roaWindInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "wind"
+      ]
+    }
+  }
+}

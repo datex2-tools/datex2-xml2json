@@ -3,3 +3,8 @@ lxml==5.4.0
 xml2python==0.1.1
 jsonschema==4.23.0
 check-jsonschema==0.33.0
+jsonata-python==0.6.1
+maturin==1.12.6
+geoparquet-io==0.9.0
+#xml2json @ git+https://github.com/datex2-tools/rs-xml2json@main
+../rs-xml2json/target/wheels/xml2json-0.1.0-cp312-cp312-macosx_11_0_arm64.whl

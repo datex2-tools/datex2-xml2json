@@ -1,3 +1,17 @@
+import json
+from xml2json import Schema, convert
+from lxml import etree
+
+def load_as_json_using_schema(filename:str, schemafile:str):
+    if filename.endswith('.xml'):
+        tree = etree.parse(filename)
+        json_string = convert(filename, schemafile)
+        json_input = json.loads(json_string)
+    elif filename.endswith('.json'):
+        with open(filename) as f:
+            json_input = json.load(f)
+
+    return json_input
 
 def find(a_dict, simplified_xpath, default_value = None):
     paths = simplified_xpath.split('/')

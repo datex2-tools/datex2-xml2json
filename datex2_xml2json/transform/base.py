@@ -1,4 +1,4 @@
-from .util import replace, xpath_dict
+from datex2_xml2json.util import replace, xpath_dict
 from .transformation_rules import TransformationRuleFactory, TransformationRules
 
 
@@ -10,12 +10,14 @@ class AbstractTransformer:
 class TransformerPipeline(AbstractTransformer):
 
     def __init__(self, transformers: list[AbstractTransformer]):
-        self.transformers = transformers
+        self.transformers = list(transformers)
+
+    def add_transformer(self, transformer: AbstractTransformer):
+        self.transformer.append(transformer)
 
     def transform(self, a_dict: dict) -> dict:
         result = a_dict
         for t in self.transformers:
-
             result = t.transform(result)
 
         return result

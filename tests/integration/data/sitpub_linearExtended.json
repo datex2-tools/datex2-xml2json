@@ -1,0 +1,79 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "exchange": {
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      }
+    },
+    "payloadPublication": {
+      "@lang": "DE",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      },
+      "publicationTime": "2026-03-19T10:32:27.818+01:00",
+      "situation": [
+        {
+          "@id": "88935924",
+          "@version": "6",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real"
+          },
+          "overallSeverity": "low",
+          "situationRecord": [
+            {
+              "@id": "88935924-88935926-88935929-88935940-gegen-sperrung",
+              "@version": "6",
+              "@xsi:type": "RoadOrCarriagewayOrLaneManagement",
+              "actionPlanIdentifier": "SP1",
+              "cause": {
+                "@xsi:type": "ManagedCause",
+                "managedCause": {
+                  "@id": "88935924-88935926-88935929-88935940-gegen",
+                  "@targetClass": "SituationRecord",
+                  "@version": "6"
+                }
+              },
+              "complianceOption": "mandatory",
+              "groupOfLocations": {
+                "@xsi:type": "Linear",
+                "linearExtension": {
+                  "linearExtended": {
+                    "gmlLineString": {
+                      "posList": "48.324560 9.729800 48.324570 9.729760 48.324590 9.729670 48.324600 9.729590 48.324611 9.729520 48.324640 9.729370",
+                      "roadInformation": null,
+                      "srsName": "WGS84 EPSG 4326"
+                    }
+                  }
+                },
+                "locationForDisplay": {
+                  "latitude": 48.32456,
+                  "longitude": 9.7298
+                }
+              },
+              "operatorActionStatus": "requested",
+              "probabilityOfOccurrence": "certain",
+              "roadOrCarriagewayOrLaneManagementType": "roadClosed",
+              "situationRecordCreationTime": "2026-03-19T10:11:07.055+01:00",
+              "situationRecordVersionTime": "2026-03-19T10:21:15.060+01:00",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-04-09T18:00:00.000+02:00",
+                  "overallStartTime": "2026-04-08T16:00:00.000+02:00"
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-03-19T10:25:49.563+01:00"
+        }
+      ]
+    }
+  }
+}

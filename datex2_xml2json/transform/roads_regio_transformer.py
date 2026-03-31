@@ -1,14 +1,17 @@
-from .transformer import ProcessingTransformer
-from .util import find
+from .base import ProcessingTransformer
+from datex2_xml2json.util  import find
 
 class RoadsRegioTransformer(ProcessingTransformer):
 
-    def __init__(self):
-        super().__init__('payload/sitSituationPublication/situation/situationRecord')
-
+    def __init__(self, path:str = 'payload/sitSituationPublication/situation/situationRecord'):
+        super().__init__(path)
     
     def process(self, situation_record_wrapper: dict):
-        situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
+        if isinstance(situation_record_wrapper, dict) and len(situation_record_wrapper)== 1:
+            situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
+        else:
+            situation_record = situation_record_wrapper
+        
         locationGroup = situation_record.get('locationReference', {}).get('locSingleRoadLinearLocation', {})
         # BEMaS
         # Expectation: 
@@ -50,6 +53,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
 
         # Remove comments without value
         if 'generalPublicComment' in situation_record:
+            strcomments = [c for c in situation_record['generalPublicComment'] if isinstance(c['comment']['values'][0],str)]
             comments = [c for c in situation_record['generalPublicComment'] if c['comment']['values'][0].get('value') is not None]
             situation_record['generalPublicComment'] = comments
     

@@ -1,0 +1,351 @@
+{
+  "payload": {
+    "modelBaseVersionG": "2",
+    "sitSituationPublication": {
+      "lang": "de",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      },
+      "publicationTime": "2026-03-06T14:46:55.004+01:00",
+      "situation": [
+        {
+          "idG": "86330127",
+          "headerInformation": {
+            "confidentiality": {
+              "value": "noRestriction"
+            },
+            "informationStatus": {
+              "value": "real"
+            }
+          },
+          "overallSeverity": {
+            "value": "low"
+          },
+          "sitSituationExtensionG": {
+            "situationExtended": {
+              "overallSituation": {
+                "sitMaintenanceWorks": {
+                  "idG": "86330127-gesamt",
+                  "versionG": "3",
+                  "actionPlanIdentifier": "S1",
+                  "generalPublicComment": [
+                    {
+                      "comment": {
+                        "values": [
+                          {
+                            "lang": "de",
+                            "value": "Sonstiges"
+                          }
+                        ]
+                      },
+                      "sitCommentExtensionG": {
+                        "commentExtended": {
+                          "commentType2": "roadworksType"
+                        }
+                      }
+                    },
+                    {
+                      "comment": {
+                        "values": [
+                          {
+                            "lang": "de",
+                            "value": "B500 nach TribergB33 Sonstiges"
+                          }
+                        ]
+                      },
+                      "sitCommentExtensionG": {
+                        "commentExtended": {
+                          "commentType2": "roadworksName"
+                        }
+                      }
+                    }
+                  ],
+                  "locationReference": {
+                    "locSingleRoadLinearLocation": {
+                      "linearExtended": {
+                        "gmlLineString": {
+                          "posList": "48.130702 8.232005 48.130477 8.231786",
+                          "roadInformation": {
+                            "roadNumber": "B500"
+                          },
+                          "srsName": "WGS84 EPSG 4326"
+                        }
+                      },
+                      "linearWithinLinearElement": [
+                        {
+                          "directionRelativeOnLinearSection": {
+                            "value": "aligned"
+                          },
+                          "fromPoint": {
+                            "locDistanceFromLinearElementReferent": {
+                              "distanceAlong": 249.0,
+                              "fromReferent": {
+                                "referentIdentifier": "7815018O",
+                                "referentType": {
+                                  "value": "referenceMarker"
+                                }
+                              },
+                              "towardsReferent": {
+                                "referentIdentifier": "7815004O",
+                                "referentType": {
+                                  "value": "referenceMarker"
+                                }
+                              }
+                            }
+                          },
+                          "linearElement": {
+                            "locLinearElement": {
+                              "roadName": {
+                                "values": [
+                                  {
+                                    "lang": "de",
+                                    "value": "Triberg im Schwarzwald-Furtwangen im Schwarzwald"
+                                  }
+                                ]
+                              },
+                              "roadNumber": "B500"
+                            }
+                          },
+                          "toPoint": {
+                            "locDistanceFromLinearElementReferent": {
+                              "distanceAlong": 219.0,
+                              "fromReferent": {
+                                "referentIdentifier": "7815018O",
+                                "referentType": {
+                                  "value": "referenceMarker"
+                                }
+                              },
+                              "towardsReferent": {
+                                "referentIdentifier": "7815004O",
+                                "referentType": {
+                                  "value": "referenceMarker"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "coordinatesForDisplay": {
+                        "latitude": 48.130703,
+                        "longitude": 8.232005
+                      },
+                      "supplementaryPositionalDescription": {
+                        "carriageway": [
+                          {
+                            "carriageway": {
+                              "value": "mainCarriageway"
+                            }
+                          }
+                        ],
+                        "lengthAffected": 29.806868
+                      }
+                    }
+                  },
+                  "probabilityOfOccurrence": {
+                    "value": "certain"
+                  },
+                  "roadMaintenanceType": [
+                    {
+                      "value": "other"
+                    }
+                  ],
+                  "roadworksDurationClassification": {
+                    "value": "longTerm"
+                  },
+                  "situationRecordCreationTime": "2026-03-06T11:52:42.821+01:00",
+                  "situationRecordVersionTime": "2026-03-06T11:53:11.960+01:00",
+                  "validity": {
+                    "validityStatus": {
+                      "value": "definedByValidityTimeSpec"
+                    },
+                    "validityTimeSpecification": {
+                      "overallEndTime": "2026-05-30T23:59:00.000+02:00",
+                      "overallStartTime": "2026-03-09T00:00:00.000+01:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "situationRecord": [
+            {
+              "sitMaintenanceWorks": {
+                "idG": "86330127-86330129-86330132-86330138",
+                "versionG": "3",
+                "actionPlanIdentifier": "S1",
+                "generalPublicComment": [
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Bauphase"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksName"
+                      }
+                    }
+                  },
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Sonstiges"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksType"
+                      }
+                    }
+                  }
+                ],
+                "locationReference": {
+                  "locSingleRoadLinearLocation": {
+                    "linearWithinLinearElement": [
+                      {
+                        "directionRelativeOnLinearSection": {
+                          "value": "aligned"
+                        },
+                        "fromPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 249.0,
+                            "fromReferent": {
+                              "referentIdentifier": "7815018O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "7815004O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "linearElement": {
+                          "locLinearElement": {
+                            "roadName": {
+                              "values": [
+                                {
+                                  "lang": "de",
+                                  "value": "Triberg im Schwarzwald-Furtwangen im Schwarzwald"
+                                }
+                              ]
+                            },
+                            "roadNumber": "B500"
+                          },
+                          "locLinearElementByLineString": {
+                            "gmlLineString": {
+                              "locGmlLineString": {
+                                "posList": "48.130702 8.232005 48.130477 8.231786",
+                                "srsName": "WGS84 EPSG 4326"
+                              }
+                            }
+                          }
+                        },
+                        "toPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 219.0,
+                            "fromReferent": {
+                              "referentIdentifier": "7815018O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "7815004O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "coordinatesForDisplay": {
+                      "latitude": 48.130703,
+                      "longitude": 8.232005
+                    },
+                    "supplementaryPositionalDescription": {
+                      "carriageway": [
+                        {
+                          "carriageway": {
+                            "value": "mainCarriageway"
+                          }
+                        }
+                      ],
+                      "lengthAffected": 29.806868
+                    }
+                  }
+                },
+                "impact": {
+                  "capacityRemaining": 1550.0,
+                  "sitImpactExtensionG": {
+                    "impactExtended": {
+                      "laneRestriction": [
+                        {
+                          "lane": {
+                            "laneUsage": {
+                              "value": "allLanesCompleteCarriageway"
+                            }
+                          }
+                        }
+                      ],
+                      "laneStatusCoded": "2o"
+                    }
+                  },
+                  "numberOfLanesRestricted": 0,
+                  "residualRoadWidth": 3.0
+                },
+                "mobility": {
+                  "mobilityType": {
+                    "value": "stationary"
+                  }
+                },
+                "operatorActionStatus": {
+                  "value": "requested"
+                },
+                "probabilityOfOccurrence": {
+                  "value": "certain"
+                },
+                "roadMaintenanceType": [
+                  {
+                    "value": "other"
+                  }
+                ],
+                "roadworksDurationClassification": {
+                  "value": "longTerm"
+                },
+                "situationRecordCreationTime": "2026-03-06T11:52:42.821+01:00",
+                "sitSituationRecordExtensionG": {
+                  "situationRecordExtended": {
+                    "extendedLaneStatusCoded": "u2o"
+                  }
+                },
+                "situationRecordVersionTime": "2026-03-06T11:53:11.960+01:00",
+                "validity": {
+                  "validityStatus": {
+                    "value": "definedByValidityTimeSpec"
+                  },
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-05-30T23:59:00.000+02:00",
+                    "overallStartTime": "2026-03-09T00:00:00.000+01:00"
+                  }
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-03-06T11:53:11.960+01:00"
+        }
+      ]
+    }
+  }
+}

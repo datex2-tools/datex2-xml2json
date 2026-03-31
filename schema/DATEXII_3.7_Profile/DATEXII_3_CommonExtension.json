@@ -1,0 +1,919 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "ADRClass": {
+      "title": "ADRClass",
+      "description": "Specification of classes of dangerous goods according to ADR.",
+      "$ref": "DATEXII_3_Common.json#/$defs/String",
+      "pattern": "[1-9]|[4-6].[1-2]|4.3"
+    },
+    "AgeCharacteristic": {
+      "title": "AgeCharacteristic",
+      "description": "Characteristics depending on vehicle age.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        },
+        "yearOfFirstRegistration": {
+          "title": "yearOfFirstRegistration",
+          "description": "Year of first registration of the vehicle.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Year"
+        },
+        "yearOfLastRegistration": {
+          "title": "yearOfLastRegistration",
+          "description": "The year in which the car was last registered on the current owner.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Year"
+        },
+        "vehicleAge": {
+          "title": "vehicleAge",
+          "description": "The age of the vehicle in years based on the date of first registration.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/NonNegativeIntegerComparison"
+        },
+        "comxAgeCharacteristicExtensionG": {
+          "title": "comxAgeCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator"
+      ]
+    },
+    "ApplicableDaysWithinMonthEnum": {
+      "title": "ApplicableDaysWithinMonthEnum",
+      "description": "Types of days within a month.",
+      "type": "string",
+      "enum": [
+        "daysFromOneToFifteen",
+        "daysFromSixteenToThirtyOne",
+        "evenDay",
+        "oddDay",
+        "extendedG"
+      ]
+    },
+    "ApplicableDaysWithinMonthEnumG": {
+      "title": "ApplicableDaysWithinMonthEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/ApplicableDaysWithinMonthEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DangerousGoodsExtended": {
+      "title": "DangerousGoodsExtended",
+      "description": "Extension of dangerous goods class.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chemicalName": {
+          "title": "chemicalName",
+          "description": "The chemical name of the hazardous substance carried by the vehicle.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "dangerousGoodsFlashPoint": {
+          "title": "dangerousGoodsFlashPoint",
+          "description": "The temperature at which the vapour from a hazardous substance will ignite in air.",
+          "$ref": "DATEXII_3_Common.json#/$defs/TemperatureCelsius"
+        },
+        "dangerousGoodsRegulations": {
+          "title": "dangerousGoodsRegulations",
+          "description": "The code defining the regulations, international or national, applicable for a means of transport.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DangerousGoodsRegulationsEnumG"
+        },
+        "hazardCodeIdentification": {
+          "title": "hazardCodeIdentification",
+          "description": "The dangerous goods description code.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "hazardCodeVersionNumber": {
+          "title": "hazardCodeVersionNumber",
+          "description": "The version/revision number of date of issuance of the hazardous material code used.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "hazardSubstanceItemPageNumber": {
+          "title": "hazardSubstanceItemPageNumber",
+          "description": "A number giving additional hazard code classification of a goods item within the applicable dangerous goods regulation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "tremCardNumber": {
+          "title": "tremCardNumber",
+          "description": "The identification of a transport emergency card giving advice for emergency actions.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "undgNumber": {
+          "title": "undgNumber",
+          "description": "A unique serial number assigned within the United Nations to substances and articles contained in a list of the dangerous goods most commonly carried.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "volumeOfDangerousGoods": {
+          "title": "volumeOfDangerousGoods",
+          "description": "The volume of dangerous goods on the vehicle(s) reported in a traffic/travel situation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/CubicMetres"
+        },
+        "weightOfDangerousGoods": {
+          "title": "weightOfDangerousGoods",
+          "description": "The weight of dangerous goods on the vehicle(s) reported in a traffic/travel situation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Tonnes"
+        },
+        "adrClassValue": {
+          "title": "adrClassValue",
+          "description": "The class of the dangerous good according to ADR.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/ADRClass"
+          },
+          "minItems": 0,
+          "maxItems": 13
+        },
+        "comHazardousMaterialsExtensionG": {
+          "title": "comHazardousMaterialsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "comxDangerousGoodsExtendedExtensionG": {
+          "title": "comxDangerousGoodsExtendedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "chemicalName"
+      ]
+    },
+    "DayWeekMonthExtended": {
+      "title": "DayWeekMonthExtended",
+      "description": "Extension of class DayWeekMonth.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableDaysWithinMonth": {
+          "title": "applicableDaysWithinMonth",
+          "description": "Applicable days within month.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/ApplicableDaysWithinMonthEnumG"
+        }
+      },
+      "required": [
+        "applicableDaysWithinMonth"
+      ]
+    },
+    "EmissionsExtension": {
+      "title": "EmissionsExtension",
+      "description": "An extension for the Emissions class to provide a comparison operator.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "A comparison operator for the applicable emission classifications in correspondence to the specified value. The comparison applies to the Roman- or Arabic-numbered portion (e.g. euro6 > euro5b), but not crosswise (e.g. euro6 cannot be compared to euroV).",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        }
+      },
+      "required": [
+        "comparisonOperator"
+      ]
+    },
+    "EmissionTypeEnum": {
+      "title": "EmissionTypeEnum",
+      "description": "Types of emissions.",
+      "type": "string",
+      "enum": [
+        "co2",
+        "nox",
+        "pm",
+        "extendedG"
+      ]
+    },
+    "EmissionTypeEnumG": {
+      "title": "EmissionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EmissionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EnginePowerCharacteristics": {
+      "title": "EnginePowerCharacteristics",
+      "description": "Characteristics of the engine power of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        },
+        "enginePower": {
+          "title": "enginePower",
+          "description": "The engine power value of the vehicle.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Float"
+        },
+        "unitOfMeasure": {
+          "title": "unitOfMeasure",
+          "description": "The unit in which the engine power is specified.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/PowerUnitOfMeasureEnumG"
+        },
+        "comxEnginePowerCharacteristicsExtensionG": {
+          "title": "comxEnginePowerCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "enginePower",
+        "unitOfMeasure"
+      ]
+    },
+    "EngineTypeEnum": {
+      "title": "EngineTypeEnum",
+      "description": "Types of vehicle engines.",
+      "type": "string",
+      "enum": [
+        "electricMotor",
+        "hybrid",
+        "internalCombustionEngine",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EngineTypeEnumG": {
+      "title": "EngineTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EngineTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EuBodyworkCodeEnum": {
+      "title": "EuBodyworkCodeEnum",
+      "description": "Bodywork codes according to REGULATION (EU) 2018/858.",
+      "type": "string",
+      "enum": [
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ba",
+        "bb",
+        "bc",
+        "bd",
+        "be",
+        "bx",
+        "ca",
+        "cb",
+        "cc",
+        "cd",
+        "ce",
+        "cf",
+        "cg",
+        "ch",
+        "ci",
+        "cj",
+        "cx",
+        "da",
+        "db",
+        "dc",
+        "de",
+        "extendedG"
+      ]
+    },
+    "EuBodyworkCodeEnumG": {
+      "title": "EuBodyworkCodeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuBodyworkCodeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EuBodyworkSupplementaryDigit": {
+      "title": "EuBodyworkSupplementaryDigit",
+      "description": "The supplementary digit of a bodywork codes according to REGULATION (EU) 2018/858.",
+      "type": "string",
+      "enum": [
+        "digit01",
+        "digit02",
+        "digit03",
+        "digit04",
+        "digit05",
+        "digit06",
+        "digit07",
+        "digit08",
+        "digit09",
+        "digit10",
+        "digit11",
+        "digit12",
+        "digit13",
+        "digit14",
+        "digit15",
+        "digit16",
+        "digit17",
+        "digit18",
+        "digit19",
+        "digit20",
+        "digit21",
+        "digit22",
+        "digit23",
+        "digit24",
+        "digit25",
+        "digit26",
+        "digit27",
+        "digit28",
+        "digit29",
+        "digit30",
+        "digit31",
+        "digit99",
+        "extendedG"
+      ]
+    },
+    "EuBodyworkSupplementaryDigitG": {
+      "title": "EuBodyworkSupplementaryDigitG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuBodyworkSupplementaryDigit"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EuSpecialPurposeVehicleEnum": {
+      "title": "EuSpecialPurposeVehicleEnum",
+      "description": "Vehicle purpose according to EU legislation.",
+      "type": "string",
+      "enum": [
+        "motorCaravan",
+        "armouredVehicle",
+        "ambulance",
+        "hearse",
+        "trailerCaravan",
+        "mobileCrane",
+        "otherSpecialPurposeVehicle",
+        "wheelChairAccessibleVehicle",
+        "extendedG"
+      ]
+    },
+    "EuSpecialPurposeVehicleEnumG": {
+      "title": "EuSpecialPurposeVehicleEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuSpecialPurposeVehicleEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EuVehicleCategoryEnum": {
+      "title": "EuVehicleCategoryEnum",
+      "description": "Vehicle categories according to EU legislation.",
+      "type": "string",
+      "enum": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5",
+        "l6",
+        "l7",
+        "m",
+        "r",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t41",
+        "t42",
+        "t43",
+        "m1",
+        "m2",
+        "m3",
+        "n",
+        "n1",
+        "n2",
+        "n3",
+        "o",
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "extendedG"
+      ]
+    },
+    "EuVehicleCategoryEnumG": {
+      "title": "EuVehicleCategoryEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuVehicleCategoryEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "FuzzyPeriod": {
+      "title": "FuzzyPeriod",
+      "description": "Fuzzy periods of a day.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "beginOrDuration": {
+          "title": "beginOrDuration",
+          "description": "Begin or duration of fuzzy time period.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/FuzzyTimeEnumG"
+        },
+        "endOrDuration": {
+          "title": "endOrDuration",
+          "description": "End or duration of fuzzy time period.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/FuzzyTimeEnumG"
+        },
+        "comxFuzzyPeriodExtensionG": {
+          "title": "comxFuzzyPeriodExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "FuzzyTimeEnum": {
+      "title": "FuzzyTimeEnum",
+      "description": "Enumeration for fuzzy time periods.",
+      "type": "string",
+      "enum": [
+        "dawn",
+        "sunset",
+        "extendedG"
+      ]
+    },
+    "FuzzyTimeEnumG": {
+      "title": "FuzzyTimeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/FuzzyTimeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "GrossTrailerWeightCharacteristics": {
+      "title": "GrossTrailerWeightCharacteristics",
+      "description": "Gross weight characteristic of a trailer of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the trailer characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        },
+        "grossTrailerWeight": {
+          "title": "grossTrailerWeight",
+          "description": "The gross weight of the vehicle and its load, including any trailers.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Tonnes"
+        },
+        "typeOfWeight": {
+          "title": "typeOfWeight",
+          "description": "The meaning of the weight value.",
+          "$ref": "DATEXII_3_Common.json#/$defs/WeightTypeEnumG"
+        },
+        "comxGrossTrailerWeightCharacteristicsExtensionG": {
+          "title": "comxGrossTrailerWeightCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "grossTrailerWeight",
+        "typeOfWeight"
+      ]
+    },
+    "IpAddress": {
+      "title": "IpAddress",
+      "description": "Internet Protocol (IP) network address",
+      "$ref": "DATEXII_3_Common.json#/$defs/String",
+      "pattern": "((1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\.){3}(1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]) "
+    },
+    "NonNegativeIntegerComparison": {
+      "title": "NonNegativeIntegerComparison",
+      "description": "A comparison to a non negative integer value.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "A comparison operator.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        },
+        "value": {
+          "title": "value",
+          "description": "The value for the comparison.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "comxNonNegativeIntegerComparisonExtensionG": {
+          "title": "comxNonNegativeIntegerComparisonExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "value"
+      ]
+    },
+    "NumberPlateCharacteristics": {
+      "title": "NumberPlateCharacteristics",
+      "description": "Characteristics of the numberplate of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "countryOfRegistration": {
+          "title": "countryOfRegistration",
+          "description": "The country in which the vehicle is registered.",
+          "$ref": "DATEXII_3_Common.json#/$defs/CountryCode"
+        },
+        "startOfNumericCode": {
+          "title": "startOfNumericCode",
+          "description": "The start of the numeric code on the number plate.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "comxNumberPlateCharacteristicsExtensionG": {
+          "title": "comxNumberPlateCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "NumericalEmissionValues": {
+      "title": "NumericalEmissionValues",
+      "description": "Numerical emission values of vehicles.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "emissionType": {
+          "title": "emissionType",
+          "description": "Type of emission.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EmissionTypeEnumG"
+        },
+        "value": {
+          "title": "value",
+          "description": "Value of emission in g/km.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Float"
+        },
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/ComparisonOperatorEnumG"
+        },
+        "comxNumericalEmissionValuesExtensionG": {
+          "title": "comxNumericalEmissionValuesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "OwnerCharacteristic": {
+      "title": "OwnerCharacteristic",
+      "description": "Characteristics of the owner of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ownerType": {
+          "title": "ownerType",
+          "description": "Type of the owner of the vehicle.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/OwnerTypeEnumG"
+        },
+        "locationOfResidency": {
+          "title": "locationOfResidency",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "comxOwnerCharacteristicExtensionG": {
+          "title": "comxOwnerCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "ownerType"
+      ]
+    },
+    "OwnerTypeEnum": {
+      "title": "OwnerTypeEnum",
+      "description": "Types of vehicle owners.",
+      "type": "string",
+      "enum": [
+        "localBusiness",
+        "ownerOfLocalProperty",
+        "permanentResident",
+        "extendedG"
+      ]
+    },
+    "OwnerTypeEnumG": {
+      "title": "OwnerTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/OwnerTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PeriodExtended": {
+      "title": "PeriodExtended",
+      "description": "Extension class for Period.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fuzzyPeriod": {
+          "title": "fuzzyPeriod",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/FuzzyPeriod"
+          },
+          "minItems": 0
+        }
+      }
+    },
+    "PortNumber": {
+      "title": "PortNumber",
+      "description": "Port number for TCP or UDP.",
+      "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger",
+      "minimum": 0.0,
+      "maximum": 65535.0
+    },
+    "PowerUnitOfMeasureEnum": {
+      "title": "PowerUnitOfMeasureEnum",
+      "description": "Units for measuring power.",
+      "type": "string",
+      "enum": [
+        "horsepower",
+        "kilowatt",
+        "extendedG"
+      ]
+    },
+    "PowerUnitOfMeasureEnumG": {
+      "title": "PowerUnitOfMeasureEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/PowerUnitOfMeasureEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RegulatedCharacteristics": {
+      "title": "RegulatedCharacteristics",
+      "description": "Characteristics as defined in EU and or national regulations.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "euVehicleCategory": {
+          "title": "euVehicleCategory",
+          "description": "Vehicle categories as defined in EU Directive 2007/46/EG and Regulation (EU) No 168/2013.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuVehicleCategoryEnumG"
+          },
+          "minItems": 0
+        },
+        "euSpecialPurposeVehicle": {
+          "title": "euSpecialPurposeVehicle",
+          "description": "vehicle purpose as defined in EU Directive 2007/46/EG",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuSpecialPurposeVehicleEnumG"
+        },
+        "nationalSpecialPurposeVehicle": {
+          "title": "nationalSpecialPurposeVehicle",
+          "description": "vehicle purpose as defined by national regulation",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "offroadVehicle": {
+          "title": "offroadVehicle",
+          "description": "An off-road vehicle that belongs to either category M or N having specific technical features which permit its use on or off normal roads. The letter 'G' is added as a suffix to the letter and numeral identifying the vehicle category.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "specialPurposeVehicle": {
+          "title": "specialPurposeVehicle",
+          "description": "The vehicle is a special purpose vehicle (the suffix S is added to the vehicle category).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "euBodyworkCode": {
+          "title": "euBodyworkCode",
+          "description": "Type of bodywork according to REGULATION (EU) 2018/858.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuBodyworkCodeEnumG"
+        },
+        "euBodyworkSupplementaryDigit": {
+          "title": "euBodyworkSupplementaryDigit",
+          "description": "Supplementary digits for a type of bodywork according to REGULATION (EU) 2018/858.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EuBodyworkSupplementaryDigitG"
+        },
+        "comxRegulatedCharacteristicsExtensionG": {
+          "title": "comxRegulatedCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "Speed": {
+      "title": "Speed",
+      "description": "Specification of a speed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numericValue": {
+          "title": "numericValue",
+          "description": "Numeric value of the speed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Decimal"
+        },
+        "unitOfMeasure": {
+          "title": "unitOfMeasure",
+          "description": "The unit of measure of the specified speed.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/UnitOfSpeedEnumG"
+        },
+        "comxSpeedExtensionG": {
+          "title": "comxSpeedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "numericValue",
+        "unitOfMeasure"
+      ]
+    },
+    "TrailerCharacteristics": {
+      "title": "TrailerCharacteristics",
+      "description": "The characteristics of a trailer e.g. gross weight of trailer.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "grossTrailerWeightCharacteristics": {
+          "title": "grossTrailerWeightCharacteristics",
+          "description": "Gross trailer weight characteristics.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/GrossTrailerWeightCharacteristics"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "comxTrailerCharacteristicsExtensionG": {
+          "title": "comxTrailerCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "VehicleCharacteristicsExtended": {
+      "title": "VehicleCharacteristicsExtended",
+      "description": "Extension class for vehicle characteristics.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "engineType": {
+          "title": "engineType",
+          "description": "The engine type of the vehicle.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/EngineTypeEnumG"
+        },
+        "ageCharacteristic": {
+          "title": "ageCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/AgeCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "maximumDesignSpeed": {
+          "title": "maximumDesignSpeed",
+          "description": "The speed which the vehicle is incapable, by reason of its construction, of exceeding on the level under its own power when fully laden.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/Speed"
+        },
+        "trailerCharacteristics": {
+          "title": "trailerCharacteristics",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/TrailerCharacteristics"
+        },
+        "hazardousMaterials": {
+          "title": "hazardousMaterials",
+          "$ref": "DATEXII_3_Common.json#/$defs/HazardousMaterialsG"
+        },
+        "ownerCharacteristic": {
+          "title": "ownerCharacteristic",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/OwnerCharacteristic"
+        },
+        "numberPlateCharacteristics": {
+          "title": "numberPlateCharacteristics",
+          "description": "Characteristics of the number plate of a vehicle.",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/NumberPlateCharacteristics"
+        },
+        "enginePowerCharacteristics": {
+          "title": "enginePowerCharacteristics",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/EnginePowerCharacteristics"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "numericalEmissionValues": {
+          "title": "numericalEmissionValues",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/NumericalEmissionValues"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "vehicleRegistrationCharacteristics": {
+          "title": "vehicleRegistrationCharacteristics",
+          "$ref": "DATEXII_3_CommonExtension.json#/$defs/VehicleRegistrationCharacteristics"
+        },
+        "regulatedCharacteristics": {
+          "title": "regulatedCharacteristics",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/$defs/RegulatedCharacteristics"
+          },
+          "minItems": 0
+        }
+      }
+    },
+    "VehicleRegistrationCharacteristics": {
+      "title": "VehicleRegistrationCharacteristics",
+      "description": "Characteristics of the registration of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "registeredHistoricVehicle": {
+          "title": "registeredHistoricVehicle",
+          "description": "The vehicle is registered as a historic vehicle.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "comxVehicleRegistrationCharacteristicsExtensionG": {
+          "title": "comxVehicleRegistrationCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    }
+  }
+}

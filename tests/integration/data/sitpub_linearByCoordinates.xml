@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<d2LogicalModel xmlns="http://datex2.eu/schema/2/2_0" modelBaseVersion="2">
+  <exchange>
+    <supplierIdentification>
+      <country>de</country>
+      <nationalIdentifier>VIZ-BY</nationalIdentifier>
+    </supplierIdentification>
+    <target>
+      <address/>
+      <protocol/>
+    </target>
+    <subscription>
+      <operatingMode>operatingMode0</operatingMode>
+      <subscriptionStartTime>2026-03-18T11:19:11Z</subscriptionStartTime>
+      <subscriptionState>active</subscriptionState>
+      <updateMethod>snapshot</updateMethod>
+      <target>
+        <address/>
+        <protocol/>
+      </target>
+    </subscription>
+  </exchange>
+  <payloadPublication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lang="de-DE" xsi:type="SituationPublication">
+    <publicationTime>2026-04-01T07:18:52Z</publicationTime>
+    <publicationCreator>
+      <country>de</country>
+      <nationalIdentifier>ZVM</nationalIdentifier>
+    </publicationCreator>
+    <situation id="VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1" version="1774936964">
+      <situationVersionTime>2026-03-31T06:02:45Z</situationVersionTime>
+      <headerInformation>
+        <confidentiality>noRestriction</confidentiality>
+        <informationStatus>real</informationStatus>
+        <urgency>normalUrgency</urgency>
+      </headerInformation>
+      <situationRecord id="VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1.0" version="1774936964" xsi:type="RoadOrCarriagewayOrLaneManagement">
+        <situationRecordCreationTime>2026-03-31T06:02:45Z</situationRecordCreationTime>
+        <situationRecordVersionTime>2026-03-31T06:02:45Z</situationRecordVersionTime>
+        <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+        <validity>
+          <validityStatus>definedByValidityTimeSpec</validityStatus>
+          <validityTimeSpecification>
+            <overallStartTime>2026-03-24T06:00:00Z</overallStartTime>
+            <overallEndTime>2026-04-02T15:00:00Z</overallEndTime>
+            <validPeriod>
+              <startOfPeriod>2026-03-24T06:00:00Z</startOfPeriod>
+              <endOfPeriod>2026-04-02T15:00:00Z</endOfPeriod>
+            </validPeriod>
+          </validityTimeSpecification>
+        </validity>
+        <generalPublicComment>
+          <comment>
+            <values>
+              <value lang="de-DE">Ingolstadt, Lutzstra&#xDF;e
+in H&#xF6;he Ende der Stra&#xDF;e
+in beiden Richtungen f&#xFC;r beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr</value>
+            </values>
+          </comment>
+          <commentType>description</commentType>
+        </generalPublicComment>
+        <generalPublicComment>
+          <comment>
+            <values>
+              <value lang="de-DE">Ingolstadt, Lutzstra&#xDF;e in H&#xF6;he Ende der Stra&#xDF;e in beiden Richtungen</value>
+            </values>
+          </comment>
+          <commentType>locationDescriptor</commentType>
+        </generalPublicComment>
+        <groupOfLocations xsi:type="Linear">
+          <locationForDisplay>
+            <latitude>48.7778053</latitude>
+            <longitude>11.4315939</longitude>
+          </locationForDisplay>
+          <tpegLinearLocation>
+            <tpegDirection>bothWays</tpegDirection>
+            <tpegLinearLocationType>segment</tpegLinearLocationType>
+            <to xsi:type="TpegNonJunctionPoint">
+              <pointCoordinates>
+                <latitude>48.7781372</latitude>
+                <longitude>11.4323587</longitude>
+              </pointCoordinates>
+              <name>
+                <descriptor>
+                  <values>
+                    <value/>
+                  </values>
+                </descriptor>
+                <tpegOtherPointDescriptorType>other</tpegOtherPointDescriptorType>
+              </name>
+            </to>
+            <from xsi:type="TpegNonJunctionPoint">
+              <pointCoordinates>
+                <latitude>48.7778053</latitude>
+                <longitude>11.4315939</longitude>
+              </pointCoordinates>
+              <name>
+                <descriptor>
+                  <values>
+                    <value/>
+                  </values>
+                </descriptor>
+                <tpegOtherPointDescriptorType>other</tpegOtherPointDescriptorType>
+              </name>
+            </from>
+          </tpegLinearLocation>
+          <linearExtension>
+            <extendedLinear>
+              <linearByCoordinates>
+                <start>
+                  <latitude>48.7778043</latitude>
+                  <longitude>11.431594</longitude>
+                </start>
+                <intermediate index="1">
+                  <pointCoordinates>
+                    <latitude>48.77782</latitude>
+                    <longitude>11.43173</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="2">
+                  <pointCoordinates>
+                    <latitude>48.77785</latitude>
+                    <longitude>11.43196</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="3">
+                  <pointCoordinates>
+                    <latitude>48.77785</latitude>
+                    <longitude>11.43203</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="4">
+                  <pointCoordinates>
+                    <latitude>48.77783</latitude>
+                    <longitude>11.43214</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="5">
+                  <pointCoordinates>
+                    <latitude>48.7779</latitude>
+                    <longitude>11.43212</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="6">
+                  <pointCoordinates>
+                    <latitude>48.77793</latitude>
+                    <longitude>11.43213</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="7">
+                  <pointCoordinates>
+                    <latitude>48.77796</latitude>
+                    <longitude>11.43215</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <intermediate index="8">
+                  <pointCoordinates>
+                    <latitude>48.77799</latitude>
+                    <longitude>11.43218</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <end>
+                  <latitude>48.7781359</latitude>
+                  <longitude>11.4323583</longitude>
+                </end>
+              </linearByCoordinates>
+            </extendedLinear>
+          </linearExtension>
+        </groupOfLocations>
+        <complianceOption>mandatory</complianceOption>
+        <roadOrCarriagewayOrLaneManagementType>singleAlternateLineTraffic</roadOrCarriagewayOrLaneManagementType>
+      </situationRecord>
+      <situationRecord id="VIZ-BY/r_VIZ-BY/48284129_TIC-VIZ-BY/1.0" version="1774936964" xsi:type="RoadOrCarriagewayOrLaneManagement">
+        <situationRecordCreationTime>2026-03-31T06:02:45Z</situationRecordCreationTime>
+        <situationRecordVersionTime>2026-03-31T06:02:45Z</situationRecordVersionTime>
+        <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+        <validity>
+          <validityStatus>definedByValidityTimeSpec</validityStatus>
+          <validityTimeSpecification>
+            <overallStartTime>2026-03-24T06:00:00Z</overallStartTime>
+            <overallEndTime>2026-04-02T15:00:00Z</overallEndTime>
+            <validPeriod>
+              <startOfPeriod>2026-03-24T06:00:00Z</startOfPeriod>
+              <endOfPeriod>2026-04-02T15:00:00Z</endOfPeriod>
+            </validPeriod>
+          </validityTimeSpecification>
+        </validity>
+        <generalPublicComment>
+          <comment>
+            <values>
+              <value lang="de-DE">Ingolstadt, Lutzstra&#xDF;e
+in H&#xF6;he Ende der Stra&#xDF;e
+in beiden Richtungen f&#xFC;r beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr</value>
+            </values>
+          </comment>
+          <commentType>description</commentType>
+        </generalPublicComment>
+        <generalPublicComment>
+          <comment>
+            <values>
+              <value lang="de-DE">Ingolstadt, Lutzstra&#xDF;e in H&#xF6;he Ende der Stra&#xDF;e in beiden Richtungen</value>
+            </values>
+          </comment>
+          <commentType>locationDescriptor</commentType>
+        </generalPublicComment>
+        <groupOfLocations xsi:type="Linear">
+          <locationForDisplay>
+            <latitude>48.7778053</latitude>
+            <longitude>11.4315939</longitude>
+          </locationForDisplay>
+          <tpegLinearLocation>
+            <tpegDirection>bothWays</tpegDirection>
+            <tpegLinearLocationType>segment</tpegLinearLocationType>
+            <to xsi:type="TpegNonJunctionPoint">
+              <pointCoordinates>
+                <latitude>48.7781372</latitude>
+                <longitude>11.4323587</longitude>
+              </pointCoordinates>
+              <name>
+                <descriptor>
+                  <values>
+                    <value/>
+                  </values>
+                </descriptor>
+                <tpegOtherPointDescriptorType>other</tpegOtherPointDescriptorType>
+              </name>
+            </to>
+            <from xsi:type="TpegNonJunctionPoint">
+              <pointCoordinates>
+                <latitude>48.7778053</latitude>
+                <longitude>11.4315939</longitude>
+              </pointCoordinates>
+              <name>
+                <descriptor>
+                  <values>
+                    <value/>
+                  </values>
+                </descriptor>
+                <tpegOtherPointDescriptorType>other</tpegOtherPointDescriptorType>
+              </name>
+            </from>
+          </tpegLinearLocation>
+          <linearExtension>
+            <extendedLinear>
+              <linearByCoordinates>
+                <start>
+                  <latitude>48.7778043</latitude>
+                  <longitude>11.431594</longitude>
+                </start>
+                <intermediate index="1">
+                  <pointCoordinates>
+                    <latitude>48.77782</latitude>
+                    <longitude>11.43173</longitude>
+                  </pointCoordinates>
+                </intermediate>
+                <end>
+                  <latitude>48.7781359</latitude>
+                  <longitude>11.4323583</longitude>
+                </end>
+              </linearByCoordinates>
+            </extendedLinear>
+          </linearExtension>
+        </groupOfLocations>
+        <complianceOption>mandatory</complianceOption>
+        <roadOrCarriagewayOrLaneManagementType>singleAlternateLineTraffic</roadOrCarriagewayOrLaneManagementType>
+      </situationRecord>
+    </situation>
+  </payloadPublication>
+</d2LogicalModel>

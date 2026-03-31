@@ -1,0 +1,1070 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "ActivationStatusG": {
+      "title": "ActivationStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "czPredefinedConditionActivation": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/PredefinedConditionActivation"
+        },
+        "czNonPredefinedConditionActivation": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/NonPredefinedConditionActivation"
+        },
+        "czTrafficRegulationActivation": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/TrafficRegulationActivation"
+        },
+        "czControlledZoneActivation": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneActivation"
+        }
+      }
+    },
+    "ActivationTypeEnum": {
+      "title": "ActivationTypeEnum",
+      "description": "Activation types of controlled zones.",
+      "type": "string",
+      "enum": [
+        "dynamicallyActivated",
+        "permanent",
+        "extendedG"
+      ]
+    },
+    "ActivationTypeEnumG": {
+      "title": "ActivationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ActivationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AlternativeMobilityOptions": {
+      "title": "AlternativeMobilityOptions",
+      "description": "Information about alternative mobility options.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "title": "description",
+          "description": "Description of the alternative mobility option.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "url": {
+          "title": "url",
+          "description": "URL to a resource on the internet with further information from the transportation service provider.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "czAlternativeMobilityOptionsExtensionG": {
+          "title": "czAlternativeMobilityOptionsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ConditionTypeEnum": {
+      "title": "ConditionTypeEnum",
+      "description": "Types of specialisations of the Condition class.",
+      "type": "string",
+      "enum": [
+        "accessCondition",
+        "driverCondition",
+        "locationCondition",
+        "nonVehicularRoadUserCondition",
+        "occupantConditions",
+        "other",
+        "permitCondition",
+        "registrationCondition",
+        "retrofittingCondition",
+        "roadCondition",
+        "stickerCondition",
+        "validityCondition",
+        "vehicleCondition",
+        "extendedG"
+      ]
+    },
+    "ConditionTypeEnumG": {
+      "title": "ConditionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ConditionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ControlledZone": {
+      "title": "ControlledZone",
+      "description": "Defines a geographic zone together with an applicable set of regulations, e.g. usable for UVAR (Urban Vehicle Access Regulation) zones.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The formal name of the controlled zone.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "controlledZoneType": {
+          "title": "controlledZoneType",
+          "description": "Broad category of the controlled zone.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "description": {
+          "title": "description",
+          "description": "Additional description of the restrictions of the zone and its areas.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "recordVersionTime": {
+          "title": "recordVersionTime",
+          "description": "Date/time that this version of the zone was last updated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "activationType": {
+          "title": "activationType",
+          "description": "The activation type of the controlled zone.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ActivationTypeEnumG"
+        },
+        "status": {
+          "title": "status",
+          "description": "The activation status of the controlled zone.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ActivationStatusEnumG"
+        },
+        "dynamicActivationPublicationSource": {
+          "title": "dynamicActivationPublicationSource",
+          "description": "Reference to the publication where the dynamic activation status of the controlled zone is published.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneTablePublicationVersionedReferenceG"
+        },
+        "controlledZoneSummary": {
+          "title": "controlledZoneSummary",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneSummary"
+        },
+        "trafficRegulationOrder": {
+          "title": "trafficRegulationOrder",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TrafficRegulationOrderG"
+          },
+          "minItems": 0
+        },
+        "controlledZoneRegulation": {
+          "title": "controlledZoneRegulation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneRegulation"
+          },
+          "minItems": 0
+        },
+        "tariffInformation": {
+          "title": "tariffInformation",
+          "description": "Information on the tariffs for tickets that permit the entry of the controlled zone. ",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/$defs/RatesG"
+          },
+          "minItems": 0
+        },
+        "alternativeMobilityOptions": {
+          "title": "alternativeMobilityOptions",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/AlternativeMobilityOptions"
+          },
+          "minItems": 0
+        },
+        "czControlledZoneExtensionG": {
+          "title": "czControlledZoneExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "recordVersionTime",
+        "status"
+      ]
+    },
+    "ControlledZoneActivation": {
+      "title": "ControlledZoneActivation",
+      "description": "Class to identify the activation of a dynamic controlled zone as a whole.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "activationTime": {
+          "title": "activationTime",
+          "description": "The date/time the creation of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "activationVersionTime": {
+          "title": "activationVersionTime",
+          "description": "The date/time of the current version of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "controlledZoneReference": {
+          "title": "controlledZoneReference",
+          "description": "Reference to the controlled zone to be activated.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneVersionedReferenceG"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "czActivationStatusExtensionG": {
+          "title": "czActivationStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czControlledZoneActivationExtensionG": {
+          "title": "czControlledZoneActivationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "activationTime",
+        "activationVersionTime",
+        "controlledZoneReference",
+        "validity"
+      ]
+    },
+    "ControlledZoneRegulation": {
+      "title": "ControlledZoneRegulation",
+      "description": "A specialisation of a traffic regulation for controlled zones.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "status": {
+          "title": "status",
+          "description": "Implementation status of the traffic regulation.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ActivationStatusEnumG"
+        },
+        "enforcementMethodType": {
+          "title": "enforcementMethodType",
+          "description": "The enforcement method(s) used to enforce the traffic regulation.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/EnforcementMethodTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "roadSign": {
+          "title": "roadSign",
+          "description": "Indicating the presence of a road sign.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/RoadSignG"
+          },
+          "minItems": 0
+        },
+        "typeOfRegulation": {
+          "title": "typeOfRegulation",
+          "description": "Type of traffic regulation.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/TypeOfRegulationG"
+          },
+          "minItems": 0
+        },
+        "condition": {
+          "title": "condition",
+          "description": "Conditions for the validity of a traffic regulation.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionG"
+        },
+        "permitInformation": {
+          "title": "permitInformation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/PermitInformation"
+          },
+          "minItems": 0
+        },
+        "penalty": {
+          "title": "penalty",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/Penalty"
+          },
+          "minItems": 0
+        },
+        "troTrafficRegulationExtensionG": {
+          "title": "troTrafficRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czControlledZoneRegulationExtensionG": {
+          "title": "czControlledZoneRegulationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "ControlledZoneSummary": {
+      "title": "ControlledZoneSummary",
+      "description": "Collection of general information on the controlled zone.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cityName": {
+          "title": "cityName",
+          "description": "The name of the city where the controlled zone is located.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "informalName": {
+          "title": "informalName",
+          "description": "The name the controlled zone is generally known by.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "urlForFurtherInformation": {
+          "title": "urlForFurtherInformation",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "locationForDisplay": {
+          "title": "locationForDisplay",
+          "description": "Coordinates that may be used for visual display of the controlled zone on user interfaces.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/PointCoordinates"
+        },
+        "czControlledZoneSummaryExtensionG": {
+          "title": "czControlledZoneSummaryExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ControlledZoneTable": {
+      "title": "ControlledZoneTable",
+      "description": "A table comprising a number of controlled zone specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "controlledZoneTableName": {
+          "title": "controlledZoneTableName",
+          "description": "The name of the controlled zone table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "tableVersionTime": {
+          "title": "tableVersionTime",
+          "description": "The date/time that this version of the controlled zone table was defined by the supplier.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "controlledZone": {
+          "title": "controlledZone",
+          "description": "Controlled zones. Zones in the uvarZone property should not be duplicated here, so if that property is populated, the controlled zones in this controlledZone property should be only those other than for UVAR.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZone"
+          },
+          "minItems": 0
+        },
+        "uvarZone": {
+          "title": "uvarZone",
+          "description": "Controlled zones for Urban Vehicle Access Regulations (UVAR).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZone"
+          },
+          "minItems": 0
+        },
+        "czControlledZoneTableExtensionG": {
+          "title": "czControlledZoneTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "tableVersionTime"
+      ]
+    },
+    "ControlledZoneTablePublication": {
+      "title": "ControlledZoneTablePublication",
+      "description": "A publication defining one or more tables that have entries of controlled zone specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "predefinedConditionPublicationReference": {
+          "title": "predefinedConditionPublicationReference",
+          "description": "Reference to a publication of predefined conditions.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/PredefinedConditionPublicationVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "controlledZoneTable": {
+          "title": "controlledZoneTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czControlledZoneTablePublicationExtensionG": {
+          "title": "czControlledZoneTablePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation",
+        "controlledZoneTable"
+      ]
+    },
+    "ControlledZoneTablePublicationVersionedReferenceG": {
+      "title": "ControlledZoneTablePublicationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ControlledZoneTablePublication"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ControlledZoneTypeEnum": {
+      "title": "ControlledZoneTypeEnum",
+      "description": "Different types of controlled zones.",
+      "type": "string",
+      "enum": [
+        "limitedTrafficZone",
+        "lowEmissionZone",
+        "pedestrianZone",
+        "restrictedParkingZone",
+        "zeroEmissionZone",
+        "extendedG"
+      ]
+    },
+    "ControlledZoneTypeEnumG": {
+      "title": "ControlledZoneTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ControlledZoneVersionedReferenceG": {
+      "title": "ControlledZoneVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ControlledZone"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "DynamicActivationStatusPublication": {
+      "title": "DynamicActivationStatusPublication",
+      "description": "Publication of dynamically activated and deactivated access zones, restrictions and exemptions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "predefinedConditionPublicationReference": {
+          "title": "predefinedConditionPublicationReference",
+          "description": "Reference to a publication of predefined conditions.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/PredefinedConditionPublicationVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "activationStatus": {
+          "title": "activationStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ControlledZone.json#/$defs/ActivationStatusG"
+          },
+          "minItems": 0
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czDynamicActivationStatusPublicationExtensionG": {
+          "title": "czDynamicActivationStatusPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "headerInformation"
+      ]
+    },
+    "EnforcementMethodTypeEnum": {
+      "title": "EnforcementMethodTypeEnum",
+      "description": "Types of enforcement methods for traffic regulations..",
+      "type": "string",
+      "enum": [
+        "camera",
+        "manualStickerInspection",
+        "checkingVehiclePapers",
+        "mobileLicensePlateControls",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EnforcementMethodTypeEnumG": {
+      "title": "EnforcementMethodTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/EnforcementMethodTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "NonCodableCondition": {
+      "title": "NonCodableCondition",
+      "description": "Conditions that are not codable by the elements of the Condition model.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "condition": {
+          "title": "condition",
+          "description": "Specification of a condition that is not codable by the Condition model.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "type": {
+          "title": "type",
+          "description": "The condition class, for which there is a condition which can not be expressed by the contained model elements.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ConditionTypeEnumG"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czNonCodableConditionExtensionG": {
+          "title": "czNonCodableConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "NonPredefinedConditionActivation": {
+      "title": "NonPredefinedConditionActivation",
+      "description": "Activation of a non-predefined dynamic condition in a controlled zone.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "activationTime": {
+          "title": "activationTime",
+          "description": "The date/time the creation of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "activationVersionTime": {
+          "title": "activationVersionTime",
+          "description": "The date/time of the current version of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "controlledZoneReference": {
+          "title": "controlledZoneReference",
+          "description": "Reference to the controlled zone involved.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneVersionedReferenceG"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "condition": {
+          "title": "condition",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/ConditionG"
+        },
+        "czActivationStatusExtensionG": {
+          "title": "czActivationStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czNonPredefinedConditionActivationExtensionG": {
+          "title": "czNonPredefinedConditionActivationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "activationTime",
+        "activationVersionTime",
+        "controlledZoneReference",
+        "validity",
+        "condition"
+      ]
+    },
+    "Penalty": {
+      "title": "Penalty",
+      "description": "Penalty for violating the traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amountDue": {
+          "title": "amountDue",
+          "description": "Amount of money due if a violation of the traffic regulation order occurs.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/AmountOfMoney"
+        },
+        "penaltyDescription": {
+          "title": "penaltyDescription",
+          "description": "Further information about the penalty.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "czPenaltyExtensionG": {
+          "title": "czPenaltyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "amountDue"
+      ]
+    },
+    "PeriodCondition": {
+      "title": "PeriodCondition",
+      "description": "Condition for time periods.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "period": {
+          "title": "period",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Period"
+          },
+          "minItems": 1
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czPeriodConditionExtensionG": {
+          "title": "czPeriodConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "period"
+      ]
+    },
+    "PredefinedConditionActivation": {
+      "title": "PredefinedConditionActivation",
+      "description": "Activation of a predefined condition of a controlled zone.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "activationTime": {
+          "title": "activationTime",
+          "description": "The date/time the creation of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "activationVersionTime": {
+          "title": "activationVersionTime",
+          "description": "The date/time of the current version of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "controlledZoneReference": {
+          "title": "controlledZoneReference",
+          "description": "Reference to the controlled zone involved.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/ControlledZoneVersionedReferenceG"
+        },
+        "predefinedConditionReference": {
+          "title": "predefinedConditionReference",
+          "description": "Reference to a predefined condition.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/PredefinedConditionVersionedReferenceG"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "czActivationStatusExtensionG": {
+          "title": "czActivationStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czPredefinedConditionActivationExtensionG": {
+          "title": "czPredefinedConditionActivationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "activationTime",
+        "activationVersionTime",
+        "controlledZoneReference",
+        "predefinedConditionReference",
+        "validity"
+      ]
+    },
+    "PredefinedConditionPublicationVersionedReferenceG": {
+      "title": "PredefinedConditionPublicationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedConditionPublication"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PredefinedConditionVersionedReferenceG": {
+      "title": "PredefinedConditionVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedCondition"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "RetrofittingCondition": {
+      "title": "RetrofittingCondition",
+      "description": "Information on retrofitting details.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "retrofittingPossible": {
+          "title": "retrofittingPossible",
+          "description": "Indication whether retrofitting (addition of new technology or features in order to reduce vehicle emissions) is possible.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "urlForFurtherInformation": {
+          "title": "urlForFurtherInformation",
+          "description": "URL for further information to retrofitting details.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czRetrofittingConditionExtensionG": {
+          "title": "czRetrofittingConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "retrofittingPossible"
+      ]
+    },
+    "TariffCondition": {
+      "title": "TariffCondition",
+      "description": "Conditions relating tariffs for receiving a permit to enter a controlled zone.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the effect is the logical inverse of the specified condition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "active": {
+          "title": "active",
+          "description": "If the condition is dynamic, this attribute shall be set to \"true\" if the condition is currently active and to \"false\" if the condition is currently inactive.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "tariffPaid": {
+          "title": "tariffPaid",
+          "description": "A tariff is paid that permits the entry of the controlled zone.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "legalBasis": {
+          "title": "legalBasis",
+          "description": "Legal basis where applicability characteristics or exemptions are specified.",
+          "$ref": "DATEXII_3_TrafficRegulation.json#/$defs/LegalBasis"
+        },
+        "troConditionExtensionG": {
+          "title": "troConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czTariffConditionExtensionG": {
+          "title": "czTariffConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "tariffPaid"
+      ]
+    },
+    "TrafficRegulationActivation": {
+      "title": "TrafficRegulationActivation",
+      "description": "Class to identify the activation of a dynamic traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "activationTime": {
+          "title": "activationTime",
+          "description": "The date/time the creation of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "activationVersionTime": {
+          "title": "activationVersionTime",
+          "description": "The date/time of the current version of the Activation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "trafficRegulationReference": {
+          "title": "trafficRegulationReference",
+          "description": "Reference to the traffic regulation to be activated.",
+          "$ref": "DATEXII_3_ControlledZone.json#/$defs/TrafficRegulationVersionedReferenceG"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "czActivationStatusExtensionG": {
+          "title": "czActivationStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "czTrafficRegulationActivationExtensionG": {
+          "title": "czTrafficRegulationActivationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "activationTime",
+        "activationVersionTime",
+        "trafficRegulationReference",
+        "validity"
+      ]
+    },
+    "TrafficRegulationVersionedReferenceG": {
+      "title": "TrafficRegulationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "TrafficRegulation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    }
+  }
+}

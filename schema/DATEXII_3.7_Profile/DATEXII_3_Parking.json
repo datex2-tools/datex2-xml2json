@@ -1,0 +1,5314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "AccessAndEgress": {
+      "title": "AccessAndEgress",
+      "description": "Time periods specified for access to or from a parking facility.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exitPossibleAtAnyTime": {
+          "title": "exitPossibleAtAnyTime",
+          "description": "If [TRUE], specifies that the specified access is available for exit at all times.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "openTime": {
+          "title": "openTime",
+          "description": "Specification of access open times in general.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OperatingHoursG"
+        },
+        "entranceOpenTime": {
+          "title": "entranceOpenTime",
+          "description": "Specification of entry open times.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OperatingHoursG"
+        },
+        "exitOpenTime": {
+          "title": "exitOpenTime",
+          "description": "Specification of exit open times.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OperatingHoursG"
+        },
+        "prkAccessAndEgressExtensionG": {
+          "title": "prkAccessAndEgressExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "AccessEquipmentEnum": {
+      "title": "AccessEquipmentEnum",
+      "description": "Specifies additional equipment for this access.",
+      "type": "string",
+      "enum": [
+        "barrier",
+        "trafficSignal",
+        "ticketButtonMachine",
+        "ticketCardMachine",
+        "payAndExitMachine",
+        "staircase",
+        "elevator",
+        "other",
+        "extendedG"
+      ]
+    },
+    "AccessEquipmentEnumG": {
+      "title": "AccessEquipmentEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessEquipmentEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AccessG": {
+      "title": "AccessG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkVehicularAccess": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/VehicularAccess"
+        },
+        "prkPedestrianAccess": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PedestrianAccess"
+        }
+      }
+    },
+    "AccessJunction": {
+      "title": "AccessJunction",
+      "description": "An access junction with its distance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "distance": {
+          "title": "distance",
+          "description": "Distance to this access junction.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsNonNegativeInteger"
+        },
+        "junctionInformation": {
+          "title": "junctionInformation",
+          "$ref": "DATEXII_3_Parking.json#/$defs/JunctionInformation"
+        },
+        "prkAccessJunctionExtensionG": {
+          "title": "prkAccessJunctionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "junctionInformation"
+      ]
+    },
+    "AccessLaneSpecific": {
+      "title": "AccessLaneSpecific",
+      "description": "Defines the sequence and nature of a specific entrance or exit lane.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sequenceNumber": {
+          "title": "sequenceNumber",
+          "description": "Defines a unique sequence number for this specific lane within the IdentifiedArea. No specific method of numbering is defined. Preferred practice numbers lanes from right to left as seen in-bound into the parking facility.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "laneType": {
+          "title": "laneType",
+          "description": "Provides characterisation of the nature of the access lane (e.g. entry lane, exit lane, reversible lane).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessLaneTypeEnumG"
+        },
+        "maxDimension": {
+          "title": "maxDimension",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Dimension"
+        },
+        "entranceOpenTime": {
+          "title": "entranceOpenTime",
+          "description": "Specification of entry open times.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OperatingHoursG"
+        },
+        "exitOpenTime": {
+          "title": "exitOpenTime",
+          "description": "Specification of exit open times.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OperatingHoursG"
+        },
+        "prkAccessLaneSpecificExtensionG": {
+          "title": "prkAccessLaneSpecificExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "laneType",
+        "sequenceNumber"
+      ]
+    },
+    "AccessLaneTypeEnum": {
+      "title": "AccessLaneTypeEnum",
+      "description": "A list of the supported access lane characteristic types.",
+      "type": "string",
+      "enum": [
+        "entryOnly",
+        "exitOnly",
+        "reversibleLane",
+        "serviceVehicleLane",
+        "extendedG"
+      ]
+    },
+    "AccessLaneTypeEnumG": {
+      "title": "AccessLaneTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessLaneTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AccessRoad": {
+      "title": "AccessRoad",
+      "description": "An access road with its distance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "distance": {
+          "title": "distance",
+          "description": "Distance to this access road.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsNonNegativeInteger"
+        },
+        "roadInformation": {
+          "title": "roadInformation",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/RoadInformationG"
+        },
+        "prkAccessRoadExtensionG": {
+          "title": "prkAccessRoadExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "roadInformation"
+      ]
+    },
+    "AccessStatus": {
+      "title": "AccessStatus",
+      "description": "The opening and fault status of one access.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "queueingTime": {
+          "title": "queueingTime",
+          "description": "The current queuing time (duration) for entering the parking site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "parkingConditions": {
+          "title": "parkingConditions",
+          "description": "Defines if normal parking conditions are suspended or special parking conditions are in force.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingConditionsEnumG"
+        },
+        "blurredAvailability": {
+          "title": "blurredAvailability",
+          "description": "When true, availability and occupancy information (free spaces etc.) is withheld or only published roughly, usually because of business competition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingFault": {
+          "title": "parkingFault",
+          "description": "A fault indicator for the parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingFaultEnumG"
+          },
+          "minItems": 0
+        },
+        "winterEquipmentManagementType": {
+          "title": "winterEquipmentManagementType",
+          "description": "Type of winter equipment management action instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/WinterEquipmentManagementTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "entranceFull": {
+          "title": "entranceFull",
+          "description": "Indicates that this vehicle entrance is full and probably temporarily closed for entering of new vehicles.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingRouteStatus": {
+          "title": "parkingRouteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteStatus"
+          },
+          "minItems": 0
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Occupancy"
+        },
+        "statusValidity": {
+          "title": "statusValidity",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StatusValidityG"
+        },
+        "operatingPatternStatus": {
+          "title": "operatingPatternStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternStatus"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "demandTable": {
+          "title": "demandTable",
+          "$ref": "DATEXII_3_Parking.json#/$defs/DemandTable"
+        },
+        "facFacilityObjectStatusExtensionG": {
+          "title": "facFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityStatusExtensionG": {
+          "title": "facFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingStatusInformationExtensionG": {
+          "title": "prkParkingStatusInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkAccessStatusExtensionG": {
+          "title": "prkAccessStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "AccessTypeEnum": {
+      "title": "AccessTypeEnum",
+      "description": "A list of the supported access area types.",
+      "type": "string",
+      "enum": [
+        "entryAndExit",
+        "entryOnly",
+        "exitOnly",
+        "reversible",
+        "extendedG"
+      ]
+    },
+    "AccessTypeEnumG": {
+      "title": "AccessTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ActivityEnum": {
+      "title": "ActivityEnum",
+      "description": "Collection of activities, for example in the context of rest areas.",
+      "type": "string",
+      "enum": [
+        "openFire",
+        "overnightParking",
+        "picnic",
+        "smoking",
+        "camping",
+        "handlingHazardousMaterial",
+        "barbecue",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ActivityEnumG": {
+      "title": "ActivityEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ActivityEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AdditionalCharacteristics": {
+      "title": "AdditionalCharacteristics",
+      "description": "Common additional characteristics for campus, (sub)places and spaces.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "floor": {
+          "title": "floor",
+          "description": "The floor on which the described place, subplace or space is located. The numbering or lettering scheme may follow local conventions.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "weightLimit": {
+          "title": "weightLimit",
+          "description": "Weight limit for the space.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Tonnes"
+        },
+        "additionalConvenience": {
+          "title": "additionalConvenience",
+          "description": "Further facilities for persons with disabilities.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSpaceConvenienceEnumG"
+          },
+          "minItems": 0
+        },
+        "structuralCharacteristics": {
+          "title": "structuralCharacteristics",
+          "description": "Structural characteristics of a parking space or this parking area.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingStructuralCharacteristicsEnumG"
+          },
+          "minItems": 0
+        },
+        "parkingMode": {
+          "title": "parkingMode",
+          "description": "The arrangement of the parking space(s) in relation to the road.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingModeEnumG"
+        },
+        "occupancyDetection": {
+          "title": "occupancyDetection",
+          "description": "Indicates the form of detection that is used to determine space occupancy",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSpaceOccupancyDetectionEnumG"
+        },
+        "temporarilyParking": {
+          "title": "temporarilyParking",
+          "description": "Indicates that this campus, (sub)place or space only exists on a temporarily basis. It might close permanently within short notice or might only be partially equipped. The physical parking possibilities might be provisional, too.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "distanceFromPrimaryRoad": {
+          "title": "distanceFromPrimaryRoad",
+          "description": "Specifies the distance from the primary road in metres. Especially useful, if parking is located on a smaller type of road.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsNonNegativeInteger"
+        },
+        "assignment": {
+          "title": "assignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/Assignment"
+          },
+          "minItems": 0
+        },
+        "dedicatedAccess": {
+          "title": "dedicatedAccess",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/DedicatedAccess"
+          },
+          "minItems": 0
+        },
+        "totalDimension": {
+          "title": "totalDimension",
+          "description": "Dimension of a virtual rectangle encapsulating the area of all parking spaces in the described hierarchy level. Use 'usableArea' to define the total space available for parking within this group. Do not use 'height'.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Dimension"
+        },
+        "minimumParkingSpaceDimension": {
+          "title": "minimumParkingSpaceDimension",
+          "description": "Lower dimension boundaries for all spaces within the area. Note that there need not exist a space with this exact dimension, but each space's dimension values must be equal or higher.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Dimension"
+        },
+        "maximumParkingSpaceDimension": {
+          "title": "maximumParkingSpaceDimension",
+          "description": "Dimension of the largest space within this area (i.e. there must be at least one space of this dimension). If the comparison of dimension values is not unique, the length is decisive.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Dimension"
+        },
+        "prkAdditionalCharacteristicsExtensionG": {
+          "title": "prkAdditionalCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "An assignment for parking, optionally limited to a validity in time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maximumParkingDuration": {
+          "title": "maximumParkingDuration",
+          "description": "The maximum parking duration for this assignment (e.g. to avoid overnight parking).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "minimumParkingDuration": {
+          "title": "minimumParkingDuration",
+          "description": "The minimum parking duration for this assignment.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "parkingAllowed": {
+          "title": "parkingAllowed",
+          "description": "Defines, if parking is allowed or not in this assignment.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "reservation": {
+          "title": "reservation",
+          "description": "Indication of whether a parking reservation service is available and/or mandatory.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/ReservationTypeEnumG"
+        },
+        "assignmentValidity": {
+          "title": "assignmentValidity",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "exclusivelyAssignedFor": {
+          "title": "exclusivelyAssignedFor",
+          "description": "Parking is only allowed for the assignment specified here, i.e. other assignments are not allowed. By using this role, it is not allowed to use 'applicableFor' and 'prohibitedFor' for the same type of attributes.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Eligibility"
+        },
+        "prohibitedFor": {
+          "title": "prohibitedFor",
+          "description": "Parking is not allowed for the given assignment.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Eligibility"
+        },
+        "applicableFor": {
+          "title": "applicableFor",
+          "description": "Assignments for parking. Other assignments are allowed as well, i.e. the parking spaces are convenient for this kind of assignment.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Eligibility"
+        },
+        "prkAssignmentExtensionG": {
+          "title": "prkAssignmentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "AvailableSpacesThresholds": {
+      "title": "AvailableSpacesThresholds",
+      "description": "The threshold is defined by the number of available spaces on the parking.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lowerThreshold": {
+          "title": "lowerThreshold",
+          "description": "A lower threshold from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "upperThreshold": {
+          "title": "upperThreshold",
+          "description": "An upper threshold up to which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "lowerThresholdInPercent": {
+          "title": "lowerThresholdInPercent",
+          "description": "A lower threshold in percent from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "upperThresholdInPercent": {
+          "title": "upperThresholdInPercent",
+          "description": "An upper threshold in percent up to which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "boundaryValuesExcluded": {
+          "title": "boundaryValuesExcluded",
+          "description": "Configures, if the given threshold values itself should be included (\"false\"; default) or excluded (\"true\") in the comparison, when evaluating the status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "prkThresholdsExtensionG": {
+          "title": "prkThresholdsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkAvailableSpacesThresholdsExtensionG": {
+          "title": "prkAvailableSpacesThresholdsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "CalculationTypeEnum": {
+      "title": "CalculationTypeEnum",
+      "description": "A list of the supported calculation types for demand.",
+      "type": "string",
+      "enum": [
+        "counted",
+        "derived",
+        "expected",
+        "verified",
+        "extendedG"
+      ]
+    },
+    "CalculationTypeEnumG": {
+      "title": "CalculationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/CalculationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Campus": {
+      "title": "Campus",
+      "description": "Typically defines a large facility (such as a university campus, or an airport), or a large geographic zone (such as a city or a town), which may contain numerous places that can be logically reported together.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "commonComponents": {
+          "title": "commonComponents",
+          "$ref": "DATEXII_3_Parking.json#/$defs/CommonComponents"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkCampusExtensionG": {
+          "title": "prkCampusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type"
+      ]
+    },
+    "CampusStatus": {
+      "title": "CampusStatus",
+      "description": "Dynamic status information for the static object 'Campus'.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "queueingTime": {
+          "title": "queueingTime",
+          "description": "The current queuing time (duration) for entering the parking site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "parkingConditions": {
+          "title": "parkingConditions",
+          "description": "Defines if normal parking conditions are suspended or special parking conditions are in force.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingConditionsEnumG"
+        },
+        "blurredAvailability": {
+          "title": "blurredAvailability",
+          "description": "When true, availability and occupancy information (free spaces etc.) is withheld or only published roughly, usually because of business competition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingFault": {
+          "title": "parkingFault",
+          "description": "A fault indicator for the parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingFaultEnumG"
+          },
+          "minItems": 0
+        },
+        "winterEquipmentManagementType": {
+          "title": "winterEquipmentManagementType",
+          "description": "Type of winter equipment management action instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/WinterEquipmentManagementTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "status": {
+          "title": "status",
+          "description": "The status for multiple parking objects (available spaces or not).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/CampusStatusEnumG"
+        },
+        "parkingRouteStatus": {
+          "title": "parkingRouteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteStatus"
+          },
+          "minItems": 0
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Occupancy"
+        },
+        "statusValidity": {
+          "title": "statusValidity",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StatusValidityG"
+        },
+        "operatingPatternStatus": {
+          "title": "operatingPatternStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternStatus"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "demandTable": {
+          "title": "demandTable",
+          "$ref": "DATEXII_3_Parking.json#/$defs/DemandTable"
+        },
+        "facFacilityObjectStatusExtensionG": {
+          "title": "facFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityStatusExtensionG": {
+          "title": "facFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingStatusInformationExtensionG": {
+          "title": "prkParkingStatusInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkCampusStatusExtensionG": {
+          "title": "prkCampusStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "CampusStatusEnum": {
+      "title": "CampusStatusEnum",
+      "description": "The status for multiple parking objects (available spaces or not).",
+      "type": "string",
+      "enum": [
+        "allParkingsFull",
+        "multiStoreyParkingsFull",
+        "noMoreParkingSpacesAvailable",
+        "enoughSpacesAvailable",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "CampusStatusEnumG": {
+      "title": "CampusStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/CampusStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CertifiedSecureParking": {
+      "title": "CertifiedSecureParking",
+      "description": "Certification for secure parking.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "typeOfCertification": {
+          "title": "typeOfCertification",
+          "description": "The type of certification.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "dateOfCertification": {
+          "title": "dateOfCertification",
+          "description": "Date of certification.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Date"
+        },
+        "prkCertifiedSecureParkingExtensionG": {
+          "title": "prkCertifiedSecureParkingExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "dateOfCertification",
+        "typeOfCertification"
+      ]
+    },
+    "Characteristics": {
+      "title": "Characteristics",
+      "description": "A class defining information concerning characteristics relating to a parking facility.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activationMode": {
+          "title": "activationMode",
+          "description": "Modes or credentials that can be used to activate a parking session or other operation (delivery, loading, etc.).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/SessionActivationModeEnumG"
+          },
+          "minItems": 0
+        },
+        "structureGrade": {
+          "title": "structureGrade",
+          "description": "Defines the parking structure with respect to ground level.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StructureGradeEnumG"
+        },
+        "robotic": {
+          "title": "robotic",
+          "description": "Indicates existence of a robotic parking system - a parking structure where customer leaves vehicle at drop off area and robots move the vehicle to parking location in structure. Default or absence of value indicates [FALSE] = no robotic parking system.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "accessControlled": {
+          "title": "accessControlled",
+          "description": "Indicates facility has physical access control (e.g. barriers, gates) [TRUE] or no access control [FALSE]",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "staffed": {
+          "title": "staffed",
+          "description": "Indicates facility has on-site staff [TRUE] or no on-site staff [FALSE] for the majority, but not all, of the open valid operating times.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StaffEnumG"
+        },
+        "structureType": {
+          "title": "structureType",
+          "description": "Defines the type of parking structure.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StructureTypeEnumG"
+        },
+        "coveredType": {
+          "title": "coveredType",
+          "description": "Specifies the type of covering of a place. Covered can include roof, canopy and other structures that protect the place from the environment.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/CoveredEnumG"
+        },
+        "openToPublic": {
+          "title": "openToPublic",
+          "description": "identifies if this facility is accessible to public use [TRUE] or private use only [FALSE].",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "spacesNonDedicated": {
+          "title": "spacesNonDedicated",
+          "description": "Number of parking spaces that are not assigned for a particular purpose.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "spacesTotal": {
+          "title": "spacesTotal",
+          "description": "Total number of parking spaces.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "accessForPersonsWithDisabilities": {
+          "title": "accessForPersonsWithDisabilities",
+          "description": "Specifies, whether easy access is possible for persons with disabilities.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+          },
+          "minItems": 0
+        },
+        "prkCharacteristicsExtensionG": {
+          "title": "prkCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "structureType"
+      ]
+    },
+    "CommonComponents": {
+      "title": "CommonComponents",
+      "description": "A class defining information concerning multiple features relating to place hierarchy elements.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rgbColour": {
+          "title": "rgbColour",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/RgbColour"
+          },
+          "minItems": 0
+        },
+        "characteristics": {
+          "title": "characteristics",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/Characteristics"
+          },
+          "minItems": 0
+        },
+        "parkingRoute": {
+          "title": "parkingRoute",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteG"
+          },
+          "minItems": 0
+        },
+        "marketing": {
+          "title": "marketing",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Marketing"
+        },
+        "safetyStandardClassification": {
+          "title": "safetyStandardClassification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/SafetyStandardClassification"
+          },
+          "minItems": 0
+        },
+        "parkingVms": {
+          "title": "parkingVms",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingVms"
+          },
+          "minItems": 0
+        },
+        "permitsAndProhibitions": {
+          "title": "permitsAndProhibitions",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/PermitsAndProhibitions"
+          },
+          "minItems": 0
+        },
+        "additionalCharacteristics": {
+          "title": "additionalCharacteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AdditionalCharacteristics"
+        },
+        "operatingPattern": {
+          "title": "operatingPattern",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternG"
+          },
+          "minItems": 0
+        },
+        "thresholdConfiguration": {
+          "title": "thresholdConfiguration",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ThresholdConfiguration"
+        },
+        "prkCommonComponentsExtensionG": {
+          "title": "prkCommonComponentsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactTypeEnum": {
+      "title": "ContactTypeEnum",
+      "description": "Defines the supported lists of types of contact.",
+      "type": "string",
+      "enum": [
+        "operator",
+        "owner",
+        "emergencyContact",
+        "securityService",
+        "customerService",
+        "propertyManager",
+        "reservationService",
+        "responsibleAuthority",
+        "servicePartner",
+        "extendedG"
+      ]
+    },
+    "ContactTypeEnumG": {
+      "title": "ContactTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ContactTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CoveredEnum": {
+      "title": "CoveredEnum",
+      "description": "Defines the supported lists of different types describing roof coverage of the facility or entity",
+      "type": "string",
+      "enum": [
+        "covered",
+        "notCovered",
+        "partiallyCovered",
+        "topLevelNotCovered",
+        "extendedG"
+      ]
+    },
+    "CoveredEnumG": {
+      "title": "CoveredEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/CoveredEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DedicatedAccess": {
+      "title": "DedicatedAccess",
+      "description": "Reference to an access of any type (vehicles, pedestrian, ...).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dedicatedAccess": {
+          "title": "dedicatedAccess",
+          "description": "A reference to a VehicularAccess or PedestrianAccess.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "distanceFromParkingSpace": {
+          "title": "distanceFromParkingSpace",
+          "description": "Distance from this access to the parking space or group of parking spaces. Especially interesting for persons with disabilities or in case of the need of changing the side of a motorway.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MetresAsNonNegativeInteger"
+        },
+        "prkDedicatedAccessExtensionG": {
+          "title": "prkDedicatedAccessExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "dedicatedAccess"
+      ]
+    },
+    "DemandSpaceType": {
+      "title": "DemandSpaceType",
+      "description": "Defines when a specific space within a place is occupied, for how long, and the total amount for this space for this time. Includes when occupancy was determined.  This class includes actual and estimated start and end times of occupancy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "spaceId": {
+          "title": "spaceId",
+          "description": "Name of space, specifically identifies each individual space in an area.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectReferenceG"
+          },
+          "minItems": 0
+        },
+        "actualStart": {
+          "title": "actualStart",
+          "description": "The actual time a space is initially occupied.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "actualEnd": {
+          "title": "actualEnd",
+          "description": "The actual Time space is vacated.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "detectionUpdateTime": {
+          "title": "detectionUpdateTime",
+          "description": "Time of update, from detector which is typically a space sensor or camera.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "estimatedStart": {
+          "title": "estimatedStart",
+          "description": "The estimated time a space is expected to be occupied, typically based on a reservation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "estimatedEnd": {
+          "title": "estimatedEnd",
+          "description": "The estimated time a space is expected to be vacated, typically based on a reservation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "prkDemandSpaceTypeExtensionG": {
+          "title": "prkDemandSpaceTypeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "detectionUpdateTime"
+      ]
+    },
+    "DemandTable": {
+      "title": "DemandTable",
+      "description": "Table structure which defines the parameters of reporting actual usage of parking in a Hierarchy Element",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "frequency": {
+          "title": "frequency",
+          "description": "How frequently the demand data is revised.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Duration"
+        },
+        "timestamp": {
+          "title": "timestamp",
+          "description": "Timestamp when the demand table data was compiled.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "demandType": {
+          "title": "demandType",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/DemandType"
+          },
+          "minItems": 0
+        },
+        "demandSpaceType": {
+          "title": "demandSpaceType",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/DemandSpaceType"
+          },
+          "minItems": 0
+        },
+        "prkDemandTableExtensionG": {
+          "title": "prkDemandTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "timestamp"
+      ]
+    },
+    "DemandType": {
+      "title": "DemandType",
+      "description": "Defines occupancy at a hierarchy element without specific space details.  This is an aggregate count of demand activity within the Place hierarchy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "creationTime": {
+          "title": "creationTime",
+          "description": "When data in the record was compiled.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "occupancyCalculation": {
+          "title": "occupancyCalculation",
+          "description": "Is occupancy based on physical count, derived (calculated), or a verified report (high confidence report)",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/CalculationTypeEnumG"
+          },
+          "minItems": 1
+        },
+        "count": {
+          "title": "count",
+          "description": "Number of utilized or occupied spaces.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "percentage": {
+          "title": "percentage",
+          "description": "Percent of spaces occupied or utilized.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "prkDemandTypeExtensionG": {
+          "title": "prkDemandTypeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "creationTime",
+        "occupancyCalculation"
+      ]
+    },
+    "ElementDescriptorEnum": {
+      "title": "ElementDescriptorEnum",
+      "description": "A list of the supported parking element descriptors (e.g. floor,row).",
+      "type": "string",
+      "enum": [
+        "floorOrLevel",
+        "row",
+        "street",
+        "building",
+        "statisticsOnly",
+        "mixedUsage",
+        "singleParameters",
+        "logicalStructure",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ElementDescriptorEnumG": {
+      "title": "ElementDescriptorEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ElementDescriptorEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EsporgStandardLevelEnum": {
+      "title": "EsporgStandardLevelEnum",
+      "description": "Classification according to the technical specifications of the European secure parking organisation.",
+      "type": "string",
+      "enum": [
+        "bronze",
+        "silver",
+        "gold",
+        "platinum",
+        "extendedG"
+      ]
+    },
+    "EsporgStandardLevelEnumG": {
+      "title": "EsporgStandardLevelEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/EsporgStandardLevelEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "FacilityObjectReferenceG": {
+      "title": "FacilityObjectReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "FacilityObject"
+        },
+        "idG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "FacilityObjectVersionedReferenceG": {
+      "title": "FacilityObjectVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "FacilityObject"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "HierarchyElementGeneralG": {
+      "title": "HierarchyElementGeneralG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkSpace": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/Space"
+        },
+        "prkSupplementalFacility": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SupplementalFacility"
+        },
+        "prkVehicularAccess": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/VehicularAccess"
+        },
+        "prkPedestrianAccess": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PedestrianAccess"
+        },
+        "prkSpecificArea": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SpecificArea"
+        },
+        "prkSubplaceElement": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SubplaceElement"
+        },
+        "prkCampus": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/Campus"
+        },
+        "prkPlace": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/Place"
+        }
+      }
+    },
+    "HierarchyElementTypeEnum": {
+      "title": "HierarchyElementTypeEnum",
+      "description": "Defines the supported lists of types of parking hierarchy elements permissible",
+      "type": "string",
+      "enum": [
+        "campus",
+        "place",
+        "subplaceElement",
+        "identifiedArea",
+        "space",
+        "extendedG"
+      ]
+    },
+    "HierarchyElementTypeEnumG": {
+      "title": "HierarchyElementTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "IdentifiedAreaG": {
+      "title": "IdentifiedAreaG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkSupplementalFacility": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SupplementalFacility"
+        },
+        "prkVehicularAccess": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/VehicularAccess"
+        },
+        "prkPedestrianAccess": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PedestrianAccess"
+        },
+        "prkSpecificArea": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SpecificArea"
+        }
+      }
+    },
+    "ImageAlbum": {
+      "title": "ImageAlbum",
+      "description": "A class defining information relating to images for a parking facility.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logoImage": {
+          "title": "logoImage",
+          "description": "URL to location of logo(s) the parking operator wishes to associate with this parking facility (e.g. their logo, schemes [ParkMark])",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Url"
+          },
+          "minItems": 0
+        },
+        "photo": {
+          "title": "photo",
+          "description": "Specifies a URL at which a photo of the object in concern can be found.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Url"
+        },
+        "caption": {
+          "title": "caption",
+          "description": "Free-text string providing user context to the logo or picture",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "prkImageAlbumExtensionG": {
+          "title": "prkImageAlbumExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "JunctionClassificationEnum": {
+      "title": "JunctionClassificationEnum",
+      "description": "Explicit type of a junction.",
+      "type": "string",
+      "enum": [
+        "threeWayInterchange",
+        "interchange",
+        "motorwayConnection",
+        "junction",
+        "temporarilyJunction",
+        "borderCrossing",
+        "junctionInOneDirection",
+        "operationalServiceJunction",
+        "other",
+        "extendedG"
+      ]
+    },
+    "JunctionClassificationEnumG": {
+      "title": "JunctionClassificationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/JunctionClassificationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "JunctionInformation": {
+      "title": "JunctionInformation",
+      "description": "Information on a junction (on a highway), can also be an interchange or if applicable also a motorway service station (see junctionClassification).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "junctionClassification": {
+          "title": "junctionClassification",
+          "description": "Explicit type of junction.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/JunctionClassificationEnumG"
+        },
+        "junctionName": {
+          "title": "junctionName",
+          "description": "Name of the junction.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "junctionNumber": {
+          "title": "junctionNumber",
+          "description": "Number of the junction, might also include letters (example: 23A).",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "motorway": {
+          "title": "motorway",
+          "description": "A detailed identification of the motorway the junction belongs to.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/RoadInformationG"
+        },
+        "intersectionDestinationMotorway": {
+          "title": "intersectionDestinationMotorway",
+          "description": "In case of any type of intersection, the destination motorway(s) can be defined.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/$defs/RoadInformationG"
+          },
+          "minItems": 0
+        },
+        "prkJunctionInformationExtensionG": {
+          "title": "prkJunctionInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "junctionName"
+      ]
+    },
+    "LayoutEnum": {
+      "title": "LayoutEnum",
+      "description": "Types of layout of this (parking) place.",
+      "type": "string",
+      "enum": [
+        "layBy",
+        "openSpace",
+        "nested",
+        "field",
+        "building",
+        "extendedG"
+      ]
+    },
+    "LayoutEnumG": {
+      "title": "LayoutEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/LayoutEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Marketing": {
+      "title": "Marketing",
+      "description": "Universal resource locator (URI) that points towards a web site carrying marketing material supplied.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "webUrl": {
+          "title": "webUrl",
+          "description": "Universal Resource Identifier (URI) linking to marketing material.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Url"
+          },
+          "minItems": 0
+        },
+        "imageAlbum": {
+          "title": "imageAlbum",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ImageAlbum"
+          },
+          "minItems": 0
+        },
+        "prkMarketingExtensionG": {
+          "title": "prkMarketingExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "MeasurementSiteVersionedReferenceG": {
+      "title": "MeasurementSiteVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSite"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "Occupancy": {
+      "title": "Occupancy",
+      "description": "Information on the used and remaining parking capacity.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numberOfSpacesOverride": {
+          "title": "numberOfSpacesOverride",
+          "description": "Possibility to override the static value 'parkingNumberOfSpaces'.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "numberOfVacantSpaces": {
+          "title": "numberOfVacantSpaces",
+          "description": "The total number of currently vacant parking spaces available in the specified parking site, group of parking sites or group of parking spaces.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "numberOfVacantSpacesLowerThan": {
+          "title": "numberOfVacantSpacesLowerThan",
+          "description": "The number of vacant parking spaces is lower than the given value (example: Less than 10 spaces are free).",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "numberOfVacantSpacesHigherThan": {
+          "title": "numberOfVacantSpacesHigherThan",
+          "description": "The number of vacant parking spaces is higher than the given value (example: More than 10 spaces are free).",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "numberOfVacantSpacesGraded": {
+          "title": "numberOfVacantSpacesGraded",
+          "description": "Number of vacant spaces by grading (enumeration).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingVacantSpacesEnumG"
+        },
+        "numberOfOccupiedSpaces": {
+          "title": "numberOfOccupiedSpaces",
+          "description": "The number of currently occupied spaces in the specified parking site, group of parking sites or assigned parking.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "numberOfVehicles": {
+          "title": "numberOfVehicles",
+          "description": "Number of vehicles (of specified type) on the specified area. Parking too narrow or too wide may affect differences to the 'occupiedSpaces' value. Should not include petrol station traffic.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "description": "The percentage value of parking spaces occupied in the specified parking site, group of parking sites or assigned parking.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "occupancyGraded": {
+          "title": "occupancyGraded",
+          "description": "Occupied parking spaces by a percentage-grading (enumeration).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingOccupancyEnumG"
+        },
+        "occupancyTrend": {
+          "title": "occupancyTrend",
+          "description": "The trend of the occupancy of the parking spaces in the specified parking site, group of parking sites or assigned parking.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingOccupancyTrendEnumG"
+        },
+        "parkingNotAllowed": {
+          "title": "parkingNotAllowed",
+          "description": "In case of 'true', parking is not allowed (e.g. abnormal closure).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "probability": {
+          "title": "probability",
+          "description": "The probability that at least one parking space within the specified parking element is available.",
+          "$ref": "DATEXII_3_Common.json#/$defs/PercentageValue"
+        },
+        "vehicleCountAndRate": {
+          "title": "vehicleCountAndRate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/VehicleCountAndRate"
+          },
+          "minItems": 0
+        },
+        "overrideThresholdConfiguration": {
+          "title": "overrideThresholdConfiguration",
+          "description": "Possibility to override the thresholds for the parking, which are in principle defined in the static part of the model (ParkingStatusPublication).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ThresholdConfiguration"
+        },
+        "prkOccupancyExtensionG": {
+          "title": "prkOccupancyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "OccupancyChangeValue": {
+      "title": "OccupancyChangeValue",
+      "description": "A measured or calculated value of change of occupied parking spaces expressed as integer.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "occupancyChange": {
+          "title": "occupancyChange",
+          "description": "A measured or calculated absolute change of occupied parking spaces within a specified time expressed as integer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkOccupancyChangeValueExtensionG": {
+          "title": "prkOccupancyChangeValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "occupancyChange"
+      ]
+    },
+    "OccupancyLevel": {
+      "title": "OccupancyLevel",
+      "description": "Defines an occupancy level as specified by the data supplier.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "occupanyIndicator": {
+          "title": "occupanyIndicator",
+          "description": "User-defined occupancy indicator (e.g. red =  occupied), referencing specified user defined code list",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingOccupancyEnumG"
+        },
+        "prkOccupancyLevelExtensionG": {
+          "title": "prkOccupancyLevelExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "occupanyIndicator"
+      ]
+    },
+    "OccupiedSpacesThresholds": {
+      "title": "OccupiedSpacesThresholds",
+      "description": "The threshold is defined by the number of occupied spaces on the parking.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lowerThreshold": {
+          "title": "lowerThreshold",
+          "description": "A lower threshold from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "upperThreshold": {
+          "title": "upperThreshold",
+          "description": "An upper threshold up to which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "lowerThresholdInPercent": {
+          "title": "lowerThresholdInPercent",
+          "description": "A lower threshold in percent from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "upperThresholdInPercent": {
+          "title": "upperThresholdInPercent",
+          "description": "An upper threshold in percent up to which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "boundaryValuesExcluded": {
+          "title": "boundaryValuesExcluded",
+          "description": "Configures, if the given threshold values itself should be included (\"false\"; default) or excluded (\"true\") in the comparison, when evaluating the status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "prkThresholdsExtensionG": {
+          "title": "prkThresholdsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkOccupiedSpacesThresholdsExtensionG": {
+          "title": "prkOccupiedSpacesThresholdsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "OperatingPatternG": {
+      "title": "OperatingPatternG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkUsageScenario": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/UsageScenario"
+        },
+        "prkOperatingRestriction": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatingRestriction"
+        }
+      }
+    },
+    "OperatingPatternStatus": {
+      "title": "OperatingPatternStatus",
+      "description": "The current status for this operating pattern.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingPatternIndex": {
+          "title": "operatingPatternIndex",
+          "description": "An index to link this element between the static and dynamic publications.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The current status for this operating pattern.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OperationStatusEnumG"
+        },
+        "ptScheduleUpdate": {
+          "title": "ptScheduleUpdate",
+          "description": "Provides an updated version of the public transport schedule (with same id, but new version).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportSchedule"
+          },
+          "minItems": 0
+        },
+        "prkOperatingPatternStatusExtensionG": {
+          "title": "prkOperatingPatternStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingPatternIndex",
+        "operationStatus"
+      ]
+    },
+    "OperatingRestriction": {
+      "title": "OperatingRestriction",
+      "description": "A class defining an operating restriction.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingPatternIndex": {
+          "title": "operatingPatternIndex",
+          "description": "An index to link this element between the static and dynamic publications.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "context": {
+          "title": "context",
+          "description": "Free-text definition of the nature of operating restrictions.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "type": {
+          "title": "type",
+          "description": "Defines the type of operating restriction applicable in this case.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatingRestrictionsEnumG"
+        },
+        "relatedLocation": {
+          "title": "relatedLocation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/RelatedLocationG"
+          },
+          "minItems": 0
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "prkOperatingPatternExtensionG": {
+          "title": "prkOperatingPatternExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkOperatingRestrictionExtensionG": {
+          "title": "prkOperatingRestrictionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingPatternIndex",
+        "type"
+      ]
+    },
+    "OperatingRestrictionsEnum": {
+      "title": "OperatingRestrictionsEnum",
+      "description": "Defines operating restrictions to use the of a facility. ",
+      "type": "string",
+      "enum": [
+        "carpoolOnly",
+        "commercialVehicleOnly",
+        "freeParking",
+        "busOnly",
+        "busStop",
+        "disabledPersonPermitOnly",
+        "electricVehicleOnly",
+        "governmentVehicleOnly",
+        "loadingZone",
+        "loadingZoneCommercial",
+        "media",
+        "residentialPermitOnly",
+        "snow",
+        "streetCleaning",
+        "parkingTimeLimit",
+        "taxiOnly",
+        "valetOnly",
+        "noParking",
+        "noWaiting",
+        "temporaryParking",
+        "extendedG"
+      ]
+    },
+    "OperatingRestrictionsEnumG": {
+      "title": "OperatingRestrictionsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatingRestrictionsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OperatorDefinedPlace": {
+      "title": "OperatorDefinedPlace",
+      "description": "Class providing an operator specified name or identifier for a place hierarchy element - this may be distinct from the name for the HierarchyElement supplied by the data supplier.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "identifier": {
+          "title": "identifier",
+          "description": " Identifier for a defined place given by an organisation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "organisation": {
+          "title": "organisation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "prkOperatorDefinedPlaceExtensionG": {
+          "title": "prkOperatorDefinedPlaceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "identifier"
+      ]
+    },
+    "OperatorDefinedPlaceVersionedReferenceG": {
+      "title": "OperatorDefinedPlaceVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatorDefinedPlace"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ParkingConditionsEnum": {
+      "title": "ParkingConditionsEnum",
+      "description": "Defines if normal parking conditions are suspended or special parking conditions are in force.",
+      "type": "string",
+      "enum": [
+        "normalParkingConditionsSuspended",
+        "specialParkingConditionsInForce",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingConditionsEnumG": {
+      "title": "ParkingConditionsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingConditionsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingFaultEnum": {
+      "title": "ParkingFaultEnum",
+      "description": "Types of parking site or access faults.",
+      "type": "string",
+      "enum": [
+        "communicationsFailure",
+        "barrierMalfunction",
+        "entranceExitObstructed",
+        "erroneousOccupancyInformation",
+        "erroneousOccupancyDisplayed",
+        "paymentMachinesInoperative",
+        "reservationServiceOutOfOrder",
+        "noParkingInformationAvailable",
+        "unspecified",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingFaultEnumG": {
+      "title": "ParkingFaultEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingFaultEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingModeEnum": {
+      "title": "ParkingModeEnum",
+      "description": "The arrangement of the parking space or the group of parking spaces in relation to the road.",
+      "type": "string",
+      "enum": [
+        "perpendicularParking",
+        "parallelParking",
+        "echelonParking",
+        "parkingOnOppositeSideOfRoad",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingModeEnumG": {
+      "title": "ParkingModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingOccupancyEnum": {
+      "title": "ParkingOccupancyEnum",
+      "description": "Parking Occupancy enum.",
+      "type": "string",
+      "enum": [
+        "expectCarParkToBeFull",
+        "percentage10",
+        "percentage20",
+        "percentage30",
+        "percentage40",
+        "percentage50",
+        "percentage60",
+        "percentage70",
+        "percentage80",
+        "percentage90",
+        "full",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "ParkingOccupancyEnumG": {
+      "title": "ParkingOccupancyEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingOccupancyEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingOccupancyTrendEnum": {
+      "title": "ParkingOccupancyTrendEnum",
+      "description": "List of terms used to describe the trend in parking space occupancy.",
+      "type": "string",
+      "enum": [
+        "decreasing",
+        "increasing",
+        "stable",
+        "increasingQuickly",
+        "increasingSlowly",
+        "decreasingQuickly",
+        "decreasingSlowly",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingOccupancyTrendEnumG": {
+      "title": "ParkingOccupancyTrendEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingOccupancyTrendEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingPlaceStatusEnum": {
+      "title": "ParkingPlaceStatusEnum",
+      "description": "The status of the parking place or sub-places (spaces available or not).",
+      "type": "string",
+      "enum": [
+        "full",
+        "fullAtEntrance",
+        "spacesAvailable",
+        "almostFull",
+        "overcrowding",
+        "overcrowdingLevel1",
+        "overcrowdingLevel2",
+        "noOvercrowding",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingPlaceStatusEnumG": {
+      "title": "ParkingPlaceStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingPlaceStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingRouteByReference": {
+      "title": "ParkingRouteByReference",
+      "description": "A route defined by a reference to an earlier specified route.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "parkingRouteReference": {
+          "title": "parkingRouteReference",
+          "description": "A reference to a parking route.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteDetailsVersionedReferenceG"
+        },
+        "parkingRouteColour": {
+          "title": "parkingRouteColour",
+          "description": "A colour assigned to a parking route for visualisation purpose.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/RgbColour"
+        },
+        "prkParkingRouteExtensionG": {
+          "title": "prkParkingRouteExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingRouteByReferenceExtensionG": {
+          "title": "prkParkingRouteByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "parkingRouteReference"
+      ]
+    },
+    "ParkingRouteDetails": {
+      "title": "ParkingRouteDetails",
+      "description": "Urban context: Defining parking routes leading to the parking site. Truck parking context: Can be used to define a dynamic route management.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name of the parking route.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "type": {
+          "title": "type",
+          "description": "The type of parking route. If not specified, the route is designed for any type of vehicles.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteTypeEnumG"
+        },
+        "dynamicRouteManagement": {
+          "title": "dynamicRouteManagement",
+          "description": "Indicates that there is dynamic route management for truck parking, i.e. a management system concerning several truck parking sites (including this one) along a route.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "iconIndex": {
+          "title": "iconIndex",
+          "description": "An index, which can identify some icon for visualisation of the route. Note that form and usage of this index as well as the icons itself are not further determined here.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "direction": {
+          "title": "direction",
+          "description": "The direction of traffic, for which the parking route can be used. If not specified, the route can be used in the order of the given locations.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/DirectionEnumG"
+        },
+        "orientation": {
+          "title": "orientation",
+          "description": "Orientation of traffic, for which the parking route is specified.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteOrientationEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "parkingRouteColour": {
+          "title": "parkingRouteColour",
+          "description": "A colour assigned to a parking route for visualisation purpose.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/RgbColour"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "parkingVms": {
+          "title": "parkingVms",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingVms"
+          },
+          "minItems": 0
+        },
+        "prkParkingRouteExtensionG": {
+          "title": "prkParkingRouteExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingRouteDetailsExtensionG": {
+          "title": "prkParkingRouteDetailsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "ParkingRouteDetailsVersionedReferenceG": {
+      "title": "ParkingRouteDetailsVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ParkingRouteDetails"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ParkingRouteG": {
+      "title": "ParkingRouteG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkParkingRouteDetails": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteDetails"
+        },
+        "prkParkingRouteByReference": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteByReference"
+        }
+      }
+    },
+    "ParkingRouteOrientationEnum": {
+      "title": "ParkingRouteOrientationEnum",
+      "description": "Orientation of traffic for a parking route.",
+      "type": "string",
+      "enum": [
+        "towardsParkingSite",
+        "awayFromParkingSite",
+        "extendedG"
+      ]
+    },
+    "ParkingRouteOrientationEnumG": {
+      "title": "ParkingRouteOrientationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteOrientationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingRouteStatus": {
+      "title": "ParkingRouteStatus",
+      "description": "The status as well as the travel times of a parking route (active/inactive) defined in the static part of the model.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "parkingRouteReference": {
+          "title": "parkingRouteReference",
+          "description": "A reference to a parking route.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteDetailsVersionedReferenceG"
+        },
+        "parkingRouteActive": {
+          "title": "parkingRouteActive",
+          "description": "Defines if this parking route is currently active or not.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "travelTimeData": {
+          "title": "travelTimeData",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/TravelTimeData"
+          },
+          "minItems": 0
+        },
+        "prkParkingRouteStatusExtensionG": {
+          "title": "prkParkingRouteStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "parkingRouteActive",
+        "parkingRouteReference"
+      ]
+    },
+    "ParkingRouteTypeEnum": {
+      "title": "ParkingRouteTypeEnum",
+      "description": "The type of the parking route.",
+      "type": "string",
+      "enum": [
+        "pedestrian",
+        "bicycle",
+        "lorry",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingRouteTypeEnumG": {
+      "title": "ParkingRouteTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingSafetyEnum": {
+      "title": "ParkingSafetyEnum",
+      "description": "Safety requirements for truck parking sites according to European Secure Parking Organisation.",
+      "type": "string",
+      "enum": [
+        "clearDistinctionCarsHGV",
+        "clearSafetySigns",
+        "emergencySafety",
+        "pedestrianSafety",
+        "safeDecelerationAndAcceleration",
+        "seperatedDangerousGood",
+        "extendedG"
+      ]
+    },
+    "ParkingSafetyEnumG": {
+      "title": "ParkingSafetyEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSafetyEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingSecurityEnum": {
+      "title": "ParkingSecurityEnum",
+      "description": "Specifies security measures related to the parking site or particular spaces.",
+      "type": "string",
+      "enum": [
+        "socialControl",
+        "securityStaff",
+        "externalSecurity",
+        "cctv",
+        "dog",
+        "guard24hours",
+        "lighting",
+        "floodLight",
+        "fences",
+        "areaSeperatedFromSurroundings",
+        "none",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingSecurityEnumG": {
+      "title": "ParkingSecurityEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSecurityEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingSpaceConvenienceEnum": {
+      "title": "ParkingSpaceConvenienceEnum",
+      "description": "Facilities for persons with disabilities.",
+      "type": "string",
+      "enum": [
+        "extraSpaceLeftSide",
+        "extraSpaceRightSide",
+        "nearbyPedestrianExit",
+        "bordersMarked",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingSpaceConvenienceEnumG": {
+      "title": "ParkingSpaceConvenienceEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSpaceConvenienceEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingSpaceOccupancyDetectionEnum": {
+      "title": "ParkingSpaceOccupancyDetectionEnum",
+      "description": "A list of supported methods for detection of occupancy by a vehicle in a parking space.",
+      "type": "string",
+      "enum": [
+        "visual",
+        "anpr",
+        "imageAnalytics",
+        "videoAnalytics",
+        "videoSpace",
+        "spaceSensor",
+        "userDeclaration",
+        "balancing",
+        "modelBased",
+        "none",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingSpaceOccupancyDetectionEnumG": {
+      "title": "ParkingSpaceOccupancyDetectionEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSpaceOccupancyDetectionEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingStatusInformation": {
+      "title": "ParkingStatusInformation",
+      "description": "General status information for parking related objects. Can also be historical or forecasted data. In this case, 'StatusValidity' must be specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "queueingTime": {
+          "title": "queueingTime",
+          "description": "The current queuing time (duration) for entering the parking site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "parkingConditions": {
+          "title": "parkingConditions",
+          "description": "Defines if normal parking conditions are suspended or special parking conditions are in force.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingConditionsEnumG"
+        },
+        "blurredAvailability": {
+          "title": "blurredAvailability",
+          "description": "When true, availability and occupancy information (free spaces etc.) is withheld or only published roughly, usually because of business competition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingFault": {
+          "title": "parkingFault",
+          "description": "A fault indicator for the parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingFaultEnumG"
+          },
+          "minItems": 0
+        },
+        "winterEquipmentManagementType": {
+          "title": "winterEquipmentManagementType",
+          "description": "Type of winter equipment management action instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/WinterEquipmentManagementTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "parkingRouteStatus": {
+          "title": "parkingRouteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteStatus"
+          },
+          "minItems": 0
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Occupancy"
+        },
+        "statusValidity": {
+          "title": "statusValidity",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StatusValidityG"
+        },
+        "operatingPatternStatus": {
+          "title": "operatingPatternStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternStatus"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "demandTable": {
+          "title": "demandTable",
+          "$ref": "DATEXII_3_Parking.json#/$defs/DemandTable"
+        },
+        "facFacilityObjectStatusExtensionG": {
+          "title": "facFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityStatusExtensionG": {
+          "title": "facFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingStatusInformationExtensionG": {
+          "title": "prkParkingStatusInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "ParkingStatusInformationG": {
+      "title": "ParkingStatusInformationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkParkingStatusInformation": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingStatusInformation"
+        },
+        "prkPlaceStatus": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PlaceStatus"
+        },
+        "prkAccessStatus": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessStatus"
+        },
+        "prkCampusStatus": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/CampusStatus"
+        },
+        "prkSpaceStatus": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SpaceStatus"
+        }
+      }
+    },
+    "ParkingStatusPublication": {
+      "title": "ParkingStatusPublication",
+      "description": "A publication containing the current status of one or more objects of the place hierarchy defined in the ParkingStatusPublication.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "parkingTableReference": {
+          "title": "parkingTableReference",
+          "description": "It is possible to limit the publication to one or more ParkingTable and to set a reference to these tables here.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingTableVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "parkingStatusInformation": {
+          "title": "parkingStatusInformation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingStatusInformationG"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingStatusPublicationExtensionG": {
+          "title": "prkParkingStatusPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "parkingStatusInformation"
+      ]
+    },
+    "ParkingStructuralCharacteristicsEnum": {
+      "title": "ParkingStructuralCharacteristicsEnum",
+      "description": "Specifies some structural characteristics of a parking space or a group of parking spaces.",
+      "type": "string",
+      "enum": [
+        "driveThrough",
+        "openAir",
+        "evenSurface",
+        "kerbside",
+        "softShoulder",
+        "extendedG"
+      ]
+    },
+    "ParkingStructuralCharacteristicsEnumG": {
+      "title": "ParkingStructuralCharacteristicsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingStructuralCharacteristicsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingSupervisionEnum": {
+      "title": "ParkingSupervisionEnum",
+      "description": "Defines the kind of supervision of the parking site.",
+      "type": "string",
+      "enum": [
+        "remote",
+        "onSite",
+        "controlCentreOnSite",
+        "controlCentreOffSite",
+        "patrol",
+        "none",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingSupervisionEnumG": {
+      "title": "ParkingSupervisionEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSupervisionEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingTable": {
+      "title": "ParkingTable",
+      "description": "Parking information described by a number of tree-like place hierarchies.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of the parking table.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "The date/time that this version of the parking table was defined by the supplier. The identity and version of the table are defined by the class stereotype implementation.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "hierarchyElementGeneral": {
+          "title": "hierarchyElementGeneral",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementGeneralG"
+          },
+          "minItems": 1
+        },
+        "prkParkingTableExtensionG": {
+          "title": "prkParkingTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "hierarchyElementGeneral"
+      ]
+    },
+    "ParkingTablePublication": {
+      "title": "ParkingTablePublication",
+      "description": "A publication to define static information about sites or geographic areas designed to park vehicles, organised in tables.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Language"
+        },
+        "feedDescription": {
+          "title": "feedDescription",
+          "description": "A description of the information which is to be found in the publications originating from the particular feed (URL).",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "feedType": {
+          "title": "feedType",
+          "description": "A classification of the information which is to be found in the publications originating from the particular feed.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/$defs/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/$defs/HeaderInformation"
+        },
+        "parkingTable": {
+          "title": "parkingTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingTable"
+          },
+          "minItems": 1
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingTablePublicationExtensionG": {
+          "title": "prkParkingTablePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "parkingTable"
+      ]
+    },
+    "ParkingTableVersionedReferenceG": {
+      "title": "ParkingTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ParkingTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ParkingUsageScenarioEnum": {
+      "title": "ParkingUsageScenarioEnum",
+      "description": "Types of parking usage (park & ride, kiss & ride, ...)",
+      "type": "string",
+      "enum": [
+        "automatedParkingGarage",
+        "carSharing",
+        "delivery",
+        "dropOff",
+        "dropOffMechanical",
+        "dropOffWithValet",
+        "eventParking",
+        "guidanceToAvailableSpaces",
+        "kissAndRide",
+        "liftshare",
+        "motorwayParking",
+        "nearbyMotorwayParking",
+        "overnightParking",
+        "parkAndCycle",
+        "parkAndDrive",
+        "parkAndRide",
+        "parkAndWalk",
+        "poiParking",
+        "restArea",
+        "serviceArea",
+        "specialLocation",
+        "staffGuidesToSpace",
+        "truckParking",
+        "vehicleLift",
+        "zone",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingUsageScenarioEnumG": {
+      "title": "ParkingUsageScenarioEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingUsageScenarioEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingVacantSpacesEnum": {
+      "title": "ParkingVacantSpacesEnum",
+      "description": "Parking vacant spaces enum.",
+      "type": "string",
+      "enum": [
+        "noParkingSpacesAvailable",
+        "expectNoSpacesAvailable",
+        "onlyAFewSpacesAvailable",
+        "lessThan10SpacesAvailable",
+        "lessThan20SpacesAvailable",
+        "lessThan30SpacesAvailable",
+        "lessThan40SpacesAvailable",
+        "lessThan50SpacesAvailable",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ParkingVacantSpacesEnumG": {
+      "title": "ParkingVacantSpacesEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingVacantSpacesEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ParkingVms": {
+      "title": "ParkingVms",
+      "description": "A reference to a record that contains the metadata for a specific VMS unit that may be used to manage the parking (e.g. to indicate to drivers the current availability of spaces) or a parking route.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vmsUsedToManageParking": {
+          "title": "vmsUsedToManageParking",
+          "description": "A reference to a record that contains the metadata for a specific VMS unit that may be used to manage the parking site (e.g. to indicate to drivers the current availability of spaces).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/VmsControllerVersionedReferenceG"
+        },
+        "vmsOperator": {
+          "title": "vmsOperator",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/OrganisationG"
+        },
+        "prkParkingVmsExtensionG": {
+          "title": "prkParkingVmsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vmsUsedToManageParking"
+      ]
+    },
+    "PedestrianAccess": {
+      "title": "PedestrianAccess",
+      "description": "A specialisation of an identifiedArea defining a pedestrian access area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "accessType": {
+          "title": "accessType",
+          "description": "Provides characterisation of the nature of this access area.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessTypeEnumG"
+        },
+        "equipment": {
+          "title": "equipment",
+          "description": "Specifies additional equipment for this access.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/AccessEquipmentEnumG"
+          },
+          "minItems": 0
+        },
+        "orientation": {
+          "title": "orientation",
+          "description": "The compass direction of the access in relation to the parking site, e.g. the northern entrance.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/DirectionCompassEnumG"
+          },
+          "minItems": 0
+        },
+        "style": {
+          "title": "style",
+          "description": "Provides information concerning the style of the pedestrian access.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/PedestrianAccessStyleEnumG"
+        },
+        "numberOfPortals": {
+          "title": "numberOfPortals",
+          "description": "Indicates the number of door portals present at the pedestrian access area.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "operatingPattern": {
+          "title": "operatingPattern",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternG"
+          },
+          "minItems": 0
+        },
+        "additionalCharacteristics": {
+          "title": "additionalCharacteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AdditionalCharacteristics"
+        },
+        "accessAndEgress": {
+          "title": "accessAndEgress",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessAndEgress"
+        },
+        "primaryRoad": {
+          "title": "primaryRoad",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/AccessRoad"
+          },
+          "minItems": 0
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkIdentifiedAreaExtensionG": {
+          "title": "prkIdentifiedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkAccessExtensionG": {
+          "title": "prkAccessExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkPedestrianAccessExtensionG": {
+          "title": "prkPedestrianAccessExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type",
+        "accessType"
+      ]
+    },
+    "PedestrianAccessStyleEnum": {
+      "title": "PedestrianAccessStyleEnum",
+      "description": "A list of the supported pedestrian access characteristic types.",
+      "type": "string",
+      "enum": [
+        "cargoShippingDoor",
+        "door",
+        "doorWithAccessCredential",
+        "doorWithSecurityReview",
+        "emergencyExitDoor",
+        "extendedG"
+      ]
+    },
+    "PedestrianAccessStyleEnumG": {
+      "title": "PedestrianAccessStyleEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PedestrianAccessStyleEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PermitsAndProhibitions": {
+      "title": "PermitsAndProhibitions",
+      "description": "Defines sets of action and regulations to specify permitted and prohibited issues.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activity": {
+          "title": "activity",
+          "description": "An activity, which is regulated.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ActivityEnumG"
+        },
+        "regulation": {
+          "title": "regulation",
+          "description": "Regulation for the specified activity.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/RegulationEnumG"
+        },
+        "prkPermitsAndProhibitionsExtensionG": {
+          "title": "prkPermitsAndProhibitionsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "activity",
+        "regulation"
+      ]
+    },
+    "Place": {
+      "title": "Place",
+      "description": "A place or location used for parking, loading, unloading, standing, or some other mobility or transport related activity.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "layout": {
+          "title": "layout",
+          "description": "The layout structure of this place.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/LayoutEnumG"
+        },
+        "availableFloors": {
+          "title": "availableFloors",
+          "description": "A list of all available floors for this parking place from lowest to highest, seperated by spaces. The numbering or lettering scheme may follow local conventions. Examples: -1 0 1 2 or G 1st 2nd ",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "commonComponents": {
+          "title": "commonComponents",
+          "$ref": "DATEXII_3_Parking.json#/$defs/CommonComponents"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkPlaceExtensionG": {
+          "title": "prkPlaceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type"
+      ]
+    },
+    "PlaceStatus": {
+      "title": "PlaceStatus",
+      "description": "Dynamic status information for the static object 'Place' or 'SubplaceElement'.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "queueingTime": {
+          "title": "queueingTime",
+          "description": "The current queuing time (duration) for entering the parking site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "parkingConditions": {
+          "title": "parkingConditions",
+          "description": "Defines if normal parking conditions are suspended or special parking conditions are in force.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingConditionsEnumG"
+        },
+        "blurredAvailability": {
+          "title": "blurredAvailability",
+          "description": "When true, availability and occupancy information (free spaces etc.) is withheld or only published roughly, usually because of business competition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingFault": {
+          "title": "parkingFault",
+          "description": "A fault indicator for the parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingFaultEnumG"
+          },
+          "minItems": 0
+        },
+        "winterEquipmentManagementType": {
+          "title": "winterEquipmentManagementType",
+          "description": "Type of winter equipment management action instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/WinterEquipmentManagementTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "status": {
+          "title": "status",
+          "description": "The status of the parking place or sub-places (spaces available or not) including overcrowding information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingPlaceStatusEnumG"
+          },
+          "minItems": 0
+        },
+        "parkingPlaceFullAtFloor": {
+          "title": "parkingPlaceFullAtFloor",
+          "description": "The parking place is full at the specified floor(s).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/String"
+          },
+          "minItems": 0
+        },
+        "declarationValidNow": {
+          "title": "declarationValidNow",
+          "description": "Specifies, if this place or subplace declaration is valid now. If specified, this overrides any static validity information.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingRouteStatus": {
+          "title": "parkingRouteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteStatus"
+          },
+          "minItems": 0
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Occupancy"
+        },
+        "statusValidity": {
+          "title": "statusValidity",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StatusValidityG"
+        },
+        "operatingPatternStatus": {
+          "title": "operatingPatternStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternStatus"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "demandTable": {
+          "title": "demandTable",
+          "$ref": "DATEXII_3_Parking.json#/$defs/DemandTable"
+        },
+        "facFacilityObjectStatusExtensionG": {
+          "title": "facFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityStatusExtensionG": {
+          "title": "facFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingStatusInformationExtensionG": {
+          "title": "prkParkingStatusInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkPlaceStatusExtensionG": {
+          "title": "prkPlaceStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "PointOfInterest": {
+      "title": "PointOfInterest",
+      "description": "A point of interest.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "Name of the point of interest",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for the point of interest",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "specialLocation": {
+          "title": "specialLocation",
+          "description": "A special location this parking is connected to or part of.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/SpecialLocationEnumG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "distanceFromOrigin": {
+          "title": "distanceFromOrigin",
+          "$ref": "DATEXII_3_Common.json#/$defs/IntegerMetreDistanceValue"
+        },
+        "prkRelatedLocationExtensionG": {
+          "title": "prkRelatedLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkPointOfInterestExtensionG": {
+          "title": "prkPointOfInterestExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "PublicTransportSchedule": {
+      "title": "PublicTransportSchedule",
+      "description": "A rough schedule for one or more public transport lines from this stop",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The timestamp of the latest update of this information.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "line": {
+          "title": "line",
+          "description": "Line or multiple lines for which this schedule is valid",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/String"
+          },
+          "minItems": 0
+        },
+        "nextDepartures": {
+          "title": "nextDepartures",
+          "description": "The next departures for this line / these lines",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/Time"
+          },
+          "minItems": 0
+        },
+        "destination": {
+          "title": "destination",
+          "description": "A destination that can be reached from this stop",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "interval": {
+          "title": "interval",
+          "description": "The interval for reaching the destination from this stop",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "travelTimeToDestination": {
+          "title": "travelTimeToDestination",
+          "description": "The travel time to reach the destination from this stop",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "ptType": {
+          "title": "ptType",
+          "description": "The type of public transport",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "ptVehicleType": {
+          "title": "ptVehicleType",
+          "description": "The type of public transport vehicle.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportVehicleTypeG"
+        },
+        "ptVehicleName": {
+          "title": "ptVehicleName",
+          "description": "A name of the specific vehicle type, for example \"Railjet\".",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "ptOperator": {
+          "title": "ptOperator",
+          "description": "Information about the operator of this public transport.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/Validity"
+        },
+        "prkPublicTransportScheduleExtensionG": {
+          "title": "prkPublicTransportScheduleExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "lastUpdated"
+      ]
+    },
+    "PublicTransportStop": {
+      "title": "PublicTransportStop",
+      "description": "A public transport stop.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "Name of the point of interest",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for the point of interest",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "specialLocation": {
+          "title": "specialLocation",
+          "description": "A special location this parking is connected to or part of.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/SpecialLocationEnumG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/$defs/LocationReferenceG"
+        },
+        "distanceFromOrigin": {
+          "title": "distanceFromOrigin",
+          "$ref": "DATEXII_3_Common.json#/$defs/IntegerMetreDistanceValue"
+        },
+        "publicTransportSchedule": {
+          "title": "publicTransportSchedule",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportSchedule"
+          },
+          "minItems": 0
+        },
+        "prkRelatedLocationExtensionG": {
+          "title": "prkRelatedLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkPublicTransportStopExtensionG": {
+          "title": "prkPublicTransportStopExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "PublicTransportTypeEnum": {
+      "title": "PublicTransportTypeEnum",
+      "description": "Special measures in the context of public transport.",
+      "type": "string",
+      "enum": [
+        "freePublicTransport",
+        "nonFreePublicTransport",
+        "onDemandTraffic",
+        "railReplacementService",
+        "shuttleService",
+        "extendedG"
+      ]
+    },
+    "PublicTransportTypeEnumG": {
+      "title": "PublicTransportTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PublicTransportVehicleType": {
+      "title": "PublicTransportVehicleType",
+      "description": "Types of public transport vehicles",
+      "type": "string",
+      "enum": [
+        "bus",
+        "coach",
+        "miniBus",
+        "subway",
+        "taxi",
+        "train",
+        "tram",
+        "extendedG"
+      ]
+    },
+    "PublicTransportVehicleTypeG": {
+      "title": "PublicTransportVehicleTypeG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportVehicleType"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RegulationEnum": {
+      "title": "RegulationEnum",
+      "description": "Regulation parameters for actions.",
+      "type": "string",
+      "enum": [
+        "permitted",
+        "prohibited",
+        "punishable",
+        "seasonalHeterogeneous",
+        "permittedOnlyAtParticularTimes",
+        "permittedOnlyOnParticularAreas",
+        "prohibitedAtParticularTimes",
+        "prohibitedOnParticularAreas",
+        "onlyOnRequest",
+        "heterogeneous",
+        "onlyOutsideBuildings",
+        "onlyInsideBuildings",
+        "unspecified",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "RegulationEnumG": {
+      "title": "RegulationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/RegulationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RelatedLocationG": {
+      "title": "RelatedLocationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkPointOfInterest": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PointOfInterest"
+        },
+        "prkPublicTransportStop": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/PublicTransportStop"
+        }
+      }
+    },
+    "ResponsibilityRoleAssignment": {
+      "title": "ResponsibilityRoleAssignment",
+      "description": "The assignment of one or more roles to an organisation regarding the responsibility it will have regarding the identified Place (e.g. owner, operators, etc.)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "title": "type",
+          "description": "The type of the contact.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ContactTypeEnumG"
+        },
+        "organisation": {
+          "title": "organisation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/$defs/OrganisationG"
+          },
+          "minItems": 1
+        },
+        "prkResponsibilityRoleAssignmentExtensionG": {
+          "title": "prkResponsibilityRoleAssignmentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "type",
+        "organisation"
+      ]
+    },
+    "RgbColour": {
+      "title": "RgbColour",
+      "description": "An RGB colour described by values for red, green and blue (0..255) as well as an optional name.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "red": {
+          "title": "red",
+          "description": "The red value of the RGB colour (0..255).",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "green": {
+          "title": "green",
+          "description": "The green value of the RGB colour (0..255).",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "blue": {
+          "title": "blue",
+          "description": "The blue value of the RGB colour (0..255).",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "colourName": {
+          "title": "colourName",
+          "description": "The name of the colour.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "prkRgbColourExtensionG": {
+          "title": "prkRgbColourExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "blue",
+        "green",
+        "red"
+      ]
+    },
+    "RoadInformationEnhanced": {
+      "title": "RoadInformationEnhanced",
+      "description": "Additional road information.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "roadDestination": {
+          "title": "roadDestination",
+          "description": "A destination associated with this road.",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "roadName": {
+          "title": "roadName",
+          "description": "The name of the road",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "roadNumber": {
+          "title": "roadNumber",
+          "description": "The road number designated by the road authority",
+          "$ref": "DATEXII_3_Common.json#/$defs/String"
+        },
+        "typeOfRoad": {
+          "title": "typeOfRoad",
+          "description": "Type of the road.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/RoadTypeEnumG"
+        },
+        "roadOrigination": {
+          "title": "roadOrigination",
+          "description": "Name of some city, area, compass direction or other identification this road comes from.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "locRoadInformationExtensionG": {
+          "title": "locRoadInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkRoadInformationEnhancedExtensionG": {
+          "title": "prkRoadInformationEnhancedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "RoadTypeEnum": {
+      "title": "RoadTypeEnum",
+      "description": "Categorisation of the  road type (motorway,main road,...).",
+      "type": "string",
+      "enum": [
+        "motorway",
+        "trunkRoad",
+        "mainRoad",
+        "other",
+        "extendedG"
+      ]
+    },
+    "RoadTypeEnumG": {
+      "title": "RoadTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/RoadTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SafetyStandardClassification": {
+      "title": "SafetyStandardClassification",
+      "description": "Use this class to classification type/level for security schemes for this place",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "securityFeature": {
+          "title": "securityFeature",
+          "description": "Security feature identified for this place.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSecurityEnumG"
+        },
+        "securityLevel": {
+          "title": "securityLevel",
+          "description": "Security level identified for this place in a defined scheme",
+          "$ref": "DATEXII_3_Parking.json#/$defs/EsporgStandardLevelEnumG"
+        },
+        "additionalSecurity": {
+          "title": "additionalSecurity",
+          "description": "Security equipment of the parking that is not covered by the corresponding enumeration.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "safety": {
+          "title": "safety",
+          "description": "Safety measures on the parking according to European Secure Parking Organisation.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSafetyEnumG"
+          },
+          "minItems": 0
+        },
+        "additionalSafety": {
+          "title": "additionalSafety",
+          "description": "Safety measures on the parking that is not covered by the corresponding enumeration.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "supervision": {
+          "title": "supervision",
+          "description": "Defines the kind of supervision of the parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingSupervisionEnumG"
+          },
+          "minItems": 0
+        },
+        "securityNationalClassification": {
+          "title": "securityNationalClassification",
+          "description": "A national classification of the parking security.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "certifiedSecureParking": {
+          "title": "certifiedSecureParking",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/CertifiedSecureParking"
+          },
+          "minItems": 0
+        },
+        "prkSafetyStandardClassificationExtensionG": {
+          "title": "prkSafetyStandardClassificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "SessionActivationModeEnum": {
+      "title": "SessionActivationModeEnum",
+      "description": "Modes or credentials that can be used to activate a parking session or other operation (delivery, loading, etc).",
+      "type": "string",
+      "enum": [
+        "payByPlate",
+        "payBySpace",
+        "payAndDisplay",
+        "ticket",
+        "permit",
+        "app",
+        "extendedG"
+      ]
+    },
+    "SessionActivationModeEnumG": {
+      "title": "SessionActivationModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SessionActivationModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Space": {
+      "title": "Space",
+      "description": "A single space for parking or other mobility related purposes, usually designed for one vehicle, which may, but not necessarily, be denoted by painted or other road surface marker",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "spaceMaximumUsableDimensions": {
+          "title": "spaceMaximumUsableDimensions",
+          "description": "The maximal allowed physical dimensions for this space.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/Dimension"
+        },
+        "operatingPattern": {
+          "title": "operatingPattern",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternG"
+          },
+          "minItems": 0
+        },
+        "additionalCharacteristics": {
+          "title": "additionalCharacteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AdditionalCharacteristics"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkSpaceExtensionG": {
+          "title": "prkSpaceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type"
+      ]
+    },
+    "SpaceStatus": {
+      "title": "SpaceStatus",
+      "description": "Status for a single parking space which was defined in the static part of the model.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_Facilities.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "queueingTime": {
+          "title": "queueingTime",
+          "description": "The current queuing time (duration) for entering the parking site.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "parkingConditions": {
+          "title": "parkingConditions",
+          "description": "Defines if normal parking conditions are suspended or special parking conditions are in force.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingConditionsEnumG"
+        },
+        "blurredAvailability": {
+          "title": "blurredAvailability",
+          "description": "When true, availability and occupancy information (free spaces etc.) is withheld or only published roughly, usually because of business competition.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "parkingFault": {
+          "title": "parkingFault",
+          "description": "A fault indicator for the parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingFaultEnumG"
+          },
+          "minItems": 0
+        },
+        "winterEquipmentManagementType": {
+          "title": "winterEquipmentManagementType",
+          "description": "Type of winter equipment management action instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/WinterEquipmentManagementTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "occupied": {
+          "title": "occupied",
+          "description": "True: Parking space is occupied; False: Parking space is free.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "declarationValidNow": {
+          "title": "declarationValidNow",
+          "description": "Override validity of 'ParkingSpace': True = Parking space declaration is valid now; False = Parking space declaration is invalid now; Omitted = Static validity information is significant (if static validity is omitted too, declaration is valid).",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Point in time at which this specific value or set of values has been measured or calculated. It may also be a future time at which a data value is predicted.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "lastCalibration": {
+          "title": "lastCalibration",
+          "description": "Date of last calibration of the detection system in question.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "parkingRouteStatus": {
+          "title": "parkingRouteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingRouteStatus"
+          },
+          "minItems": 0
+        },
+        "occupancy": {
+          "title": "occupancy",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Occupancy"
+        },
+        "statusValidity": {
+          "title": "statusValidity",
+          "$ref": "DATEXII_3_Parking.json#/$defs/StatusValidityG"
+        },
+        "operatingPatternStatus": {
+          "title": "operatingPatternStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternStatus"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "demandTable": {
+          "title": "demandTable",
+          "$ref": "DATEXII_3_Parking.json#/$defs/DemandTable"
+        },
+        "facFacilityObjectStatusExtensionG": {
+          "title": "facFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityStatusExtensionG": {
+          "title": "facFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkParkingStatusInformationExtensionG": {
+          "title": "prkParkingStatusInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkSpaceStatusExtensionG": {
+          "title": "prkSpaceStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference",
+        "occupied"
+      ]
+    },
+    "SpecialLocationEnum": {
+      "title": "SpecialLocationEnum",
+      "description": "Types of locations, often associated with some building.",
+      "type": "string",
+      "enum": [
+        "airportTerminal",
+        "exhibitonCentre",
+        "shoppingCentre",
+        "specificFacility",
+        "trainStation",
+        "campGround",
+        "themePark",
+        "ferryTerminal",
+        "vehicleOnRailTerminal",
+        "coachStation",
+        "cableCarStation",
+        "publicTransportStation",
+        "market",
+        "religiousCentre",
+        "conventionCentre",
+        "cinema",
+        "skiLift",
+        "other",
+        "extendedG"
+      ]
+    },
+    "SpecialLocationEnumG": {
+      "title": "SpecialLocationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SpecialLocationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SpecificArea": {
+      "title": "SpecificArea",
+      "description": "An identifiable discrete bounded geographic zone that shares common characteristics and that may be used for a function other than vehicular access.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "operatingPattern": {
+          "title": "operatingPattern",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternG"
+          },
+          "minItems": 0
+        },
+        "additionalCharacteristics": {
+          "title": "additionalCharacteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AdditionalCharacteristics"
+        },
+        "characteristics": {
+          "title": "characteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Characteristics"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkIdentifiedAreaExtensionG": {
+          "title": "prkIdentifiedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkSpecificAreaExtensionG": {
+          "title": "prkSpecificAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type"
+      ]
+    },
+    "StaffEnum": {
+      "title": "StaffEnum",
+      "description": "A list of supported values for staffing characteristics.",
+      "type": "string",
+      "enum": [
+        "staffed",
+        "unstaffed",
+        "temporary",
+        "extendedG"
+      ]
+    },
+    "StaffEnumG": {
+      "title": "StaffEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/StaffEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "StatusConfiguration": {
+      "title": "StatusConfiguration",
+      "description": "A parking site status that shall be configured.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "parkingStatus": {
+          "title": "parkingStatus",
+          "description": "The status of the parking site (spaces available or not).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ParkingPlaceStatusEnumG"
+        },
+        "thresholds": {
+          "title": "thresholds",
+          "description": "A configuration of thresholds from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ThresholdsG"
+        },
+        "statusColourMapping": {
+          "title": "statusColourMapping",
+          "description": "A colour which is mapped to the status.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/RgbColour"
+        },
+        "prkStatusConfigurationExtensionG": {
+          "title": "prkStatusConfigurationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "parkingStatus",
+        "thresholds"
+      ]
+    },
+    "StatusValidityG": {
+      "title": "StatusValidityG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkValidityByPeriod": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ValidityByPeriod"
+        },
+        "prkValidityByTime": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ValidityByTime"
+        },
+        "prkValidityByOffset": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/ValidityByOffset"
+        }
+      }
+    },
+    "StructureGradeEnum": {
+      "title": "StructureGradeEnum",
+      "description": "Types of layout of the parking site.",
+      "type": "string",
+      "enum": [
+        "groundLevel",
+        "aboveGround",
+        "underground",
+        "extendedG"
+      ]
+    },
+    "StructureGradeEnumG": {
+      "title": "StructureGradeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/StructureGradeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "StructureTypeEnum": {
+      "title": "StructureTypeEnum",
+      "description": "A list of types of parking structure.",
+      "type": "string",
+      "enum": [
+        "onStreet",
+        "offStreetSurface",
+        "offStreetStructure",
+        "extendedG"
+      ]
+    },
+    "StructureTypeEnumG": {
+      "title": "StructureTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/StructureTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SubplaceElement": {
+      "title": "SubplaceElement",
+      "description": "A sub-division of a place for the convenience of the operator to segment the place and identify varied uses for parking and mobility related operations or other purposes.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "subplaceType": {
+          "title": "subplaceType",
+          "description": "Hierarchy element type.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/ElementDescriptorEnumG"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "commonComponents": {
+          "title": "commonComponents",
+          "$ref": "DATEXII_3_Parking.json#/$defs/CommonComponents"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkSubplaceElementExtensionG": {
+          "title": "prkSubplaceElementExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type"
+      ]
+    },
+    "SupplementalFacility": {
+      "title": "SupplementalFacility",
+      "description": "A specialisation of an identifiedArea referencing an identifiable area with associated identified services or equipment.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "reference": {
+          "title": "reference",
+          "description": "A reference on a previously defined SupplementalFacility (from namespace Facilities).",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "operatingPattern": {
+          "title": "operatingPattern",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternG"
+          },
+          "minItems": 0
+        },
+        "additionalCharacteristics": {
+          "title": "additionalCharacteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AdditionalCharacteristics"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkIdentifiedAreaExtensionG": {
+          "title": "prkIdentifiedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkSupplementalFacilityExtensionG": {
+          "title": "prkSupplementalFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type",
+        "reference"
+      ]
+    },
+    "Supply": {
+      "title": "Supply",
+      "description": "A class defining concepts relating the parameters of the supply of parking  or others uses in a Place. This is the total number of spaces usable for parking or other mobility operations.  It can be defined as demarcated spaces or non-demarcated.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "quantity": {
+          "title": "quantity",
+          "description": "Indicates the numeric value of available parking or other space uses.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "viewType": {
+          "title": "viewType",
+          "description": "Indicates the nature of the supply view that is being provided, as defined by the supply view type.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/SupplyViewTypeEnumG"
+        },
+        "startValidUsagePeriod": {
+          "title": "startValidUsagePeriod",
+          "description": "Valid start date/time for the supply.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "endValidUsagePeriod": {
+          "title": "endValidUsagePeriod",
+          "description": "Valid end date/time for the supply.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "spacesReference": {
+          "title": "spacesReference",
+          "description": "A reference to one or more spaces for which the supply information is valid.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "prkSupplyExtensionG": {
+          "title": "prkSupplyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "quantity",
+        "viewType"
+      ]
+    },
+    "SupplyViewTypeEnum": {
+      "title": "SupplyViewTypeEnum",
+      "description": "Define if space quantity is demarcated or estimated.",
+      "type": "string",
+      "enum": [
+        "spaceView",
+        "vehicleView",
+        "extendedG"
+      ]
+    },
+    "SupplyViewTypeEnumG": {
+      "title": "SupplyViewTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/SupplyViewTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ThresholdConfiguration": {
+      "title": "ThresholdConfiguration",
+      "description": "Configuration of thresholds and colours for the status parameter. Only one status should be active at a time, so that the most recently activated status means that an existing active status should be considered no longer active.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lastMaximumOccupancy": {
+          "title": "lastMaximumOccupancy",
+          "description": "The last known occupancy (number of parked vehicles on the site) under safe conditions.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "statusConfiguration": {
+          "title": "statusConfiguration",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/StatusConfiguration"
+          },
+          "minItems": 1
+        },
+        "prkThresholdConfigurationExtensionG": {
+          "title": "prkThresholdConfigurationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "statusConfiguration"
+      ]
+    },
+    "ThresholdsG": {
+      "title": "ThresholdsG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prkAvailableSpacesThresholds": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/AvailableSpacesThresholds"
+        },
+        "prkVehiclesOnSiteThresholds": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/VehiclesOnSiteThresholds"
+        },
+        "prkOccupiedSpacesThresholds": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupiedSpacesThresholds"
+        }
+      }
+    },
+    "TruckParkingDynamicManagementEnum": {
+      "title": "TruckParkingDynamicManagementEnum",
+      "description": "Dynamic parking mode enum.",
+      "type": "string",
+      "enum": [
+        "compactParking",
+        "queueParking",
+        "noDynamicParkingManagement",
+        "other",
+        "extendedG"
+      ]
+    },
+    "TruckParkingDynamicManagementEnumG": {
+      "title": "TruckParkingDynamicManagementEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Parking.json#/$defs/TruckParkingDynamicManagementEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "UsageScenario": {
+      "title": "UsageScenario",
+      "description": "A special type of usage available for this campus, (sub)place, space or identified area. In the 'ParkingStatusPublication', the operation type (in operation or not) can be defined.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingPatternIndex": {
+          "title": "operatingPatternIndex",
+          "description": "An index to link this element between the static and dynamic publications.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Integer"
+        },
+        "type": {
+          "title": "type",
+          "description": "A special type of usage available for this campus, (sub)place, space or identified area. In the 'ParkingStatusPublication', the operation type (in operation or not) can be defined.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ParkingUsageScenarioEnumG"
+          },
+          "minItems": 1
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for the usage scenario.",
+          "$ref": "DATEXII_3_Common.json#/$defs/MultilingualString"
+        },
+        "truckParkingDynamicManagement": {
+          "title": "truckParkingDynamicManagement",
+          "description": "Two modes for parking lorries in a efficient way according to their departure times. May only be used for parking scenario 'truckParking'.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/TruckParkingDynamicManagementEnumG"
+          },
+          "minItems": 0
+        },
+        "eventParkingType": {
+          "title": "eventParkingType",
+          "description": "Parking associated with an event. May only be used for parking scenario 'eventParking'.",
+          "$ref": "DATEXII_3_Common.json#/$defs/PublicEventTypeEnumG"
+        },
+        "relatedLocation": {
+          "title": "relatedLocation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/RelatedLocationG"
+          },
+          "minItems": 0
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "prkOperatingPatternExtensionG": {
+          "title": "prkOperatingPatternExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkUsageScenarioExtensionG": {
+          "title": "prkUsageScenarioExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingPatternIndex",
+        "type"
+      ]
+    },
+    "ValidityByOffset": {
+      "title": "ValidityByOffset",
+      "description": "The status validity expressed by an offset in seconds to the 'lastUpdated' timestamp.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "statusTimeOffsetToOrigin": {
+          "title": "statusTimeOffsetToOrigin",
+          "description": "Only use for forecasts or historical data to express the point of time for which the information of this parking is either reported or forecasted (in form of an offset in seconds to 'lastUpdated'; use negative values for historical data). ",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "prkStatusValidityExtensionG": {
+          "title": "prkStatusValidityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkValidityByOffsetExtensionG": {
+          "title": "prkValidityByOffsetExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "statusTimeOffsetToOrigin"
+      ]
+    },
+    "ValidityByPeriod": {
+      "title": "ValidityByPeriod",
+      "description": "The status validity expressed by the period model.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "validityTimeSpecification": {
+          "title": "validityTimeSpecification",
+          "description": "A specification of periods of validity defined by overall bounding start and end times and the possible intersection of valid periods with exception periods (exception periods overriding valid periods).",
+          "$ref": "DATEXII_3_Common.json#/$defs/OverallPeriod"
+        },
+        "prkStatusValidityExtensionG": {
+          "title": "prkStatusValidityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkValidityByPeriodExtensionG": {
+          "title": "prkValidityByPeriodExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "validityTimeSpecification"
+      ]
+    },
+    "ValidityByTime": {
+      "title": "ValidityByTime",
+      "description": "The status validity expressed by a point of time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "statusTime": {
+          "title": "statusTime",
+          "description": "Only use for forecasts or historical data to express the point of time for which the information of this parking is either reported or forecasted.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "prkStatusValidityExtensionG": {
+          "title": "prkStatusValidityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkValidityByTimeExtensionG": {
+          "title": "prkValidityByTimeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "statusTime"
+      ]
+    },
+    "VehicleCountAndRate": {
+      "title": "VehicleCountAndRate",
+      "description": "Vehicle rates can be assigned to a parking site or to assigned parking spaces. Furthermore, they can reference to a measurement site or to an entrance/exit.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementSiteReference": {
+          "title": "measurementSiteReference",
+          "description": "A reference to a versioned measurement site record defined in a Measurement Site table.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/MeasurementSiteVersionedReferenceG"
+        },
+        "measuredValueIndex": {
+          "title": "measuredValueIndex",
+          "description": "If a measurement site is specified, the index of the measured value can be specified here.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "dedicatedAccess": {
+          "title": "dedicatedAccess",
+          "description": "Specifies a reference to an access, object (i.e. an entrance, an exit or both). A Point location and further characteristics can be specified for those objects.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "lastCalibration": {
+          "title": "lastCalibration",
+          "description": "Date of last calibration of the detection system in question.",
+          "$ref": "DATEXII_3_Common.json#/$defs/DateTime"
+        },
+        "coveringPetrolStationArea": {
+          "title": "coveringPetrolStationArea",
+          "description": "Indication, if this detector also covers the area of a petrol station.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "vehicleCountWithinInterval": {
+          "title": "vehicleCountWithinInterval",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/VehicleCountWithinInterval"
+          },
+          "minItems": 0
+        },
+        "vehicleRate": {
+          "title": "vehicleRate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/VehicleRate"
+          },
+          "minItems": 0
+        },
+        "measurementTimeDefault": {
+          "title": "measurementTimeDefault",
+          "description": "The time associated with the set of measurements.",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "prkVehicleCountAndRateExtensionG": {
+          "title": "prkVehicleCountAndRateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "VehicleCountValue": {
+      "title": "VehicleCountValue",
+      "description": "A measured or calculated value of absolute count of vehicles within a specified period of time expressed as non-negative integer.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vehicleCount": {
+          "title": "vehicleCount",
+          "description": "A measured or calculated absolute count of vehicles within a specified period of time expressed as non-negative integer.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkVehicleCountValueExtensionG": {
+          "title": "prkVehicleCountValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vehicleCount"
+      ]
+    },
+    "VehicleCountWithinInterval": {
+      "title": "VehicleCountWithinInterval",
+      "description": "Gives incoming and/or outgoing vehicles and/or change of occupied spaces within a given interval.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measurementInterval": {
+          "title": "measurementInterval",
+          "description": "The interval for the vehicle measurement in seconds.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Seconds"
+        },
+        "numberOfIncomingVehicles": {
+          "title": "numberOfIncomingVehicles",
+          "description": "Number of vehicles of specified type that entered the specified parking within the given interval.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/VehicleCountValue"
+        },
+        "numberOfOutgoingVehicles": {
+          "title": "numberOfOutgoingVehicles",
+          "description": "Number of vehicles of specified type that left the specified parking within the given interval.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/VehicleCountValue"
+        },
+        "changeOfOccupiedSpaces": {
+          "title": "changeOfOccupiedSpaces",
+          "description": "The change in the number of occupied spaces for specified vehicles within the given interval. Negative values mean less occupied spaces than at the beginning of the interval.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyChangeValue"
+        },
+        "countedVehicles": {
+          "title": "countedVehicles",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "prkVehicleCountWithinIntervalExtensionG": {
+          "title": "prkVehicleCountWithinIntervalExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "VehicleRate": {
+      "title": "VehicleRate",
+      "description": "Information about vehicle fill and exit rates or the general vehicle flow rate without direction.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fillRate": {
+          "title": "fillRate",
+          "description": "The rate at which vehicles are entering the parking expressed in vehicles per hour.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleFlowValue"
+        },
+        "exitRate": {
+          "title": "exitRate",
+          "description": "The rate at which vehicles are exiting the parking expressed in vehicles per hour.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleFlowValue"
+        },
+        "vehicleFlowRate": {
+          "title": "vehicleFlowRate",
+          "description": "A value of vehicle flow rate expressed in vehicles per hour.",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleFlowValue"
+        },
+        "measuredVehicles": {
+          "title": "measuredVehicles",
+          "$ref": "DATEXII_3_Common.json#/$defs/VehicleCharacteristics"
+        },
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/$defs/MeasurementOrCalculationTime"
+        },
+        "prkVehicleRateExtensionG": {
+          "title": "prkVehicleRateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "VehiclesOnSiteThresholds": {
+      "title": "VehiclesOnSiteThresholds",
+      "description": "The threshold is defined by the number of vehicles on the parking. This may differ from the number of occupied spaces, for example when vehicles share spaces.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lowerThreshold": {
+          "title": "lowerThreshold",
+          "description": "A lower threshold from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "upperThreshold": {
+          "title": "upperThreshold",
+          "description": "An upper threshold up to which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "lowerThresholdInPercent": {
+          "title": "lowerThresholdInPercent",
+          "description": "A lower threshold in percent from which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "upperThresholdInPercent": {
+          "title": "upperThresholdInPercent",
+          "description": "An upper threshold in percent up to which the specified parking site status should become active.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Percentage"
+        },
+        "boundaryValuesExcluded": {
+          "title": "boundaryValuesExcluded",
+          "description": "Configures, if the given threshold values itself should be included (\"false\"; default) or excluded (\"true\") in the comparison, when evaluating the status.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "prkThresholdsExtensionG": {
+          "title": "prkThresholdsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkVehiclesOnSiteThresholdsExtensionG": {
+          "title": "prkVehiclesOnSiteThresholdsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      }
+    },
+    "VehicularAccess": {
+      "title": "VehicularAccess",
+      "description": "A specialisation of an identified area defining a vehicular access area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "layer": {
+          "title": "layer",
+          "description": "Indicator of the position of this hierarchy element in the specific hierarchy, with the top of the hierarchy numbered layer 0.",
+          "$ref": "DATEXII_3_Common.json#/$defs/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "Identifies the type of the hierarchy element",
+          "$ref": "DATEXII_3_Parking.json#/$defs/HierarchyElementTypeEnumG"
+        },
+        "parentId": {
+          "title": "parentId",
+          "description": "The identity of a parent node in the next layer up of the hierarchy - for the hierarchy element at layer 0 no parent id shall be defined.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+        },
+        "childId": {
+          "title": "childId",
+          "description": "The identity of one or several child node directly related to this hierarchy element.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/FacilityObjectVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "operatorDefinedReference": {
+          "title": "operatorDefinedReference",
+          "description": "Allows a data owner to associate to a data owner internal used location identification",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlaceVersionedReferenceG"
+        },
+        "accessType": {
+          "title": "accessType",
+          "description": "Provides characterisation of the nature of this access area.",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessTypeEnumG"
+        },
+        "equipment": {
+          "title": "equipment",
+          "description": "Specifies additional equipment for this access.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/AccessEquipmentEnumG"
+          },
+          "minItems": 0
+        },
+        "orientation": {
+          "title": "orientation",
+          "description": "The compass direction of the access in relation to the parking site, e.g. the northern entrance.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/$defs/DirectionCompassEnumG"
+          },
+          "minItems": 0
+        },
+        "rentalCarReturn": {
+          "title": "rentalCarReturn",
+          "description": "Rental cars can be returned at this access.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "usableForPedestrian": {
+          "title": "usableForPedestrian",
+          "description": "Indicates, whether pedestrian can use this access. This attribute can be used if no specific PedestrianAccess will be specified.",
+          "$ref": "DATEXII_3_Common.json#/$defs/Boolean"
+        },
+        "occupancyLevel": {
+          "title": "occupancyLevel",
+          "$ref": "DATEXII_3_Parking.json#/$defs/OccupancyLevel"
+        },
+        "operatorDefinedPlace": {
+          "title": "operatorDefinedPlace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatorDefinedPlace"
+          },
+          "minItems": 0
+        },
+        "responsibilityRoleAssignment": {
+          "title": "responsibilityRoleAssignment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/ResponsibilityRoleAssignment"
+          },
+          "minItems": 0
+        },
+        "supply": {
+          "title": "supply",
+          "$ref": "DATEXII_3_Parking.json#/$defs/Supply"
+        },
+        "operatingPattern": {
+          "title": "operatingPattern",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/OperatingPatternG"
+          },
+          "minItems": 0
+        },
+        "additionalCharacteristics": {
+          "title": "additionalCharacteristics",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AdditionalCharacteristics"
+        },
+        "accessAndEgress": {
+          "title": "accessAndEgress",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessAndEgress"
+        },
+        "primaryRoad": {
+          "title": "primaryRoad",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/AccessRoad"
+          },
+          "minItems": 0
+        },
+        "accessLaneSpecific": {
+          "title": "accessLaneSpecific",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Parking.json#/$defs/AccessLaneSpecific"
+          },
+          "minItems": 0
+        },
+        "correspondingJunction": {
+          "title": "correspondingJunction",
+          "$ref": "DATEXII_3_Parking.json#/$defs/AccessJunction"
+        },
+        "facFacilityObjectExtensionG": {
+          "title": "facFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "facFacilityExtensionG": {
+          "title": "facFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkHierarchyElementGeneralExtensionG": {
+          "title": "prkHierarchyElementGeneralExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkIdentifiedAreaExtensionG": {
+          "title": "prkIdentifiedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkAccessExtensionG": {
+          "title": "prkAccessExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        },
+        "prkVehicularAccessExtensionG": {
+          "title": "prkVehicularAccessExtensionG",
+          "$ref": "DATEXII_3_Common.json#/$defs/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "layer",
+        "type",
+        "accessType"
+      ]
+    },
+    "VmsControllerVersionedReferenceG": {
+      "title": "VmsControllerVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "VmsController"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    }
+  }
+}

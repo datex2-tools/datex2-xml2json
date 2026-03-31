@@ -1,0 +1,123 @@
+{
+  "d2LogicalModel": {
+    "@extensionName": "Baustellen",
+    "@extensionVersion": "04-00-00",
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "@xsi:schemaLocation": "http://datex2.eu/schema/2/2_0 https://mobilithek.info/mdp-api/files/aux/schemas/DATEX_2/Profile_Road_Works/MDM_Datenmodell_Baustellen_04-00-00.xsd",
+    "exchange": {
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "Export"
+      }
+    },
+    "payloadPublication": {
+      "@lang": "DE",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "Export"
+      },
+      "publicationTime": "2026-03-30T07:20:17Z",
+      "situation": [
+        {
+          "@id": "31027-2020A2311",
+          "@version": "00235",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real"
+          },
+          "situationExtension": {
+            "situationExtended": {
+              "overallSituation": {
+                "@id": "31027-2020A2311_Gesamtma\u00dfnahme",
+                "@version": "00002",
+                "@xsi:type": "OperatorAction",
+                "generalPublicComment": [
+                  {
+                    "comment": {
+                      "values": {
+                        "value": [
+                          {
+                            "@lang": "de",
+                            "_text": "Neckarstra\u00dfe zwischen Enzstra\u00dfe und Dreisamstra\u00dfe"
+                          }
+                        ]
+                      }
+                    },
+                    "commentDateTime": "2026-03-27T11:38:31Z",
+                    "commentExtension": {
+                      "commentExtended": {
+                        "commentType2": "roadworksName"
+                      }
+                    }
+                  }
+                ],
+                "probabilityOfOccurrence": "certain",
+                "situationRecordCreationTime": "2025-02-18T11:42:27Z",
+                "situationRecordVersionTime": "2026-03-27T11:39:23Z",
+                "validity": {
+                  "validityStatus": "definedByValidityTimeSpec",
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-04-30T00:00:00Z",
+                    "overallStartTime": "2025-05-05T00:00:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "situationRecord": [
+            {
+              "@id": "31027-2025V6541",
+              "@version": "00002",
+              "@xsi:type": "ConstructionWorks",
+              "actionPlanIdentifier": "A3",
+              "constructionWorkType": "roadImprovementOrUpgrading",
+              "groupOfLocations": {
+                "@xsi:type": "NonOrderedLocationGroupByList",
+                "locationContainedInGroup": [
+                  {
+                    "@xsi:type": "Linear",
+                    "linearExtension": {
+                      "linearExtended": {
+                        "gmlLineString": {
+                          "posList": "48.9855494 8.39272544 48.985768 8.39208757 48.98590625 8.39168623",
+                          "srsName": "WGS84 EPSG 4326"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "@xsi:type": "Linear",
+                    "linearExtension": {
+                      "linearExtended": {
+                        "gmlLineString": {
+                          "posList": "48.98675584 8.39368136 48.9855494 8.39272544",
+                          "srsName": "WGS84 EPSG 4326"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "operatorActionStatus": "requested",
+              "probabilityOfOccurrence": "certain",
+              "severity": "medium",
+              "situationRecordCreationTime": "2025-11-12T14:42:07Z",
+              "situationRecordVersionTime": "2025-12-08T16:01:34Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2025-12-08T00:00:00Z",
+                  "overallStartTime": "2025-11-19T00:00:00Z"
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-03-27T11:39:23Z"
+        }
+      ]
+    }
+  }
+}

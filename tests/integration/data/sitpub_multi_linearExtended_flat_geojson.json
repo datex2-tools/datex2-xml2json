@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "features": {
+    "type": "Feature",
+    "properties": {
+      "publicationTime": "2026-03-30T07:20:17Z",
+      "publicationCreator": "Export",
+      "situationId": "31027-2020A2311",
+      "situationVersionTime": "2026-03-27T11:39:23Z",
+      "confidentiality": "noRestriction",
+      "informationStatus": "real",
+      "id": "31027-2025V6541",
+      "version": "00002",
+      "situationRecordCreationTime": "2025-11-12T14:42:07Z",
+      "situationRecordVersionTime": "2025-12-08T16:01:34Z",
+      "probabilityOfOccurrence": "certain",
+      "type": "ConstructionWorks",
+      "validityStatus": "definedByValidityTimeSpec",
+      "overallStartTime": "2025-11-19T00:00:00Z",
+      "overallEndTime": "2025-12-08T00:00:00Z",
+      "severity": "medium",
+      "situationSubtype": "roadImprovementOrUpgrading",
+      "actionPlanIdentifier": "A3",
+      "operatorActionStatus": "requested"
+    },
+    "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [
+        [
+          [
+            8.39272544,
+            48.9855494
+          ],
+          [
+            8.39208757,
+            48.985768
+          ],
+          [
+            8.39168623,
+            48.98590625
+          ]
+        ],
+        [
+          [
+            8.39368136,
+            48.98675584
+          ],
+          [
+            8.39272544,
+            48.9855494
+          ]
+        ]
+      ]
+    }
+  }
+}

@@ -37,6 +37,7 @@ def wrap_lroffset(lr_dict: dict):
             new_dict[k] = lr_dict[k]
     return new_dict
 
+DEFAULT_LANGUAGE = 'de'
 
 class TransformationRuleFactory:
 
@@ -89,11 +90,12 @@ class TransformationRuleFactory:
     def __init__(self):
         pass
 
-    def xmlv2_to_json3_6(self):
+    def xmlv2_to_json(self):
+        
         renamings = {
             # xml2json artifact
             '_text': 'value',
-            # Assumed DATEXII 2.2->DATEX3.6 naming changes
+            # Assumed DATEXII 2.2->DATEX3.7 naming changes
             'd2LogicalModel':'payload',
             'affectedCarriagewayAndLanes':'carriageway',
             'groupOfLocations': 'locationReference',
@@ -103,6 +105,7 @@ class TransformationRuleFactory:
             'openlrExtendedLinear': 'openlrLinear',
             'openlrLowestFRCToNextLRPoint': 'openlrLowestFrcToNextLRPoint',
             'roadworksDuration': 'roadworksDurationClassification',
+
             # VMS
             'vmsUnitTable': 'vmsControllerTable',
             'vmsUnitRecord': 'vmsController',
@@ -115,7 +118,100 @@ class TransformationRuleFactory:
             'pictogramDisplayAreaIndex': 'displayAreaIndex',
             'vmsUnitTableIdentification': 'vmsControllerTableIdentification',
             'vmsPictogramDisplayCharacteristicsExtension': 'vmsPictogramDisplayAreaExtensionG',
+
+            # 
+            '@modelBaseVersion':'modelBaseVersion',
+            '@id': 'id',
+            '@lang': 'lang',
+            '@version': 'version',
+            '@targetClass': 'targetClass',
+            '@xsi:type': 'type',
+        }
+
+        def add_def_lang_if_missing(v):
+            return v if isinstance(v, dict) else { 'lang': DEFAULT_LANGUAGE, 'value': v}
+
+        def handle_datex2_gml_extensions(v):
+            if 'coordinates' in v:
+                pass      
+            else: 
+                posList = v.get('posList')
+            return { 'locGmlLineString': { 'posList': posList}},
+    
+        value_transforms = {
+            # type transformations
+            'offsetDistance': lambda v: int(v) if not isinstance(v, dict) else v,
+            # value transformations
+            # v3 requires timezone information in time values which are not provided in v2 xml
+            # TODO this should be fixed in a more complex post processing
+            #'endTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v, 
+            #'startTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v,
+            # v3 removed some v2 enum values which need to be mapped
+            'commentType':  lambda v: { 'value': 'other' if v == 'locationDescriptor' else v },
+            'vehicleObstructionType': lambda v: { 'value': 'brokenDownVehicle'} if v == 'brokenDownHeavyLorry' else { 'value': 'dangerousSlowMovingVehicle'} if v=='slowMovingMaintenanceVehicle' else {'value': v },
+            'causeType': lambda v: { 'value': 'other'} if v == 'shearWeightOfTraffic' else {'value': v },
+            'openlrFunctionalRoadClass': lambda v: { 'value': v.lower() },
+            'openlrLowestFRCToNextLRPoint': lambda v: { 'value': v.lower() },
+            # lang: de-DE -> de as JSON schema allows only 2 chars, bemas uses uppercase
+            '@lang': lambda v: v[0:2].lower(),
+            'lane': lambda v: { 'laneNumber': int(v[4:])} if v.startswith('lane') else { 'laneUsage': { 'value': v }},
+            # comment/values is expected to be a dict with value/lang. For now, we assume values only includes multi ling string
+            'values': lambda v: [add_def_lang_if_missing(value) for value in v['value']],
+            'alertCDirection': lambda v: v | { 'alertCAffectedDirection': {'value': 'unknown'}},
+            'grossWeightCharacteristic': lambda v: v | { 'typeOfWeight': { 'value': 'actual'}},
+        
+            'recurringDayWeekMonthPeriod': lambda v: { 'comDayWeekMonth': v} if v is not None else None,
+            'supplementaryPositionalDescription': pull_up_first_length_affected,
+            'openlrPoiWithAccessPoint':  wrap_lroffset,
+            'openlrPointAlongLine':  wrap_lroffset,
+            'managedCause': lambda v: { 'objectReference': v},
+            # VMS
+            'vmsType': lambda v: {'value': 'fullMatrixSign' if v=='matrixSign' else v},
+            'vmsRecord': push_down_vms_configuration,
+
+            #'roadMaintenanceType': lambda v: v if isinstance(v, list) else [wrap_with_value(v)], # TODO conversion issue?
+            'alertCLinear': lambda v: v if isinstance(v, list) else [v], # TODO conversion issue?
             
+            'linearWithinLinearElement': lambda v: v if isinstance(v, list) else [v],
+            'linearElement': lambda v: { 'locLinearElement': v},
+            'gmlLineString': lambda v: { 'posList': v.get('posList', v.get('coordinates','').replace(',',' '))},
+        }
+
+        keys_to_drop = { 
+            'urgency': None, # Apparently, support for urgency has been dropped?
+            '@xmlns:xsi': None,
+            '@version': ['situation'], 
+            'type': ['recurringTimePeriodOfDay', 'cause'], 
+            'management': ['situationRecord'], # apparently support for lifecyclemanagement notifications has been dropped?
+            'openlrGeoCoordinate': ['openlrPointLocationReference'],
+            '@xmlns': None,
+            'exchange': None,
+            'originalNumberOfLanes': ['impact'], # TODO, check, if we shold copy this value to carriageways
+        }
+
+        geojson_drops = {
+            'situationExtension': None
+        }
+
+        # keys_to_pull_up convert { ..., '<value>': { <nested properties> } } in { ..., <nested properties>}
+        keys_to_pull_up = {
+            'linearExtension',
+            'linearExtended',
+            'linearLineStringExtension',
+            'pointExtension',
+            'openlrExtendedPoint',
+            'areaExtension',
+            'openlrExtendedArea',
+            'payloadPublication',
+            'locGmlLineString',
+        }
+
+        #return TransformationRules(renamings, value_transforms, keys_to_drop, self.datex_xml_2_json_xsitype_mappings, keys_to_pull_up)
+        return TransformationRules(renamings, value_transforms, keys_to_drop | geojson_drops, {}, keys_to_pull_up)
+    
+
+    def xmlv2_to_json3_7(self):
+        datex_json_renamings = {
             # Assumed DATEXII JSON Schema Artifacts 
             '@modelBaseVersion':'modelBaseVersionG',
             '@id': 'idG',
@@ -138,34 +234,11 @@ class TransformationRuleFactory:
             'openlrPointAlongLine': 'locOpenlrPointAlongLine',
             'openlrPoiWithAccessPoint':'locOpenlrPoiWithAccessPoint',
         }
-
-
+        
         # A couple of text properties are wrapped in an object, presumably for extendability
         wrap_with_value = lambda v: { 'value': v }
 
         value_transforms = {
-            # type transformations
-            'offsetDistance': lambda v: int(v) if not isinstance(v, dict) else v,
-            # value transformations
-            # v3 requires timezone information in time values which are not provided in v2 xml
-            # TODO this should be fixed in a more complex post processing
-            #'endTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v, 
-            #'startTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v,
-            # v3 removed some v2 enum values which need to be mapped
-            'commentType':  lambda v: { 'value': 'other' if v == 'locationDescriptor' else v },
-            'vehicleObstructionType': lambda v: { 'value': 'brokenDownVehicle'} if v == 'brokenDownHeavyLorry' else { 'value': 'dangerousSlowMovingVehicle'} if v=='slowMovingMaintenanceVehicle' else {'value': v },
-            'causeType': lambda v: { 'value': 'other'} if v == 'shearWeightOfTraffic' else {'value': v },
-            'openlrFunctionalRoadClass': lambda v: { 'value': v.lower() },
-            'openlrLowestFRCToNextLRPoint': lambda v: { 'value': v.lower() },
-            # lang: de-DE -> de as JSON schema allows only 2 chars, bemas uses uppercase
-            '@lang': lambda v: v[0:2].lower(),
-            'lane': lambda v: { 'laneNumber': int(v[4:])} if v.startswith('lane') else { 'laneUsage': { 'value': v }},
-            # comment/values is expected to be a dict with value/lang. For now, we assume values only includes multi ling string
-            #'values': lambda value: {'value': value, 'lang': defaultLanguage} if isinstance(value, str) else value,
-            'values': lambda value: value['value'] if isinstance(value, dict) else value, 
-            'alertCDirection': lambda v: v | { 'alertCAffectedDirection': {'value': 'unknown'}},
-            'grossWeightCharacteristic': lambda v: v | { 'typeOfWeight': { 'value': 'actual'}},
-        
             # Value wrapping...
             'abnormalTrafficType': wrap_with_value,
             'accidentType': wrap_with_value,
@@ -214,49 +287,24 @@ class TransformationRuleFactory:
             'generalNetworkManagementType':wrap_with_value,
             'overallSeverity':wrap_with_value,
             'carriageway': wrap_with_value,
-            
-            'recurringDayWeekMonthPeriod': lambda v: { 'comDayWeekMonth': v} if v is not None else None,
-            'supplementaryPositionalDescription': pull_up_first_length_affected,
-            'openlrPoiWithAccessPoint':  wrap_lroffset,
-            'openlrPointAlongLine':  wrap_lroffset,
-            'managedCause': lambda v: { 'objectReference': v},
-            # VMS
-            'vmsType': lambda v: {'value': 'fullMatrixSign' if v=='matrixSign' else v},
+
+            # vms
             'physicalSupport': wrap_with_value,
             'vmsPhysicalMounting': wrap_with_value,
             'tpegSimplePointLocationType': wrap_with_value,
-            'vmsRecord': push_down_vms_configuration,
 
-            'roadMaintenanceType': lambda v: v if isinstance(v, list) else [wrap_with_value(v)], # TODO conversion issue?
-            'alertCLinear': lambda v: v if isinstance(v, list) else [v], # TODO conversion issue?
-            
-            'linearWithinLinearElement': lambda v: v if isinstance(v, list) else [v],
-            'linearElement': lambda v: { 'locLinearElement': v},
+            'gmlLineString': lambda v: { 'locGmlLineString': { 'posList': v.get('posList', v.get('coordinates','').replace(',',' '))}},
         }
+
+        
 
         keys_to_drop = { 
-            'urgency': None, # Apparently, support for urgency has been dropped?
-            '@xmlns:xsi': None,
-            '@version': ['situation'], 
-            'type': ['recurringTimePeriodOfDay', 'cause'], 
-            'management': ['situationRecord'], # apparently support for lifecyclemanagement notifications has been dropped?
-            'openlrGeoCoordinate': ['openlrPointLocationReference'],
-            '@xmlns': None,
-            'exchange': None,
+            '@xsi:schemaLocation': None,
+            '@xmlns:xsd': None,
             '@xsi:type': None,
-            'originalNumberOfLanes': ['impact'], # TODO, check, if we shold copy this value to carriageways
         }
 
-        # keys_to_pull_up convert { ..., '<value>': { <nested properties> } } in { ..., <nested properties>}
-        keys_to_pull_up = {
-            'linearExtension', 
-            'pointExtension',
-            'openlrExtendedPoint',
-            'areaExtension',
-            'openlrExtendedArea',
-            'payloadPublication',
-        }
-
-        return TransformationRules(renamings, value_transforms, keys_to_drop, self.datex_xml_2_json_xsitype_mappings, keys_to_pull_up)
+        rules = self.xmlv2_to_json()
+        return TransformationRules(rules.renamings | datex_json_renamings, rules.value_transforms | value_transforms, rules.keys_to_drop | keys_to_drop, self.datex_xml_2_json_xsitype_mappings, rules.keys_to_pull_up)
 
        
