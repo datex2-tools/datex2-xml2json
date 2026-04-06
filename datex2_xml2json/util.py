@@ -62,7 +62,7 @@ def xpath_dict(data, path):
 
     return _search(data, parts)
 
-def replace(value, current_key, renamings: dict[str,str], value_transforms: dict, keys_to_drop: dict[str,str|None], type_mappings: dict[str, str], keys_to_pull_up: list[str]):
+def replace(value, current_key, renamings: dict[str,str], value_transforms: dict, keys_to_drop: dict[str,[str]], type_mappings: dict[str, str], keys_to_pull_up: dict[str,list[str]]):
     # renamings: dict of old keys which shall be replaced by new keys
     # keys_to_drop: dict of keys which should be removed from dicts, if their parent key equals keys_to_drop[key]'s value (or value is None)
     # type_mappings: dict of type values which, if present as 'type': type_mapping_key will result in an object {type_mapping_value: {} } 
@@ -74,12 +74,20 @@ def replace(value, current_key, renamings: dict[str,str], value_transforms: dict
             if not value[key] is None and not (key in keys_to_drop and (keys_to_drop[key] is None or current_key in keys_to_drop[key])) and not (key =='type' and value['type'] in type_mappings):
                 replaced = replace(value[key], key, renamings, value_transforms, keys_to_drop, type_mappings, keys_to_pull_up)
 
-                if key in keys_to_pull_up:
-                    for inner_key in replaced:
-                        new_dict[renamings.get(inner_key, inner_key)] = replaced[inner_key]
-                else:
-                    new_dict[renamings.get(key, key)] = replaced
+                new_dict[renamings.get(key, key)] = replaced
 
+        for parent_key, children_keys in keys_to_pull_up.items():
+            if parent_key in new_dict:
+                if children_keys and len(children_keys) > 0:
+                    # copy only intended children 
+                    for child_key in children_keys:
+                        if child_key in new_dict[parent_key]:
+                            new_dict[child_key] = new_dict[parent_key].pop(child_key)
+                else:
+                    # copy only intended children 
+                    dict_to_merge = new_dict.pop(parent_key)
+                    new_dict = new_dict | dict_to_merge
+                   
         if '@xsi:type' in value and value['@xsi:type'] in type_mappings:
             new_dict = { type_mappings[value['@xsi:type']]: new_dict}
         
