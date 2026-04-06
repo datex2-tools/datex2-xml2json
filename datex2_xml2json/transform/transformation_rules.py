@@ -236,18 +236,17 @@ class TransformationRuleFactory:
 
         # keys_to_pull_up convert { ..., '<value>': { <nested properties> } } in { ..., <nested properties>}
         keys_to_pull_up = {
-            'linearExtension',
-            'linearExtended',
-            'linearLineStringExtension',
-            'pointExtension',
-            'openlrExtendedPoint',
-            'areaExtension',
-            'openlrExtendedArea',
-            'payloadPublication',
-            'locGmlLineString',
+            'linearExtension': None,
+            'linearExtended': None,
+            'linearLineStringExtension': None,
+            'pointExtension': None,
+            'openlrExtendedPoint': None,
+            'areaExtension': None,
+            'openlrExtendedArea': None,
+            'payloadPublication': None,
+            'locGmlLineString': None,
         }
 
-        #return TransformationRules(renamings, value_transforms, keys_to_drop, self.datex_xml_2_json_xsitype_mappings, keys_to_pull_up)
         return TransformationRules(renamings, value_transforms, keys_to_drop | geojson_drops, {}, keys_to_pull_up)
     
 
@@ -372,7 +371,7 @@ class TransformationRuleFactory:
             'nonWeatherRelatedRoadConditionType': wrap_with_value,
             'maintenanceVehicleActions': wrap_with_value,
             'roadsideServiceDisruptionType':  wrap_with_value,
-
+           
             'vehicleObstructionType': lambda v: { 'value': self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
             # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
             'obstructionType': lambda v: { 'value': 'other' } if v in ('highSpeedChase', 'houseFire', 'recklessDriver') else { 'value': v},
