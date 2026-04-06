@@ -137,6 +137,25 @@ class TransformationRuleFactory:
             else: 
                 posList = v.get('posList')
             return { 'locGmlLineString': { 'posList': posList}},
+
+
+        
+        CAUSE_TYPE_MAPPINGS = {
+            'shearWeightOfTraffic': 'other',
+            'earlierAccident': 'earlierIncident',
+            'congestion': 'abnormalTraffic',
+        }
+
+        VEHICLE_OBSTRUCTION_TYPE_MAPPINGS = {
+            'brokenDownBus': 'brokenDownVehicle',
+            'brokenDownHeavyLorry': 'brokenDownVehicle',
+            'slowMovingMaintenanceVehicle': 'slowVehicle',
+            'trackLayingVehicle': 'trackedVehicle',
+            'vehicleStuckUnderBridge': 'vehicleStuck',
+            'saltingOrGrittingVehicleInUse': 'other',
+            'snowplough': 'other',
+        }
+
     
         value_transforms = {
             # type transformations
@@ -148,8 +167,10 @@ class TransformationRuleFactory:
             #'startTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v,
             # v3 removed some v2 enum values which need to be mapped
             'commentType':  lambda v: { 'value': 'other' if v == 'locationDescriptor' else v },
-            'vehicleObstructionType': lambda v: { 'value': 'brokenDownVehicle'} if v == 'brokenDownHeavyLorry' else { 'value': 'dangerousSlowMovingVehicle'} if v=='slowMovingMaintenanceVehicle' else {'value': v },
-            'causeType': lambda v: { 'value': 'other'} if v == 'shearWeightOfTraffic' else {'value': v },
+            'vehicleObstructionType': lambda v: { 'value': VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
+            # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
+            'obstructionType': lambda v: 'other' if v in ('highSpeedChase', 'houseFire', 'recklessDriver') else v,
+            'causeType': lambda v: { 'value': CAUSE_TYPE_MAPPINGS.get(v,v)},
             'openlrFunctionalRoadClass': lambda v: { 'value': v.lower() },
             'openlrLowestFRCToNextLRPoint': lambda v: { 'value': v.lower() },
             # lang: de-DE -> de as JSON schema allows only 2 chars, bemas uses uppercase
