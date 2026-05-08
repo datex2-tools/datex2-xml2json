@@ -12,14 +12,9 @@ class GeoparquetRenderer:
         records = []
         for f in a_geojson_dict["features"]:
             props = f["properties"].copy()
-            if not   "geometry" in f:
-                print(f)
-            props["geometry"] = shape(f["geometry"])
+            props["geometry"] = shape(f["geometry"]).wkb
             records.append(props)
         
-        table = gpq.to_arrow_table(
-            records,
-            geometry_column="geometry",
-            crs="EPSG:4326"
-        )
-        gpq.write_geoparquet(table, filename)
+        table = table = pa.Table.from_pylist(records)
+
+        gpio.write_geoparquet(table, filename)
