@@ -3,12 +3,11 @@ from .transformation_rules import TransformationRuleFactory, TransformationRules
 
 
 class AbstractTransformer:
-
     def transform(self, a_dict: dict) -> dict:
         pass
 
-class TransformerPipeline(AbstractTransformer):
 
+class TransformerPipeline(AbstractTransformer):
     def __init__(self, transformers: list[AbstractTransformer]):
         self.transformers = list(transformers)
 
@@ -22,8 +21,8 @@ class TransformerPipeline(AbstractTransformer):
 
         return result
 
-class RulesTransformer(AbstractTransformer):
 
+class RulesTransformer(AbstractTransformer):
     def __init__(self, rules: TransformationRules):
         self.rules = rules
 
@@ -34,11 +33,20 @@ class RulesTransformer(AbstractTransformer):
         # * renamings of certain properties according to changed writing in json
         # * casts values of certain properties to intended types
         # * ...
-        
-        return replace(a_dict, None, self.rules.renamings, self.rules.value_transforms, self.rules.keys_to_drop, self.rules.type_mappings, self.rules.keys_to_pull_up) 
+
+        return replace(
+            a_dict,
+            None,
+            self.rules.renamings,
+            self.rules.value_transforms,
+            self.rules.keys_to_drop,
+            self.rules.type_mappings,
+            self.rules.keys_to_pull_up,
+        )
+
 
 class ProcessingTransformer(AbstractTransformer):
-    def __init__(self, xpath:str):
+    def __init__(self, xpath: str):
         self.xpath = xpath
 
     def transform(self, a_dict: dict) -> dict:
@@ -49,5 +57,3 @@ class ProcessingTransformer(AbstractTransformer):
 
     def process(self, a_dict: dict):
         pass
-
-        

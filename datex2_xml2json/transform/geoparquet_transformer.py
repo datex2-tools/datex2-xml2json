@@ -3,8 +3,8 @@ import pyarrow as pa
 from shapely.geometry import shape
 from .base import AbstractTransformer
 
-class GeoparquetRenderer:
 
+class GeoparquetRenderer:
     def __init__(self):
         pass
 
@@ -14,7 +14,7 @@ class GeoparquetRenderer:
             props = f["properties"].copy()
             props["geometry"] = shape(f["geometry"]).wkb
             records.append(props)
-        
+
         table = table = pa.Table.from_pylist(records)
 
         gpio.write_geoparquet(table, filename)
