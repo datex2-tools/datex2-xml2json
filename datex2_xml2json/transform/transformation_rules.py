@@ -108,6 +108,7 @@ class TransformationRuleFactory:
         'VehicleObstruction': 'sitVehicleObstruction',
         'WinterDrivingManagement': 'sitWinterDrivingManagement',
         'Linear': 'locSingleRoadLinearLocation',
+        'NonOrderedLocationGroupByList': 'locLocationGroupByList',
         'SituationPublication': 'sitSituationPublication',
         'TpegNonJunctionPoint': 'locTpegNonJunctionPoint',
         'AlertCMethod4Linear': 'locAlertCMethod4Linear',
@@ -146,7 +147,7 @@ class TransformationRuleFactory:
             'openlrLowestFRCToNextLRPoint': 'openlrLowestFrcToNextLRPoint',
             'roadworksDuration': 'roadworksDurationClassification',
             'roadsideServiceDisruptionType': 'serviceDisruptionType',
-
+            'carParkStatus': 'serviceDisruptionType',
             # VMS
             'vmsUnitTable': 'vmsControllerTable',
             'vmsUnitRecord': 'vmsController',
@@ -200,7 +201,8 @@ class TransformationRuleFactory:
             'alertCDirection': lambda v: transform_alertc(v, False),
             'alertCPoint': lambda v: [v] if isinstance(v, dict) else v,
             'grossWeightCharacteristic': lambda v: v | { 'typeOfWeight': { 'value': 'actual'}},
-        
+            # v3 has no carParkStatus any longer, we map to serviceDisruption restAreaClosed
+            'carParkStatus': lambda v: [{'value': 'restAreaClosed' }] if v == 'carParkClosed' else v,
             'recurringDayWeekMonthPeriod': lambda v: { 'comDayWeekMonth': v} if v is not None else None,
             'supplementaryPositionalDescription': pull_up_first_length_affected,
             'openlrPoiWithAccessPoint':  wrap_lroffset,
@@ -228,6 +230,7 @@ class TransformationRuleFactory:
             '@xmlns': None,
             'exchange': None,
             'originalNumberOfLanes': ['impact'], # TODO, check, if we shold copy this value to carriageways
+            'carParkIdentity': None, # v3  dropped CarParks Situation. We map to serviceDisruption which seems not to have an equivalent to carParkIdentity 
         }
 
         geojson_drops = {
@@ -245,6 +248,7 @@ class TransformationRuleFactory:
             'openlrExtendedArea': None,
             'payloadPublication': None,
             'locGmlLineString': None,
+            'impact': ['trafficConstrictionType'],
         }
 
         return TransformationRules(renamings, value_transforms, keys_to_drop | geojson_drops, {}, keys_to_pull_up)
@@ -371,6 +375,7 @@ class TransformationRuleFactory:
             'nonWeatherRelatedRoadConditionType': wrap_with_value,
             'maintenanceVehicleActions': wrap_with_value,
             'roadsideServiceDisruptionType':  wrap_with_value,
+            'trafficConstrictionType':  wrap_with_value,
            
             'vehicleObstructionType': lambda v: { 'value': self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
             # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
