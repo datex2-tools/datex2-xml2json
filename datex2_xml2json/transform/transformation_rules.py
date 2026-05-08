@@ -138,11 +138,13 @@ class TransformationRuleFactory:
         "NonOrderedLocationGroupByList": "locLocationGroupByList",
         "SituationPublication": "sitSituationPublication",
         "TpegNonJunctionPoint": "locTpegNonJunctionPoint",
+        "AreaDestination": "locAreaDestination",
         "AlertCMethod4Linear": "locAlertCMethod4Linear",
         "Point": "locPointLocation",
         "Area": "locAreaLocation",
         "ItineraryByIndexedLocations": "locItineraryByIndexedLocations",
         "TpegGeometricArea": "locTpegGeometricArea",
+        "TpegNamedOnlyArea": "locTpegNamedOnlyArea",        
         "OpenlrPolygonLocationReference": "locOpenlrPolygonLocationReference",
         "DistanceFromLinearElementReferent": "locDistanceFromLinearElementReferent",
         # VMS
@@ -169,6 +171,7 @@ class TransformationRuleFactory:
             "locationDescriptor": "positionOnCarriageway",
             "locationForDisplay": "coordinatesForDisplay",
             "openlrCoordinate": "openlrCoordinates",
+            "area": "areaLocation",
             "openlrExtendedLinear": "openlrLinear",
             "openlrLowestFRCToNextLRPoint": "openlrLowestFrcToNextLRPoint",
             "roadworksDuration": "roadworksDurationClassification",
@@ -398,6 +401,7 @@ class TransformationRuleFactory:
             "loadType": wrap_with_value,
             "applicableForTrafficType": wrap_with_value,
             "roadOrCarriagewayOrLaneManagementType": wrap_with_value,
+            "disturbanceActivityType": wrap_with_value,
             "vehicleType": wrap_with_value,
             "referentType": wrap_with_value,
             "directionRelativeOnLinearSection": wrap_with_value,
@@ -429,6 +433,7 @@ class TransformationRuleFactory:
             "maintenanceVehicleActions": wrap_with_value,
             "roadsideServiceDisruptionType": wrap_with_value,
             "trafficConstrictionType": wrap_with_value,
+            "tpegAreaDescriptorType": wrap_with_value,
             "vehicleObstructionType": lambda v: {
                 "value": self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)
             },
