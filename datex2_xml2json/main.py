@@ -26,6 +26,7 @@ class InputFormat(StrEnum):
 
 
 class OutputFormat(StrEnum):
+    RAW = "raw"
     GEOJSON = "geojson"
     DATEX2_3_7_JSON = "datex2_3_7_json"
     DATEX2_3_7_JSON_LITE = "datex2_3_7_json_lite"
@@ -33,6 +34,7 @@ class OutputFormat(StrEnum):
 
 
 FILE_SUFFIXES_PER_FORMAT = {
+    OutputFormat.RAW: ".raw.json",
     OutputFormat.GEOJSON: ".geojson",
     OutputFormat.DATEX2_3_7_JSON: ".json",
     OutputFormat.DATEX2_3_7_JSON_LITE: ".lite.json",
@@ -73,6 +75,9 @@ def build_transformer(
                     GeoJSONGeometryTransformer("payload/situation/situationRecord"),
                 ]
             )
+        elif output_format == OutputFormat.RAW:
+            return TransformerPipeline([])
+
     else:
         return TransformerPipeline(
             [RulesTransformer(TransformationRuleFactory().xmlv3_to_json3_7())]
