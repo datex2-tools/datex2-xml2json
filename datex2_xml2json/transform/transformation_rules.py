@@ -37,9 +37,41 @@ def wrap_lroffset(lr_dict: dict):
             new_dict[k] = lr_dict[k]
     return new_dict
 
+def transform_alertc(v:dict, shouldWrapWithValue:bool):
+    """
+    In v2, alertCDirection did not distinguish between encoding and affected direction.
+    We assume, as apparently NDW mandated explictly, that for encoding matches affected direction and, 
+    in case of both or unknown affected direction, encoding is positive. 
+    """
+    currentAlertCDirectionCoded = v['alertCDirectionCoded']
+    if 'alertCDirectionCoded' in v: 
+        v['alertCAffectedDirection'] = 'aligned' if currentAlertCDirectionCoded in ['positive', 'negative'] else v['alertCDirectionCoded']
+        v['alertCDirectionCoded'] = 'positive' if currentAlertCDirectionCoded in ['both', 'unknown'] else v['alertCDirectionCoded']
+        if shouldWrapWithValue:
+            v['alertCAffectedDirection'] = { 'value': v['alertCAffectedDirection']}
+            v['alertCDirectionCoded'] = { 'value': v['alertCDirectionCoded']}
+            
+    return v 
+
 DEFAULT_LANGUAGE = 'de'
 
 class TransformationRuleFactory:
+
+    CAUSE_TYPE_MAPPINGS = {
+        'shearWeightOfTraffic': 'other',
+        'earlierAccident': 'earlierIncident',
+        'congestion': 'abnormalTraffic',
+    }
+
+    VEHICLE_OBSTRUCTION_TYPE_MAPPINGS = {
+        'brokenDownBus': 'brokenDownVehicle',
+        'brokenDownHeavyLorry': 'brokenDownVehicle',
+        'slowMovingMaintenanceVehicle': 'slowVehicle',
+        'trackLayingVehicle': 'trackedVehicle',
+        'vehicleStuckUnderBridge': 'vehicleStuck',
+        'saltingOrGrittingVehicleInUse': 'other',
+        'snowplough': 'other',
+    }
 
     # Type mappings convert { ..., "@xsi:type": "<key>" } to { "<value>": { ... }}
     datex_xml_2_json_xsitype_mappings = {
@@ -67,6 +99,10 @@ class TransformationRuleFactory:
         'ReroutingManagement': 'sitReroutingManagement',
         'WeatherRelatedRoadConditions': 'sitWeatherRelatedRoadConditions',
         'ServiceDisruption': 'sitServiceDisruption',
+        # see for CarParks https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#carparks-maps-to-servicedisruption
+        'CarParks': 'sitServiceDisruption',
+        # TODO: need to set serviceDisruptionType
+        'RoadsideServiceDisruption': 'sitServiceDisruption',
         'SpeedManagement': 'sitSpeedManagement',
         'TransitInformation': 'sitTransitInformation',
         'VehicleObstruction': 'sitVehicleObstruction',
@@ -85,6 +121,10 @@ class TransformationRuleFactory:
         'VmsTablePublication': 'vmsVmsTablePublication',
         'TpegSimplePoint': 'locTpegSimplePoint',
         'AlertCMethod4Point': 'locAlertCMethod4Point',
+        # Parking
+        'ParkingStatusPublication': "prkParkingStatusPublication",
+        'SpaceStatus': "prkSpaceStatus",
+        'PlaceStatus': "prkPlaceStatus",
     }
 
     def __init__(self):
@@ -105,6 +145,7 @@ class TransformationRuleFactory:
             'openlrExtendedLinear': 'openlrLinear',
             'openlrLowestFRCToNextLRPoint': 'openlrLowestFrcToNextLRPoint',
             'roadworksDuration': 'roadworksDurationClassification',
+            'roadsideServiceDisruptionType': 'serviceDisruptionType',
 
             # VMS
             'vmsUnitTable': 'vmsControllerTable',
@@ -122,6 +163,7 @@ class TransformationRuleFactory:
             # 
             '@modelBaseVersion':'modelBaseVersion',
             '@id': 'id',
+            '@index': 'index',
             '@lang': 'lang',
             '@version': 'version',
             '@targetClass': 'targetClass',
@@ -138,39 +180,16 @@ class TransformationRuleFactory:
                 posList = v.get('posList')
             return { 'locGmlLineString': { 'posList': posList}},
 
-
-        
-        CAUSE_TYPE_MAPPINGS = {
-            'shearWeightOfTraffic': 'other',
-            'earlierAccident': 'earlierIncident',
-            'congestion': 'abnormalTraffic',
-        }
-
-        VEHICLE_OBSTRUCTION_TYPE_MAPPINGS = {
-            'brokenDownBus': 'brokenDownVehicle',
-            'brokenDownHeavyLorry': 'brokenDownVehicle',
-            'slowMovingMaintenanceVehicle': 'slowVehicle',
-            'trackLayingVehicle': 'trackedVehicle',
-            'vehicleStuckUnderBridge': 'vehicleStuck',
-            'saltingOrGrittingVehicleInUse': 'other',
-            'snowplough': 'other',
-        }
-
-    
         value_transforms = {
             # type transformations
             'offsetDistance': lambda v: int(v) if not isinstance(v, dict) else v,
             # value transformations
-            # v3 requires timezone information in time values which are not provided in v2 xml
-            # TODO this should be fixed in a more complex post processing
-            #'endTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v, 
-            #'startTimeOfPeriod': lambda v: v+'+01:00' if not '+' in v else v,
             # v3 removed some v2 enum values which need to be mapped
             'commentType':  lambda v: { 'value': 'other' if v == 'locationDescriptor' else v },
-            'vehicleObstructionType': lambda v: { 'value': VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
+            'vehicleObstructionType': lambda v: self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v),
             # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
             'obstructionType': lambda v: 'other' if v in ('highSpeedChase', 'houseFire', 'recklessDriver') else v,
-            'causeType': lambda v: { 'value': CAUSE_TYPE_MAPPINGS.get(v,v)},
+            'causeType': lambda v: self.CAUSE_TYPE_MAPPINGS.get(v,v),
             'openlrFunctionalRoadClass': lambda v: { 'value': v.lower() },
             'openlrLowestFRCToNextLRPoint': lambda v: { 'value': v.lower() },
             # lang: de-DE -> de as JSON schema allows only 2 chars, bemas uses uppercase
@@ -178,7 +197,8 @@ class TransformationRuleFactory:
             'lane': lambda v: { 'laneNumber': int(v[4:])} if v.startswith('lane') else { 'laneUsage': { 'value': v }},
             # comment/values is expected to be a dict with value/lang. For now, we assume values only includes multi ling string
             'values': lambda v: [add_def_lang_if_missing(value) for value in v['value']],
-            'alertCDirection': lambda v: v | { 'alertCAffectedDirection': {'value': 'unknown'}},
+            'alertCDirection': lambda v: transform_alertc(v, False),
+            'alertCPoint': lambda v: [v] if isinstance(v, dict) else v,
             'grossWeightCharacteristic': lambda v: v | { 'typeOfWeight': { 'value': 'actual'}},
         
             'recurringDayWeekMonthPeriod': lambda v: { 'comDayWeekMonth': v} if v is not None else None,
@@ -231,6 +251,43 @@ class TransformationRuleFactory:
         return TransformationRules(renamings, value_transforms, keys_to_drop | geojson_drops, {}, keys_to_pull_up)
     
 
+    def xmlv3_to_json3_7(self):
+        datex_json_renamings = {
+            # Assumed DATEXII JSON Schema Artifacts 
+            '@modelBaseVersion':'modelBaseVersionG',
+            '@id': 'idG',
+            '@lang': 'lang',
+            '@version': 'versionG',
+            '@targetClass': 'targetClass',
+            '@operatingPatternIndex': 'operatingPatternIndex'
+        }
+
+        wrap_with_value = lambda v: { 'value': v }
+
+        value_transforms = {
+            # Value wrapping for parking ...
+            'status': wrap_with_value,
+            'operationStatus': wrap_with_value,
+            'informationStatus': wrap_with_value,
+            'confidentiality': wrap_with_value,
+        }
+        keys_to_drop = { 
+            '@xsi:schemaLocation': None,
+            '@xmlns': None,
+            '@xmlns:d2': None,
+            '@xmlns:loc': None,
+            '@xmlns:com': None,
+            '@xmlns:fac': None,
+            '@xmlns:xsd': None,
+            '@xmlns:xsi': None,
+            '@xsi:type': None,
+        }
+        keys_to_pull_up={
+            'modelBaseVersion'
+        }
+        return TransformationRules(datex_json_renamings, value_transforms, keys_to_drop, self.datex_xml_2_json_xsitype_mappings, keys_to_pull_up)
+    
+
     def xmlv2_to_json3_7(self):
         datex_json_renamings = {
             # Assumed DATEXII JSON Schema Artifacts 
@@ -278,6 +335,7 @@ class TransformationRuleFactory:
             'tpegOtherPointDescriptorType': wrap_with_value,
             'locationDescriptor':  wrap_with_value,
             'validityStatus': wrap_with_value,
+            'alertCDirection': lambda v: transform_alertc(v, True),
             'openlrFormOfWay': wrap_with_value,
             'complianceOption': wrap_with_value,
             'placesAtWhichApplicable': wrap_with_value,
@@ -300,7 +358,6 @@ class TransformationRuleFactory:
             'obstructionType': wrap_with_value,
             'reroutingManagementType': wrap_with_value,
             'animalPresenceType': wrap_with_value,
-            'alertCDirectionCoded': wrap_with_value,
             'severity': wrap_with_value,
             'authorityOperationType': wrap_with_value,
             'equipmentOrSystemFaultType':wrap_with_value,
@@ -308,7 +365,19 @@ class TransformationRuleFactory:
             'generalNetworkManagementType':wrap_with_value,
             'overallSeverity':wrap_with_value,
             'carriageway': wrap_with_value,
+            'infrastructureDamageType': wrap_with_value,
+            'speedManagementType': wrap_with_value,
+            'publicEventType': wrap_with_value,
+            'weatherRelatedRoadConditionType': wrap_with_value,
+            'nonWeatherRelatedRoadConditionType': wrap_with_value,
+            'maintenanceVehicleActions': wrap_with_value,
+            'roadsideServiceDisruptionType':  wrap_with_value,
 
+            'vehicleObstructionType': lambda v: { 'value': self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
+            # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
+            'obstructionType': lambda v: { 'value': 'other' } if v in ('highSpeedChase', 'houseFire', 'recklessDriver') else { 'value': v},
+            'causeType': lambda v: { 'value': self.CAUSE_TYPE_MAPPINGS.get(v,v)},
+            
             # vms
             'physicalSupport': wrap_with_value,
             'vmsPhysicalMounting': wrap_with_value,
