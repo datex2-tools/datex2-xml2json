@@ -53,7 +53,7 @@ mostly_flat_geojson_expression = """
         "severity": severity,
         "applicableForTrafficType":applicableForTrafficType,
         /* TODO Check which types are defined with maxoccurs=*, check which have value */
-        "situationSubtype": obstructionType[0] ?? reroutingManagementType[0] ?? constructionWorkType ?? generalInstructionToRoadUsersType ?? infrastructureDamageType ?? accidentType[0] ?? abnormalTrafficType ?? speedManagementType ?? roadMaintenanceType[0].value ?? animalPresenceType ?? environmentalObstructionType ?? generalNetworkManagementType ?? authorityOperationType ?? roadOrCarriagewayOrLaneManagementType ?? vehicleObstructionType ?? poorEnvironmentType,
+        "situationSubtype": obstructionType[0] ?? reroutingManagementType[0] ?? constructionWorkType ?? generalInstructionToRoadUsersType ?? infrastructureDamageType ?? accidentType[0] ?? abnormalTrafficType ?? speedManagementType ?? roadMaintenanceType[0] ?? animalPresenceType ?? environmentalObstructionType ?? generalNetworkManagementType ?? authorityOperationType ?? roadOrCarriagewayOrLaneManagementType ?? vehicleObstructionType ?? poorEnvironmentType,
         "actionPlanIdentifier": actionPlanIdentifier,
         "operatorActionStatus": operatorActionStatus,
         "roadworksDurationClassification": roadworksDurationClassification,
