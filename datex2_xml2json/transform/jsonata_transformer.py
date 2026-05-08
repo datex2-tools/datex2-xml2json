@@ -1,7 +1,7 @@
 import jsonata
 from .base import AbstractTransformer
 
-mostly_flat_geojson_expression = '''
+mostly_flat_geojson_expression = """
 {
   "type": "FeatureCollection",
   "features": payload.situation.situationRecord.{ 
@@ -64,11 +64,10 @@ mostly_flat_geojson_expression = '''
     "geometry": locationReference.geoJsonGeometry 
 }
 }
-'''
+"""
 
 
 class JsonataTransformer(AbstractTransformer):
-
     def __init__(self):
         self.jsonata_expr = jsonata.Jsonata(mostly_flat_geojson_expression)
 
