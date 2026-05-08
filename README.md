@@ -28,7 +28,10 @@ $ pip install -r requirements.txt
 
 Below, you find a couple of sample formats to generate different output formats.
 
-If you encounter issues, please open an issue and supply a minimal DATEXII XML sample and your command to reproduce the issue.
+If you encounter issues, i.e. an invalid DATEXII v3.7, you might consult the [troubleshooting guide](doc/troubleshooting.md). 
+If this is does not help, please open an issue and supply a minimal DATEXII XML sample and your command to reproduce the issue.
+
+In case you fixed an error or want to contribute, please create an issue as well and feel free to send a PR, thanks.
 
 #### DATEXII v3.7
 To convert a DATEXII v2.2 XML publication to DATEXII v3.7, use the following command. It will create out/situation_publication.json and will validate it after generation.
