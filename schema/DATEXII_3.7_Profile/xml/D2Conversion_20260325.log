@@ -1,0 +1,89 @@
+5:00:24 PM - [System] - log started with log level = Debug = 3
+5:00:24 PM - [System] - Start loading 'pim-37-level-a.xml'
+5:00:28 PM - [System] - XMI version is '2.1'
+5:01:27 PM - [System] - Start checking compliance with Level A
+5:01:27 PM - [System] - Model is compliant with Level A
+
+5:06:08 PM - [System] - log started with log level = Debug = 3
+5:06:09 PM - [System] - Start checking compliance with Level A
+5:06:09 PM - [System] - Model is compliant with Level A
+5:06:09 PM - [System] - Start checking the constrains
+5:06:09 PM - [Debug] - Found levelB extension : NetworkManagementExtendedUrban
+5:06:09 PM - [Debug] - Found levelB extension : DayWeekMonthExtended
+5:06:09 PM - [Debug] - Found levelB extension : ReroutingManagementEnhanced
+5:06:09 PM - [Debug] - Found levelB extension : FacilityLocation
+5:06:09 PM - [Debug] - Found levelB extension : ImpactExtendedUrban
+5:06:09 PM - [Debug] - Found levelB extension : SignSetting
+5:06:09 PM - [Debug] - Found levelB extension : AccidentExtendedUrban
+5:06:09 PM - [Debug] - Found levelB extension : OperatorActionExtendedTmplan
+5:06:09 PM - [Debug] - Found levelB extension : PeriodExtended
+5:06:09 PM - [Debug] - Found levelB extension : EmissionsExtension
+5:06:09 PM - [Debug] - Found levelB extension : CapacityManagement
+5:06:09 PM - [Debug] - Found levelB extension : SupplementaryPositionalDescriptionExtended
+5:06:09 PM - [Debug] - Found levelB extension : StreetWorks
+5:06:09 PM - [Debug] - Found levelB extension : VehicleCharacteristicsExtended
+5:06:09 PM - [Debug] - Found levelB extension : NamedAreaExtended
+5:06:09 PM - [Debug] - Found levelB extension : AfirFacilityLocation
+5:06:09 PM - [Debug] - the model has no attribute scope violations
+5:06:09 PM - [Debug] - the model has no illegal order numbers
+5:06:09 PM - [Debug] - the model has no attributes that have a missing data type
+5:06:09 PM - [Debug] - the model has no attributes with attribute tagged value set to yes and upper multiplicity unbounded
+5:06:09 PM - [Debug] - the model has no roles without definitions that point to the same target.
+5:06:09 PM - [Debug] - the model does not contain forbidden cycles.
+5:06:09 PM - [Debug] - the model has no schemaType tagged values that are not allowed.
+5:06:09 PM - [Debug] - the model is according to the naming convention
+5:06:09 PM - [Debug] - the model has no missing definitions on classes.
+5:06:09 PM - [Debug] - the model has no missing definitions on attributes.
+5:06:09 PM - [Debug] - the model has no missing definitions on datatypes,enumerations or enumeration literals.
+5:06:09 PM - [Debug] - the model has no schemaType and schemaTypeInclude tagged values on the same datatype. 
+5:06:09 PM - [Debug] - the model has no targetClass tagged value pointing to a nonexisting class.
+5:06:09 PM - [Debug] - the model has no facets on attributes that violates the rules
+5:06:09 PM - [Debug] - the model has no class scope violations
+5:06:09 PM - [Debug] - the model has no type scope violations
+5:06:09 PM - [Debug] - the model has no namespace name scope violations
+5:06:09 PM - [Debug] - the model has no external namespace violations
+5:06:09 PM - [Debug] - the model has no external component/types violations
+5:06:09 PM - [Debug] - the model has no namespace with prefix not set
+5:06:09 PM - [System] - checking the constrains successful finished
+5:06:09 PM - [System] - Start generating schema.. 
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/afirEnergyInfrastructure
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/afirFacilities
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/common
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/commonExtension
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/controlledZone
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/d2Payload
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/energyInfrastructure
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/extension
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/facilities
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/faultAndStatus
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/locationExtension
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/locationReferencing
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/parking
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/reroutingManagementEnhanced
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/roadTrafficData
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/situation
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/trafficManagementPlan
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/trafficRegulation
+5:06:09 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/urbanExtensions
+5:06:10 PM - [Debug] - creation of XML Schema file for namespace http://datex2.eu/schema/3/vms
+5:06:10 PM - [Debug] - XML Schema output path C:\home\site\wwwroot\wwwroot\App_Data\Sessions\cead7a39-b852-4345-b5f6-3e7d12ec0edd
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_AfirEnergyInfrastructure.xsd for namespace http://datex2.eu/schema/3/afirEnergyInfrastructure
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_AfirFacilities.xsd for namespace http://datex2.eu/schema/3/afirFacilities
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_Common.xsd for namespace http://datex2.eu/schema/3/common
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_CommonExtension.xsd for namespace http://datex2.eu/schema/3/commonExtension
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_ControlledZone.xsd for namespace http://datex2.eu/schema/3/controlledZone
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_D2Payload.xsd for namespace http://datex2.eu/schema/3/d2Payload
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_EnergyInfrastructure.xsd for namespace http://datex2.eu/schema/3/energyInfrastructure
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_Facilities.xsd for namespace http://datex2.eu/schema/3/facilities
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_FaultAndStatus.xsd for namespace http://datex2.eu/schema/3/faultAndStatus
+5:06:10 PM - [Debug] - saving of XML Schema file DATEXII_3_LocationExtension.xsd for namespace http://datex2.eu/schema/3/locationExtension
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_LocationReferencing.xsd for namespace http://datex2.eu/schema/3/locationReferencing
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_Parking.xsd for namespace http://datex2.eu/schema/3/parking
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_ReroutingManagementEnhanced.xsd for namespace http://datex2.eu/schema/3/reroutingManagementEnhanced
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_RoadTrafficData.xsd for namespace http://datex2.eu/schema/3/roadTrafficData
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_Situation.xsd for namespace http://datex2.eu/schema/3/situation
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_TrafficManagementPlan.xsd for namespace http://datex2.eu/schema/3/trafficManagementPlan
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_TrafficRegulation.xsd for namespace http://datex2.eu/schema/3/trafficRegulation
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_UrbanExtensions.xsd for namespace http://datex2.eu/schema/3/urbanExtensions
+5:06:11 PM - [Debug] - saving of XML Schema file DATEXII_3_Vms.xsd for namespace http://datex2.eu/schema/3/vms
+5:06:11 PM - [Debug] - number of classes = 691
