@@ -26,8 +26,8 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
             logger.warning("No linearExtended/gmlLineString")
             return None
         else:
-            srsName = gmlLineString.get('srsName')
-            if srsName is None or not 'WGS84' in srsName:
+            srsName = gmlLineString.get("srsName")
+            if srsName is not None and not "WGS84" in srsName:
                 logger.warning("Unkown srsName %s", srsName)
             geometry = {
                 "type": "LineString",
