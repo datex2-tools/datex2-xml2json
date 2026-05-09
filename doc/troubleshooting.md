@@ -19,3 +19,13 @@ It's value needs to be wrapped in an array: Add `"alertCArea": lambda v: [v],` t
 
 ## positionOnCarriageway: [{'value': 'aroundABendInRoad'}] is not of type 'object'
 This requires some more handling: locationDescriptor was not just renamed to positionOnCarriageway, but it's values are noe separated in three distinct properties. We handle this via a transformation function `transform_supplementaryPositionalDescription`.
+
+## .roadName.values[0]: 'value' is a required property
+Apparently, the producer created empty roadNames.
+```xml
+<roadName>
+	<values>
+		<value lang="de"/>
+	</values>
+</roadName>
+```
