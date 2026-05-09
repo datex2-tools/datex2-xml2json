@@ -446,6 +446,7 @@ class TransformationRuleFactory:
             "physicalSupport": wrap_with_value,
             "vmsPhysicalMounting": wrap_with_value,
             "tpegSimplePointLocationType": wrap_with_value,
+            "alertCArea": lambda v: [v],
             "gmlLineString": lambda v: {
                 "locGmlLineString": {
                     "posList": v.get(
