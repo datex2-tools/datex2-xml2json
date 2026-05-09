@@ -171,6 +171,13 @@ class TransformationRuleFactory:
         "snowplough": "other",
     }
 
+    # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
+    OBSTRUCTION_TYPE_MAPPINGS = {
+        "recklessDriver": "other",
+        "houseFire": "other",
+        "highSpeedChase": "other",
+    }
+
     CAR_PARK_STATUS_TO_SERVICE_TYPE_MAPPINGS = {
         "carParkFull": "restAreaOvercrowdedDriveToAnotherRestArea",
         "carParkClosed": "restAreaClosed",
@@ -286,21 +293,20 @@ class TransformationRuleFactory:
                 posList = v.get("posList")
             return ({"locGmlLineString": {"posList": posList}},)
 
+        # TODO move value wrapping down to datex transform, here we should use them unwrapped
         value_transforms = {
             # type transformations
             "offsetDistance": lambda v: int(v) if not isinstance(v, dict) else v,
             # value transformations
             # v3 removed some v2 enum values which need to be mapped
-            "commentType": lambda v: {
+            "commentType": lambda v: { # FIXME move value mapping down
                 "value": "other" if v == "locationDescriptor" else v
             },
             "vehicleObstructionType": lambda v: self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(
                 v, v
             ),
-            # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
-            "obstructionType": lambda v: "other"
-            if v in ("highSpeedChase", "houseFire", "recklessDriver")
-            else v,
+            "obstructionType": lambda v: self.OBSTRUCTION_TYPE_MAPPINGS.get(v, v
+            ),
             "causeType": lambda v: self.CAUSE_TYPE_MAPPINGS.get(v, v),
             "openlrFunctionalRoadClass": lambda v: {"value": v.lower()},
             "openlrLowestFRCToNextLRPoint": lambda v: {"value": v.lower()},
@@ -516,15 +522,13 @@ class TransformationRuleFactory:
                 "value": self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)
             },
             # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
-            "obstructionType": lambda v: {"value": "other"}
-            if v in ("highSpeedChase", "houseFire", "recklessDriver")
-            else {"value": v},
+            "obstructionType": lambda v: {"value": self.OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
             "causeType": lambda v: {"value": self.CAUSE_TYPE_MAPPINGS.get(v, v)},
             # vms
             "physicalSupport": wrap_with_value,
             "vmsPhysicalMounting": wrap_with_value,
             "tpegSimplePointLocationType": wrap_with_value,
-            "alertCArea": lambda v: [v],
+            "alertCArea": lambda v: [v], # FIXME move up to xml2_to_json?
             "gmlLineString": lambda v: {
                 "locGmlLineString": {
                     "posList": v.get(
