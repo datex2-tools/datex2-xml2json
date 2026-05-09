@@ -84,6 +84,10 @@ DEFAULT_LANGUAGE = "de"
 
 
 class TransformationRuleFactory:
+    ACCIDENT_TYPE_MAPPINGS = {
+        "seriousAccident": "seriousInjuryOrFatalAccident",
+    }
+
     CAUSE_TYPE_MAPPINGS = {
         "shearWeightOfTraffic": "other",
         "earlierAccident": "earlierIncident",
@@ -98,6 +102,13 @@ class TransformationRuleFactory:
         "vehicleStuckUnderBridge": "vehicleStuck",
         "saltingOrGrittingVehicleInUse": "other",
         "snowplough": "other",
+    }
+
+    CAR_PARK_STATUS_TO_SERVICE_TYPE_MAPPINGS = {
+        "carParkFull": "restAreaOvercrowdedDriveToAnotherRestArea",
+        "carParkClosed": "restAreaClosed",
+        "noMoreParkingSpacesAvailable": "restAreaOvercrowdedDriveToAnotherRestArea",
+        "serviceAreaFull": "serviceAreaOvercrowdedDriveToAnotherServiceArea",
     }
 
     # Type mappings convert { ..., "@xsi:type": "<key>" } to { "<value>": { ... }}
@@ -241,9 +252,9 @@ class TransformationRuleFactory:
             "grossWeightCharacteristic": lambda v: v
             | {"typeOfWeight": {"value": "actual"}},
             # v3 has no carParkStatus any longer, we map to serviceDisruption restAreaClosed
-            "carParkStatus": lambda v: [{"value": "restAreaClosed"}]
-            if v == "carParkClosed"
-            else v,
+            "carParkStatus": lambda v: [
+                {"value": self.CAR_PARK_STATUS_TO_SERVICE_TYPE_MAPPINGS.get(v, v)}
+            ],
             "recurringDayWeekMonthPeriod": lambda v: {"comDayWeekMonth": v}
             if v is not None
             else None,
@@ -378,7 +389,7 @@ class TransformationRuleFactory:
         value_transforms = {
             # Value wrapping...
             "abnormalTrafficType": wrap_with_value,
-            "accidentType": wrap_with_value,
+            "accidentType": lambda v: {"value": self.ACCIDENT_TYPE_MAPPINGS.get(v, v)},
             "informationStatus": wrap_with_value,
             "confidentiality": wrap_with_value,
             "applicableForTrafficDirection": wrap_with_value,
@@ -434,6 +445,8 @@ class TransformationRuleFactory:
             "roadsideServiceDisruptionType": wrap_with_value,
             "trafficConstrictionType": wrap_with_value,
             "tpegAreaDescriptorType": wrap_with_value,
+            "transitServiceInformation": wrap_with_value,
+            "transitServiceType": wrap_with_value,
             "vehicleObstructionType": lambda v: {
                 "value": self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)
             },
