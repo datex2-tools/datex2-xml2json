@@ -36,12 +36,79 @@ def push_down_vms_configuration(vms: dict) -> dict:
     return vms
 
 
-def pull_up_first_length_affected(v: dict):
+INFRASTRUCTURE_DESCRIPTOR_VALUES = {
+    "atMotorwayInterchange",
+    "atRestArea",
+    "atServiceArea",
+    "atTollPlaza",
+    "atTunnelEntryOrExit",
+    "inGallery",
+    "inTunnel",
+    "onBridge",
+    "onConnector",
+    "onElevatedSection",
+    "onFlyover",
+    "onIceRoad",
+    "onLevelCrossing",
+    "onLinkRoad",
+    "onRoundabout",
+    "onTheRoadway",
+    "onUndergroundSection",
+    "onUnderpass",
+    "withinJunction",
+}
+POSITION_ON_CARRIAGEWAY_VALUES = {
+    "onTheLeft",
+    "onTheRight",
+    "inTheCentre",
+}
+GEOGRAPHIC_CHARACATERISTIC_VALUES = {
+    "aroundABendInRoad",
+    "onBorder",
+    "onPass",
+    "overCrestOfHill",
+}
+
+
+def transform_supplementaryPositionalDescription(v: dict):
+    # locationDescriptior needs to be split in multiple properties
+    if "locationDescriptor" in v:
+        locationDescriptors = v.pop("locationDescriptor")
+        for ld_value in locationDescriptors:
+            if ld_value in INFRASTRUCTURE_DESCRIPTOR_VALUES:
+                if "infrastructureDescriptor" in v:
+                    logger.warning(
+                        "Conflicting values for infrastructureDescriptor (%s vs %s), keeping former.",
+                        v["infrastructureDescriptor"],
+                        ld_value,
+                    )
+                    continue
+                v["infrastructureDescriptor"] = { "value": ld_value }
+            if ld_value in POSITION_ON_CARRIAGEWAY_VALUES:
+                if "positionOnCarriageway" in v:
+                    logger.warning(
+                        "Conflicting values for positionOnCarriageway (%s vs %s), keeping former.",
+                        v["positionOnCarriageway"],
+                        ld_value,
+                    )
+                    continue
+                v["positionOnCarriageway"] = { "value": ld_value }
+            if ld_value in GEOGRAPHIC_CHARACATERISTIC_VALUES:
+                if "geographicDescriptor" in v:
+                    logger.warning(
+                        "Conflicting values for geographicDescriptor (%s vs %s), keeping former.",
+                        v["geographicDescriptor"],
+                        ld_value,
+                    )
+                    continue
+                v["geographicDescriptor"] = { "value": ld_value }
+
     if "carriageway" in v:
         for c in v["carriageway"]:
             lengthAffected = c.pop("lengthAffected", None)
             if lengthAffected is not None:
                 return v | {"lengthAffected": float(lengthAffected)}
+
     return v
 
 
@@ -155,7 +222,7 @@ class TransformationRuleFactory:
         "Area": "locAreaLocation",
         "ItineraryByIndexedLocations": "locItineraryByIndexedLocations",
         "TpegGeometricArea": "locTpegGeometricArea",
-        "TpegNamedOnlyArea": "locTpegNamedOnlyArea",        
+        "TpegNamedOnlyArea": "locTpegNamedOnlyArea",
         "OpenlrPolygonLocationReference": "locOpenlrPolygonLocationReference",
         "DistanceFromLinearElementReferent": "locDistanceFromLinearElementReferent",
         # VMS
@@ -179,7 +246,6 @@ class TransformationRuleFactory:
             "d2LogicalModel": "payload",
             "affectedCarriagewayAndLanes": "carriageway",
             "groupOfLocations": "locationReference",
-            "locationDescriptor": "positionOnCarriageway",
             "locationForDisplay": "coordinatesForDisplay",
             "openlrCoordinate": "openlrCoordinates",
             "area": "areaLocation",
@@ -258,7 +324,7 @@ class TransformationRuleFactory:
             "recurringDayWeekMonthPeriod": lambda v: {"comDayWeekMonth": v}
             if v is not None
             else None,
-            "supplementaryPositionalDescription": pull_up_first_length_affected,
+            "supplementaryPositionalDescription": transform_supplementaryPositionalDescription,
             "openlrPoiWithAccessPoint": wrap_lroffset,
             "openlrPointAlongLine": wrap_lroffset,
             "managedCause": lambda v: {"objectReference": v},
@@ -403,7 +469,6 @@ class TransformationRuleFactory:
             "tpegDirection": wrap_with_value,
             "tpegLinearLocationType": wrap_with_value,
             "tpegOtherPointDescriptorType": wrap_with_value,
-            "locationDescriptor": wrap_with_value,
             "validityStatus": wrap_with_value,
             "alertCDirection": lambda v: transform_alertc(v, True),
             "openlrFormOfWay": wrap_with_value,

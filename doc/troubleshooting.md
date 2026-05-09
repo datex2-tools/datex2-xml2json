@@ -16,3 +16,6 @@ In addition, `Area` needs to be renamed to `AreaLocation`
 ## alertCArea: {'alertCLocationCountryCode': 'D', ...} is not of type 'array'
 In v2, alertCArea was implicitly maxOccurs 1 <xs:element name="alertCArea" type="D2LogicalModel:AlertCArea" minOccurs="0". In v3 ist unbounded: name="alertCArea" type="loc:AlertCArea" minOccurs="0" maxOccurs="unbounded"
 It's value needs to be wrapped in an array: Add `"alertCArea": lambda v: [v],` to `value_transforms`.
+
+## positionOnCarriageway: [{'value': 'aroundABendInRoad'}] is not of type 'object'
+This requires some more handling: locationDescriptor was not just renamed to positionOnCarriageway, but it's values are noe separated in three distinct properties. We handle this via a transformation function `transform_supplementaryPositionalDescription`.
