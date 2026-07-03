@@ -25,7 +25,7 @@
           "endOfPeriod": "2026-03-31T21:59:00Z"
         }
       ],
-      "situationSubtype": "roadClosed"
+      "situationRecordSubtype": "roadClosed"
     },
     "geometry": {
       "type": "Point",
