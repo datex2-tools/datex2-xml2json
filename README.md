@@ -1,6 +1,6 @@
 # DATEX2-XML2JSON (Proof of Concept)
 
-This tool provides a PoC converter to convert DATEXII XML to JSON. 
+This tool provides a PoC converter to convert DATEXII XML to JSON or GeoParquet format. 
 
 As output format, the following formats are supported
 
