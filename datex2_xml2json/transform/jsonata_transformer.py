@@ -66,12 +66,14 @@ mostly_flat_geojson_expression = """
 }
 """
 
-
 class JsonataTransformer(AbstractTransformer):
-    def __init__(self):
-        self.jsonata_expr = jsonata.Jsonata(mostly_flat_geojson_expression)
+    def __init__(self, jsonata_expression=mostly_flat_geojson_expression):
+        self.jsonata_expr = jsonata.Jsonata(jsonata_expression)
 
     def transform(self, a_dict: dict) -> dict:
         result = self.jsonata_expr.evaluate(a_dict)
 
-        return result
+        return self.post_transform(result)
+
+    def post_transform(self, a_dict: dict) -> dict:
+        return a_dict

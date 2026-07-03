@@ -6,26 +6,24 @@ from check_jsonschema.schema_loader import SchemaLoader
 from check_jsonschema.cli.param_types import CustomLazyFile
 from check_jsonschema.regex_variants import RegexImplementation, RegexVariantName
 
-DEFAULT_DATEX_JSON = "schema/DATEXII_3.7_Profile/DATEXII_3_D2Payload.json"
 
 
 class JsonValidator:
-    def __init__(self):
-        pass
+    def __init__(self, schema_path):
+        self.schema_loader = SchemaLoader(
+            schema_path,
+            disable_cache=False,
+            base_uri=None,
+            validator_class=None,
+        )
 
     def build_reporter(self, output_format: str, verbosity: int) -> Reporter:
         cls = REPORTER_BY_NAME[output_format]
         return cls(verbosity=verbosity)
 
     def validate(self, filename):
-        schema_loader = SchemaLoader(
-            DEFAULT_DATEX_JSON,
-            disable_cache=False,
-            base_uri=None,
-            validator_class=None,
-        )
         checker = SchemaChecker(
-            schema_loader=schema_loader,
+            schema_loader=self.schema_loader,
             instance_loader=InstanceLoader([CustomLazyFile(filename, "rb")]),
             reporter=self.build_reporter("text", 2),
             format_opts=FormatOptions(
@@ -35,5 +33,5 @@ class JsonValidator:
             ),
             regex_impl=RegexImplementation(RegexVariantName.default),
         )
-
+        
         return checker.run()

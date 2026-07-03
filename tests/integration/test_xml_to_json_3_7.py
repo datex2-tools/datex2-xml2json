@@ -11,7 +11,9 @@ from datex2_xml2json.json_validator import JsonValidator
 import json
 import tempfile
 
+
 DATEX2_XSD_2_2_0_SCHEMA = "schema/DATEXIISchema_2_2_3.xsd"
+DATEX2_3_7_JSON_SCHEMA = "schema/DATEXII_3.7_Profile/DATEXII_3_D2Payload.json"
 FIXTURES_DIR = "tests/integration/data/"
 
 
@@ -45,7 +47,7 @@ def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: 
     with tempfile.NamedTemporaryFile("w", delete_on_close=False) as fp:
         json.dump(json_output, fp)
         fp.close()
-        res = JsonValidator().validate(fp.name)
+        res = JsonValidator(DATEX2_3_7_JSON_SCHEMA).validate(fp.name)
     if res != 0:
         raise Exception("Failed validation")
 

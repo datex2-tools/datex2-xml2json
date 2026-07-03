@@ -6,6 +6,7 @@ import geoparquet_io as gpio
 
 from .json_validator import JsonValidator
 from .transform import (
+    CifsTransformer,
     TransformerPipeline,
     RulesTransformer,
     JsonataTransformer,
@@ -27,6 +28,7 @@ class InputFormat(StrEnum):
 
 class OutputFormat(StrEnum):
     RAW = "raw"
+    CIFS = "cifs"
     GEOJSON = "geojson"
     DATEX2_3_7_JSON = "datex2_3_7_json"
     DATEX2_3_7_JSON_LITE = "datex2_3_7_json_lite"
@@ -35,6 +37,7 @@ class OutputFormat(StrEnum):
 
 FILE_SUFFIXES_PER_FORMAT = {
     OutputFormat.RAW: ".raw.json",
+    OutputFormat.CIFS: ".cifs.json",
     OutputFormat.GEOJSON: ".geojson",
     OutputFormat.DATEX2_3_7_JSON: ".json",
     OutputFormat.DATEX2_3_7_JSON_LITE: ".lite.json",
@@ -46,6 +49,11 @@ DEFAULT_SCHEMAS = {
     InputFormat.DATEX2_3_7_XML: "schema/DATEXII_3.7_Profile/xml/DATEXII_3_D2Payload.xsd",
 }
 
+OUTPUT_SCHEMAS = {
+    OutputFormat.DATEX2_3_7_JSON: "schema/DATEXII_3.7_Profile/DATEXII_3_D2Payload.json",
+    OutputFormat.CIFS: "schema/cifs_schema.json",
+}
+
 
 def build_transformer(
     input_format: InputFormat, output_format: OutputFormat, outfile_name: str
@@ -55,7 +63,7 @@ def build_transformer(
             return TransformerPipeline(
                 [
                     RulesTransformer(TransformationRuleFactory().xmlv2_to_json3_7()),
-                    RoadsRegioTransformer(),
+                    #RoadsRegioTransformer(),
                 ]
             )
         elif output_format == OutputFormat.GEOJSON:
@@ -65,6 +73,17 @@ def build_transformer(
                     RoadsRegioTransformer("payload/situation/situationRecord"),
                     GeoJSONGeometryTransformer("payload/situation/situationRecord"),
                     JsonataTransformer(),
+                ]
+            )
+        elif output_format == OutputFormat.CIFS:
+            return TransformerPipeline(
+                [
+                    RulesTransformer(TransformationRuleFactory().xmlv2_to_json()),
+                    RoadsRegioTransformer("payload/situation/situationRecord"),
+                    GeoJSONGeometryTransformer("payload/situation/situationRecord"),
+                    JsonataTransformer(),
+                    CifsTransformer(),
+                    # TODO: Zusammenfassung gleicher Meldungen
                 ]
             )
         elif output_format == OutputFormat.DATEX2_3_7_JSON_LITE:
@@ -110,8 +129,9 @@ def main(
     if output_format != OutputFormat.GEOPARQUET:
         with open(outfile_name, "w") as f:
             json.dump(result, f, indent=2)
-        if validate:
-            exit(JsonValidator().validate(outfile_name))
+        if validate:    
+            exit(JsonValidator(OUTPUT_SCHEMAS[output_format]).validate(outfile_name))
+        
     else:
         geojson_filename = Path(outDir) / (
             stem + FILE_SUFFIXES_PER_FORMAT.get(OutputFormat.GEOJSON)
@@ -156,8 +176,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.validate and OutputFormat.DATEX2_3_7_JSON != args.output_format:
-        logger.error("Validation is only supported for format DATEX2_3_7_JSON.")
+    if args.validate and not args.output_format in OUTPUT_SCHEMAS:
+        logger.error("Validation is not supported for format %s", args.output_format)
         exit(1)
 
     main(
