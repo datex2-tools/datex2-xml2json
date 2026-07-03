@@ -19,6 +19,7 @@
       "validityStatus": "definedByValidityTimeSpec",
       "overallStartTime": "2021-06-15T04:00:00Z",
       "overallEndTime": "2026-06-15T22:59:00Z",
+      "situationRecordSubtype": "roadworks",
       "validPeriod": [
         {
           "endOfPeriod": "2026-06-15T22:59:00Z",

@@ -27,7 +27,7 @@
             "startOfPeriod": "2026-03-24T06:00:00Z"
           }
         ],
-        "situationSubtype": "singleAlternateLineTraffic"
+        "situationRecordSubtype": "singleAlternateLineTraffic"
       },
       "geometry": {
         "type": "LineString",
@@ -101,7 +101,7 @@
             "startOfPeriod": "2026-03-24T06:00:00Z"
           }
         ],
-        "situationSubtype": "singleAlternateLineTraffic"
+        "situationRecordSubtype": "singleAlternateLineTraffic"
       },
       "geometry": {
         "type": "LineString",
