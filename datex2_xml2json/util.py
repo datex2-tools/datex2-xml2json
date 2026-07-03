@@ -1,5 +1,5 @@
 import json
-from xml2json import Schema, convert
+from rs_xml2json import Schema, convert
 from lxml import etree
 
 
