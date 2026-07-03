@@ -16,6 +16,15 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
         self.geom_container_element_json_point = geom_container_element_json_point
 
     def _extract_coordinates_from_gmlLineString(self, posList: str) -> list:
+        # Coordinate Order Confusion
+        # There is often some confusion regarding the correct ordering of coordinate values.
+        # While EPSG:4326 usually uses lat,lon ordering, and CRS84 (and GeoJSON) use lon/lat, 
+        # older GIS software might use lon/lat also for EPSG:4326.
+        #
+        # Assuming lat,lon in GML's posList, we swap coordinates here for GeoJSON.
+        # If the original publication uses lon/lat ordering, we need to figure out, if
+        # we can deduce the ordering from e.g. the srsName, or reach out for the provider to
+        # fix the ordering
         return [
             [lon, lat] for lat, lon in zip(*[iter(map(float, posList.split()))] * 2)
         ]
