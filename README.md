@@ -75,3 +75,17 @@ To convert a DATEXII v2.2 XML publication to an intermediate JSON which just con
 python -m datex2_xml2json.main -f raw situation_publication.xml
 ```
 
+#### WAZE CIFS Format
+
+To convert a DATEXII v2.2 XML situation publication to [WAZE CIFS Format](https://developers.google.com/waze/data-feed/cifs-specification?hl=de), use the following command. It will create out/situation_publication.cifs.json.
+
+```sh
+python -m datex2_xml2json.main -f cifs situation_publication.xml
+```
+
+To validate the generated json against the CIFS schema, supply the -v switch.
+```sh
+python -m datex2_xml2json.main -f cifs -v situation_publication.xml
+```
+
+Note: currently, this converter does not handle validityPeriods. I.E. recurring events at specific days/hours are not yet mapped to CIFS schedule.
