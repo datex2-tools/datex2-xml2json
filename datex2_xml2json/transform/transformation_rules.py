@@ -153,6 +153,8 @@ DEFAULT_LANGUAGE = "de"
 class TransformationRuleFactory:
     ACCIDENT_TYPE_MAPPINGS = {
         "seriousAccident": "seriousInjuryOrFatalAccident",
+        "multivehicleAccident": "multipleVehicleAccident",
+        "earlierAccident": "accident", # TODO: perhaps this should be another situationRecord?
     }
 
     CAUSE_TYPE_MAPPINGS = {
