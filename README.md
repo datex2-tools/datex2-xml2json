@@ -58,8 +58,11 @@ python -m datex2_xml2json.main -f geoparquet situation_publication.xml
 
 #### DATEXII v3.7 JSON Lite
 
-To convert a DATEXII v2.2 XML publication to a DATEXII v3.7 JSON "Lite" format, use the following command. It will create out/situation_publication.lite.json.
+To convert a DATEXII v2.2 XML publication to a DATEXII v3.7 JSON "Lite" format, use the following command. It will create out/situation_publication.lite.json:
 
+```sh
+python -m datex2_xml2json.main -f datex2_3_7_json_lite situation_publication.xml
+```
 
 Warning: the JSON resulting from this conversion does not comply with DATEXII JSON Schema. 
 
@@ -89,3 +92,30 @@ python -m datex2_xml2json.main -f cifs -v situation_publication.xml
 ```
 
 Note: currently, this converter does not handle validityPeriods. I.E. recurring events at specific days/hours are not yet mapped to CIFS schedule.
+
+### How the transformation works
+
+This converter runs multiple conversion steps which create intermediate formats which are used as homogenized input for subsequent transformation steps.
+
+The following chart describes this conversion chain:
+
+```mermaid
+flowchart TD
+  DATEX2v2.2XML -- "load_as_json_using_schema" --> DATEX2v2.2JSON
+  DATEX2v2.2JSON -- RulesTransformer\nwith LiteJSON rules --> DATEX2v3.7LiteJSON
+  DATEX2v2.2JSON -- RulesTransformer\nwith v3.7 JSON rules --> DATEX2v3.7JSON
+  DATEX2MostlyFlatGeoJSON -- CifsTransformer --> WazeCIFS 
+  DATEX2v3.7LiteJSON -- JsonataTransformer\nGeoJSONGeometryTransformer --> DATEX2MostlyFlatGeoJSON
+  DATEX2MostlyFlatGeoJSON -- GeoparquetRenderer --> DATEX2GeoParquet
+```
+
+### Working with JSONata
+[JSONata](https://jsonata.org/) is a powerful transformation language to define mappings between different JSON formats.
+Easiest way to learn about it, is starting with an existing transformation using the [JSONata.org online editor](https://try.jsonata.org/).
+
+E.g. you could start with the following to example transformations (which might not exactly reflect the latest code version of this project):
+
+* https://try.jsonata.org/Gk5r-kLek: Mapping DATEX3.7LiteJSON to DATEX2MostlyFlatGeoJSON (Current JSONata expression is in datex2_xml2json/transform/jsonata_transformer.py)
+* https://try.jsonata.org/QEnqmItyF: Mapping DATEX2MostlyFlatGeoJSON to (mostly) WAZE CIFS (Current JSONata expression is in datex2_xml2json/transform/cifs_transformer.py)
+
+
