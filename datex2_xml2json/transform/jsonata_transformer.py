@@ -23,6 +23,7 @@ mostly_flat_geojson_expression = """
         "description": generalPublicComment[commentType.value="description"].comment.values[lang="de"].value,
         "roadworksType": generalPublicComment[commentExtension.commentExtended.commentType2="roadworksType"].comment.values[lang="de"].value,
         "roadworksName": generalPublicComment[commentExtension.commentExtended.commentType2="roadworksName"].comment.values[lang="de"].value,
+        "heavyDutyTransportRestriction": generalPublicComment[commentExtension.commentExtended.commentType2="heavyDutyTransportRestriction"].comment.values[lang="de"].value,
         "routeRecommendation": generalPublicComment[commentExtension.commentExtended.commentType2="routeRecommendation"][0].comment.values[lang="de"].value,
         "type": type,
         "complianceOption": complianceOption,
