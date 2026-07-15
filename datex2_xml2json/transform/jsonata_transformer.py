@@ -40,16 +40,20 @@ mostly_flat_geojson_expression = """
         "laneStatusCoded": impact.impactExtension.impactExtended.laneStatusCoded,
         "extendedLaneStatusCoded": situationRecordExtension.situationRecordExtended.extendedLaneStatusCoded,
         "hardShoulderStatus": impact.impactExtension.impactExtended.hardShoulderStatus,
+        /* Note: other publication (i.e. TrafficMessages) use roadClosed and forVehiclesWithCharacteristicsOf */
         "residualHeight": impact.impactExtension.impactExtended.residualHeight,
+        /* Note: other publication (i.e. TrafficMessages) use roadClosed and forVehiclesWithCharacteristicsOf */
+        "maxVehicleWeight": impact.impactExtension.impactExtended.laneRestriction.maxVehicleWeight,
         "capacityRemaining": impact.capacityRemaining,
         "originalNumberOfLanes": impact.originalNumberOfLanes,
         /* is numberOfObstructions used?*/
         "numberOfObstructions": impact.numberOfObstructions,
+        /* Note: some publications (i.e. BEMaS use impactExtended to communicate height and weight restrictions ) */
         "forVehiclesWithCharacteristicsOf": forVehiclesWithCharacteristicsOf,
         "validityStatus": validity.validityStatus,
         "overallStartTime": validity.validityTimeSpecification.overallStartTime,
         "overallEndTime": validity.validityTimeSpecification.overallEndTime,
-        "validPeriod": validity.validityTimeSpecification.validPeriod,
+        "validPeriods": validity.validityTimeSpecification.validPeriod,
         "subjectTypeOfWorks": subjects.subjectTypeOfWorks,
         "severity": severity,
         "applicableForTrafficType":applicableForTrafficType,
@@ -60,10 +64,20 @@ mostly_flat_geojson_expression = """
         "roadworksDurationClassification": roadworksDurationClassification,
         "mobilityType": mobility.mobilityType,
         "roadworksLayout": roadworksExtension.roadworksExtended.roadworksLayout,
-        "urlLinkAddress": urlLink[0].urlLinkAddress
+        "urlLinkAddress": urlLink[0].urlLinkAddress,
+        "roadNumber": locationReference.linearWithinLinearElement.linearElement.locLinearElement.roadNumber,
+        "roadName": locationReference.linearWithinLinearElement.linearElement.locLinearElement.roadName.values[0].value,
+        "fromASBSegmentFromNode": locationReference.linearWithinLinearElement.fromPoint.fromReferent.referentIdentifier,
+        "fromASBSegmentTowardsNode": locationReference.linearWithinLinearElement.fromPoint.towardsReferent.referentIdentifier,
+        "fromASBSegmentStation": locationReference.linearWithinLinearElement.fromPoint.distanceAlong,
+        "toASBSegmentFromNode": locationReference.linearWithinLinearElement.toPoint.fromReferent.referentIdentifier,
+        "toASBSegmentTowardsNode": locationReference.linearWithinLinearElement.toPoint.towardsReferent.referentIdentifier,
+        "toASBSegmentStation": locationReference.linearWithinLinearElement.toPoint.distanceAlong,
+        "lengthAffected": locationReference.supplementaryPositionalDescription.lengthAffected,
+        "temporarySpeedLimit": temporarySpeedLimit ?? operatorActionExtension.operatorActionExtended.mainSpeedLimit
     },
     "geometry": locationReference.geoJsonGeometry 
-}
+  }
 }
 """
 
