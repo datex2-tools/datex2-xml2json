@@ -20,7 +20,7 @@
       "overallStartTime": "2021-06-15T04:00:00Z",
       "overallEndTime": "2026-06-15T22:59:00Z",
       "situationRecordSubtype": "roadworks",
-      "validPeriod": [
+      "validPeriods": [
         {
           "endOfPeriod": "2026-06-15T22:59:00Z",
           "startOfPeriod": "2021-06-15T04:00:00Z"

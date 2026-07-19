@@ -20,7 +20,7 @@
       "validityStatus": "definedByValidityTimeSpec",
       "overallStartTime": "2025-10-16T07:59:07Z",
       "overallEndTime": "2026-03-31T21:59:00Z",
-      "validPeriod": [
+      "validPeriods": [
         {
           "endOfPeriod": "2026-03-31T21:59:00Z"
         }
