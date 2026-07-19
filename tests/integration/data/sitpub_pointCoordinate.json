@@ -57,7 +57,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Berlin-Lichterfelde, Goethestra\u00dfe\nin H\u00f6he Schillerstra\u00dfe\nVollsperrung, Baustelle, eine Umleitung ist eingerichtet, bis 31.03.2026"
+                          "$": "Berlin-Lichterfelde, Goethestra\u00dfe\nin H\u00f6he Schillerstra\u00dfe\nVollsperrung, Baustelle, eine Umleitung ist eingerichtet, bis 31.03.2026"
                         }
                       ]
                     }
@@ -70,7 +70,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Berlin, Goethestra\u00dfe in H\u00f6he Schillerstra\u00dfe"
+                          "$": "Berlin, Goethestra\u00dfe in H\u00f6he Schillerstra\u00dfe"
                         }
                       ]
                     }

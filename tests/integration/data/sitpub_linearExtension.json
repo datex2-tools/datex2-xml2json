@@ -56,7 +56,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich Baustelle, Richtungsfahrbahn gesperrt, bis 16.06.2026 00:59 Uhr Grund: Hangrutsch"
+                          "$": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich Baustelle, Richtungsfahrbahn gesperrt, bis 16.06.2026 00:59 Uhr Grund: Hangrutsch"
                         }
                       ]
                     }
@@ -69,7 +69,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Grund: Hangrutsch"
+                          "$": "Grund: Hangrutsch"
                         }
                       ]
                     }
@@ -82,7 +82,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich"
+                          "$": "Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Kl\u00fcsserath und Rivenich"
                         }
                       ]
                     }

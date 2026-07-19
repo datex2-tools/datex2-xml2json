@@ -250,7 +250,7 @@ class TransformationRuleFactory:
     def xmlv2_to_json(self):
         renamings = {
             # xml2json artifact
-            "_text": "value",
+            "$": "value",
             # Assumed DATEXII 2.2->DATEX3.7 naming changes
             "d2LogicalModel": "payload",
             "affectedCarriagewayAndLanes": "carriageway",

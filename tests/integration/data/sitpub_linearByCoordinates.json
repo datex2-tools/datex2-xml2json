@@ -55,7 +55,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr"
+                          "$": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr"
                         }
                       ]
                     }
@@ -68,7 +68,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Ingolstadt, Lutzstra\u00dfe in H\u00f6he Ende der Stra\u00dfe in beiden Richtungen"
+                          "$": "Ingolstadt, Lutzstra\u00dfe in H\u00f6he Ende der Stra\u00dfe in beiden Richtungen"
                         }
                       ]
                     }
@@ -219,7 +219,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr"
+                          "$": "Ingolstadt, Lutzstra\u00dfe\nin H\u00f6he Ende der Stra\u00dfe\nin beiden Richtungen f\u00fcr beide Richtungen nur ein Fahrstreifen abwechselnd frei, Kanalbauarbeiten, Gehweg gesperrt, bis 02.04.2026 ca. 17:00 Uhr"
                         }
                       ]
                     }
@@ -232,7 +232,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Ingolstadt, Lutzstra\u00dfe in H\u00f6he Ende der Stra\u00dfe in beiden Richtungen"
+                          "$": "Ingolstadt, Lutzstra\u00dfe in H\u00f6he Ende der Stra\u00dfe in beiden Richtungen"
                         }
                       ]
                     }

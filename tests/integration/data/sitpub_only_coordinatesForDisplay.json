@@ -37,8 +37,8 @@
                     "values": {
                       "value": [
                         {
-                          "@lang": "de-DE",
-                          "_text": "Theresienwiese\n    Volksfest, von 17.04.2026 07:00 Uhr bis 10.05.2026 08:00 Uhr\n    M\u00fcnchner Fr\u00fchlingsfest"
+                          "$": "Theresienwiese\n    Volksfest, von 17.04.2026 07:00 Uhr bis 10.05.2026 08:00 Uhr\n    M\u00fcnchner Fr\u00fchlingsfest",
+                          "@lang": "de-DE"
                         }
                       ]
                     }
@@ -50,8 +50,8 @@
                     "values": {
                       "value": [
                         {
-                          "@lang": "de-DE",
-                          "_text": "M\u00fcnchner Fr\u00fchlingsfest"
+                          "$": "M\u00fcnchner Fr\u00fchlingsfest",
+                          "@lang": "de-DE"
                         }
                       ]
                     }
@@ -64,7 +64,7 @@
                       "value": [
                         {
                           "@lang": "de-DE",
-                          "_text": "Theresienwiese"
+                          "$": "Theresienwiese"
                         }
                       ]
                     }

@@ -41,7 +41,7 @@
                         "value": [
                           {
                             "@lang": "de",
-                            "_text": "Neckarstra\u00dfe zwischen Enzstra\u00dfe und Dreisamstra\u00dfe"
+                            "$": "Neckarstra\u00dfe zwischen Enzstra\u00dfe und Dreisamstra\u00dfe"
                           }
                         ]
                       }
