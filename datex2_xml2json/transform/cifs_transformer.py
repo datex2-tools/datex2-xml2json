@@ -30,6 +30,7 @@ cifs_expression = """
                 "AnimalPresence": "HAZARD",
                 "AbnormalTraffic": "JAM",
                 "AuthorityOperation": "HAZARD",
+                "Construction": "CONSTRUCTION",
                 "EnvironmentalObstruction": "HAZARD",
                 "GeneralObstruction": "HAZARD",
                 "GeneralNetworkManagement": "HAZARD",
