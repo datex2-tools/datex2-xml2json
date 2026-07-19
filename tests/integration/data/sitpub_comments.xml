@@ -25,7 +25,7 @@
             <generalPublicComment>
               <comment>
                 <values>
-                  <!-- Value without lang attribute results in string instead of object with @lang and _text, need special handling -->
+                  <!-- Value without lang attribute results in string instead of object with @lang and $, need special handling -->
                   <value>Kreis Trier-Saarburg und Kreis Bernkastel-Wittlich, K48 zwischen Abzweig nach Klüsserath und Rivenich Baustelle, Richtungsfahrbahn gesperrt, bis 16.06.2026 00:59 Uhr Grund: Hangrutsch
 </value>
                 </values>
