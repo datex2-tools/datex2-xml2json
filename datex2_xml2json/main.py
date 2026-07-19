@@ -63,7 +63,7 @@ def build_transformer(
             return TransformerPipeline(
                 [
                     RulesTransformer(TransformationRuleFactory().xmlv2_to_json3_7()),
-                    #RoadsRegioTransformer(),
+                    RoadsRegioTransformer(),
                 ]
             )
         elif output_format == OutputFormat.GEOJSON:
