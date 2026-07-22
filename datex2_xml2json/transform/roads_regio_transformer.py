@@ -11,15 +11,6 @@ class RoadsRegioTransformer(ProcessingTransformer):
     def _filter_empty_comments(self, situation_record: dict):
         # Remove comments without value
         if 'generalPublicComment' in situation_record:
-            strcomments = [
-                c
-                for c in situation_record['generalPublicComment']
-                if len(c['comment']['values']) > 0 and isinstance(c['comment']['values'][0], str)
-            ]
-            # TODO
-            if len(strcomments) > 0:
-                fail('Unexpected strcomments, needs to be handled properly')
-
             comments = [
                 c
                 for c in situation_record['generalPublicComment']
