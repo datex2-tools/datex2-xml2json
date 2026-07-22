@@ -1,14 +1,13 @@
 import json
-from rs_xml2json import Schema, convert
-from lxml import etree
+
+from rs_xml2json import convert
 
 
 def load_as_json_using_schema(filename: str, schemafile: str):
-    if filename.endswith(".xml"):
-        tree = etree.parse(filename)
+    if filename.endswith('.xml'):
         json_string = convert(filename, schemafile)
         json_input = json.loads(json_string)
-    elif filename.endswith(".json"):
+    elif filename.endswith('.json'):
         with open(filename) as f:
             json_input = json.load(f)
 
@@ -16,7 +15,7 @@ def load_as_json_using_schema(filename: str, schemafile: str):
 
 
 def find(a_dict, simplified_xpath, default_value=None):
-    paths = simplified_xpath.split("/")
+    paths = simplified_xpath.split('/')
     elem = a_dict
     for path in paths:
         elem = elem.get(path)
@@ -34,7 +33,7 @@ def xpath_dict(data, path):
     - "/" path separator
     """
 
-    parts = [p for p in path.strip("/").split("/") if p]
+    parts = [p for p in path.strip('/').split('/') if p]
 
     def _search(current, remaining):
         if not remaining:
@@ -83,12 +82,9 @@ def replace(
         new_dict = {}
         for key in value:
             if (
-                not value[key] is None
-                and not (
-                    key in keys_to_drop
-                    and (keys_to_drop[key] is None or current_key in keys_to_drop[key])
-                )
-                and not (key == "type" and value["type"] in type_mappings)
+                value[key] is not None
+                and not (key in keys_to_drop and (keys_to_drop[key] is None or current_key in keys_to_drop[key]))
+                and not (key == 'type' and value['type'] in type_mappings)
             ):
                 replaced = replace(
                     value[key],
@@ -114,8 +110,8 @@ def replace(
                     dict_to_merge = new_dict.pop(parent_key)
                     new_dict = new_dict | dict_to_merge
 
-        if "@xsi:type" in value and value["@xsi:type"] in type_mappings:
-            new_dict = {type_mappings[value["@xsi:type"]]: new_dict}
+        if '@xsi:type' in value and value['@xsi:type'] in type_mappings:
+            new_dict = {type_mappings[value['@xsi:type']]: new_dict}
 
         if current_key is not None and current_key in value_transforms:
             return value_transforms[current_key](new_dict)
@@ -135,8 +131,4 @@ def replace(
             if v is not None
         ]
     else:
-        return (
-            value_transforms[current_key](value)
-            if current_key is not None and current_key in value_transforms
-            else value
-        )
+        return value_transforms[current_key](value) if current_key is not None and current_key in value_transforms else value

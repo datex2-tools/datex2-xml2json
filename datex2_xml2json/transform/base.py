@@ -1,5 +1,6 @@
 from datex2_xml2json.util import replace, xpath_dict
-from .transformation_rules import TransformationRuleFactory, TransformationRules
+
+from .transformation_rules import TransformationRules
 
 
 class AbstractTransformer:
