@@ -472,7 +472,6 @@ class TransformationRuleFactory:
             'tpegAreaLocationType': wrap_with_value,
             'subjectTypeOfWorks': wrap_with_value,
             'applicableDay': wrap_with_value,
-            'obstructionType': wrap_with_value,
             'reroutingManagementType': wrap_with_value,
             'animalPresenceType': wrap_with_value,
             'severity': wrap_with_value,
