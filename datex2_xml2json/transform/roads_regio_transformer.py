@@ -4,6 +4,7 @@ from .base import ProcessingTransformer
 
 logger = logging.getLogger(__name__)
 
+
 class RoadsRegioTransformer(ProcessingTransformer):
     def __init__(self, path: str = 'payload/sitSituationPublication/situation/situationRecord'):
         super().__init__(path)
@@ -65,6 +66,8 @@ class RoadsRegioTransformer(ProcessingTransformer):
             situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
         else:
             situation_record = situation_record_wrapper
+        if situation_record is None:
+            return
 
         # self._handle_bemas_locations(situation_record)
         self._handle_originalNumberOfLanes(situation_record)

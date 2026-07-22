@@ -42,7 +42,7 @@ def load_and_transform(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: 
 def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: str):
     json_output = load_and_transform(FIXTURE_NAME, overwrite, transformer, suffix)
 
-    with tempfile.NamedTemporaryFile('w', delete_on_close=False) as fp:
+    with tempfile.NamedTemporaryFile(mode='w', delete_on_close=False) as fp:
         json.dump(json_output, fp)
         fp.close()
         res = JsonValidator(DATEX2_3_7_JSON_SCHEMA).validate(fp.name)

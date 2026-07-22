@@ -7,7 +7,7 @@ class GeoparquetRenderer:
     def __init__(self):
         pass
 
-    def render(self, filename, a_geojson_dict: dict) -> dict:
+    def render(self, filename, a_geojson_dict: dict) -> None:
         records = []
         for f in a_geojson_dict['features']:
             props = f['properties'].copy()

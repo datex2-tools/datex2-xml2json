@@ -26,7 +26,7 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
         # fix the ordering
         return [[lon, lat] for lat, lon in zip(*[iter(map(float, posList.split()))] * 2)]
 
-    def _extract_line_geom(self, linearExtended: dict) -> dict:
+    def _extract_line_geom(self, linearExtended: dict) -> None | dict:
         gmlLineString = linearExtended.get('gmlLineString')
         if gmlLineString is None:
             logger.warning('No linearExtended/gmlLineString')
@@ -41,7 +41,7 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
             }
             return geometry
 
-    def _extract_point_geom(self, pointCoordinates: dict) -> dict:
+    def _extract_point_geom(self, pointCoordinates: dict | None) -> dict | None:
         if pointCoordinates is None:
             logger.warning('No pointCoordinates')
             return None
@@ -107,12 +107,16 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
 
         return {'type': 'LineString', 'coordinates': coordinates}
 
-    def process(self, situation_record_wrapper: dict):
+    def process(self, situation_record_wrapper: dict) -> None:
         if isinstance(situation_record_wrapper, dict) and len(situation_record_wrapper) == 1:
             situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
         else:
             situation_record = situation_record_wrapper
-        locationReference = situation_record.get('locationReference', {})
+        if situation_record is None:
+            return
+        locationReference = situation_record.get('locationReference')
+        if locationReference is None:
+            return
 
         geom_container_element = (
             locationReference.get(self.geom_container_element_json_point)
@@ -120,20 +124,19 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
             else locationReference
         )
         if isinstance(geom_container_element, dict):
+            geoJsonGeometry = None
             if 'gmlLineString' in geom_container_element:
                 geoJsonGeometry = self._extract_line_geom(geom_container_element)
-                geom_container_element['geoJsonGeometry'] = geoJsonGeometry
             elif 'pointByCoordinates' in geom_container_element:
                 geoJsonGeometry = self._extract_point_geom(geom_container_element.get('pointByCoordinates', {}).get('pointCoordinates'))
-                geom_container_element['geoJsonGeometry'] = geoJsonGeometry
             elif 'locationContainedInGroup' in geom_container_element:
                 geoJsonGeometry = self._extract_multi_line_string(geom_container_element)
-                geom_container_element['geoJsonGeometry'] = geoJsonGeometry
             elif 'extendedLinear' in geom_container_element:
                 geoJsonGeometry = self._extract_extendedLinear_geom(geom_container_element)
-                geom_container_element['geoJsonGeometry'] = geoJsonGeometry
             elif 'coordinatesForDisplay' in geom_container_element:
                 geoJsonGeometry = self._extract_point_geom(geom_container_element.get('coordinatesForDisplay'))
+
+            if geoJsonGeometry is not None:
                 geom_container_element['geoJsonGeometry'] = geoJsonGeometry
 
 

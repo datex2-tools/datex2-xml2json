@@ -55,7 +55,7 @@ OUTPUT_SCHEMAS = {
 }
 
 
-def build_transformer(input_format: InputFormat, output_format: OutputFormat, outfile_name: str):
+def build_transformer(input_format: InputFormat, output_format: OutputFormat):
     if input_format == InputFormat.DATEX2_2_2_XML:
         if output_format == OutputFormat.DATEX2_3_7_JSON:
             return TransformerPipeline(
@@ -114,7 +114,7 @@ def main(
     input_schema = DEFAULT_SCHEMAS[input_format]
     json_input = load_as_json_using_schema(filename, input_schema)
     json_output_format = OutputFormat.GEOJSON if output_format == OutputFormat.GEOPARQUET else output_format
-    transformer = build_transformer(input_format, json_output_format, outfile_name)
+    transformer = build_transformer(input_format, json_output_format)
     result = transformer.transform(json_input)
     outfile_name.parent.mkdir(parents=True, exist_ok=True)
 
@@ -125,7 +125,7 @@ def main(
             exit(JsonValidator(OUTPUT_SCHEMAS[output_format]).validate(outfile_name))
 
     else:
-        geojson_filename = Path(outDir) / (stem + FILE_SUFFIXES_PER_FORMAT.get(OutputFormat.GEOJSON))
+        geojson_filename = Path(outDir) / (stem + FILE_SUFFIXES_PER_FORMAT[OutputFormat.GEOJSON])
         with open(geojson_filename, 'w') as f:
             json.dump(result, f, indent=2)
         gpio.convert(geojson_filename).write(outfile_name)
