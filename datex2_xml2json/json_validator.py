@@ -1,11 +1,10 @@
 from check_jsonschema.checker import SchemaChecker
-from check_jsonschema.instance_loader import InstanceLoader
-from check_jsonschema.reporter import REPORTER_BY_NAME, Reporter
-from check_jsonschema.formats import FormatOptions
-from check_jsonschema.schema_loader import SchemaLoader
 from check_jsonschema.cli.param_types import CustomLazyFile
+from check_jsonschema.formats import FormatOptions
+from check_jsonschema.instance_loader import InstanceLoader
 from check_jsonschema.regex_variants import RegexImplementation, RegexVariantName
-
+from check_jsonschema.reporter import REPORTER_BY_NAME, Reporter
+from check_jsonschema.schema_loader import SchemaLoader
 
 
 class JsonValidator:
@@ -24,8 +23,8 @@ class JsonValidator:
     def validate(self, filename):
         checker = SchemaChecker(
             schema_loader=self.schema_loader,
-            instance_loader=InstanceLoader([CustomLazyFile(filename, "rb")]),
-            reporter=self.build_reporter("text", 2),
+            instance_loader=InstanceLoader([CustomLazyFile(filename, 'rb')]),
+            reporter=self.build_reporter('text', 2),
             format_opts=FormatOptions(
                 regex_impl=RegexImplementation(RegexVariantName.default),
                 enabled=True,
@@ -33,5 +32,5 @@ class JsonValidator:
             ),
             regex_impl=RegexImplementation(RegexVariantName.default),
         )
-        
+
         return checker.run()

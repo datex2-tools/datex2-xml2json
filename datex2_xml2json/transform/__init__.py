@@ -10,4 +10,3 @@ from .geojson_geometry_transformer import (
 )
 from .geoparquet_transformer import GeoparquetRenderer as GeoparquetRenderer
 from .cifs_transformer import CifsTransformer
-

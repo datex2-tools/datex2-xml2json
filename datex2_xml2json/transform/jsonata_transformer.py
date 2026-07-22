@@ -1,10 +1,13 @@
 import jsonata
+
 from .base import AbstractTransformer
+
+# ruff: noqa: E501 (JSONata expressions are long...)
 
 mostly_flat_geojson_expression = """
 {
   "type": "FeatureCollection",
-  "features": payload.situation.situationRecord.{ 
+  "features": payload.situation.situationRecord.{
     "type": "Feature",
     "properties": {
         "publicationTime": %.%.publicationTime,
@@ -76,10 +79,11 @@ mostly_flat_geojson_expression = """
         "lengthAffected": locationReference.supplementaryPositionalDescription.lengthAffected,
         "temporarySpeedLimit": temporarySpeedLimit ?? operatorActionExtension.operatorActionExtended.mainSpeedLimit
     },
-    "geometry": locationReference.geoJsonGeometry 
+    "geometry": locationReference.geoJsonGeometry
   }
 }
 """
+
 
 class JsonataTransformer(AbstractTransformer):
     def __init__(self, jsonata_expression=mostly_flat_geojson_expression):
