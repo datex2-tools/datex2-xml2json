@@ -1,6 +1,8 @@
+import logging
 
 from .base import ProcessingTransformer
 
+logger = logging.getLogger(__name__)
 
 class RoadsRegioTransformer(ProcessingTransformer):
     def __init__(self, path: str = 'payload/sitSituationPublication/situation/situationRecord'):
