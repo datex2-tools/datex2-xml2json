@@ -1,12 +1,15 @@
+import logging
 import re
 
 from .jsonata_transformer import JsonataTransformer
 
+logger = logging.getLogger(__name__)
+
 cifs_expression = """
 {
     "incidents": features[
-        properties.type!="CarParks" and 
-        properties.type!="ReroutingManagement" and 
+        properties.type!="CarParks" and
+        properties.type!="ReroutingManagement" and
         properties.type!="EquipmentOrSystemFault" and
         properties.validityStatus!="suspended"
         ].{
@@ -122,14 +125,9 @@ class CifsTransformer(JsonataTransformer):
         for incident in incidents:
             m = p.match(incident['id'])
             if m is None:
-                print('No match for ', incident['id'])
+                logger.warning(f'No match for {incident['id']}')
                 continue
             common_id_substring = m.group(1)
-            print(
-                incident['id'],
-                common_id_substring,
-                incident.get('subtype'),
-            )
             if common_id_substring in grouped_incidents:
                 grouped_incidents[common_id_substring].append(incident)
             else:
@@ -165,20 +163,14 @@ class CifsTransformer(JsonataTransformer):
         for incident in incident_group:
             current_prio = self._get_type_sub_type_prio(incident)
             if highest_prio is None or current_prio > highest_prio:
-                print('Replace ', highest_prio, highest_prio_type, highest_prio_subtype, 'by', incident['type'], incident.get('subtype'))
+                logger.debug(f'For {incident["id"]}, replace {highest_prio} {highest_prio_type} {highest_prio_subtype}'
+                    f' by {incident["type"]} {incident.get("subtype")}')
                 highest_prio = current_prio
                 highest_prio_type = incident['type']
                 highest_prio_subtype = incident.get('subtype')
             else:
-                print(
-                    'Do not replace ',
-                    highest_prio,
-                    highest_prio_type,
-                    highest_prio_subtype,
-                    'by',
-                    incident['type'],
-                    incident.get('subtype'),
-                )
+                logger.debug(f'For {incident["id"]}, do not replace {highest_prio} {highest_prio_type} {highest_prio_subtype}'
+                    f' by {incident["type"]} {incident.get("subtype")}')
         return incident_group[0]
 
     def _merge_grouped_incidents(self, grouped_incidents):
@@ -191,5 +183,5 @@ class CifsTransformer(JsonataTransformer):
     def post_transform(self, a_dict: dict) -> dict:
         # TODO filter those which can be merged/are redundand
         grouped_incidents = self._group_by_common_situation_record_id_substring(a_dict['incidents'], r'(.*)\.\d+')
-        merged_incidents = self._merge_grouped_incidents(grouped_incidents)
+        a_dict['incidents'] = self._merge_grouped_incidents(grouped_incidents)
         return a_dict
