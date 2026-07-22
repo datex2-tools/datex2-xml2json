@@ -69,9 +69,9 @@ def replace(
     current_key,
     renamings: dict[str, str],
     value_transforms: dict,
-    keys_to_drop: dict[str, [str]],
+    keys_to_drop: dict[str, list[str]],
     type_mappings: dict[str, str],
-    keys_to_pull_up: dict[str, list[str]],
+    keys_to_pull_up: dict[str, None | list[str]],
 ):
     # renamings: dict of old keys which shall be replaced by new keys
     # keys_to_drop: dict of keys which should be removed from dicts, if their parent key equals keys_to_drop[key]'s value (or value is None)
@@ -83,7 +83,7 @@ def replace(
         for key in value:
             if (
                 value[key] is not None
-                and not (key in keys_to_drop and (keys_to_drop[key] is None or current_key in keys_to_drop[key]))
+                and not (key in keys_to_drop and (len(keys_to_drop[key]) == 0 or current_key in keys_to_drop[key]))
                 and not (key == 'type' and value['type'] in type_mappings)
             ):
                 replaced = replace(

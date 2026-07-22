@@ -5,7 +5,7 @@ from .transformation_rules import TransformationRules
 
 class AbstractTransformer:
     def transform(self, a_dict: dict) -> dict:
-        pass
+        return a_dict
 
 
 class TransformerPipeline(AbstractTransformer):
@@ -13,7 +13,7 @@ class TransformerPipeline(AbstractTransformer):
         self.transformers = list(transformers)
 
     def add_transformer(self, transformer: AbstractTransformer):
-        self.transformer.append(transformer)
+        self.transformers.append(transformer)
 
     def transform(self, a_dict: dict) -> dict:
         result = a_dict
