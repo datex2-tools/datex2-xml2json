@@ -1,7 +1,10 @@
 # Troubleshooting
 
 As the mapping is built bottom up and not derived from a specification, there will be gaps.
-Follwoing hints should help troubleshooting these by giving hints which common errors may happen and how they can be fixed.
+Following hints should help troubleshooting these by giving hints which common errors may happen and how they can be fixed.
+
+## An expected property does not appear in cifs
+Check that the input to the cifs conversion has the information you expect. If that is the case, you should inspect the transformation step.
 
 ## ...disturbanceActivityType: 'demonstration' is not of type 'object'
 This error is usually caused by a property not wrapped as value.
