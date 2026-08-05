@@ -49,7 +49,7 @@ def test_value_transforms():
 
 def test_keys_to_drop_from_any_parent():
     # Some properties need to be dropped, either in general, or only if appearing under a specific parent
-    keys_to_drop = {'unwanted_key': None}
+    keys_to_drop = {'unwanted_key': []}
 
     replace_and_check(
         {'parent': {'unwanted_key': '1', 'wanted_key': '2'}},

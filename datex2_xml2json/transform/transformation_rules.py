@@ -4,13 +4,14 @@ from typing import Callable
 
 logger = logging.getLogger(__name__)
 
+
 @dataclass
 class TransformationRules:
     renamings: dict[str, str]
     value_transforms: dict[str, Callable]
-    keys_to_drop: dict[str, str | None]
+    keys_to_drop: dict[str, list[str]]
     type_mappings: dict[str, str]
-    keys_to_pull_up: list[str]
+    keys_to_pull_up: dict[str, None | list[str]]
 
 
 def push_down_vms_configuration(vms: dict) -> dict:
@@ -323,20 +324,20 @@ class TransformationRuleFactory:
         }
 
         keys_to_drop = {
-            'urgency': None,  # Apparently, support for urgency has been dropped?
-            '@xmlns:xsi': None,
+            'urgency': [],  # Apparently, support for urgency has been dropped?
+            '@xmlns:xsi': [],
             '@version': ['situation'],
             'type': ['recurringTimePeriodOfDay', 'cause'],
             'management': ['situationRecord'],  # apparently support for lifecyclemanagement notifications has been dropped?
             'openlrGeoCoordinate': ['openlrPointLocationReference'],
-            '@xmlns': None,
-            'exchange': None,
+            '@xmlns': [],
+            'exchange': [],
             'originalNumberOfLanes': ['impact'],  # TODO, check, if we shold copy this value to carriageways
             # v3  dropped CarParks Situation. We map to serviceDisruption which seems not to have an equivalent to carParkIdentity:
-            'carParkIdentity': None,
+            'carParkIdentity': [],
         }
 
-        geojson_drops = {'situationExtension': None}
+        geojson_drops = {'situationExtension': []}
 
         # keys_to_pull_up convert { ..., '<value>': { <nested properties> } } in { ..., <nested properties>}
         keys_to_pull_up = {
@@ -382,15 +383,15 @@ class TransformationRuleFactory:
             'confidentiality': wrap_with_value,
         }
         keys_to_drop = {
-            '@xsi:schemaLocation': None,
-            '@xmlns': None,
-            '@xmlns:d2': None,
-            '@xmlns:loc': None,
-            '@xmlns:com': None,
-            '@xmlns:fac': None,
-            '@xmlns:xsd': None,
-            '@xmlns:xsi': None,
-            '@xsi:type': None,
+            '@xsi:schemaLocation': [],
+            '@xmlns': [],
+            '@xmlns:d2': [],
+            '@xmlns:loc': [],
+            '@xmlns:com': [],
+            '@xmlns:fac': [],
+            '@xmlns:xsd': [],
+            '@xmlns:xsi': [],
+            '@xsi:type': [],
         }
         keys_to_pull_up = {'modelBaseVersion'}
         return TransformationRules(
@@ -505,9 +506,9 @@ class TransformationRuleFactory:
         }
 
         keys_to_drop = {
-            '@xsi:schemaLocation': None,
-            '@xmlns:xsd': None,
-            '@xsi:type': None,
+            '@xsi:schemaLocation': [],
+            '@xmlns:xsd': [],
+            '@xsi:type': [],
         }
 
         rules = self.xmlv2_to_json()
