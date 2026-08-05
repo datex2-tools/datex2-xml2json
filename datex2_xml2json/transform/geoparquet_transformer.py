@@ -14,6 +14,6 @@ class GeoparquetRenderer:
             props['geometry'] = shape(f['geometry']).wkb
             records.append(props)
 
-        table = table = pa.Table.from_pylist(records)
+        table = pa.Table.from_pylist(records)
 
         gpio.write_geoparquet(table, filename)
