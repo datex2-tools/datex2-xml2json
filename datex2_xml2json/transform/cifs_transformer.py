@@ -16,10 +16,11 @@ cifs_expression = """
         "id": properties.id,
         "creationtime": properties.situationRecordCreationTime,
         "updatetime": properties.situationRecordVersionTime,
-        "description": properties.description,
+        "description": properties.roadworksName?properties.roadworksName:properties.description,
         "starttime": properties.overallStartTime,
         "endtime": properties.overallEndTime,
-        "street": $split(properties.description, "\n")[0],
+        "street": properties.roadNumber?($contains(properties.roadName, properties.roadNumber)?
+          properties.roadName: properties.roadNumber & " " & properties.roadName): $split(properties.description, "\n")[0],
         "direction": "ONE_DIRECTION",
         "type": (
             $typeBySubtypeLookup := {
