@@ -115,6 +115,13 @@ cifs_expression = """
 
 
 class CifsTransformer(JsonataTransformer):
+    # This pattern is used to exract the common ID prefix of all situation records which
+    # should be grouped in a single CIFS entry.
+    # Currently expected patterns are:
+    # 1. four hyphen separated numeric values, followed by no or any subsring
+    # 2. Any string/char prefix followed by dot + number
+    situation_record_group_prefix_regexp = r'^(\d+-\d+-\d+-\d+-gegen)|^(\d+-\d+-\d+-\d+)|^(.*)\.\d+$'
+
     def __init__(self, **kwargs):
         super().__init__(cifs_expression)
 
@@ -125,7 +132,7 @@ class CifsTransformer(JsonataTransformer):
         for incident in incidents:
             m = p.match(incident['id'])
             if m is None:
-                logger.warning(f'No match for {incident["id"]}')
+                logger.warning(f'No match for id {incident["id"]} with pattern {pattern} ')
                 continue
             common_id_substring = m.group(1)
             if common_id_substring in grouped_incidents:
@@ -149,7 +156,7 @@ class CifsTransformer(JsonataTransformer):
 
     def _merge_incident_group(self, incident_group):
         # Assumptions: besides type and subtype, all properties are assumed to be equals
-        # (TODO: we might ccheck this explicitly)
+        # (TODO: we might check this explicitly)
         #
         # For now, all incidents are merged into one single incident which should represent all of them.
         # Rules are as follows:
@@ -185,7 +192,8 @@ class CifsTransformer(JsonataTransformer):
         return incidents
 
     def post_transform(self, a_dict: dict) -> dict:
-        # TODO filter those which can be merged/are redundand
-        grouped_incidents = self._group_by_common_situation_record_id_substring(a_dict['incidents'], r'(.*)\.\d+')
+        grouped_incidents = self._group_by_common_situation_record_id_substring(
+            a_dict['incidents'], self.situation_record_group_prefix_regexp
+        )
         a_dict['incidents'] = self._merge_grouped_incidents(grouped_incidents)
         return a_dict
