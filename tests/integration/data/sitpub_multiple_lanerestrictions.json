@@ -1,0 +1,582 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "exchange": {
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "DE-MIA"
+      }
+    },
+    "payloadPublication": {
+      "@lang": "DE",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MIA"
+      },
+      "publicationTime": "2026-09-08T12:46:16+02:00",
+      "situation": [
+        {
+          "@id": "DE-MIA#2026-045666#1",
+          "@version": "17",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real"
+          },
+          "situationExtension": {
+            "situationExtended": {
+              "overallSituation": {
+                "@id": "vi-zus.2026-09-12_08-00-00-000.de",
+                "@version": "2",
+                "@xsi:type": "MaintenanceWorks",
+                "actionPlanIdentifier": "S1",
+                "generalPublicComment": [
+                  {
+                    "comment": {
+                      "values": {
+                        "value": [
+                          "A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr \u00fcber 12to w\u00e4hrend S\u00fcdlink GST-\u00dcberfahrt - A81 Jagsttalbr\u00fccke in FR W\u00dc - Aufstellung LED  - Lage-1"
+                        ]
+                      }
+                    },
+                    "commentExtension": {
+                      "commentExtended": {
+                        "commentType2": "roadworksName"
+                      }
+                    }
+                  },
+                  {
+                    "comment": {
+                      "values": {
+                        "value": [
+                          "Sonstiges"
+                        ]
+                      }
+                    },
+                    "commentExtension": {
+                      "commentExtended": {
+                        "commentType2": "roadworksType"
+                      }
+                    }
+                  }
+                ],
+                "groupOfLocations": {
+                  "@xsi:type": "NonOrderedLocationGroupByList",
+                  "locationContainedInGroup": [
+                    {
+                      "@xsi:type": "Linear",
+                      "alertCLinear": {
+                        "@xsi:type": "AlertCMethod4Linear",
+                        "alertCDirection": {
+                          "alertCDirectionCoded": "positive"
+                        },
+                        "alertCLocationCountryCode": "D",
+                        "alertCLocationTableNumber": "1",
+                        "alertCLocationTableVersion": "22.0",
+                        "alertCMethod4PrimaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 12670
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": "1028"
+                          }
+                        },
+                        "alertCMethod4SecondaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 20124
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": "3658"
+                          }
+                        }
+                      },
+                      "linearExtension": {
+                        "linearExtended": {
+                          "gmlLineString": {
+                            "posList": "49.223254 9.350770 49.223280 9.350776 49.223320 9.350787 49.224000 9.350928 49.224311 9.350973 49.224570 9.351006 49.225087 9.351078 49.225394 9.351117 49.225668 9.351130 49.226029 9.351151 49.226323 9.351159 49.226647 9.351160 49.226992 9.351156 49.227400 9.351144 49.227685 9.351123 49.227749 9.351116",
+                            "roadInformation": null,
+                            "srsName": "WGS84 EPSG 4326"
+                          }
+                        }
+                      },
+                      "linearWithinLinearElement": {
+                        "directionRelativeOnLinearSection": "aligned",
+                        "fromPoint": {
+                          "@xsi:type": "DistanceFromLinearElementReferent",
+                          "distanceAlong": 1525.0,
+                          "fromReferent": {
+                            "referentIdentifier": "6722041O",
+                            "referentType": "referenceMarker"
+                          },
+                          "towardsReferent": {
+                            "referentIdentifier": "6822053O",
+                            "referentType": "referenceMarker"
+                          }
+                        },
+                        "linearElement": {
+                          "roadNumber": "A81"
+                        },
+                        "toPoint": {
+                          "@xsi:type": "DistanceFromLinearElementReferent",
+                          "distanceAlong": 1025.0,
+                          "fromReferent": {
+                            "referentIdentifier": "6722041O",
+                            "referentType": "referenceMarker"
+                          },
+                          "towardsReferent": {
+                            "referentIdentifier": "6822053O",
+                            "referentType": "referenceMarker"
+                          }
+                        }
+                      },
+                      "supplementaryPositionalDescription": {
+                        "affectedCarriagewayAndLanes": [
+                          {
+                            "carriageway": "mainCarriageway",
+                            "lengthAffected": 500.0
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "@xsi:type": "Linear",
+                      "alertCLinear": {
+                        "@xsi:type": "AlertCMethod4Linear",
+                        "alertCDirection": {
+                          "alertCDirectionCoded": "positive"
+                        },
+                        "alertCLocationCountryCode": "D",
+                        "alertCLocationTableNumber": "1",
+                        "alertCLocationTableVersion": "22.0",
+                        "alertCMethod4PrimaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 12672
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": "547"
+                          }
+                        },
+                        "alertCMethod4SecondaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 12671
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": "4918"
+                          }
+                        }
+                      },
+                      "linearExtension": {
+                        "linearExtended": {
+                          "gmlLineString": {
+                            "posList": "49.312666 9.404707 49.313069 9.405431 49.313372 9.405918 49.313835 9.406651 49.314181 9.407169 49.314537 9.407671 49.314902 9.408158 49.315092 9.408396 49.315276 9.408628 49.315659 9.409081 49.316050 9.409518 49.316449 9.409938 49.316855 9.410340 49.317269 9.410723 49.317690 9.411089 49.318117 9.411436 49.318551 9.411765 49.318990 9.412074 49.319435 9.412364 49.319886 9.412634 49.319937 9.412663",
+                            "roadInformation": null,
+                            "srsName": "WGS84 EPSG 4326"
+                          }
+                        }
+                      },
+                      "linearWithinLinearElement": {
+                        "directionRelativeOnLinearSection": "aligned",
+                        "fromPoint": {
+                          "@xsi:type": "DistanceFromLinearElementReferent",
+                          "distanceAlong": 12814.0,
+                          "fromReferent": {
+                            "referentIdentifier": "6522025O",
+                            "referentType": "referenceMarker"
+                          },
+                          "towardsReferent": {
+                            "referentIdentifier": "6722042O",
+                            "referentType": "referenceMarker"
+                          }
+                        },
+                        "linearElement": {
+                          "roadNumber": "A81"
+                        },
+                        "toPoint": {
+                          "@xsi:type": "DistanceFromLinearElementReferent",
+                          "distanceAlong": 11812.0,
+                          "fromReferent": {
+                            "referentIdentifier": "6522025O",
+                            "referentType": "referenceMarker"
+                          },
+                          "towardsReferent": {
+                            "referentIdentifier": "6722042O",
+                            "referentType": "referenceMarker"
+                          }
+                        }
+                      },
+                      "supplementaryPositionalDescription": {
+                        "affectedCarriagewayAndLanes": [
+                          {
+                            "carriageway": "mainCarriageway",
+                            "lengthAffected": 1002.0
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "mobility": {
+                  "mobilityType": "stationary"
+                },
+                "operatorActionExtension": {
+                  "operatorActionExtended": {
+                    "mainSpeedLimit": "80.0"
+                  }
+                },
+                "operatorActionStatus": "approved",
+                "probabilityOfOccurrence": "certain",
+                "roadMaintenanceType": [
+                  "other"
+                ],
+                "roadworksDuration": "shortTerm",
+                "situationRecordCreationTime": "2026-09-07T12:37:55Z",
+                "situationRecordVersionTime": "2026-09-07T12:56:13Z",
+                "validity": {
+                  "validityStatus": "definedByValidityTimeSpec",
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-09-14T02:00:00+02:00",
+                    "overallStartTime": "2026-09-12T08:00:00+02:00"
+                  }
+                }
+              }
+            }
+          },
+          "situationRecord": [
+            {
+              "@id": "25649485-25649487-25649490-25649491",
+              "@version": "17",
+              "@xsi:type": "MaintenanceWorks",
+              "actionPlanIdentifier": "S1",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        "A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr \u00fcber 12to w\u00e4hrend S\u00fcdlink GST-\u00dcberfahrt - A81 Jagsttalbr\u00fccke in FR W\u00dc - Aufstellung LED  - Lage-1"
+                      ]
+                    }
+                  },
+                  "commentExtension": {
+                    "commentExtended": {
+                      "commentType2": "roadworksName"
+                    }
+                  }
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        "Sonstiges"
+                      ]
+                    }
+                  },
+                  "commentExtension": {
+                    "commentExtended": {
+                      "commentType2": "roadworksType"
+                    }
+                  }
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Linear",
+                "alertCLinear": {
+                  "@xsi:type": "AlertCMethod4Linear",
+                  "alertCDirection": {
+                    "alertCDirectionCoded": "positive"
+                  },
+                  "alertCLocationCountryCode": "D",
+                  "alertCLocationTableNumber": "1",
+                  "alertCLocationTableVersion": "22.0",
+                  "alertCMethod4PrimaryPointLocation": {
+                    "alertCLocation": {
+                      "specificLocation": 12670
+                    },
+                    "offsetDistance": {
+                      "offsetDistance": "1028"
+                    }
+                  },
+                  "alertCMethod4SecondaryPointLocation": {
+                    "alertCLocation": {
+                      "specificLocation": 20124
+                    },
+                    "offsetDistance": {
+                      "offsetDistance": "3658"
+                    }
+                  }
+                },
+                "linearExtension": {
+                  "linearExtended": {
+                    "gmlLineString": {
+                      "posList": "49.223254 9.350770 49.223280 9.350776 49.223320 9.350787 49.224000 9.350928 49.224311 9.350973 49.224570 9.351006 49.225087 9.351078 49.225394 9.351117 49.225668 9.351130 49.226029 9.351151 49.226323 9.351159 49.226647 9.351160 49.226992 9.351156 49.227400 9.351144 49.227685 9.351123 49.227749 9.351116",
+                      "roadInformation": null,
+                      "srsName": "WGS84 EPSG 4326"
+                    }
+                  }
+                },
+                "linearWithinLinearElement": {
+                  "directionRelativeOnLinearSection": "aligned",
+                  "fromPoint": {
+                    "@xsi:type": "DistanceFromLinearElementReferent",
+                    "distanceAlong": 1525.0,
+                    "fromReferent": {
+                      "referentIdentifier": "6722041O",
+                      "referentType": "referenceMarker"
+                    },
+                    "towardsReferent": {
+                      "referentIdentifier": "6822053O",
+                      "referentType": "referenceMarker"
+                    }
+                  },
+                  "linearElement": {
+                    "roadNumber": "A81"
+                  },
+                  "toPoint": {
+                    "@xsi:type": "DistanceFromLinearElementReferent",
+                    "distanceAlong": 1025.0,
+                    "fromReferent": {
+                      "referentIdentifier": "6722041O",
+                      "referentType": "referenceMarker"
+                    },
+                    "towardsReferent": {
+                      "referentIdentifier": "6822053O",
+                      "referentType": "referenceMarker"
+                    }
+                  }
+                },
+                "supplementaryPositionalDescription": {
+                  "affectedCarriagewayAndLanes": [
+                    {
+                      "carriageway": "mainCarriageway",
+                      "lengthAffected": 500.0
+                    }
+                  ]
+                }
+              },
+              "impact": {
+                "capacityRemaining": 3340.0,
+                "impactExtension": {
+                  "impactExtended": {
+                    "hardShoulderStatus": "closed",
+                    "laneRestriction": [
+                      {
+                        "lane": "lane1"
+                      },
+                      {
+                        "lane": "lane2"
+                      }
+                    ],
+                    "laneStatusCoded": "2oorx"
+                  }
+                },
+                "numberOfLanesRestricted": 0,
+                "originalNumberOfLanes": 2,
+                "residualRoadWidth": 7.0
+              },
+              "mobility": {
+                "mobilityType": "stationary"
+              },
+              "operatorActionExtension": {
+                "operatorActionExtended": {
+                  "mainSpeedLimit": "80.0"
+                }
+              },
+              "operatorActionStatus": "approved",
+              "probabilityOfOccurrence": "certain",
+              "roadMaintenanceType": [
+                "other"
+              ],
+              "roadworksDuration": "shortTerm",
+              "situationRecordCreationTime": "2026-09-07T12:37:55Z",
+              "situationRecordVersionTime": "2026-09-07T12:56:13Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-09-12T20:00:00+02:00",
+                  "overallStartTime": "2026-09-12T08:00:00+02:00",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-09-12T20:00:00+02:00",
+                      "recurringDayWeekMonthPeriod": [
+                        null
+                      ],
+                      "startOfPeriod": "2026-09-12T08:00:00+02:00"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "@id": "25649485-25649819-25649820-25649825",
+              "@version": "17",
+              "@xsi:type": "RoadOrCarriagewayOrLaneManagement",
+              "actionPlanIdentifier": "SP1",
+              "complianceOption": "mandatory",
+              "generalPublicComment": [
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        "A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr \u00fcber 12to w\u00e4hrend S\u00fcdlink GST-\u00dcberfahrt - A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr f\u00fcr Transporte \u00fcber 12to w\u00e4hrend S\u00fcdlink-GST \u00dcberfahrt - Lage-1"
+                      ]
+                    }
+                  },
+                  "commentExtension": {
+                    "commentExtended": {
+                      "commentType2": "roadworksName"
+                    }
+                  }
+                },
+                {
+                  "comment": {
+                    "values": {
+                      "value": [
+                        "Sperrung Richtungsfahrbahn"
+                      ]
+                    }
+                  },
+                  "commentExtension": {
+                    "commentExtended": {
+                      "commentType2": "roadworksType"
+                    }
+                  }
+                }
+              ],
+              "groupOfLocations": {
+                "@xsi:type": "Linear",
+                "alertCLinear": {
+                  "@xsi:type": "AlertCMethod4Linear",
+                  "alertCDirection": {
+                    "alertCDirectionCoded": "positive"
+                  },
+                  "alertCLocationCountryCode": "D",
+                  "alertCLocationTableNumber": "1",
+                  "alertCLocationTableVersion": "22.0",
+                  "alertCMethod4PrimaryPointLocation": {
+                    "alertCLocation": {
+                      "specificLocation": 12672
+                    },
+                    "offsetDistance": {
+                      "offsetDistance": "547"
+                    }
+                  },
+                  "alertCMethod4SecondaryPointLocation": {
+                    "alertCLocation": {
+                      "specificLocation": 12671
+                    },
+                    "offsetDistance": {
+                      "offsetDistance": "4918"
+                    }
+                  }
+                },
+                "linearExtension": {
+                  "linearExtended": {
+                    "gmlLineString": {
+                      "posList": "49.312666 9.404707 49.313069 9.405431 49.313372 9.405918 49.313835 9.406651 49.314181 9.407169 49.314537 9.407671 49.314902 9.408158 49.315092 9.408396 49.315276 9.408628 49.315659 9.409081 49.316050 9.409518 49.316449 9.409938 49.316855 9.410340 49.317269 9.410723 49.317690 9.411089 49.318117 9.411436 49.318551 9.411765 49.318990 9.412074 49.319435 9.412364 49.319886 9.412634 49.319937 9.412663",
+                      "roadInformation": null,
+                      "srsName": "WGS84 EPSG 4326"
+                    }
+                  }
+                },
+                "linearWithinLinearElement": {
+                  "directionRelativeOnLinearSection": "aligned",
+                  "fromPoint": {
+                    "@xsi:type": "DistanceFromLinearElementReferent",
+                    "distanceAlong": 12814.0,
+                    "fromReferent": {
+                      "referentIdentifier": "6522025O",
+                      "referentType": "referenceMarker"
+                    },
+                    "towardsReferent": {
+                      "referentIdentifier": "6722042O",
+                      "referentType": "referenceMarker"
+                    }
+                  },
+                  "linearElement": {
+                    "roadNumber": "A81"
+                  },
+                  "toPoint": {
+                    "@xsi:type": "DistanceFromLinearElementReferent",
+                    "distanceAlong": 11812.0,
+                    "fromReferent": {
+                      "referentIdentifier": "6522025O",
+                      "referentType": "referenceMarker"
+                    },
+                    "towardsReferent": {
+                      "referentIdentifier": "6722042O",
+                      "referentType": "referenceMarker"
+                    }
+                  }
+                },
+                "supplementaryPositionalDescription": {
+                  "affectedCarriagewayAndLanes": [
+                    {
+                      "carriageway": "mainCarriageway",
+                      "lengthAffected": 1002.0
+                    }
+                  ]
+                }
+              },
+              "impact": {
+                "capacityRemaining": 3340.0,
+                "impactExtension": {
+                  "impactExtended": {
+                    "hardShoulderStatus": "availableForStopping",
+                    "laneRestriction": [
+                      {
+                        "lane": "allLanesCompleteCarriageway",
+                        "maxVehicleWeight": "12000.0"
+                      },
+                      {
+                        "lane": "lane1"
+                      },
+                      {
+                        "lane": "lane2"
+                      },
+                      {
+                        "lane": "hardShoulder"
+                      }
+                    ],
+                    "laneStatusCoded": "2oors"
+                  }
+                },
+                "numberOfLanesRestricted": 0,
+                "originalNumberOfLanes": 2,
+                "residualRoadWidth": 6.5
+              },
+              "operatorActionStatus": "approved",
+              "probabilityOfOccurrence": "certain",
+              "roadOrCarriagewayOrLaneManagementType": "roadClosed",
+              "situationRecordCreationTime": "2026-09-07T12:37:55Z",
+              "situationRecordVersionTime": "2026-09-07T12:56:13Z",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-09-14T02:00:00+02:00",
+                  "overallStartTime": "2026-09-13T23:00:00+02:00",
+                  "validPeriod": [
+                    {
+                      "endOfPeriod": "2026-09-14T00:00:00+02:00",
+                      "recurringDayWeekMonthPeriod": [
+                        null
+                      ],
+                      "startOfPeriod": "2026-09-13T23:00:00+02:00"
+                    },
+                    {
+                      "endOfPeriod": "2026-09-14T02:00:00+02:00",
+                      "recurringDayWeekMonthPeriod": [
+                        null
+                      ],
+                      "startOfPeriod": "2026-09-14T00:00:00+02:00"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -110,3 +110,6 @@ def test_sitpub_linearByCoordinates_to_flat_geojson():
 
 def test_sitpub_only_coordinatesForDisplay_to_flat_geojson():
     transform_to_flat_geojson('sitpub_only_coordinatesForDisplay', False)
+
+def test_sitpub_multiple_lanerestrictions_to_flat_geojson():
+    transform_to_flat_geojson('sitpub_multiple_lanerestrictions', False)
