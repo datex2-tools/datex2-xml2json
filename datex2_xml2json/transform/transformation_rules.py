@@ -300,7 +300,6 @@ class TransformationRuleFactory:
             'openlrLowestFRCToNextLRPoint': lambda v: {'value': v.lower()},
             # lang: de-DE -> de as JSON schema allows only 2 chars, bemas uses uppercase
             '@lang': lambda v: v[0:2].lower(),
-            'lane': lambda v: {'laneNumber': int(v[4:])} if v.startswith('lane') else {'laneUsage': {'value': v}},
             # comment/values is expected to be a dict with value/lang. For now, we assume values only includes multi ling string
             'values': lambda v: [add_def_lang_if_missing(value) for value in v['value']],
             'alertCDirection': lambda v: transform_alertc(v, False),
@@ -503,6 +502,7 @@ class TransformationRuleFactory:
             'tpegSimplePointLocationType': wrap_with_value,
             'alertCArea': lambda v: [v],  # FIXME move up to xml2_to_json?
             'gmlLineString': lambda v: {'locGmlLineString': {'posList': v.get('posList', v.get('coordinates', '').replace(',', ' '))}},
+            'lane': lambda v: {'laneNumber': int(v[4:])} if v.startswith('lane') else {'laneUsage': {'value': v}},
         }
 
         keys_to_drop = {
