@@ -15,6 +15,7 @@ from .transform import (
     RulesTransformer,
     TransformationRuleFactory,
     TransformerPipeline,
+    GeoparquetRenderer,
 )
 from .util import load_as_json_using_schema
 
@@ -125,10 +126,7 @@ def main(
             exit(JsonValidator(OUTPUT_SCHEMAS[output_format]).validate(outfile_name))
 
     else:
-        geojson_filename = Path(outDir) / (stem + FILE_SUFFIXES_PER_FORMAT[OutputFormat.GEOJSON])
-        with open(geojson_filename, 'w') as f:
-            json.dump(result, f, indent=2)
-        gpio.convert(geojson_filename).write(outfile_name)
+        GeoparquetRenderer().render(outfile_name, result)
 
 
 if __name__ == '__main__':
