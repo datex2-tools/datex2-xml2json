@@ -38,8 +38,7 @@ mostly_flat_geojson_expression = """
         "numberOfLanesRestricted": impact.numberOfLanesRestricted,
         "residualRoadWidth": impact.residualRoadWidth,
         "trafficConstrictionType": impact.trafficConstrictionType,
-        /* TODO: Remove value as soon as input json has it removed*/
-        "laneUsage": impact.impactExtension.impactExtended.laneRestriction.lane.laneUsage.value,
+        "laneRestriction": impact.impactExtension.impactExtended.laneRestriction,
         "laneStatusCoded": impact.impactExtension.impactExtended.laneStatusCoded,
         "extendedLaneStatusCoded": situationRecordExtension.situationRecordExtended.extendedLaneStatusCoded,
         "hardShoulderStatus": impact.impactExtension.impactExtended.hardShoulderStatus,
