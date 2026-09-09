@@ -46,7 +46,7 @@ mostly_flat_geojson_expression = """
         /* Note: other publication (i.e. TrafficMessages) use roadClosed and forVehiclesWithCharacteristicsOf */
         "residualHeight": impact.impactExtension.impactExtended.residualHeight,
         /* Note: other publication (i.e. TrafficMessages) use roadClosed and forVehiclesWithCharacteristicsOf */
-        "maxVehicleWeight": impact.impactExtension.impactExtended.laneRestriction.maxVehicleWeight,
+        "maxVehicleWeight": impact.impactExtension.impactExtended.laneRestriction[lane="allLanesCompleteCarriageway"].maxVehicleWeight,
         "capacityRemaining": impact.capacityRemaining,
         "originalNumberOfLanes": impact.originalNumberOfLanes,
         /* is numberOfObstructions used?*/
