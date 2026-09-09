@@ -1,0 +1,284 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-09-08T12:46:16+02:00",
+        "publicationCreator": "DE-MIA",
+        "situationId": "DE-MIA#2026-045666#1",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "id": "25649485-25649487-25649490-25649491",
+        "version": "17",
+        "situationRecordCreationTime": "2026-09-07T12:37:55Z",
+        "situationRecordVersionTime": "2026-09-07T12:56:13Z",
+        "probabilityOfOccurrence": "certain",
+        "roadworksType": "Sonstiges",
+        "roadworksName": "A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr \u00fcber 12to w\u00e4hrend S\u00fcdlink GST-\u00dcberfahrt - A81 Jagsttalbr\u00fccke in FR W\u00dc - Aufstellung LED  - Lage-1",
+        "type": "MaintenanceWorks",
+        "numberOfLanesRestricted": 0,
+        "residualRoadWidth": 7.0,
+        "laneRestriction": [
+          {
+            "lane": "lane1"
+          },
+          {
+            "lane": "lane2"
+          }
+        ],
+        "laneStatusCoded": "2oorx",
+        "hardShoulderStatus": "closed",
+        "capacityRemaining": 3340.0,
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2026-09-12T08:00:00+02:00",
+        "overallEndTime": "2026-09-12T20:00:00+02:00",
+        "validPeriods": [
+          {
+            "endOfPeriod": "2026-09-12T20:00:00+02:00",
+            "recurringDayWeekMonthPeriod": [],
+            "startOfPeriod": "2026-09-12T08:00:00+02:00"
+          }
+        ],
+        "situationRecordSubtype": "other",
+        "actionPlanIdentifier": "S1",
+        "operatorActionStatus": "approved",
+        "roadworksDurationClassification": "shortTerm",
+        "mobilityType": "stationary",
+        "roadNumber": "A81",
+        "fromASBSegmentFromNode": "6722041O",
+        "fromASBSegmentTowardsNode": "6822053O",
+        "fromASBSegmentStation": 1525.0,
+        "toASBSegmentFromNode": "6722041O",
+        "toASBSegmentTowardsNode": "6822053O",
+        "toASBSegmentStation": 1025.0,
+        "lengthAffected": 500.0,
+        "temporarySpeedLimit": "80.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.35077,
+            49.223254
+          ],
+          [
+            9.350776,
+            49.22328
+          ],
+          [
+            9.350787,
+            49.22332
+          ],
+          [
+            9.350928,
+            49.224
+          ],
+          [
+            9.350973,
+            49.224311
+          ],
+          [
+            9.351006,
+            49.22457
+          ],
+          [
+            9.351078,
+            49.225087
+          ],
+          [
+            9.351117,
+            49.225394
+          ],
+          [
+            9.35113,
+            49.225668
+          ],
+          [
+            9.351151,
+            49.226029
+          ],
+          [
+            9.351159,
+            49.226323
+          ],
+          [
+            9.35116,
+            49.226647
+          ],
+          [
+            9.351156,
+            49.226992
+          ],
+          [
+            9.351144,
+            49.2274
+          ],
+          [
+            9.351123,
+            49.227685
+          ],
+          [
+            9.351116,
+            49.227749
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-09-08T12:46:16+02:00",
+        "publicationCreator": "DE-MIA",
+        "situationId": "DE-MIA#2026-045666#1",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "id": "25649485-25649819-25649820-25649825",
+        "version": "17",
+        "situationRecordCreationTime": "2026-09-07T12:37:55Z",
+        "situationRecordVersionTime": "2026-09-07T12:56:13Z",
+        "probabilityOfOccurrence": "certain",
+        "roadworksType": "Sperrung Richtungsfahrbahn",
+        "roadworksName": "A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr \u00fcber 12to w\u00e4hrend S\u00fcdlink GST-\u00dcberfahrt - A81 Jagsttalbr\u00fccke in FR W\u00dc - Sperrung Richtungsfahrbahn Gegenverkehr f\u00fcr Transporte \u00fcber 12to w\u00e4hrend S\u00fcdlink-GST \u00dcberfahrt - Lage-1",
+        "type": "RoadOrCarriagewayOrLaneManagement",
+        "complianceOption": "mandatory",
+        "numberOfLanesRestricted": 0,
+        "residualRoadWidth": 6.5,
+        "laneRestriction": [
+          {
+            "lane": "allLanesCompleteCarriageway",
+            "maxVehicleWeight": "12000.0"
+          },
+          {
+            "lane": "lane1"
+          },
+          {
+            "lane": "lane2"
+          },
+          {
+            "lane": "hardShoulder"
+          }
+        ],
+        "laneStatusCoded": "2oors",
+        "hardShoulderStatus": "availableForStopping",
+        "maxVehicleWeight": "12000.0",
+        "capacityRemaining": 3340.0,
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2026-09-13T23:00:00+02:00",
+        "overallEndTime": "2026-09-14T02:00:00+02:00",
+        "validPeriods": [
+          {
+            "endOfPeriod": "2026-09-14T00:00:00+02:00",
+            "recurringDayWeekMonthPeriod": [],
+            "startOfPeriod": "2026-09-13T23:00:00+02:00"
+          },
+          {
+            "endOfPeriod": "2026-09-14T02:00:00+02:00",
+            "recurringDayWeekMonthPeriod": [],
+            "startOfPeriod": "2026-09-14T00:00:00+02:00"
+          }
+        ],
+        "situationRecordSubtype": "roadClosed",
+        "actionPlanIdentifier": "SP1",
+        "operatorActionStatus": "approved",
+        "roadNumber": "A81",
+        "fromASBSegmentFromNode": "6522025O",
+        "fromASBSegmentTowardsNode": "6722042O",
+        "fromASBSegmentStation": 12814.0,
+        "toASBSegmentFromNode": "6522025O",
+        "toASBSegmentTowardsNode": "6722042O",
+        "toASBSegmentStation": 11812.0,
+        "lengthAffected": 1002.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.404707,
+            49.312666
+          ],
+          [
+            9.405431,
+            49.313069
+          ],
+          [
+            9.405918,
+            49.313372
+          ],
+          [
+            9.406651,
+            49.313835
+          ],
+          [
+            9.407169,
+            49.314181
+          ],
+          [
+            9.407671,
+            49.314537
+          ],
+          [
+            9.408158,
+            49.314902
+          ],
+          [
+            9.408396,
+            49.315092
+          ],
+          [
+            9.408628,
+            49.315276
+          ],
+          [
+            9.409081,
+            49.315659
+          ],
+          [
+            9.409518,
+            49.31605
+          ],
+          [
+            9.409938,
+            49.316449
+          ],
+          [
+            9.41034,
+            49.316855
+          ],
+          [
+            9.410723,
+            49.317269
+          ],
+          [
+            9.411089,
+            49.31769
+          ],
+          [
+            9.411436,
+            49.318117
+          ],
+          [
+            9.411765,
+            49.318551
+          ],
+          [
+            9.412074,
+            49.31899
+          ],
+          [
+            9.412364,
+            49.319435
+          ],
+          [
+            9.412634,
+            49.319886
+          ],
+          [
+            9.412663,
+            49.319937
+          ]
+        ]
+      }
+    }
+  ]
+}
