@@ -1,0 +1,122 @@
+{
+  "d2LogicalModel": {
+    "@modelBaseVersion": "2",
+    "@xmlns": "http://datex2.eu/schema/2/2_0",
+    "exchange": {
+      "supplierIdentification": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      }
+    },
+    "payloadPublication": {
+      "@lang": "DE",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "SituationPublication",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      },
+      "publicationTime": "2026-09-10T12:22:22.263+02:00",
+      "situation": [
+        {
+          "@id": "138434891",
+          "@version": "122",
+          "headerInformation": {
+            "confidentiality": "noRestriction",
+            "informationStatus": "real"
+          },
+          "overallSeverity": "low",
+          "situationRecord": [
+            {
+              "@id": "138434891-138434893-138434896-138437191-gegen-0-sperrung",
+              "@version": "122",
+              "@xsi:type": "RoadOrCarriagewayOrLaneManagement",
+              "actionPlanIdentifier": "AS2",
+              "cause": {
+                "@xsi:type": "ManagedCause",
+                "managedCause": {
+                  "@id": "138434891-gesamt",
+                  "@targetClass": "SituationRecord",
+                  "@version": "122"
+                }
+              },
+              "complianceOption": "mandatory",
+              "groupOfLocations": {
+                "@xsi:type": "Point",
+                "alertCPoint": {
+                  "@xsi:type": "AlertCMethod4Point",
+                  "alertCDirection": {
+                    "alertCDirectionCoded": "negative"
+                  },
+                  "alertCLocationCountryCode": "D",
+                  "alertCLocationTableNumber": "1",
+                  "alertCLocationTableVersion": "20.0",
+                  "alertCMethod4PrimaryPointLocation": {
+                    "alertCLocation": {
+                      "alertCLocationName": {
+                        "values": {
+                          "value": [
+                            {
+                              "$": "Plankstadt-S\u00fcd/Oftersheim",
+                              "@lang": "de"
+                            }
+                          ]
+                        }
+                      },
+                      "specificLocation": 8314
+                    },
+                    "offsetDistance": {
+                      "offsetDistance": "0"
+                    }
+                  }
+                },
+                "locationForDisplay": {
+                  "latitude": 49.385036,
+                  "longitude": 8.594416
+                },
+                "pointAlongLinearElement": {
+                  "directionRelativeAtPoint": "aligned",
+                  "distanceAlongLinearElement": {
+                    "@xsi:type": "DistanceFromLinearElementReferent",
+                    "distanceAlong": 0.0,
+                    "fromReferent": {
+                      "referentIdentifier": "6617092O",
+                      "referentType": "referenceMarker"
+                    },
+                    "towardsReferent": {
+                      "referentIdentifier": "6617094O",
+                      "referentType": "referenceMarker"
+                    }
+                  },
+                  "linearElement": {
+                    "roadNumber": "B535"
+                  }
+                },
+                "supplementaryPositionalDescription": {
+                  "affectedCarriagewayAndLanes": [
+                    {
+                      "carriageway": "entrySlipRoad"
+                    }
+                  ]
+                }
+              },
+              "operatorActionStatus": "approved",
+              "probabilityOfOccurrence": "certain",
+              "roadOrCarriagewayOrLaneManagementType": "carriagewayClosures",
+              "situationRecordCreationTime": "2026-09-03T10:13:52.894+02:00",
+              "situationRecordVersionTime": "2026-09-03T15:02:09.041+02:00",
+              "validity": {
+                "validityStatus": "definedByValidityTimeSpec",
+                "validityTimeSpecification": {
+                  "overallEndTime": "2026-09-11T06:00:00.000+02:00",
+                  "overallStartTime": "2026-09-10T20:00:00.000+02:00"
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-09-07T14:11:36.538+02:00"
+        }
+      ]
+    }
+  }
+}

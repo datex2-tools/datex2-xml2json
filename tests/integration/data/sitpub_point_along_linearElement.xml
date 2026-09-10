@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<d2LogicalModel modelBaseVersion="2" xmlns="http://datex2.eu/schema/2/2_0">
+    <exchange>
+        <supplierIdentification>
+            <country>de</country>
+            <nationalIdentifier>DE-MDM-Straßenbauverwaltung Baden-Württemberg - Ministerium für Verkehr Baden-Württemberg</nationalIdentifier>
+        </supplierIdentification>
+    </exchange>
+    <payloadPublication xsi:type="SituationPublication" lang="DE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <publicationTime>2026-09-10T12:22:22.263+02:00</publicationTime>
+        <publicationCreator>
+            <country>de</country>
+            <nationalIdentifier>DE-MDM-Straßenbauverwaltung Baden-Württemberg - Ministerium für Verkehr Baden-Württemberg</nationalIdentifier>
+        </publicationCreator> 
+        <situation id="138434891" version="122">
+            <overallSeverity>low</overallSeverity>
+            <situationVersionTime>2026-09-07T14:11:36.538+02:00</situationVersionTime>
+            <headerInformation>
+                <confidentiality>noRestriction</confidentiality>
+                <informationStatus>real</informationStatus>
+            </headerInformation>
+           
+            <situationRecord xsi:type="RoadOrCarriagewayOrLaneManagement" id="138434891-138434893-138434896-138437191-gegen-0-sperrung" version="122">
+                <situationRecordCreationTime>2026-09-03T10:13:52.894+02:00</situationRecordCreationTime>
+                <situationRecordVersionTime>2026-09-03T15:02:09.041+02:00</situationRecordVersionTime>
+                <probabilityOfOccurrence>certain</probabilityOfOccurrence>
+                <validity>
+                    <validityStatus>definedByValidityTimeSpec</validityStatus>
+                    <validityTimeSpecification>
+                        <overallStartTime>2026-09-10T20:00:00.000+02:00</overallStartTime>
+                        <overallEndTime>2026-09-11T06:00:00.000+02:00</overallEndTime>
+                    </validityTimeSpecification>
+                </validity>
+                <cause xsi:type="ManagedCause">
+                    <managedCause targetClass="SituationRecord" id="138434891-gesamt" version="122"/>
+                </cause>
+                <groupOfLocations xsi:type="Point">
+                    <locationForDisplay>
+                        <latitude>49.385036</latitude>
+                        <longitude>8.594416</longitude>
+                    </locationForDisplay>
+                    <supplementaryPositionalDescription>
+                        <affectedCarriagewayAndLanes>
+                            <carriageway>entrySlipRoad</carriageway>
+                        </affectedCarriagewayAndLanes>
+                    </supplementaryPositionalDescription>
+                    <alertCPoint xsi:type="AlertCMethod4Point">
+                        <alertCLocationCountryCode>D</alertCLocationCountryCode>
+                        <alertCLocationTableNumber>1</alertCLocationTableNumber>
+                        <alertCLocationTableVersion>20.0</alertCLocationTableVersion>
+                        <alertCDirection>
+                            <alertCDirectionCoded>negative</alertCDirectionCoded>
+                        </alertCDirection>
+                        <alertCMethod4PrimaryPointLocation>
+                            <alertCLocation>
+                                <alertCLocationName>
+                                    <values>
+                                        <value lang="de">Plankstadt-Süd/Oftersheim</value>
+                                    </values>
+                                </alertCLocationName>
+                                <specificLocation>8314</specificLocation>
+                            </alertCLocation>
+                            <offsetDistance>
+                                <offsetDistance>0</offsetDistance>
+                            </offsetDistance>
+                        </alertCMethod4PrimaryPointLocation>
+                    </alertCPoint>
+                    <pointAlongLinearElement>
+                        <directionRelativeAtPoint>aligned</directionRelativeAtPoint>
+                        <linearElement>
+                            <roadNumber>B535</roadNumber>
+                        </linearElement>
+                        <distanceAlongLinearElement xsi:type="DistanceFromLinearElementReferent">
+                            <distanceAlong>0.0</distanceAlong>
+                            <fromReferent>
+                                <referentIdentifier>6617092O</referentIdentifier>
+                                <referentType>referenceMarker</referentType>
+                            </fromReferent>
+                            <towardsReferent>
+                                <referentIdentifier>6617094O</referentIdentifier>
+                                <referentType>referenceMarker</referentType>
+                            </towardsReferent>
+                        </distanceAlongLinearElement>
+                    </pointAlongLinearElement>
+                </groupOfLocations>
+                <actionPlanIdentifier>AS2</actionPlanIdentifier>
+                <operatorActionStatus>approved</operatorActionStatus>
+                <complianceOption>mandatory</complianceOption>
+                <roadOrCarriagewayOrLaneManagementType>carriagewayClosures</roadOrCarriagewayOrLaneManagementType>
+            </situationRecord>
+        </situation>
+    </payloadPublication>
+</d2LogicalModel>
