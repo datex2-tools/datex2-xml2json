@@ -1,0 +1,574 @@
+{
+  "payload": {
+    "modelBaseVersionG": "2",
+    "sitSituationPublication": {
+      "lang": "de",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MIA"
+      },
+      "publicationTime": "2026-09-09T18:01:19+02:00",
+      "situation": [
+        {
+          "idG": "DE-MIA#2026-045648#1",
+          "headerInformation": {
+            "confidentiality": {
+              "value": "noRestriction"
+            },
+            "informationStatus": {
+              "value": "real"
+            }
+          },
+          "situationRecord": [
+            {
+              "sitMaintenanceWorks": {
+                "idG": "25646415-25646417-25646421-25646422",
+                "versionG": "45",
+                "actionPlanIdentifier": "P3",
+                "generalPublicComment": [
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Straat1 Markierungsarbeiten - DIV_3 - A10"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksName"
+                      }
+                    }
+                  },
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Markierungsarbeiten"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksType"
+                      }
+                    }
+                  }
+                ],
+                "locationReference": {
+                  "locSingleRoadLinearLocation": {
+                    "linearWithinLinearElement": [
+                      {
+                        "directionRelativeOnLinearSection": {
+                          "value": "aligned"
+                        },
+                        "fromPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 113.0,
+                            "fromReferent": {
+                              "referentIdentifier": "3643011O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "3743002O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "toPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 4067.0,
+                            "fromReferent": {
+                              "referentIdentifier": "3643011O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "3743002O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "linearElement": {}
+                      }
+                    ],
+                    "supplementaryPositionalDescription": {
+                      "carriageway": [
+                        {
+                          "carriageway": {
+                            "value": "mainCarriageway"
+                          }
+                        }
+                      ],
+                      "lengthAffected": 3954.0
+                    },
+                    "gmlLineString": {
+                      "locGmlLineString": {
+                        "posList": "52.302742 12.971473 52.302442 12.970143 52.300673 12.962387 52.299760 12.958348 52.298406 12.952420 52.297228 12.947252 52.296012 12.941955 52.294641 12.935944 52.293864 12.932658 52.293250 12.929968 52.291887 12.924004 52.291551 12.922527 52.291318 12.921516 52.291048 12.920373 52.290969 12.920059 52.290921 12.919855 52.290854 12.919623 52.290666 12.919044 52.290517 12.918690 52.290353 12.918309 52.290179 12.917948 52.290017 12.917652 52.289925 12.917498"
+                      }
+                    }
+                  }
+                },
+                "impact": {
+                  "capacityRemaining": 1580.0,
+                  "sitImpactExtensionG": {
+                    "impactExtended": {
+                      "closedLanes": [
+                        "lane2",
+                        "lane3",
+                        "lane4"
+                      ],
+                      "hardShoulderStatus": "availableForStopping",
+                      "laneRestriction": [
+                        {
+                          "lane": {
+                            "laneNumber": 1
+                          },
+                          "minLaneWidth": "3.75"
+                        },
+                        {
+                          "lane": {
+                            "laneUsage": {
+                              "value": "hardShoulder"
+                            }
+                          }
+                        }
+                      ],
+                      "laneStatusCoded": "2xxxors"
+                    }
+                  },
+                  "numberOfLanesRestricted": 3,
+                  "residualRoadWidth": 3.75
+                },
+                "mobility": {
+                  "mobilityType": {
+                    "value": "stationary"
+                  }
+                },
+                "operatorActionStatus": {
+                  "value": "approved"
+                },
+                "probabilityOfOccurrence": {
+                  "value": "certain"
+                },
+                "roadMaintenanceType": [
+                  {
+                    "value": "roadMarkingWork"
+                  }
+                ],
+                "roadworksDurationClassification": {
+                  "value": "shortTerm"
+                },
+                "situationRecordCreationTime": "2026-09-07T11:55:25Z",
+                "situationRecordVersionTime": "2026-09-07T13:54:25Z",
+                "validity": {
+                  "validityStatus": {
+                    "value": "definedByValidityTimeSpec"
+                  },
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-09-08T05:00:00+02:00",
+                    "overallStartTime": "2026-09-07T20:00:00+02:00",
+                    "validPeriod": [
+                      {
+                        "endOfPeriod": "2026-09-08T00:00:00+02:00",
+                        "recurringDayWeekMonthPeriod": [],
+                        "startOfPeriod": "2026-09-07T20:00:00+02:00"
+                      },
+                      {
+                        "endOfPeriod": "2026-09-08T05:00:00+02:00",
+                        "recurringDayWeekMonthPeriod": [],
+                        "startOfPeriod": "2026-09-08T00:00:00+02:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "sitMaintenanceWorks": {
+                "idG": "25646415-25646417-25646498-25646504",
+                "versionG": "45",
+                "actionPlanIdentifier": "P3",
+                "generalPublicComment": [
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Straat1 Markierungsarbeiten - DIV_3 - A9"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksName"
+                      }
+                    }
+                  },
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Markierungsarbeiten"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksType"
+                      }
+                    }
+                  }
+                ],
+                "locationReference": {
+                  "locSingleRoadLinearLocation": {
+                    "alertCLinear": [
+                      {
+                        "locAlertCMethod4Linear": {
+                          "alertCDirection": {
+                            "alertCDirectionCoded": {
+                              "value": "negative"
+                            },
+                            "alertCAffectedDirection": {
+                              "value": "aligned"
+                            }
+                          },
+                          "alertCLocationCountryCode": "D",
+                          "alertCLocationTableNumber": "1",
+                          "alertCLocationTableVersion": "22.0",
+                          "alertCMethod4PrimaryPointLocation": {
+                            "alertCLocation": {
+                              "specificLocation": 12814
+                            },
+                            "offsetDistance": {
+                              "offsetDistance": 375
+                            }
+                          },
+                          "alertCMethod4SecondaryPointLocation": {
+                            "alertCLocation": {
+                              "specificLocation": 12815
+                            },
+                            "offsetDistance": {
+                              "offsetDistance": 1
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "linearWithinLinearElement": [
+                      {
+                        "directionRelativeOnLinearSection": {
+                          "value": "aligned"
+                        },
+                        "fromPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 3.0,
+                            "fromReferent": {
+                              "referentIdentifier": "3743002O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "3743003O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "linearElement": {
+                          "locLinearElement": {
+                            "roadNumber": "A9"
+                          }
+                        },
+                        "toPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 2008.0,
+                            "fromReferent": {
+                              "referentIdentifier": "3743002O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "3743003O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "supplementaryPositionalDescription": {
+                      "carriageway": [
+                        {
+                          "carriageway": {
+                            "value": "mainCarriageway"
+                          }
+                        }
+                      ],
+                      "lengthAffected": 2005.0
+                    },
+                    "gmlLineString": {
+                      "locGmlLineString": {
+                        "posList": "52.289840 12.917354 52.289836 12.917348 52.289664 12.917097 52.289543 12.916934 52.289472 12.916839 52.289332 12.916667 52.289139 12.916446 52.288958 12.916258 52.288748 12.916056 52.288556 12.915896 52.288380 12.915762 52.288186 12.915628 52.287978 12.915503 52.287786 12.915402 52.287523 12.915289 52.287385 12.915228 52.287129 12.915131 52.285664 12.914636 52.284876 12.914372 52.282592 12.913606 52.278297 12.912148 52.278005 12.912060 52.274319 12.910794 52.272951 12.910331 52.272465 12.910166"
+                      }
+                    }
+                  }
+                },
+                "impact": {
+                  "capacityRemaining": 1580.0,
+                  "sitImpactExtensionG": {
+                    "impactExtended": {
+                      "closedLanes": [
+                        "lane2",
+                        "lane3"
+                      ],
+                      "hardShoulderStatus": "availableForStopping",
+                      "laneRestriction": [
+                        {
+                          "lane": {
+                            "laneNumber": 1
+                          },
+                          "minLaneWidth": "3.75"
+                        },
+                        {
+                          "lane": {
+                            "laneUsage": {
+                              "value": "hardShoulder"
+                            }
+                          }
+                        }
+                      ],
+                      "laneStatusCoded": "2xxors"
+                    }
+                  },
+                  "numberOfLanesRestricted": 2,
+                  "residualRoadWidth": 3.75
+                },
+                "mobility": {
+                  "mobilityType": {
+                    "value": "stationary"
+                  }
+                },
+                "operatorActionStatus": {
+                  "value": "approved"
+                },
+                "probabilityOfOccurrence": {
+                  "value": "certain"
+                },
+                "roadMaintenanceType": [
+                  {
+                    "value": "roadMarkingWork"
+                  }
+                ],
+                "roadworksDurationClassification": {
+                  "value": "shortTerm"
+                },
+                "situationRecordCreationTime": "2026-09-07T11:55:25Z",
+                "situationRecordVersionTime": "2026-09-07T13:54:25Z",
+                "validity": {
+                  "validityStatus": {
+                    "value": "definedByValidityTimeSpec"
+                  },
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-09-08T05:00:00+02:00",
+                    "overallStartTime": "2026-09-07T20:00:00+02:00",
+                    "validPeriod": [
+                      {
+                        "endOfPeriod": "2026-09-08T00:00:00+02:00",
+                        "recurringDayWeekMonthPeriod": [],
+                        "startOfPeriod": "2026-09-07T20:00:00+02:00"
+                      },
+                      {
+                        "endOfPeriod": "2026-09-08T05:00:00+02:00",
+                        "recurringDayWeekMonthPeriod": [],
+                        "startOfPeriod": "2026-09-08T00:00:00+02:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "sitMaintenanceWorks": {
+                "idG": "25646415-25648616-25648617-25648624",
+                "versionG": "45",
+                "actionPlanIdentifier": "P3",
+                "generalPublicComment": [
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Straat1 Markierungsarbeiten - DIV_2 - A10"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksName"
+                      }
+                    }
+                  },
+                  {
+                    "comment": {
+                      "values": [
+                        {
+                          "lang": "de",
+                          "value": "Markierungsarbeiten"
+                        }
+                      ]
+                    },
+                    "sitCommentExtensionG": {
+                      "commentExtended": {
+                        "commentType2": "roadworksType"
+                      }
+                    }
+                  }
+                ],
+                "locationReference": {
+                  "locSingleRoadLinearLocation": {
+                    "linearWithinLinearElement": [
+                      {
+                        "directionRelativeOnLinearSection": {
+                          "value": "aligned"
+                        },
+                        "fromPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 3179.0,
+                            "fromReferent": {
+                              "referentIdentifier": "3644058O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "3643011O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "toPoint": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 4017.0,
+                            "fromReferent": {
+                              "referentIdentifier": "3643011O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "3743002O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "linearElement": {}
+                      }
+                    ],
+                    "supplementaryPositionalDescription": {
+                      "carriageway": [
+                        {
+                          "carriageway": {
+                            "value": "mainCarriageway"
+                          }
+                        }
+                      ],
+                      "lengthAffected": 4550.0
+                    },
+                    "gmlLineString": {
+                      "locGmlLineString": {
+                        "posList": "52.303796 12.980767 52.303800 12.980387 52.303765 12.978240 52.303701 12.977204 52.303616 12.976227 52.303495 12.975285 52.303320 12.974216 52.303191 12.973486 52.303102 12.973072 52.303055 12.972859 52.302442 12.970143 52.300673 12.962387 52.299760 12.958348 52.298406 12.952420 52.297228 12.947252 52.296012 12.941955 52.294641 12.935944 52.293864 12.932658 52.293250 12.929968 52.291887 12.924004 52.291551 12.922527 52.291318 12.921516 52.291048 12.920373 52.290969 12.920059 52.290921 12.919855 52.290854 12.919623 52.290666 12.919044 52.290517 12.918690 52.290353 12.918309 52.290229 12.918051"
+                      }
+                    }
+                  }
+                },
+                "impact": {
+                  "capacityRemaining": 1580.0,
+                  "sitImpactExtensionG": {
+                    "impactExtended": {
+                      "closedLanes": [
+                        "lane1",
+                        "lane2",
+                        "lane3"
+                      ],
+                      "hardShoulderStatus": "closed",
+                      "laneRestriction": {
+                        "lane": {
+                          "laneNumber": 1
+                        },
+                        "minLaneWidth": "3.5"
+                      },
+                      "laneStatusCoded": "2oxxxrx"
+                    }
+                  },
+                  "numberOfLanesRestricted": 3,
+                  "residualRoadWidth": 3.5
+                },
+                "mobility": {
+                  "mobilityType": {
+                    "value": "stationary"
+                  }
+                },
+                "operatorActionStatus": {
+                  "value": "approved"
+                },
+                "probabilityOfOccurrence": {
+                  "value": "certain"
+                },
+                "roadMaintenanceType": [
+                  {
+                    "value": "roadMarkingWork"
+                  }
+                ],
+                "roadworksDurationClassification": {
+                  "value": "shortTerm"
+                },
+                "situationRecordCreationTime": "2026-09-07T11:55:25Z",
+                "situationRecordVersionTime": "2026-09-07T13:54:25Z",
+                "validity": {
+                  "validityStatus": {
+                    "value": "definedByValidityTimeSpec"
+                  },
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-09-09T05:00:00+02:00",
+                    "overallStartTime": "2026-09-08T20:00:00+02:00",
+                    "validPeriod": [
+                      {
+                        "endOfPeriod": "2026-09-09T00:00:00+02:00",
+                        "recurringDayWeekMonthPeriod": [],
+                        "startOfPeriod": "2026-09-08T20:00:00+02:00"
+                      },
+                      {
+                        "endOfPeriod": "2026-09-09T05:00:00+02:00",
+                        "recurringDayWeekMonthPeriod": [],
+                        "startOfPeriod": "2026-09-09T00:00:00+02:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "payload": {
+    "modelBaseVersionG": "2",
+    "sitSituationPublication": {
+      "lang": "de",
+      "publicationCreator": {
+        "country": "de",
+        "nationalIdentifier": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg"
+      },
+      "publicationTime": "2026-09-10T12:22:22.263+02:00",
+      "situation": [
+        {
+          "idG": "138434891",
+          "headerInformation": {
+            "confidentiality": {
+              "value": "noRestriction"
+            },
+            "informationStatus": {
+              "value": "real"
+            }
+          },
+          "overallSeverity": {
+            "value": "low"
+          },
+          "situationRecord": [
+            {
+              "sitRoadOrCarriagewayOrLaneManagement": {
+                "idG": "138434891-138434893-138434896-138437191-gegen-0-sperrung",
+                "versionG": "122",
+                "actionPlanIdentifier": "AS2",
+                "cause": {
+                  "managedCause": {
+                    "objectReference": {
+                      "idG": "138434891-gesamt",
+                      "targetClass": "SituationRecord",
+                      "versionG": "122"
+                    }
+                  }
+                },
+                "complianceOption": {
+                  "value": "mandatory"
+                },
+                "locationReference": {
+                  "locPointLocation": {
+                    "alertCPoint": [
+                      {
+                        "locAlertCMethod4Point": {
+                          "alertCDirection": {
+                            "alertCDirectionCoded": {
+                              "value": "negative"
+                            },
+                            "alertCAffectedDirection": {
+                              "value": "aligned"
+                            }
+                          },
+                          "alertCLocationCountryCode": "D",
+                          "alertCLocationTableNumber": "1",
+                          "alertCLocationTableVersion": "20.0",
+                          "alertCMethod4PrimaryPointLocation": {
+                            "alertCLocation": {
+                              "alertCLocationName": {
+                                "values": [
+                                  {
+                                    "value": "Plankstadt-S\u00fcd/Oftersheim",
+                                    "lang": "de"
+                                  }
+                                ]
+                              },
+                              "specificLocation": 8314
+                            },
+                            "offsetDistance": {
+                              "offsetDistance": 0
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "coordinatesForDisplay": {
+                      "latitude": 49.385036,
+                      "longitude": 8.594416
+                    },
+                    "pointAlongLinearElement": [
+                      {
+                        "directionRelativeAtPoint": {
+                          "value": "aligned"
+                        },
+                        "distanceAlongLinearElement": {
+                          "locDistanceFromLinearElementReferent": {
+                            "distanceAlong": 0.0,
+                            "fromReferent": {
+                              "referentIdentifier": "6617092O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            },
+                            "towardsReferent": {
+                              "referentIdentifier": "6617094O",
+                              "referentType": {
+                                "value": "referenceMarker"
+                              }
+                            }
+                          }
+                        },
+                        "linearElement": {
+                          "locLinearElement": {
+                            "roadNumber": "B535"
+                          }
+                        }
+                      }
+                    ],
+                    "supplementaryPositionalDescription": {
+                      "carriageway": [
+                        {
+                          "carriageway": {
+                            "value": "entrySlipRoad"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "operatorActionStatus": {
+                  "value": "approved"
+                },
+                "probabilityOfOccurrence": {
+                  "value": "certain"
+                },
+                "roadOrCarriagewayOrLaneManagementType": {
+                  "value": "carriagewayClosures"
+                },
+                "situationRecordCreationTime": "2026-09-03T10:13:52.894+02:00",
+                "situationRecordVersionTime": "2026-09-03T15:02:09.041+02:00",
+                "validity": {
+                  "validityStatus": {
+                    "value": "definedByValidityTimeSpec"
+                  },
+                  "validityTimeSpecification": {
+                    "overallEndTime": "2026-09-11T06:00:00.000+02:00",
+                    "overallStartTime": "2026-09-10T20:00:00.000+02:00"
+                  }
+                }
+              }
+            }
+          ],
+          "situationVersionTime": "2026-09-07T14:11:36.538+02:00"
+        }
+      ]
+    }
+  }
+}
