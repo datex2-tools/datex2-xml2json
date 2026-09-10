@@ -5,6 +5,8 @@ from .jsonata_transformer import JsonataTransformer
 
 logger = logging.getLogger(__name__)
 
+# TODO: PublicEvent notificcations and GeneralInstructionOrMessageToRoadUsers do not really match
+# TODO how can we deduce direction for NRW incidents
 cifs_expression = """
 {
     "incidents": features[
@@ -33,8 +35,10 @@ cifs_expression = """
             $typeLookup := {
                 "Accident": "ACCIDENT",
                 "AnimalPresence": "HAZARD",
+                "AnimalPresenceObstruction": "HAZARD",
                 "AbnormalTraffic": "JAM",
                 "AuthorityOperation": "HAZARD",
+                "Conditions": "HAZARD",
                 "ConstructionWorks": "CONSTRUCTION",
                 "EnvironmentalObstruction": "HAZARD",
                 "GeneralObstruction": "HAZARD",
@@ -44,20 +48,29 @@ cifs_expression = """
                 "Obstruction": "HAZARD",
                 "RoadOrCarriagewayOrLaneManagement":"HAZARD",
                 "SpeedManagement": "HAZARD",
-                "VehicleObstruction": "HAZARD"
+                "VehicleObstruction": "HAZARD",
+                "PublicEvent": "CHIT_CHAT",
+                "GeneralInstructionOrMessageToRoadUsers": "CHIT_CHAT",
+                "NonWeatherRelatedRoadConditions": "HAZARD",
+                "WeatherRelatedRoadConditions": "HAZARD",
+                "DisturbanceActivity": "CHIT_CHAT",
+                "TransitInformation": "CHIT_CHAT"
                 };
             $lookup($typeBySubtypeLookup , properties.situationRecordSubtype)?:$lookup($typeLookup , properties.type)?:"TODO"),
         "subtype": (
             $subtypeByTypeLookup := {
                 /* Accident (no subtypes, as DATEXII does not provide accident severity) */
+                /* AnimalPresence has no exact correspondance, we prefer HAZARD_ON_SHOULDER_ANIMALS over HAZARD_ON_ROAD_ROAD_KILL */
                 "AnimalPresence": "HAZARD_ON_SHOULDER_ANIMALS",
+                "AnimalPresenceObstruction": "HAZARD_ON_SHOULDER_ANIMALS",
                 "AuthorityOperation": "HAZARD_ON_ROAD",
                 "GeneralNetworkManagement": "HAZARD_ON_ROAD",
                 "InfrastructureDamageObstruction": "HAZARD_ON_ROAD",
                 "MaintenanceWorks": "HAZARD_ON_ROAD_CONSTRUCTION",
                 "Obstruction": "HAZARD_ON_ROAD",
                 "RoadOrCarriagewayOrLaneManagement": "HAZARD_ON_ROAD",
-                "VehicleObstruction": "HAZARD_ON_ROAD"
+                "VehicleObstruction": "HAZARD_ON_ROAD",
+                "WeatherRelatedRoadConditions": "HAZARD_WEATHER"
                 };
             $subtypeBySubtypeLookup := {
                 /* AbnormalTraffic (no subtype for unspecifiedAbnormalTraffic and other)*/
@@ -105,7 +118,9 @@ cifs_expression = """
                 "damagedVehicle": "HAZARD_ON_ROAD_CAR_STOPPED",
                 "emergencyVehicle": "HAZARD_ON_ROAD_EMERGENCY_VEHICLE",
                 "unlitVehicleOnTheRoad": "HAZARD_ON_ROAD_CAR_STOPPED",
-                "vehicleOnFire": "HAZARD_ON_ROAD_CAR_STOPPED"
+                "vehicleOnFire": "HAZARD_ON_ROAD_CAR_STOPPED",
+                /* NonWeatherRelatedRoadConditions */
+                "roadSurfaceInPoorCondition": "HAZARD_ON_ROAD_POT_HOLE"
                 };
             $lookup($subtypeBySubtypeLookup, properties.situationRecordSubtype)?:$lookup($subtypeByTypeLookup, properties.type)
         ),
@@ -150,7 +165,7 @@ class CifsTransformer(JsonataTransformer):
             return 4
         if incident.get('subtype') == 'HAZARD_ON_ROAD_CONSTRUCTION':
             return 3
-        if incident.get('subtype') == 'HAZARD_ON_ROAD':
+        if incident.get('subtype') == 'HAZARD_ON_ROAD' or incident['type'] in ['CHIT_CHAT']:
             return 1
         else:
             return 2
