@@ -4,6 +4,7 @@ from .base import AbstractTransformer
 
 # ruff: noqa: E501 (JSONata expressions are long...)
 
+# TODO: we asume arrays applicableForTrafficType, placesAtWhichApplicable, applicableForTrafficDirection have at most 1 element... We should check this 
 mostly_flat_geojson_expression = """
 {
   "type": "FeatureCollection",
@@ -30,9 +31,9 @@ mostly_flat_geojson_expression = """
         "routeRecommendation": generalPublicComment[commentExtension.commentExtended.commentType2="routeRecommendation"][0].comment.values[lang="de"].value,
         "type": type,
         "complianceOption": complianceOption,
-        "applicableForTrafficDirection":applicableForTrafficDirection,
+        "applicableForTrafficDirection":applicableForTrafficDirection[0],
         /* TODO this is not set for BEMaS? */
-        "placesAtWhichApplicable":placesAtWhichApplicable,
+        "placesAtWhichApplicable":placesAtWhichApplicable[0],
         "cause":cause.managedCause.objectReference.id,
         "numberOfOperationalLanes": impact.numberOfOperationalLanes,
         "numberOfLanesRestricted": impact.numberOfLanesRestricted,
@@ -58,7 +59,7 @@ mostly_flat_geojson_expression = """
         "validPeriods": validity.validityTimeSpecification.validPeriod,
         "subjectTypeOfWorks": subjects.subjectTypeOfWorks,
         "severity": severity,
-        "applicableForTrafficType":applicableForTrafficType,
+        "applicableForTrafficType":applicableForTrafficType[0],
         /* TODO Check which types are defined with maxoccurs=*, check which have value */
         "situationRecordSubtype": obstructionType[0] ?? reroutingManagementType[0] ?? constructionWorkType ?? generalInstructionToRoadUsersType ?? infrastructureDamageType ?? accidentType[0] ?? abnormalTrafficType ?? speedManagementType ?? roadMaintenanceType[0] ?? animalPresenceType ?? environmentalObstructionType ?? generalNetworkManagementType ?? authorityOperationType ?? roadOrCarriagewayOrLaneManagementType ?? vehicleObstructionType ?? poorEnvironmentType,
         "actionPlanIdentifier": actionPlanIdentifier,
