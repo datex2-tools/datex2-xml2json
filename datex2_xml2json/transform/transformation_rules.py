@@ -170,9 +170,10 @@ class TransformationRuleFactory:
     }
 
     CAR_PARK_STATUS_TO_SERVICE_TYPE_MAPPINGS = {
-        'carParkFull': 'restAreaOvercrowdedDriveToAnotherRestArea',
-        'carParkClosed': 'restAreaClosed',
-        'noMoreParkingSpacesAvailable': 'restAreaOvercrowdedDriveToAnotherRestArea',
+        'allCarParksFull': 'noParkingAvailability',
+        'carParkFull': 'noParkingAvailability',
+        'carParkClosed': 'noParkingAvailability',
+        'noMoreParkingSpacesAvailable': 'noParkingAvailability',
         'serviceAreaFull': 'serviceAreaOvercrowdedDriveToAnotherServiceArea',
     }
 
