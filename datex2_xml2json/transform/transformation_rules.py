@@ -317,6 +317,7 @@ class TransformationRuleFactory:
             'vmsRecord': push_down_vms_configuration,
             # 'roadMaintenanceType': lambda v: v if isinstance(v, list) else [wrap_with_value(v)], # TODO conversion issue?
             'alertCLinear': lambda v: v if isinstance(v, list) else [v],  # TODO conversion issue?
+            'pointAlongLinearElement': lambda v: v if isinstance(v, list) else [v],
             'linearWithinLinearElement': lambda v: v if isinstance(v, list) else [v],
             'linearElement': lambda v: {'locLinearElement': v},
             'gmlLineString': lambda v: {'posList': v.get('posList', v.get('coordinates', '').replace(',', ' '))},
@@ -492,6 +493,7 @@ class TransformationRuleFactory:
             'tpegAreaDescriptorType': wrap_with_value,
             'transitServiceInformation': wrap_with_value,
             'transitServiceType': wrap_with_value,
+            'directionRelativeAtPoint': wrap_with_value,
             'vehicleObstructionType': lambda v: {'value': self.VEHICLE_OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
             # see https://docs.ndw.nu/en/dataformaten/datex2-v2.3/conversie-naar-v3/#generalobstruction-maps-to-generalobstruction
             'obstructionType': lambda v: {'value': self.OBSTRUCTION_TYPE_MAPPINGS.get(v, v)},
