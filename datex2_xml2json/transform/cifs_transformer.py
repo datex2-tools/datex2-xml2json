@@ -21,9 +21,9 @@ cifs_expression = """
         "description": properties.roadworksName?properties.roadworksName:properties.description,
         "starttime": properties.overallStartTime,
         "endtime": properties.overallEndTime,
-        "street": properties.roadNumber?($contains(properties.roadName, properties.roadNumber)?
-          properties.roadName: properties.roadNumber & " " & properties.roadName): $split(properties.description, "\n")[0],
         "direction": "ONE_DIRECTION",
+        "street": $trim(properties.roadNumber?($contains(properties.roadName, properties.roadNumber)?
+          properties.roadName: properties.roadNumber & " " & properties.roadName): $split(properties.description, "\n")[0] ?? "Unbekannte Straße"),
         "type": (
             $typeBySubtypeLookup := {
                 "carriagewayClosures": "ROAD_CLOSED",
