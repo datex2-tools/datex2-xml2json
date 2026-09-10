@@ -136,7 +136,7 @@ class CifsTransformer(JsonataTransformer):
     # Currently expected patterns are:
     # 1. four hyphen separated numeric values, followed by no or any subsring
     # 2. Any string/char prefix followed by dot + number
-    situation_record_group_prefix_regexp = r'^(\d+-\d+-\d+-\d+-gegen)|^(\d+-\d+-\d+-\d+)|^(.*)\.\d+$'
+    situation_record_group_prefix_regexp = r'^(\d+-\d+-\d+-\d+-gegen).*|^(\d+-\d+-\d+-\d+).*|^(.*)\.\d+$'
 
     def __init__(self, **kwargs):
         super().__init__(cifs_expression)
@@ -150,7 +150,7 @@ class CifsTransformer(JsonataTransformer):
             if m is None:
                 logger.warning(f'No match for id {incident["id"]} with pattern {pattern} ')
                 continue
-            common_id_substring = m.group(1)
+            common_id_substring = next(group for group in m.groups() if group is not None)
             if common_id_substring in grouped_incidents:
                 grouped_incidents[common_id_substring].append(incident)
             else:
