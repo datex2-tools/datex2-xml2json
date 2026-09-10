@@ -42,6 +42,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
         locationGroup = situation_record.get('locationReference', {}).get('locSingleRoadLinearLocation', {})
 
         linearExtended = locationGroup.pop('linearExtended', None)
+        gmlLineString = None
         if isinstance(linearExtended, dict) and 'gmlLineString' in linearExtended:
             gmlLineString = linearExtended['gmlLineString']
             # roadInformation is not part of gmlLineString any more, remove it
@@ -52,7 +53,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
         # Copy roadinformation and gmlLineString to locLinearElementByLineString
         if len(linearWithinLinearElements) == 1:
             linearElement = linearWithinLinearElements[0].get('linearElement', {})
-            locLinearElementByLineString = {'gmlLineString': {'locGmlLineString': gmlLineString}}
+            locLinearElementByLineString = {'gmlLineString': {'locGmlLineString': gmlLineString}} if gmlLineString else {}
             if 'roadNumber' in linearElement:
                 locLinearElementByLineString['roadNumber'] = linearElement.pop('roadNumber', None)
             if 'roadName' in linearElement:
@@ -60,6 +61,25 @@ class RoadsRegioTransformer(ProcessingTransformer):
 
             linearElement['locLinearElementByLineString'] = locLinearElementByLineString
             linearWithinLinearElements[0]['linearElement'] = linearElement
+
+    def _fix_missing_linearElement(self, situation_record: dict):
+        # Removes originalNumberOfLanes from impact.
+
+        # BEMaS
+        # Expectation:
+        # locationGroup/
+        #   linearExtended/gmlLineString/roadInformation
+        # .  linearWithinLinearElement[0]/linearElement
+        # Result:
+        #  linearElement/locLinearElementByLineString/
+        # .   gmlLineString/locGmlLineString
+        # .   roadNumber
+        # .   roadName
+        locationGroup = situation_record.get('locationReference', {}).get('locSingleRoadLinearLocation', {})
+        linearWithinLinearElements = locationGroup.get('linearWithinLinearElement', [])
+        if len(linearWithinLinearElements) == 1:
+            if not 'linearElement' in linearWithinLinearElements[0]:
+                linearWithinLinearElements[0]['linearElement'] = {}
 
     def process(self, situation_record_wrapper: dict):
         if isinstance(situation_record_wrapper, dict) and len(situation_record_wrapper) == 1:
@@ -69,6 +89,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
         if situation_record is None:
             return
 
-        # self._handle_bemas_locations(situation_record)
+        #self._handle_bemas_locations(situation_record)
+        self._fix_missing_linearElement(situation_record)
         self._handle_originalNumberOfLanes(situation_record)
         self._filter_empty_comments(situation_record)
