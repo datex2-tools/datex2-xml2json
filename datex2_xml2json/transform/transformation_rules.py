@@ -282,8 +282,13 @@ class TransformationRuleFactory:
             if 'coordinates' in v:
                 pass
             else:
-                posList = v.get('posList')
-            return ({'locGmlLineString': {'posList': posList}},)
+                gmlLineString = {'posList': v.get('posList')}
+                if 'srsName' in v:
+                    gmlLineString['srsName'] = v.get['srsName']
+
+            return {
+                'locGmlLineString': gmlLineString,
+            }
 
         # TODO move value wrapping down to datex transform, here we should use them unwrapped
         value_transforms = {
@@ -321,7 +326,10 @@ class TransformationRuleFactory:
             'pointAlongLinearElement': lambda v: v if isinstance(v, list) else [v],
             'linearWithinLinearElement': lambda v: v if isinstance(v, list) else [v],
             'linearElement': lambda v: {'locLinearElement': v},
-            'gmlLineString': lambda v: {'posList': v.get('posList', v.get('coordinates', '').replace(',', ' '))},
+            'gmlLineString': lambda v: {
+                'posList': v.get('posList', v.get('coordinates', '').replace(',', ' ')),
+                'srsName': v.get('srsName'),
+            },
         }
 
         keys_to_drop = {

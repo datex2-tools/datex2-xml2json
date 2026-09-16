@@ -78,7 +78,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
         locationGroup = situation_record.get('locationReference', {}).get('locSingleRoadLinearLocation', {})
         linearWithinLinearElements = locationGroup.get('linearWithinLinearElement', [])
         if len(linearWithinLinearElements) == 1:
-            if not 'linearElement' in linearWithinLinearElements[0]:
+            if 'linearElement' not in linearWithinLinearElements[0]:
                 linearWithinLinearElements[0]['linearElement'] = {}
 
     def process(self, situation_record_wrapper: dict):
@@ -89,7 +89,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
         if situation_record is None:
             return
 
-        #self._handle_bemas_locations(situation_record)
+        # self._handle_bemas_locations(situation_record)
         self._fix_missing_linearElement(situation_record)
         self._handle_originalNumberOfLanes(situation_record)
         self._filter_empty_comments(situation_record)
