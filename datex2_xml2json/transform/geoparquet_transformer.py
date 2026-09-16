@@ -96,7 +96,7 @@ class GeoparquetRenderer:
                 else:
                     # Create null column of the correct type
                     arrays.append(pa.nulls(len(patable), type=field.type))
-            except:
+            except Exception:
                 logger.exception(f'Exception handling field {field}')
 
         patable = pa.Table.from_arrays(arrays, schema=target_schema)
