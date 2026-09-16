@@ -5,9 +5,9 @@ This tool provides a PoC converter to convert DATEXII XML to JSON or GeoParquet 
 As output format, the following formats are supported
 
 * DATEXII v3.7 JSON
-* a custom DATEXII 3.7 variation which deviates from official schema but is easier to process (see below)
+* a custom DATEXII 3.7 (we call it "DATEXII v3.7 JSON Lite") variation which deviates from official schema but is easier to process (see below)
 * a (mostly) flattened GeoJSON
-* a geoparquet format derived from above mostly flatt GeoJSON format.
+* a geoparquet format derived from above mostly flat GeoJSON format.
 
 Curently, supported DATEXII input is limited to `SituationPublication`s in DATEXII v2.x.
 
@@ -34,7 +34,7 @@ If this is does not help, please open an issue and supply a minimal DATEXII XML 
 In case you fixed an error or want to contribute, please create an issue as well and feel free to send a PR, thanks.
 
 #### DATEXII v3.7
-To convert a DATEXII v2.2 XML publication to DATEXII v3.7, use the following command. It will create out/situation_publication.json and will validate it after generation.
+To convert a DATEXII v2.2 XML publication to DATEXII v3.7, use the following command. It will create `out/situation_publication.json` and will validate it after generation.
 
 ```sh 
 python -m datex2_xml2json.main -f datex2_3_7_json -V situation_publication.xml
@@ -42,7 +42,7 @@ python -m datex2_xml2json.main -f datex2_3_7_json -V situation_publication.xml
 
 #### DATEXII (mostly) flat GeoJSON
 
-To convert a DATEXII v2.2 XML publication to a (mostly) flat GeoJSON file, use the following command. It will create out/situation_publication.geojson.
+To convert a DATEXII v2.2 XML situation publication to a (mostly) flat GeoJSON file, use the following command. It will create `out/situation_publication.geojson`.  Note that this is a lossy conversion which retains a subset of all possible DATEXII properties. For details which elements are picked, see `jsonata_transformer.py`.
 
 ```sh
 python -m datex2_xml2json.main -f geojson situation_publication.xml
@@ -58,7 +58,7 @@ python -m datex2_xml2json.main -f geoparquet situation_publication.xml
 
 #### DATEXII v3.7 JSON Lite
 
-To convert a DATEXII v2.2 XML publication to a DATEXII v3.7 JSON "Lite" format, use the following command. It will create out/situation_publication.lite.json:
+To convert a DATEXII v2.2 XML publication to a DATEXII v3.7 JSON "Lite" format, use the following command. It will create `out/situation_publication.lite.json`:
 
 ```sh
 python -m datex2_xml2json.main -f datex2_3_7_json_lite situation_publication.xml
@@ -73,14 +73,14 @@ Some differences:
 
 #### DATEXII v2.2 RAW JSON
 
-To convert a DATEXII v2.2 XML publication to an intermediate JSON which just converts the XML to a JSON file using the DATEXII v2.2 schema, use the following command. It will create out/situation_publication.raw.json.
+To convert a DATEXII v2.2 XML publication to an intermediate JSON which just converts the XML to a JSON file using the DATEXII v2.2 schema, use the following command. It will create `out/situation_publication.raw.json`.
 ```sh
 python -m datex2_xml2json.main -f raw situation_publication.xml
 ```
 
 #### WAZE CIFS Format
 
-To convert a DATEXII v2.2 XML situation publication to [WAZE CIFS Format](https://developers.google.com/waze/data-feed/cifs-specification?hl=de), use the following command. It will create out/situation_publication.cifs.json.
+To convert a DATEXII v2.2 XML situation publication to [WAZE CIFS Format](https://developers.google.com/waze/data-feed/cifs-specification?hl=de), use the following command. It will create `out/situation_publication.cifs.json`.
 
 ```sh
 python -m datex2_xml2json.main -f cifs situation_publication.xml
@@ -88,7 +88,7 @@ python -m datex2_xml2json.main -f cifs situation_publication.xml
 
 To validate the generated json against the CIFS schema, supply the -v switch.
 ```sh
-python -m datex2_xml2json.main -f cifs -v situation_publication.xml
+python -m datex2_xml2json.main -f cifs -V situation_publication.xml
 ```
 
 Note: currently, this converter does not handle validityPeriods. I.E. recurring events at specific days/hours are not yet mapped to CIFS schedule.
