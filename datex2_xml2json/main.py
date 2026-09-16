@@ -63,26 +63,6 @@ def build_transformer(input_format: InputFormat, output_format: OutputFormat):
                     RoadsRegioTransformer(),
                 ]
             )
-        elif output_format == OutputFormat.GEOJSON:
-            return TransformerPipeline(
-                [
-                    RulesTransformer(TransformationRuleFactory().xmlv2_to_json()),
-                    RoadsRegioTransformer('payload/situation/situationRecord'),
-                    GeoJSONGeometryTransformer('payload/situation/situationRecord'),
-                    JsonataTransformer(),
-                ]
-            )
-        elif output_format == OutputFormat.CIFS:
-            return TransformerPipeline(
-                [
-                    RulesTransformer(TransformationRuleFactory().xmlv2_to_json()),
-                    RoadsRegioTransformer('payload/situation/situationRecord'),
-                    GeoJSONGeometryTransformer('payload/situation/situationRecord'),
-                    JsonataTransformer(),
-                    CifsTransformer(),
-                    # TODO: Zusammenfassung gleicher Meldungen
-                ]
-            )
         elif output_format == OutputFormat.DATEX2_3_7_JSON_LITE:
             return TransformerPipeline(
                 [
@@ -91,6 +71,10 @@ def build_transformer(input_format: InputFormat, output_format: OutputFormat):
                     GeoJSONGeometryTransformer('payload/situation/situationRecord'),
                 ]
             )
+        elif output_format == OutputFormat.GEOJSON:
+            return build_transformer(input_format, OutputFormat.DATEX2_3_7_JSON_LITE).add_transformer(JsonataTransformer())
+        elif output_format == OutputFormat.CIFS:
+            return build_transformer(input_format, OutputFormat.GEOJSON).add_transformer(CifsTransformer())
         elif output_format == OutputFormat.RAW:
             return TransformerPipeline([])
 
