@@ -4,11 +4,11 @@ from .base import AbstractTransformer
 
 # ruff: noqa: E501 (JSONata expressions are long...)
 
-# TODO: we asume arrays applicableForTrafficType, placesAtWhichApplicable, applicableForTrafficDirection have at most 1 element... We should check this 
+# TODO: we asume arrays applicableForTrafficType, placesAtWhichApplicable, applicableForTrafficDirection have at most 1 element... We should check this
 mostly_flat_geojson_expression = """
 {
   "type": "FeatureCollection",
-  "features": payload.situation.situationRecord.{
+  "features": payload.situation[].situationRecord.{
     "type": "Feature",
     "properties": {
         "publicationTime": %.%.publicationTime,
