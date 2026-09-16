@@ -18,7 +18,7 @@ cifs_expression = """
         "id": properties.id,
         "creationtime": properties.situationRecordCreationTime,
         "updatetime": properties.situationRecordVersionTime,
-        "description": properties.roadworksName?properties.roadworksName:properties.description,
+        "description": properties.roadworksName ? properties.roadworksName : properties.description ?? "-",
         "starttime": properties.overallStartTime,
         "endtime": properties.overallEndTime,
         "direction": "ONE_DIRECTION",
