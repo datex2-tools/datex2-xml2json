@@ -14,17 +14,29 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
         super().__init__(situation_record_json_pointer)
         self.geom_container_element_json_point = geom_container_element_json_point
 
-    def _extract_coordinates_from_gmlLineString(self, posList: str) -> list:
+    def _extract_coordinates_from_gmlLineString(self, gmlLineString: dict) -> list:
         # Coordinate Order Confusion
         # There is often some confusion regarding the correct ordering of coordinate values.
         # While EPSG:4326 usually uses lat,lon ordering, and CRS84 (and GeoJSON) use lon/lat,
         # older GIS software might use lon/lat also for EPSG:4326.
         #
-        # Assuming lat,lon in GML's posList, we swap coordinates here for GeoJSON.
-        # If the original publication uses lon/lat ordering, we need to figure out, if
-        # we can deduce the ordering from e.g. the srsName, or reach out for the provider to
-        # fix the ordering
-        return [[lon, lat] for lat, lon in zip(*[iter(map(float, posList.split()))] * 2)]
+        # Assuming lat,lon in GML's posList when "WGS84 EPSG 4326" is set as srsName,
+        # we swap coordinates for GeoJSON.
+        is_lat_lon_order = False
+        srsName = gmlLineString.get('srsName')
+        if srsName is not None:
+            if 'WGS84 EPSG 4326' not in srsName:
+                logger.warning('Unhandled srsName %s, might need reprojection/ latlon order handling.', srsName)
+            else:
+                logger.info('Detected srsName "WGS84 EPSG 4326". We assume  latlon gmlLineString coordinates ordering for these.')
+                is_lat_lon_order = True
+        posList = gmlLineString.get('posList', '')
+
+        zipped_coords = zip(*[iter(map(float, posList.split()))] * 2)
+        if is_lat_lon_order:
+            return [[lon, lat] for lat, lon in zipped_coords]
+        else:
+            return [[lon, lat] for lon, lat in zipped_coords]
 
     def _extract_line_geom(self, linearExtended: dict) -> None | dict:
         gmlLineString = linearExtended.get('gmlLineString')
@@ -32,12 +44,9 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
             logger.warning('No linearExtended/gmlLineString')
             return None
         else:
-            srsName = gmlLineString.get('srsName')
-            if srsName is not None and 'WGS84' not in srsName:
-                logger.warning('Unkown srsName %s', srsName)
             geometry = {
                 'type': 'LineString',
-                'coordinates': self._extract_coordinates_from_gmlLineString(gmlLineString['posList']),
+                'coordinates': self._extract_coordinates_from_gmlLineString(gmlLineString),
             }
             return geometry
 
@@ -66,7 +75,9 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
                     location.get('type'),
                 )
                 continue
-            lineStrings.append(self._extract_coordinates_from_gmlLineString(location.get('gmlLineString', {}).get('posList', '')))
+            coordinates = self._extract_coordinates_from_gmlLineString(location.get('gmlLineString', {}))
+            if coordinates is not None:
+                lineStrings.append(coordinates)
 
         return {'type': 'MultiLineString', 'coordinates': lineStrings}
 

@@ -54,9 +54,7 @@ def transform_to_3_7_validate(inputfile: str, overwrite: bool):
     transform_validate(
         inputfile,
         overwrite,
-        TransformerPipeline([
-            RulesTransformer(TransformationRuleFactory().xmlv2_to_json3_7()),
-            RoadsRegioTransformer()]),
+        TransformerPipeline([RulesTransformer(TransformationRuleFactory().xmlv2_to_json3_7()), RoadsRegioTransformer()]),
         '3_7',
     )
 
@@ -113,11 +111,14 @@ def test_sitpub_linearByCoordinates_to_flat_geojson():
 def test_sitpub_only_coordinatesForDisplay_to_flat_geojson():
     transform_to_flat_geojson('sitpub_only_coordinatesForDisplay', False)
 
+
 def test_sitpub_multiple_lanerestrictions_to_flat_geojson():
     transform_to_flat_geojson('sitpub_multiple_lanerestrictions', False)
 
+
 def test_sitpub_empty_linearElement_to_json3_7():
     transform_to_3_7_validate('sitpub_empty_linearElement', False)
+
 
 def test_sitpub_point_along_linearElement():
     transform_to_3_7_validate('sitpub_point_along_linearElement', False)

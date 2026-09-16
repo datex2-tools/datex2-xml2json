@@ -4,18 +4,16 @@ from argparse import ArgumentParser
 from enum import StrEnum
 from pathlib import Path
 
-import geoparquet_io as gpio
-
 from .json_validator import JsonValidator
 from .transform import (
     CifsTransformer,
     GeoJSONGeometryTransformer,
+    GeoparquetRenderer,
     JsonataTransformer,
     RoadsRegioTransformer,
     RulesTransformer,
     TransformationRuleFactory,
     TransformerPipeline,
-    GeoparquetRenderer,
 )
 from .util import load_as_json_using_schema
 
