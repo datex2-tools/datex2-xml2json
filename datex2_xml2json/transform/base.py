@@ -14,6 +14,7 @@ class TransformerPipeline(AbstractTransformer):
 
     def add_transformer(self, transformer: AbstractTransformer):
         self.transformers.append(transformer)
+        return self
 
     def transform(self, a_dict: dict) -> dict:
         result = a_dict
