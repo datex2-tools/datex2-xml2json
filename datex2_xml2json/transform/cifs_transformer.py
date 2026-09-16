@@ -14,7 +14,7 @@ cifs_expression = """
         properties.type!="ReroutingManagement" and
         properties.type!="EquipmentOrSystemFault" and
         properties.validityStatus!="suspended"
-        ].{
+        ][].{
         "id": properties.id,
         "creationtime": properties.situationRecordCreationTime,
         "updatetime": properties.situationRecordVersionTime,

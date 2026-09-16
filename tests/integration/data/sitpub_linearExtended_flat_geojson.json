@@ -1,58 +1,60 @@
 {
   "type": "FeatureCollection",
-  "features": {
-    "type": "Feature",
-    "properties": {
-      "publicationTime": "2026-03-19T10:32:27.818+01:00",
-      "publicationCreator": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg",
-      "situationId": "88935924",
-      "situationVersionTime": "2026-03-19T10:25:49.563+01:00",
-      "confidentiality": "noRestriction",
-      "informationStatus": "real",
-      "overallSeverity": "low",
-      "id": "88935924-88935926-88935929-88935940-gegen-sperrung",
-      "version": "6",
-      "situationRecordCreationTime": "2026-03-19T10:11:07.055+01:00",
-      "situationRecordVersionTime": "2026-03-19T10:21:15.060+01:00",
-      "probabilityOfOccurrence": "certain",
-      "type": "RoadOrCarriagewayOrLaneManagement",
-      "complianceOption": "mandatory",
-      "cause": "88935924-88935926-88935929-88935940-gegen",
-      "validityStatus": "definedByValidityTimeSpec",
-      "overallStartTime": "2026-04-08T16:00:00.000+02:00",
-      "overallEndTime": "2026-04-09T18:00:00.000+02:00",
-      "situationRecordSubtype": "roadClosed",
-      "actionPlanIdentifier": "SP1",
-      "operatorActionStatus": "requested"
-    },
-    "geometry": {
-      "type": "LineString",
-      "coordinates": [
-        [
-          9.7298,
-          48.32456
-        ],
-        [
-          9.72976,
-          48.32457
-        ],
-        [
-          9.72967,
-          48.32459
-        ],
-        [
-          9.72959,
-          48.3246
-        ],
-        [
-          9.72952,
-          48.324611
-        ],
-        [
-          9.72937,
-          48.32464
+  "features": [
+      {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-03-19T10:32:27.818+01:00",
+        "publicationCreator": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg",
+        "situationId": "88935924",
+        "situationVersionTime": "2026-03-19T10:25:49.563+01:00",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "overallSeverity": "low",
+        "id": "88935924-88935926-88935929-88935940-gegen-sperrung",
+        "version": "6",
+        "situationRecordCreationTime": "2026-03-19T10:11:07.055+01:00",
+        "situationRecordVersionTime": "2026-03-19T10:21:15.060+01:00",
+        "probabilityOfOccurrence": "certain",
+        "type": "RoadOrCarriagewayOrLaneManagement",
+        "complianceOption": "mandatory",
+        "cause": "88935924-88935926-88935929-88935940-gegen",
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2026-04-08T16:00:00.000+02:00",
+        "overallEndTime": "2026-04-09T18:00:00.000+02:00",
+        "situationRecordSubtype": "roadClosed",
+        "actionPlanIdentifier": "SP1",
+        "operatorActionStatus": "requested"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.7298,
+            48.32456
+          ],
+          [
+            9.72976,
+            48.32457
+          ],
+          [
+            9.72967,
+            48.32459
+          ],
+          [
+            9.72959,
+            48.3246
+          ],
+          [
+            9.72952,
+            48.324611
+          ],
+          [
+            9.72937,
+            48.32464
+          ]
         ]
-      ]
+      }
     }
-  }
+  ]
 }

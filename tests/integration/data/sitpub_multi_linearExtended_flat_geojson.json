@@ -1,6 +1,7 @@
 {
   "type": "FeatureCollection",
-  "features": {
+  "features": [
+    {
     "type": "Feature",
     "properties": {
       "publicationTime": "2026-03-30T07:20:17Z",
@@ -53,4 +54,5 @@
       ]
     }
   }
+  ]
 }

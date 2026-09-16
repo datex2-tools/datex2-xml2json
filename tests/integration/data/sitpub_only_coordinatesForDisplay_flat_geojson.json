@@ -1,37 +1,39 @@
 {
   "type": "FeatureCollection",
-  "features": {
-    "type": "Feature",
-    "properties": {
-      "publicationTime": "2026-03-19T10:32:27.818+01:00",
-      "publicationCreator": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg",
-      "situationId": "VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1",
-      "situationVersionTime": "2026-03-17T05:31:34Z",
-      "confidentiality": "noRestriction",
-      "informationStatus": "real",
-      "id": "VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1.0",
-      "version": "1773725494",
-      "situationRecordCreationTime": "2026-03-17T05:31:34Z",
-      "situationRecordVersionTime": "2026-03-17T05:31:34Z",
-      "probabilityOfOccurrence": "certain",
-      "description": "Theresienwiese\n    Volksfest, von 17.04.2026 07:00 Uhr bis 10.05.2026 08:00 Uhr\n    M\u00fcnchner Fr\u00fchlingsfest",
-      "type": "PublicEvent",
-      "validityStatus": "definedByValidityTimeSpec",
-      "overallStartTime": "2026-04-17T05:00:00Z",
-      "overallEndTime": "2026-05-10T06:00:00Z",
-      "validPeriods": [
-        {
-          "endOfPeriod": "2026-05-10T06:00:00Z",
-          "startOfPeriod": "2026-04-17T05:00:00Z"
-        }
-      ]
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        11.54941,
-        48.1313
-      ]
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-03-19T10:32:27.818+01:00",
+        "publicationCreator": "DE-MDM-Stra\u00dfenbauverwaltung Baden-W\u00fcrttemberg - Ministerium f\u00fcr Verkehr Baden-W\u00fcrttemberg",
+        "situationId": "VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1",
+        "situationVersionTime": "2026-03-17T05:31:34Z",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "id": "VIZ-BY/r_VIZ-BY/48265900_TIC-VIZ-BY/1.0",
+        "version": "1773725494",
+        "situationRecordCreationTime": "2026-03-17T05:31:34Z",
+        "situationRecordVersionTime": "2026-03-17T05:31:34Z",
+        "probabilityOfOccurrence": "certain",
+        "description": "Theresienwiese\n    Volksfest, von 17.04.2026 07:00 Uhr bis 10.05.2026 08:00 Uhr\n    M\u00fcnchner Fr\u00fchlingsfest",
+        "type": "PublicEvent",
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2026-04-17T05:00:00Z",
+        "overallEndTime": "2026-05-10T06:00:00Z",
+        "validPeriods": [
+          {
+            "endOfPeriod": "2026-05-10T06:00:00Z",
+            "startOfPeriod": "2026-04-17T05:00:00Z"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.54941,
+          48.1313
+        ]
+      }
     }
-  }
+  ]
 }
