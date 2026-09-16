@@ -1,38 +1,40 @@
 {
   "type": "FeatureCollection",
-  "features": {
-    "type": "Feature",
-    "properties": {
-      "publicationTime": "2026-03-24T19:30:55Z",
-      "publicationCreator": "VIZ.NRW",
-      "situationId": "LMS-BR/r_LMS-BR/386922_LMS-BR/72",
-      "situationVersionTime": "2026-01-28T14:38:49Z",
-      "confidentiality": "noRestriction",
-      "informationStatus": "real",
-      "id": "LMS-BR/r_LMS-BR/386922_LMS-BR/72.0",
-      "version": "1771927589",
-      "situationRecordCreationTime": "2025-10-16T07:59:07Z",
-      "situationRecordVersionTime": "2026-01-28T14:38:49Z",
-      "probabilityOfOccurrence": "certain",
-      "description": "Berlin-Lichterfelde, Goethestra\u00dfe\nin H\u00f6he Schillerstra\u00dfe\nVollsperrung, Baustelle, eine Umleitung ist eingerichtet, bis 31.03.2026",
-      "type": "RoadOrCarriagewayOrLaneManagement",
-      "complianceOption": "mandatory",
-      "validityStatus": "definedByValidityTimeSpec",
-      "overallStartTime": "2025-10-16T07:59:07Z",
-      "overallEndTime": "2026-03-31T21:59:00Z",
-      "validPeriods": [
-        {
-          "endOfPeriod": "2026-03-31T21:59:00Z"
-        }
-      ],
-      "situationRecordSubtype": "roadClosed"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        13.31541,
-        52.42855
-      ]
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "publicationTime": "2026-03-24T19:30:55Z",
+        "publicationCreator": "VIZ.NRW",
+        "situationId": "LMS-BR/r_LMS-BR/386922_LMS-BR/72",
+        "situationVersionTime": "2026-01-28T14:38:49Z",
+        "confidentiality": "noRestriction",
+        "informationStatus": "real",
+        "id": "LMS-BR/r_LMS-BR/386922_LMS-BR/72.0",
+        "version": "1771927589",
+        "situationRecordCreationTime": "2025-10-16T07:59:07Z",
+        "situationRecordVersionTime": "2026-01-28T14:38:49Z",
+        "probabilityOfOccurrence": "certain",
+        "description": "Berlin-Lichterfelde, Goethestra\u00dfe\nin H\u00f6he Schillerstra\u00dfe\nVollsperrung, Baustelle, eine Umleitung ist eingerichtet, bis 31.03.2026",
+        "type": "RoadOrCarriagewayOrLaneManagement",
+        "complianceOption": "mandatory",
+        "validityStatus": "definedByValidityTimeSpec",
+        "overallStartTime": "2025-10-16T07:59:07Z",
+        "overallEndTime": "2026-03-31T21:59:00Z",
+        "validPeriods": [
+          {
+            "endOfPeriod": "2026-03-31T21:59:00Z"
+          }
+        ],
+        "situationRecordSubtype": "roadClosed"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.31541,
+          52.42855
+        ]
+      }
     }
-  }
+  ]
 }
