@@ -82,6 +82,32 @@ def build_transformer(input_format: InputFormat, output_format: OutputFormat):
         return TransformerPipeline([RulesTransformer(TransformationRuleFactory().xmlv3_to_json3_7())])
 
 
+def write(stem: str, json_result: dict, output_format: OutputFormat, outDir: str, validate: bool = False):
+    suffix = FILE_SUFFIXES_PER_FORMAT[output_format]
+    outfile_name = Path(outDir) / (stem + suffix)
+    outfile_name.parent.mkdir(parents=True, exist_ok=True)
+
+    if output_format != OutputFormat.GEOPARQUET:
+        with open(outfile_name, 'w') as f:
+            json.dump(json_result, f, indent=2)
+        if validate:
+            exit(JsonValidator(OUTPUT_SCHEMAS[output_format]).validate(outfile_name))
+    else:
+        GeoparquetRenderer().render(outfile_name, json_result)
+
+
+def generate_all(stem: str, json_input: dict, outDir: str, validate: bool):
+    write(stem, json_input, OutputFormat.RAW, outDir)
+    jsonLiteTransformer = build_transformer(InputFormat.DATEX2_2_2_XML, OutputFormat.DATEX2_3_7_JSON_LITE)
+    jsonLite_output = jsonLiteTransformer.transform(json_input)
+    write(stem, jsonLite_output, OutputFormat.DATEX2_3_7_JSON_LITE, outDir)
+    geojson_output = JsonataTransformer().transform(jsonLite_output)
+    write(stem, geojson_output, OutputFormat.GEOJSON, outDir)
+    write(stem, geojson_output, OutputFormat.GEOPARQUET, outDir)
+    cifs_output = CifsTransformer().transform(geojson_output)
+    write(stem, cifs_output, OutputFormat.CIFS, outDir, validate)
+
+
 def main(
     filename: str,
     outDir: str,
@@ -90,25 +116,17 @@ def main(
     validate: bool,
 ):
     stem = Path(filename).stem
-
-    suffix = FILE_SUFFIXES_PER_FORMAT[output_format]
-    outfile_name = Path(outDir) / (stem + suffix)
-
     input_schema = DEFAULT_SCHEMAS[input_format]
     json_input = load_as_json_using_schema(filename, input_schema)
-    json_output_format = OutputFormat.GEOJSON if output_format == OutputFormat.GEOPARQUET else output_format
-    transformer = build_transformer(input_format, json_output_format)
-    result = transformer.transform(json_input)
-    outfile_name.parent.mkdir(parents=True, exist_ok=True)
 
-    if output_format != OutputFormat.GEOPARQUET:
-        with open(outfile_name, 'w') as f:
-            json.dump(result, f, indent=2)
-        if validate:
-            exit(JsonValidator(OUTPUT_SCHEMAS[output_format]).validate(outfile_name))
-
+    if output_format is None:
+        generate_all(stem, json_input, outDir, validate)
     else:
-        GeoparquetRenderer().render(outfile_name, result)
+        json_output_format = OutputFormat.GEOJSON if output_format == OutputFormat.GEOPARQUET else output_format
+        transformer = build_transformer(input_format, json_output_format)
+        result = transformer.transform(json_input)
+
+        write(stem, result, output_format, outDir, validate)
 
 
 if __name__ == '__main__':
@@ -134,7 +152,6 @@ if __name__ == '__main__':
         help='output format to generate',
         type=OutputFormat,
         choices=list(OutputFormat),
-        default=OutputFormat.DATEX2_3_7_JSON,
     )
 
     parser.add_argument(
@@ -146,7 +163,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if args.validate and args.output_format not in OUTPUT_SCHEMAS:
+    if args.validate and args.output_format is not None and args.output_format not in OUTPUT_SCHEMAS:
         logger.error('Validation is not supported for format %s', args.output_format)
         exit(1)
 
