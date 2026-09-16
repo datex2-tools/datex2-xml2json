@@ -273,6 +273,8 @@ class TransformationRuleFactory:
             '@version': 'version',
             '@targetClass': 'targetClass',
             '@xsi:type': 'type',
+            '@extensionName': 'extensionNameG',
+            '@extensionVersion': 'extensionVersionG',
         }
 
         def add_def_lang_if_missing(v):
@@ -379,6 +381,8 @@ class TransformationRuleFactory:
             '@version': 'versionG',
             '@targetClass': 'targetClass',
             '@operatingPatternIndex': 'operatingPatternIndex',
+            '@extensionName': 'extensionNameG',
+            '@extensionVersion': 'extensionVersionG',
         }
 
         def wrap_with_value(v):
