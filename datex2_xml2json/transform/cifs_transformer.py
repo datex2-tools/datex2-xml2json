@@ -136,7 +136,7 @@ class CifsTransformer(JsonataTransformer):
     # Currently expected patterns are:
     # 1. four hyphen separated numeric values, followed by no or any subsring
     # 2. Any string/char prefix followed by dot + number
-    situation_record_group_prefix_regexp = r'^(\d+-\d+-\d+-\d+-gegen).*|^(\d+-\d+-\d+-\d+).*|^(.*)\.\d+$'
+    situation_record_group_prefix_regexp = r'^(\d+-\d\d\d\dV\d+)$|^(\d+-\d+-\d+-\d+-gegen).*|^(\d+-\d+-\d+-\d+).*|^(.*)\.\d+$'
 
     def __init__(self, **kwargs):
         super().__init__(cifs_expression)
