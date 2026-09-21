@@ -280,18 +280,6 @@ class TransformationRuleFactory:
         def add_def_lang_if_missing(v):
             return v if isinstance(v, dict) else {'lang': DEFAULT_LANGUAGE, 'value': v}
 
-        def handle_datex2_gml_extensions(v):
-            if 'coordinates' in v:
-                pass
-            else:
-                gmlLineString = {'posList': v.get('posList')}
-                if 'srsName' in v:
-                    gmlLineString['srsName'] = v.get['srsName']
-
-            return {
-                'locGmlLineString': gmlLineString,
-            }
-
         # TODO move value wrapping down to datex transform, here we should use them unwrapped
         value_transforms = {
             # type transformations
@@ -406,7 +394,7 @@ class TransformationRuleFactory:
             '@xmlns:xsi': [],
             '@xsi:type': [],
         }
-        keys_to_pull_up = {'modelBaseVersion'}
+        keys_to_pull_up = {'modelBaseVersion': None}
         return TransformationRules(
             datex_json_renamings,
             value_transforms,
