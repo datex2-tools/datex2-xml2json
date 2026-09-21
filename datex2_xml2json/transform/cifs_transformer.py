@@ -125,7 +125,8 @@ cifs_expression = """
                 };
             $lookup($subtypeBySubtypeLookup, properties.situationRecordSubtype)?:$lookup($subtypeByTypeLookup, properties.type)
         ),
-        "polyline": $replace($replace($join($map(geometry.coordinates, $string), " "), ",", " "), /[\\[\\]]/, "")
+        /* Note: Coordinates are still json array of lon/lat arrays. They need to be converted to a single string with coords in lat lon order */
+        "polyline": geometry.coordinates
     }
 }
 """
@@ -201,16 +202,32 @@ class CifsTransformer(JsonataTransformer):
                 )
         return incident_group[0]
 
-    def _merge_grouped_incidents(self, grouped_incidents):
+    def _transform_polyline_geom(self, geometry)->str:
+        """
+        Converts a list of lon/lat coords (like [[10.0, 49.0], [11.0, 49.0]]) into a lon/lat ordered string ("49.0 10.0 49.0 11.0").
+        """
+        return " ".join([f'{coords[1]} {coords[0]}' for coords in geometry])
+
+    def _merge_grouped_incidents_and_fix_polyline(self, grouped_incidents):
         incidents = []
         for key in grouped_incidents:
-            incidents.append(self._merge_incident_group(grouped_incidents[key]))
+            incident = self._merge_incident_group(grouped_incidents[key])
+            incident['polyline'] = self._transform_polyline_geom(incident['polyline'])
+            incidents.append(incident)
 
         return incidents
 
+
     def post_transform(self, a_dict: dict) -> dict:
+        """
+        Retains the most expressive incident of a group of incidents describing
+        the same situation. 
+        Currently, a common substring of the situationRecord IDs is used to group these events.
+        As this strategy is very brittle, other strategies should be considered, like 
+        grouping by equivalent geometries/validity periods for situation records of the same situation.
+        """
         grouped_incidents = self._group_by_common_situation_record_id_substring(
             a_dict['incidents'], self.situation_record_group_prefix_regexp
         )
-        a_dict['incidents'] = self._merge_grouped_incidents(grouped_incidents)
+        a_dict['incidents'] = self._merge_grouped_incidents_and_fix_polyline(grouped_incidents)
         return a_dict
