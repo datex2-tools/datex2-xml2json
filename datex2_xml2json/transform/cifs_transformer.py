@@ -184,7 +184,8 @@ class CifsTransformer(JsonataTransformer):
         highest_prio = None
         highest_prio_type = None
         highest_prio_subtype = None
-
+        highest_prio_incident = None
+        
         for incident in incident_group:
             current_prio = self._get_type_sub_type_prio(incident)
             if highest_prio is None or current_prio > highest_prio:
@@ -195,12 +196,13 @@ class CifsTransformer(JsonataTransformer):
                 highest_prio = current_prio
                 highest_prio_type = incident['type']
                 highest_prio_subtype = incident.get('subtype')
+                highest_prio_incident = incident
             else:
                 logger.debug(
                     f'For {incident["id"]}, do not replace {highest_prio} {highest_prio_type} {highest_prio_subtype}'
                     f' by {incident["type"]} {incident.get("subtype")}'
                 )
-        return incident_group[0]
+        return highest_prio_incident
 
     def _transform_polyline_geom(self, geometry)->str:
         """
