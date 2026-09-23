@@ -69,14 +69,15 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
 
         lineStrings = []
         for location in locations:
-            if not location.get('type') == 'Linear':
+            location_type = location.get('type')
+            if not location_type == 'Linear':
                 logger.warning(
                     'Unexpected location type %s, location is ignored',
                     location.get('type'),
                 )
                 continue
             coordinates = self._extract_coordinates_from_gmlLineString(location.get('gmlLineString', {}))
-            if coordinates is not None:
+            if coordinates:
                 lineStrings.append(coordinates)
 
         return {'type': 'MultiLineString', 'coordinates': lineStrings}
