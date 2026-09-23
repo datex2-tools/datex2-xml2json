@@ -1,3 +1,4 @@
+import copy
 import logging
 import re
 
@@ -125,8 +126,10 @@ cifs_expression = """
                 };
             $lookup($subtypeBySubtypeLookup, properties.situationRecordSubtype)?:$lookup($subtypeByTypeLookup, properties.type)
         ),
-        /* Note: Coordinates are still json array of lon/lat arrays. They need to be converted to a single string with coords in lat lon order */
-        "polyline": geometry.coordinates
+        /* Note: As geometries might be LineStrings, Points or even MultiLineStrings, we just copy them and
+           handle them in a post_transform. Note: For Points, a zero-length polyline linestring will be created,
+           multilines will result in multiple CIFS events. */
+        "geometry": geometry
     }
 }
 """
@@ -204,21 +207,55 @@ class CifsTransformer(JsonataTransformer):
                 )
         return highest_prio_incident
 
-    def _transform_polyline_geom(self, geometry)->str:
+    def _transform_polyline_geom(self, linestring_coordinates) -> str:
         """
-        Converts a list of lon/lat coords (like [[10.0, 49.0], [11.0, 49.0]]) into a lon/lat ordered string ("49.0 10.0 49.0 11.0").
+        Converts GeoJSON linestring coordinates array into CIFS polyline string.
+        The list of lon/lat coords (like [[10.0, 49.0], [11.0, 49.0]]) is converted into a
+        lon/lat ordered string ("49.0 10.0 49.0 11.0").
         """
-        return " ".join([f'{coords[1]} {coords[0]}' for coords in geometry])
+        return ' '.join([f'{coords[1]} {coords[0]}' for coords in linestring_coordinates])
 
-    def _merge_grouped_incidents_and_fix_polyline(self, grouped_incidents):
+    def _transform_incident_geometry(self, incident: dict) -> list[dict]:
+        """
+        Converts GeoJSON geometry of incident into a CIFS polyline.
+        As the GeoJSON geometry might be a MultiLineString, we return an array
+        of (in case of a multilinestring) multiple CIFS incidents with linear polylines.
+        Note: Point geometries will be converted into zero-length linestrings.
+        """
+        geometry = incident.pop('geometry')
+        geometry_type = geometry['type']
+        coordinates = geometry['coordinates']
+
+        if geometry_type == 'MultiLineString':
+            exploded_incidents = []
+            cnt = 0
+            for linestring_coordinates in coordinates:
+                cloned_incident = copy.deepcopy(incident)
+                cloned_incident['id'] = f'{cloned_incident["id"]}.{cnt:02d}'
+                cloned_incident['polyline'] = self._transform_polyline_geom(linestring_coordinates)
+                exploded_incidents.append(cloned_incident)
+                cnt += 1
+
+            return exploded_incidents
+
+        if geometry_type == 'Point':
+            incident['polyline'] = f'{coordinates[1]} {coordinates[0]}'
+        elif geometry_type == 'LineString':
+            incident['polyline'] = self._transform_polyline_geom(coordinates)
+        else:
+            logger.error('Unexpected geometry type %s for incident %s, incident is omitted', geometry_type, incident.get('id'))
+            return []
+
+        return [incident]
+
+    def _merge_grouped_incidents_and_handle_geometry(self, grouped_incidents):
         incidents = []
         for key in grouped_incidents:
             incident = self._merge_incident_group(grouped_incidents[key])
-            incident['polyline'] = self._transform_polyline_geom(incident['polyline'])
-            incidents.append(incident)
+            potentially_exploded_incidents = self._transform_incident_geometry(incident)
+            incidents.extend(potentially_exploded_incidents)
 
         return incidents
-
 
     def post_transform(self, a_dict: dict) -> dict:
         """
@@ -231,5 +268,5 @@ class CifsTransformer(JsonataTransformer):
         grouped_incidents = self._group_by_common_situation_record_id_substring(
             a_dict['incidents'], self.situation_record_group_prefix_regexp
         )
-        a_dict['incidents'] = self._merge_grouped_incidents_and_fix_polyline(grouped_incidents)
+        a_dict['incidents'] = self._merge_grouped_incidents_and_handle_geometry(grouped_incidents)
         return a_dict
