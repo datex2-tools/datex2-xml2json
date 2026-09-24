@@ -80,7 +80,7 @@ mostly_flat_geojson_expression = """
         "temporarySpeedLimit": temporarySpeedLimit ?? operatorActionExtension.operatorActionExtended.mainSpeedLimit
     },
     "geometry": locationReference.geoJsonGeometry
-  }
+  } ?? []
 }
 """
 
