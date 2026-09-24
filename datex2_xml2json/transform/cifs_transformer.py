@@ -130,7 +130,7 @@ cifs_expression = """
            handle them in a post_transform. Note: For Points, a zero-length polyline linestring will be created,
            multilines will result in multiple CIFS events. */
         "geometry": geometry
-    }
+    } ?? []
 }
 """
 
@@ -188,7 +188,7 @@ class CifsTransformer(JsonataTransformer):
         highest_prio_type = None
         highest_prio_subtype = None
         highest_prio_incident = None
-        
+
         for incident in incident_group:
             current_prio = self._get_type_sub_type_prio(incident)
             if highest_prio is None or current_prio > highest_prio:
@@ -260,9 +260,9 @@ class CifsTransformer(JsonataTransformer):
     def post_transform(self, a_dict: dict) -> dict:
         """
         Retains the most expressive incident of a group of incidents describing
-        the same situation. 
+        the same situation.
         Currently, a common substring of the situationRecord IDs is used to group these events.
-        As this strategy is very brittle, other strategies should be considered, like 
+        As this strategy is very brittle, other strategies should be considered, like
         grouping by equivalent geometries/validity periods for situation records of the same situation.
         """
         grouped_incidents = self._group_by_common_situation_record_id_substring(
