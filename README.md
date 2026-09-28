@@ -52,6 +52,9 @@ python -m datex2_xml2json.main -f geojson situation_publication.xml
 
 To convert a DATEXII v2.2 XML publication to a Geoparquet file, use the following command. It will create out/situation_publication.geoparquet.
 
+
+Note that all timestamp properties are exported as UTC timestamps, their original offsets applied.
+
 ```sh
 python -m datex2_xml2json.main -f geoparquet situation_publication.xml
 ```
