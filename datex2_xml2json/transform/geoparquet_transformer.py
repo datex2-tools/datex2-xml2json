@@ -1,6 +1,7 @@
 import json
 import logging
-from pathlib import Path
+from datetime import datetime, timezone
+from tempfile import NamedTemporaryFile
 
 import geoparquet_io as gpio
 import pyarrow as pa
@@ -9,21 +10,21 @@ logger = logging.getLogger(__name__)
 
 
 # TODO Zeiten ?
-target_schema = pa.schema(
+MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA = pa.schema(
     [
-        ('publicationTime', pa.timestamp('ms', tz='Europe/Berlin')),
+        ('publicationTime', pa.timestamp('ms', tz='UTC')),
         ('publicationCreator', pa.string()),
         ('situationId', pa.string()),
-        ('situationVersionTime', pa.timestamp('ms', tz='Europe/Berlin')),
+        ('situationVersionTime', pa.timestamp('ms', tz='UTC')),
         ('overallSeverity', pa.string()),
         ('confidentiality', pa.string()),
         ('informationStatus', pa.string()),
         ('id', pa.string()),
         ('version', pa.string()),
-        ('situationRecordCreationTime', pa.timestamp('ms', tz='Europe/Berlin')),
-        ('situationRecordVersionTime', pa.timestamp('ms', tz='Europe/Berlin')),
-        ('overallStartTime', pa.timestamp('ms', tz='Europe/Berlin')),
-        ('overallEndTime', pa.timestamp('ms', tz='Europe/Berlin')),
+        ('situationRecordCreationTime', pa.timestamp('ms', tz='UTC')),
+        ('situationRecordVersionTime', pa.timestamp('ms', tz='UTC')),
+        ('overallStartTime', pa.timestamp('ms', tz='UTC')),
+        ('overallEndTime', pa.timestamp('ms', tz='UTC')),
         ('probabilityOfOccurrence', pa.string()),
         ('type', pa.string()),
         ('complianceOption', pa.string()),
@@ -77,18 +78,36 @@ target_schema = pa.schema(
 
 
 class GeoparquetRenderer:
-    def __init__(self):
-        pass
+    def __init__(self, target_schema=MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA):
+        self.target_schema = target_schema
 
-    def render(self, filename, a_geojson_dict: dict) -> None:
-        geojson_filename = Path(filename).with_suffix('.geojson')
-        with open(geojson_filename, 'w') as f:
-            json.dump(a_geojson_dict, f, indent=2)
-        table = gpio.convert(geojson_filename)
+    def _get_timestamp_fieldnames(self):
+        """
+        Return a list of all fieldnames of self.target_schema, whose type is pyarrow.TimestampType.
+        """
+        fieldnames = []
+        for index, field in enumerate(self.target_schema.types):
+            if isinstance(field, pa.TimestampType):
+                fieldnames.append(self.target_schema.names[index])
+        return fieldnames
 
+    def _set_timestamps_to_UTC(self, a_geojson_dict: dict):
+        ts_fieldnames = self._get_timestamp_fieldnames()
+        for feature in a_geojson_dict['features']:
+            props = feature['properties']
+            for ts_property in ts_fieldnames:
+                if ts_property in props:
+                    dt = datetime.fromisoformat(props[ts_property])
+                    props[ts_property] = dt.astimezone(timezone.utc).isoformat()
+
+    def _cast_fields_and_add_missing(self, table) -> None:
+        """
+        Replaces table's pyarrow table by a new one which
+        has expected columns in expected order and type.
+        """
         arrays = []
         patable = table._table
-        for field in target_schema:
+        for field in self.target_schema:
             try:
                 if field.name in patable.column_names:
                     # Cast existing column
@@ -99,6 +118,21 @@ class GeoparquetRenderer:
             except Exception:
                 logger.exception(f'Exception handling field {field}')
 
-        patable = pa.Table.from_arrays(arrays, schema=target_schema)
+        patable = pa.Table.from_arrays(arrays, schema=self.target_schema)
         table._table = patable
+
+    def _as_table(self, a_geojson_dict: dict):
+        """
+        Writes a_geojson_dict to a tempory file which is then read
+        via geoparquet-io as pyarrow table.
+        """
+        with NamedTemporaryFile('w', delete_on_close=False) as f:
+            json.dump(a_geojson_dict, f, indent=2)
+            f.close()
+            return gpio.convert(f.name)
+
+    def render(self, filename, a_geojson_dict: dict) -> None:
+        self._set_timestamps_to_UTC(a_geojson_dict)
+        table = self._as_table(a_geojson_dict)
+        self._cast_fields_and_add_missing(table)
         table.write(filename)
