@@ -25,10 +25,10 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
         is_lat_lon_order = False
         srsName = gmlLineString.get('srsName')
         if srsName is not None:
-            if 'WGS84 EPSG 4326' not in srsName:
+            if srsName not in {'WGS84 EPSG 4326', 'WGS84'}:
                 logger.warning('Unhandled srsName %s, might need reprojection/ latlon order handling.', srsName)
             else:
-                logger.info('Detected srsName "WGS84 EPSG 4326". We assume  latlon gmlLineString coordinates ordering for these.')
+                logger.info('Detected srsName "%s". We assume  latlon gmlLineString coordinates ordering for these.', srsName)
                 is_lat_lon_order = True
         posList = gmlLineString.get('posList', '')
 
