@@ -85,7 +85,7 @@ pythonpath = ["datex2_xml2json"]
 module = [
     "jsonata",
     "check_jsonschema.checker",
-    "check_jsonschema.cli.param_types",
+    "check_jsonschema.file_wrapper",
     "check_jsonschema.formats",
     "check_jsonschema.instance_loader",
     "check_jsonschema.regex_variants",
