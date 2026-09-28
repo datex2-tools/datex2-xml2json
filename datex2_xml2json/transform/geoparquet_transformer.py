@@ -78,6 +78,16 @@ MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA = pa.schema(
 
 
 class GeoparquetRenderer:
+    """
+    GeoparquetRenderer renders a GeoJSON file as a geoparquet file.
+    Only properties matchting the supplied target_schema (default ist OSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA)
+    are exported.
+
+    Note: As a workaround for https://github.com/geoparquet/geoparquet-io/issues/1152, all timestamp properties
+      (according to the supplied target_schema) are converted to UTC strings. Note also, that this modification
+      happend in situ, no deep copy of the GeoJSON dict is created.
+    """
+
     def __init__(self, target_schema=MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA):
         self.target_schema = target_schema
 
