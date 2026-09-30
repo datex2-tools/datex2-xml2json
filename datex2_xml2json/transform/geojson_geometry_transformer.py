@@ -1,11 +1,11 @@
 import logging
 
-from .base import ProcessingTransformer
+from .base import SituationRecordTransformer
 
 logger = logging.getLogger(__name__)
 
 
-class GeoJSONGeometryTransformer(ProcessingTransformer):
+class GeoJSONGeometryTransformer(SituationRecordTransformer):
     def __init__(
         self,
         situation_record_json_pointer: str = 'payload/sitSituationPublication/situation/situationRecord',
@@ -119,13 +119,7 @@ class GeoJSONGeometryTransformer(ProcessingTransformer):
 
         return {'type': 'LineString', 'coordinates': coordinates}
 
-    def process(self, situation_record_wrapper: dict) -> None:
-        if isinstance(situation_record_wrapper, dict) and len(situation_record_wrapper) == 1:
-            situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
-        else:
-            situation_record = situation_record_wrapper
-        if situation_record is None:
-            return
+    def process_situation_record(self, situation_record: dict) -> None:
         locationReference = situation_record.get('locationReference')
         if locationReference is None:
             return

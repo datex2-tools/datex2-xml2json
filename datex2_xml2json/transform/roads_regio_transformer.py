@@ -1,11 +1,11 @@
 import logging
 
-from .base import ProcessingTransformer
+from .base import SituationRecordTransformer
 
 logger = logging.getLogger(__name__)
 
 
-class RoadsRegioTransformer(ProcessingTransformer):
+class RoadsRegioTransformer(SituationRecordTransformer):
     def __init__(self, path: str = 'payload/sitSituationPublication/situation/situationRecord'):
         super().__init__(path)
 
@@ -81,14 +81,7 @@ class RoadsRegioTransformer(ProcessingTransformer):
             if 'linearElement' not in linearWithinLinearElements[0]:
                 linearWithinLinearElements[0]['linearElement'] = {}
 
-    def process(self, situation_record_wrapper: dict):
-        if isinstance(situation_record_wrapper, dict) and len(situation_record_wrapper) == 1:
-            situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
-        else:
-            situation_record = situation_record_wrapper
-        if situation_record is None:
-            return
-
+    def process_situation_record(self, situation_record: dict) -> None:
         # self._handle_bemas_locations(situation_record)
         self._fix_missing_linearElement(situation_record)
         self._handle_originalNumberOfLanes(situation_record)

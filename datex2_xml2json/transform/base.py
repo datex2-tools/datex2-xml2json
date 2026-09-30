@@ -59,3 +59,21 @@ class ProcessingTransformer(AbstractTransformer):
 
     def process(self, a_dict: dict):
         pass
+
+
+class SituationRecordTransformer(ProcessingTransformer):
+    def __init__(self, xpath: str):
+        super().__init__(xpath)
+
+    def process_situation_record(self, situation_record: dict) -> None:
+        pass
+
+    def process(self, situation_record_wrapper: dict) -> None:
+        if isinstance(situation_record_wrapper, dict) and len(situation_record_wrapper) == 1:
+            situation_record = situation_record_wrapper.get(next(iter(situation_record_wrapper.keys())))
+        else:
+            situation_record = situation_record_wrapper
+        if situation_record is None:
+            return
+
+        self.process_situation_record(situation_record)
