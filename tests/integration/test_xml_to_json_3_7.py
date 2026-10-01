@@ -122,3 +122,17 @@ def test_sitpub_empty_linearElement_to_json3_7():
 
 def test_sitpub_point_along_linearElement():
     transform_to_3_7_validate('sitpub_point_along_linearElement', False)
+
+
+def test_sitpub_source_to_json3_7():
+    """
+    Tests, if a DATEXII 2.2 with  source and custom publicationId will converted to valid 3.7 JSON.
+    """
+    transform_to_3_7_validate('sitpub_source', False)
+
+
+def test_sitpub_source_to_flat_geojson():
+    """
+    Tests, if a DATEXII 2.2 with  source and custom publicationId will converted to valid 3.7 JSON.
+    """
+    transform_to_flat_geojson('sitpub_source', False)

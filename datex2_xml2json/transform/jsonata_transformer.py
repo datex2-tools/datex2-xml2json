@@ -13,6 +13,8 @@ mostly_flat_geojson_expression = """
     "properties": {
         "publicationTime": %.%.publicationTime,
         "publicationCreator": %.%.publicationCreator.nationalIdentifier,
+        "publicationIdentifier": %.%.payloadPublicationExtension.publicationIdentifier,
+        "sourceIdentification": source.sourceIdentification,
         "situationId": %.id,
         "situationVersionTime": %.situationVersionTime,
         "confidentiality": %.headerInformation.confidentiality,

@@ -14,6 +14,8 @@ MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA = pa.schema(
     [
         ('publicationTime', pa.timestamp('ms', tz='UTC')),
         ('publicationCreator', pa.string()),
+        ('publicationIdentifier', pa.string()),
+        ('sourceIdentification', pa.string()),
         ('situationId', pa.string()),
         ('situationVersionTime', pa.timestamp('ms', tz='UTC')),
         ('overallSeverity', pa.string()),

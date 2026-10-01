@@ -12,6 +12,7 @@ from .transform import (
     JsonataTransformer,
     RoadsRegioTransformer,
     RulesTransformer,
+    SourceSetter,
     TransformationRuleFactory,
     TransformerPipeline,
 )
@@ -114,10 +115,15 @@ def main(
     input_format: InputFormat,
     output_format: OutputFormat,
     validate: bool,
+    sourceIdentification: str,
+    publicationIdentifier: str,
 ):
     stem = Path(filename).stem
     input_schema = DEFAULT_SCHEMAS[input_format]
     json_input = load_as_json_using_schema(filename, input_schema)
+
+    if sourceIdentification or publicationIdentifier:
+        SourceSetter(publicationIdentifier, sourceIdentification).transform(json_input)
 
     if output_format is None:
         generate_all(stem, json_input, outDir, validate)
@@ -161,6 +167,20 @@ if __name__ == '__main__':
         default='out',
     )
 
+    parser.add_argument(
+        '-s',
+        '--sourceIdentification',
+        help='sourceIdentification to be set for situationRecords source',
+        default=None,
+    )
+
+    parser.add_argument(
+        '-p',
+        '--publicationIdentifier',
+        help='publicationIdentifier to be set as payloadPublicationExtension/publicationIdentifier',
+        default=None,
+    )
+
     args = parser.parse_args()
 
     if args.validate and args.output_format is not None and args.output_format not in OUTPUT_SCHEMAS:
@@ -173,4 +193,6 @@ if __name__ == '__main__':
         args.input_format,
         args.output_format,
         args.validate,
+        args.sourceIdentification,
+        args.publicationIdentifier,
     )

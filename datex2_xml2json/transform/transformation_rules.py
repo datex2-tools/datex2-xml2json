@@ -420,6 +420,7 @@ class TransformationRuleFactory:
             'roadworksExtension': 'sitRoadworksExtensionG',
             'situationExtension': 'sitSituationExtensionG',
             'situationRecordExtension': 'sitSituationRecordExtensionG',
+            'payloadPublicationExtension': 'comPayloadPublicationExtensionG',
             'affectedCarriagewayAndLanesExtension': 'locCarriagewayExtensionG',
             # Note: the following extendedLinear extension is not defined in schema, JSON might not match expectation
             'extendedLinear': 'locLinearLocationExtensionG',
