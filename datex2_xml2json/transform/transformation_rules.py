@@ -413,6 +413,7 @@ class TransformationRuleFactory:
             '@targetClass': 'targetClass',
             # XML to JSON-schema conversion artefacts which were introduced by DATEX to avoid name clashes
             'commentExtension': 'sitCommentExtensionG',
+            'headerInformationExtension': 'comHeaderInformationExtensionG',
             'generalObstructionExtension': 'sitGeneralObstructionExtensionG',
             'impactExtension': 'sitImpactExtensionG',
             'operatorActionExtension': 'sitOperatorActionExtensionG',
