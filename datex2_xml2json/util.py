@@ -1,9 +1,10 @@
 import json
+from typing import Any
 
 from rs_xml2json import convert
 
 
-def load_as_json_using_schema(filename: str, schemafile: str):
+def load_as_json_using_schema(filename: str, schemafile: str) -> dict:
     if filename.endswith('.xml'):
         json_string = convert(filename, schemafile)
         json_input = json.loads(json_string)
@@ -14,18 +15,18 @@ def load_as_json_using_schema(filename: str, schemafile: str):
     return json_input
 
 
-def find(a_dict, simplified_xpath, default_value=None):
+def find(a_dict: dict[Any, Any], simplified_xpath: str, default_value: Any = None) -> Any:
     paths = simplified_xpath.split('/')
-    elem = a_dict
+    elem: Any = a_dict
     for path in paths:
-        elem = elem.get(path)
+        elem = elem.get(path) if isinstance(elem, dict) else elem
         if elem is None:
             return default_value
 
     return elem
 
 
-def xpath_dict(data, path):
+def xpath_dict(data, path: str) -> Any:
     """
     Simple XPath-like lookup for nested dict/list structures.
 
@@ -35,7 +36,7 @@ def xpath_dict(data, path):
 
     parts = [p for p in path.strip('/').split('/') if p]
 
-    def _search(current, remaining):
+    def _search(current: Any, remaining: list) -> Any:
         if not remaining:
             if isinstance(current, list):
                 return current
@@ -65,8 +66,8 @@ def xpath_dict(data, path):
 
 
 def replace(
-    value,
-    current_key,
+    value: Any,
+    current_key: str | None,
     renamings: dict[str, str],
     value_transforms: dict,
     keys_to_drop: dict[str, list[str]],
