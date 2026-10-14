@@ -109,7 +109,7 @@ def generate_all(stem: str, json_input: dict, outDir: str, validate: bool):
     write(stem, cifs_output, OutputFormat.CIFS, outDir, validate)
 
 
-def main(
+def transform(
     filename: str,
     outDir: str,
     input_format: InputFormat,
@@ -187,7 +187,7 @@ if __name__ == '__main__':
         logger.error('Validation is not supported for format %s', args.output_format)
         exit(1)
 
-    main(
+    transform(
         args.filename,
         args.outputDir,
         args.input_format,
