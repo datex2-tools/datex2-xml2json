@@ -104,12 +104,24 @@ class GeoparquetRenderer:
         return fieldnames
 
     def _set_timestamps_to_UTC(self, a_geojson_dict: dict):
+        """
+        Adds/subtracts optional timezone offset for
+        all timestamp properties to assure they are in UTC.
+        Note: timestamps without timezone adjustment are assumed to be
+        in UTC already.
+        This works around https://github.com/geoparquet/geoparquet-io/issues/1152
+        and might be obsolete once the it's fix is released in a geoparquet-io
+        version > 1.6.0
+        """
         ts_fieldnames = self._get_timestamp_fieldnames()
         for feature in a_geojson_dict['features']:
             props = feature['properties']
             for ts_property in ts_fieldnames:
                 if ts_property in props:
                     dt = datetime.fromisoformat(props[ts_property])
+                    # Assume datetime was given in UTC if no timezone was specified
+                    if not dt.tzinfo:
+                        dt.replace(tzinfo=timezone.utc)
                     props[ts_property] = dt.astimezone(timezone.utc).isoformat()
 
     def _cast_fields_and_add_missing(self, table) -> None:
