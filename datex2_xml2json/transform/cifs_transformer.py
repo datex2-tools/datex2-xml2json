@@ -211,7 +211,7 @@ class CifsTransformer(JsonataTransformer):
         """
         Converts GeoJSON linestring coordinates array into CIFS polyline string.
         The list of lon/lat coords (like [[10.0, 49.0], [11.0, 49.0]]) is converted into a
-        lon/lat ordered string ("49.0 10.0 49.0 11.0").
+        lat/lon ordered string ("49.0 10.0 49.0 11.0").
         """
         return ' '.join([f'{coords[1]} {coords[0]}' for coords in linestring_coordinates])
 
