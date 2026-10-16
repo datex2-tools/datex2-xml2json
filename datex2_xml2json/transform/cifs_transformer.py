@@ -251,9 +251,12 @@ class CifsTransformer(JsonataTransformer):
     def _merge_grouped_incidents_and_handle_geometry(self, grouped_incidents):
         incidents = []
         for key in grouped_incidents:
+            try:
             incident = self._merge_incident_group(grouped_incidents[key])
             potentially_exploded_incidents = self._transform_incident_geometry(incident)
             incidents.extend(potentially_exploded_incidents)
+            except Exception:
+                logger.exception('Error while merging for incidents of key %s', key)
 
         return incidents
 
