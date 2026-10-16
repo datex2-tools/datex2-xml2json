@@ -62,7 +62,7 @@ python -m datex2_xml2json.transform -f geoparquet situation_publication.xml
 To merge multiple geoparquet files with identical schema into a common one, you may use
 
 ```sh
-python -m datex2_xml2json.merge <directory containing parquet files> merged.parquet
+python -m datex2_xml2json.merge <directory containing parquet files> -o merged.parquet
 ```
 
 #### DATEXII v3.7 JSON Lite
