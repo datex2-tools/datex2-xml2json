@@ -164,13 +164,13 @@ class CifsTransformer(JsonataTransformer):
         return grouped_incidents
 
     def _get_type_sub_type_prio(self, incident):
-        if incident['type'] == 'ROAD_CLOSED':
+        if incident.get('type') == 'ROAD_CLOSED':
             return 10
         if incident.get('subtype') == 'HAZARD_ON_ROAD_LANE_CLOSED':
             return 4
         if incident.get('subtype') == 'HAZARD_ON_ROAD_CONSTRUCTION':
             return 3
-        if incident.get('subtype') == 'HAZARD_ON_ROAD' or incident['type'] in ['CHIT_CHAT']:
+        if incident.get('subtype') == 'HAZARD_ON_ROAD' or incident.get('type') in ['CHIT_CHAT']:
             return 1
         else:
             return 2
@@ -252,9 +252,9 @@ class CifsTransformer(JsonataTransformer):
         incidents = []
         for key in grouped_incidents:
             try:
-            incident = self._merge_incident_group(grouped_incidents[key])
-            potentially_exploded_incidents = self._transform_incident_geometry(incident)
-            incidents.extend(potentially_exploded_incidents)
+                incident = self._merge_incident_group(grouped_incidents[key])
+                potentially_exploded_incidents = self._transform_incident_geometry(incident)
+                incidents.extend(potentially_exploded_incidents)
             except Exception:
                 logger.exception('Error while merging for incidents of key %s', key)
 
