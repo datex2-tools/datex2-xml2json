@@ -11,7 +11,7 @@ authors = [
 description = "PoC converting DATEX2 v2 (situation) publications to various output formats."
 readme = "README.md"
 keywords = ["DATEX2", "roadworks", "road closures", "GeoJSON", "Geoparquet", "WAZE-CIFS"]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
