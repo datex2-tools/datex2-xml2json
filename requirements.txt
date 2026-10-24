@@ -1,5 +1,0 @@
-jsonschema==4.26.0
-check-jsonschema==0.38.2
-jsonata-python==0.7.0
-geoparquet-io==1.6.0
-rs-xml2json==0.2.0
