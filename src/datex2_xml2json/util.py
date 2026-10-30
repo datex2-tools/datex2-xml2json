@@ -6,8 +6,9 @@ from rs_xml2json import convert
 
 
 def schema_path(schema):
-    with as_file(files("datex2_xml2json").joinpath(schema)) as fspath:
+    with as_file(files('datex2_xml2json').joinpath(schema)) as fspath:
         return str(fspath.resolve())
+
 
 def load_as_json_using_schema(filename: str, schemafile: str) -> dict:
     if filename.endswith('.xml'):

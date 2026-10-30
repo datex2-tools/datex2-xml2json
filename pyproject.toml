@@ -37,6 +37,7 @@ dev = [
     "ruff~=0.17.2",
     "mypy~=2.3.1",
     "types-shapely~=2.1.0.20260728",
+    "pyarrow-stubs~=20.0.0.20260819",
 ]
 
 [project.urls]
@@ -124,6 +125,9 @@ quote-style = "single"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["datex2_xml2json"]
+
+[tool.mypy]
+python_version = "3.14"
 
 [[tool.mypy.overrides]]
 module = [
