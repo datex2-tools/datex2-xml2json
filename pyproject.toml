@@ -43,10 +43,6 @@ dev = [
 Homepage = "https://github.com/datex2-tools/datex2-xml2json"
 Issues = "https://github.com/datex2-tools/datex2-xml2json/issues"
 
-[tool.setuptools]
-packages = ["datex2_xml2json"]
-
-
 [tool.ruff.lint]
 select = [
     "F", # pyflakes
