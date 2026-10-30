@@ -1,3 +1,50 @@
+[build-system]
+requires = ["uv_build >= 0.12.19"]
+build-backend = "uv_build"
+
+[project]
+name = "datex2-xml2json"
+version = "0.0.1"
+authors = [
+  { name="Holger Bruch", email="hb@mfdz.de" },
+]
+description = "PoC converting DATEX2 v2 (situation) publications to various output formats."
+readme = "README.md"
+keywords = ["DATEX2", "roadworks", "road closures", "GeoJSON", "Geoparquet", "WAZE-CIFS"]
+requires-python = ">=3.12"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: File Formats",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+license = "EUPL-1.2"
+license-files = ["LICENSE.md"]
+
+dependencies = [
+    "jsonschema>=4.26.0",
+    "check-jsonschema>=0.38.2",
+    "jsonata-python>=0.7.0",
+    "geoparquet-io>=1.6.0",
+    "rs-xml2json>=0.2.0"
+]
+
+# Development and test dependencies (PEP 735 dependency group, installed by `uv sync`).
+[dependency-groups]
+dev = [
+    "pytest~=9.1.1",
+    "ruff~=0.17.2",
+    "mypy~=2.3.1",
+    "pre-commit>=4.3.0",
+    "types-shapely~=2.1.0.20260728",
+    "pyarrow-stubs~=20.0.0.20260819",
+]
+
+[project.urls]
+Homepage = "https://github.com/datex2-tools/datex2-xml2json"
+Issues = "https://github.com/datex2-tools/datex2-xml2json/issues"
+
 [tool.ruff.lint]
 select = [
     "F", # pyflakes
@@ -80,8 +127,10 @@ quote-style = "single"
 testpaths = ["tests"]
 pythonpath = ["datex2_xml2json"]
 
+[tool.mypy]
+python_version = "3.14"
+
 [[tool.mypy.overrides]]
-# See https://github.com/HBNetwork/python-decouple/issues/122
 module = [
     "jsonata",
     "check_jsonschema.checker",

@@ -16,7 +16,7 @@ from .transform import (
     TransformationRuleFactory,
     TransformerPipeline,
 )
-from .util import load_as_json_using_schema
+from .util import load_as_json_using_schema, schema_path
 
 logger = logging.getLogger(__name__)
 
@@ -92,7 +92,7 @@ def write(stem: str, json_result: dict, output_format: OutputFormat, outDir: str
         with open(outfile_name, 'w') as f:
             json.dump(json_result, f, indent=2)
         if validate:
-            exit(JsonValidator(OUTPUT_SCHEMAS[output_format]).validate(outfile_name))
+            exit(JsonValidator(schema_path(OUTPUT_SCHEMAS[output_format])).validate(outfile_name))
     else:
         GeoparquetRenderer().render(outfile_name, json_result)
 
@@ -119,8 +119,7 @@ def transform(
     publicationIdentifier: str,
 ):
     stem = Path(filename).stem
-    input_schema = DEFAULT_SCHEMAS[input_format]
-    json_input = load_as_json_using_schema(filename, input_schema)
+    json_input = load_as_json_using_schema(filename, schema_path(DEFAULT_SCHEMAS[input_format]))
 
     if sourceIdentification or publicationIdentifier:
         SourceSetter(publicationIdentifier, sourceIdentification).transform(json_input)

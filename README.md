@@ -16,15 +16,15 @@ Custom extensions might require supplying specific schemas to support this conve
 
 ## Preliminaries
 
-This project requires Python >= 3.12.
+This project requires Python >= 3.12 and `uv` installed.
 
 Install the needed dependencies via 
 
 ```
-$ pip install -r requirements.txt
+$ uv sync
 ```
 
-### Usage
+## Usage
 
 Below, you find a couple of sample formats to generate different output formats.
 
@@ -33,22 +33,22 @@ If this is does not help, please open an issue and supply a minimal DATEXII XML 
 
 In case you fixed an error or want to contribute, please create an issue as well and feel free to send a PR, thanks.
 
-#### DATEXII v3.7
+### DATEXII v3.7
 To convert a DATEXII v2.2 XML publication to DATEXII v3.7, use the following command. It will create `out/situation_publication.json` and will validate it after generation.
 
 ```sh 
-python -m datex2_xml2json.transformer -f datex2_3_7_json -V situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f datex2_3_7_json -V situation_publication.xml
 ```
 
-#### DATEXII (mostly) flat GeoJSON
+### DATEXII (mostly) flat GeoJSON
 
 To convert a DATEXII v2.2 XML situation publication to a (mostly) flat GeoJSON file, use the following command. It will create `out/situation_publication.geojson`.  Note that this is a lossy conversion which retains a subset of all possible DATEXII properties. For details which elements are picked, see `jsonata_transformer.py`.
 
 ```sh
-python -m datex2_xml2json.transformer -f geojson situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f geojson situation_publication.xml
 ```
 
-#### DATEXII Geoparquet
+### DATEXII Geoparquet
 
 To convert a DATEXII v2.2 XML publication to a Geoparquet file, use the following command. It will create out/situation_publication.geoparquet.
 
@@ -56,21 +56,21 @@ To convert a DATEXII v2.2 XML publication to a Geoparquet file, use the followin
 Note that all timestamp properties are exported as UTC timestamps, their original offsets applied.
 
 ```sh
-python -m datex2_xml2json.transformer -f geoparquet situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f geoparquet situation_publication.xml
 ```
 
 To merge multiple geoparquet files with identical schema into a common one, you may use
 
 ```sh
-python -m datex2_xml2json.merge <directory containing parquet files> -o merged.parquet
+uv run python -m datex2_xml2json.merge <directory containing parquet files> -o merged.parquet
 ```
 
-#### DATEXII v3.7 JSON Lite
+### DATEXII v3.7 JSON Lite
 
 To convert a DATEXII v2.2 XML publication to a DATEXII v3.7 JSON "Lite" format, use the following command. It will create `out/situation_publication.lite.json`:
 
 ```sh
-python -m datex2_xml2json.transformer -f datex2_3_7_json_lite situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f datex2_3_7_json_lite situation_publication.xml
 ```
 
 Warning: the JSON resulting from this conversion does not comply with DATEXII JSON Schema. 
@@ -80,30 +80,30 @@ Some differences:
 * it does not wrap text objects in `value` wrappers
 * we try to create a `geoJsonGeometry` location from `gmlLineString` locations. For `locationContainedInGroup`, we collect all linestrings in an `MultiLineString` object
 
-#### DATEXII v2.2 RAW JSON
+### DATEXII v2.2 RAW JSON
 
 To convert a DATEXII v2.2 XML publication to an intermediate JSON which just converts the XML to a JSON file using the DATEXII v2.2 schema, use the following command. It will create `out/situation_publication.raw.json`.
 ```sh
-python -m datex2_xml2json.transformer -f raw situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f raw situation_publication.xml
 ```
 
-#### WAZE CIFS Format
+### WAZE CIFS Format
 
 To convert a DATEXII v2.2 XML situation publication to [WAZE CIFS Format](https://developers.google.com/waze/data-feed/cifs-specification?hl=de), use the following command. It will create `out/situation_publication.cifs.json`.
 
 ```sh
-python -m datex2_xml2json.transformer -f cifs situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f cifs situation_publication.xml
 ```
 
 To validate the generated json against the CIFS schema, supply the -v switch.
 ```sh
-python -m datex2_xml2json.transformer -f cifs -V situation_publication.xml
+uv run python -m datex2_xml2json.transformer -f cifs -V situation_publication.xml
 ```
 
 Note: currently, this converter does not handle validityPeriods. I.E. recurring events at specific days/hours are not yet mapped to CIFS schedule.
 
 
-#### Generating multiple output formats in one run
+### Generating multiple output formats in one run
 
 To convert a DATEXII v2.2 XML situation publication to WAZE CIFS Format, GeoJSON and Geoparquet in one run (which avoids repeated parsing/transformation steps), run the following command (without explicitly specifing a format parameter):
 It will create `out/situation_publication.datex2.raw.json`, `out/situation_publication.datex2.lite.json`, `out/situation_publication.datex2.geojson`, `out/situation_publication.datex2.parquet` and`out/situation_publication.cifs.json`.
@@ -111,6 +111,9 @@ It will create `out/situation_publication.datex2.raw.json`, `out/situation_publi
 ```sh
 python -m datex2_xml2json.transformer situation_publication.xml
 ```
+
+## Development
+
 
 ### How the transformation works
 
@@ -136,3 +139,12 @@ E.g. you could start with the following to example transformations (which might 
 
 * https://try.jsonata.org/Gk5r-kLek: Mapping DATEX3.7LiteJSON to DATEX2MostlyFlatGeoJSON (Current JSONata expression is in datex2_xml2json/transform/jsonata_transformer.py)
 * https://try.jsonata.org/QEnqmItyF: Mapping DATEX2MostlyFlatGeoJSON to (mostly) WAZE CIFS (Current JSONata expression is in datex2_xml2json/transform/cifs_transformer.py)
+
+### Running tests
+
+You can execute the test suite via
+
+```sh
+uv sync --group dev
+uv run pytest
+```

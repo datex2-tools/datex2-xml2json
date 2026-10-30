@@ -10,7 +10,7 @@ from datex2_xml2json.transform import (
     TransformationRuleFactory,
     TransformerPipeline,
 )
-from datex2_xml2json.util import load_as_json_using_schema
+from datex2_xml2json.util import load_as_json_using_schema, schema_path
 
 DATEX2_XSD_2_2_0_SCHEMA = 'schema/DATEXIISchema_2_2_3.xsd'
 DATEX2_3_7_JSON_SCHEMA = 'schema/DATEXII_3.7_Profile/DATEXII_3_D2Payload.json'
@@ -18,7 +18,7 @@ FIXTURES_DIR = 'tests/integration/data/'
 
 
 def load_and_transform(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: str):
-    json_input = load_as_json_using_schema(FIXTURES_DIR + FIXTURE_NAME + '.xml', DATEX2_XSD_2_2_0_SCHEMA)
+    json_input = load_as_json_using_schema(FIXTURES_DIR + FIXTURE_NAME + '.xml', schema_path(DATEX2_XSD_2_2_0_SCHEMA))
     if overwrite:
         with open(FIXTURES_DIR + FIXTURE_NAME + '.json', 'w') as f:
             json.dump(json_input, f, indent=2)
@@ -45,7 +45,7 @@ def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: 
     with tempfile.NamedTemporaryFile(mode='w', delete_on_close=False) as fp:
         json.dump(json_output, fp)
         fp.close()
-        res = JsonValidator(DATEX2_3_7_JSON_SCHEMA).validate(fp.name)
+        res = JsonValidator(schema_path(DATEX2_3_7_JSON_SCHEMA)).validate(fp.name)
     if res != 0:
         raise Exception('Failed validation')
 
