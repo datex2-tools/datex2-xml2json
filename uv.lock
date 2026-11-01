@@ -508,6 +508,7 @@ dependencies = [
     { name = "geoparquet-io" },
     { name = "jsonata-python" },
     { name = "jsonschema" },
+    { name = "pyarrow" },
     { name = "rs-xml2json" },
 ]
 
@@ -527,6 +528,7 @@ requires-dist = [
     { name = "geoparquet-io", specifier = ">=1.6.0" },
     { name = "jsonata-python", specifier = ">=0.7.0" },
     { name = "jsonschema", specifier = ">=4.26.0" },
+    { name = "pyarrow", specifier = ">=26.0.0" },
     { name = "rs-xml2json", specifier = ">=0.2.0" },
 ]
 
