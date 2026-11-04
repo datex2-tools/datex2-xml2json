@@ -1,6 +1,9 @@
 [build-system]
-requires = ["uv_build >= 0.12.19"]
+requires = ["uv_build >= 0.12.19, <1"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+source-exclude = [".DS_Store"]
 
 [project]
 name = "datex2-xml2json"
@@ -24,23 +27,22 @@ license = "EUPL-1.2"
 license-files = ["LICENSE.md"]
 
 dependencies = [
-    "jsonschema>=4.26.0",
-    "check-jsonschema>=0.38.2",
-    "jsonata-python>=0.7.0",
-    "geoparquet-io>=1.6.0",
-    "pyarrow>=26.0.0",
-    "rs-xml2json>=0.2.0"
+    "jsonschema>=4.26,<5",
+    "check-jsonschema>=0.38,<1",
+    "jsonata-python>=0.7.0,<1",
+    "geoparquet-io>=1.7,<2",
+    "pyarrow>=26,<27",
+    "rs-xml2json~=0.2.0"
 ]
 
 # Development and test dependencies (PEP 735 dependency group, installed by `uv sync`).
 [dependency-groups]
 dev = [
-    "pytest~=9.1.1",
+    "pytest>=9.1.1,<10",
     "ruff~=0.17.2",
     "mypy~=2.3.1",
-    "pre-commit>=4.3.0",
-    "types-shapely~=2.1.0.20260728",
-    "pyarrow-stubs~=20.0.0.20260819",
+    "pre-commit>=4.3.0,<5",
+    "pyarrow-stubs>=20.0.0.20260819",
 ]
 
 [project.urls]
@@ -144,6 +146,5 @@ module = [
     "geoparquet_io",
     "rs_xml2json",
     "pyarrow",
-    "shapely.geometry",
 ]
 ignore_missing_imports = true
