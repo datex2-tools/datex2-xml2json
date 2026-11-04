@@ -60,7 +60,7 @@ cifs_expression = """
                 "DisturbanceActivity": "CHIT_CHAT",
                 "TransitInformation": "CHIT_CHAT"
                 };
-            $lookup($typeBySubtypeLookup , properties.situationRecordSubtype)?:$lookup($typeLookup , properties.type)?:"TODO"),
+            $lookup($typeBySubtypeLookup , properties.situationRecordSubtype)?:$lookup($typeLookup , properties.type)?:"HAZARD"),
         "subtype": (
             $subtypeByTypeLookup := {
                 /* Accident (no subtypes, as DATEXII does not provide accident severity) */
@@ -173,9 +173,9 @@ class CifsTransformer(JsonataTransformer):
         if incident.get('subtype') == 'HAZARD_ON_ROAD_CONSTRUCTION':
             return 3
         if incident.get('subtype') == 'HAZARD_ON_ROAD' or incident.get('type') in ['CHIT_CHAT']:
-            return 1
-        else:
             return 2
+        else:
+            return 1
 
     def _merge_incident_group(self, incident_group: list[JsonDict]) -> JsonDict:
         # Assumptions: besides type and subtype, all properties are assumed to be equals
