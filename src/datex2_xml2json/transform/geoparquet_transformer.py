@@ -150,6 +150,8 @@ class GeoparquetRenderer:
                     arrays.append(pa.nulls(len(patable), type=field.type))
             except Exception:
                 logger.exception(f'Exception handling field {field}')
+                # Create null column of the correct type
+                arrays.append(pa.nulls(len(patable), type=field.type))
 
         patable = pa.Table.from_arrays(arrays, schema=self.target_schema)
         table._table = patable
