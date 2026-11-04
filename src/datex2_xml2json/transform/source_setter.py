@@ -18,7 +18,7 @@ class SourceSetter(SituationRecordTransformer):
         self.sourceIdentification = sourceIdentification
 
     def process_situation_record(self, situation_record: JsonDict) -> None:
-        situation_record['source'] = {'sourceIdentification': self.sourceIdentification}
+        situation_record.setdefault('source', {})['sourceIdentification'] = self.sourceIdentification
 
     def transform(self, publication: JsonDict) -> JsonDict:
         if self.sourceIdentification is not None:
