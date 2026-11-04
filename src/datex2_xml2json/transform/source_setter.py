@@ -5,7 +5,7 @@ from datex2_xml2json.util import JsonDict
 class SourceSetter(SituationRecordTransformer):
     """
     This Transformer sets situationRecord/source/sourceIdentification and the
-    custom extension payload/payloadPublicationExtension/publicationIdentifier,
+    custom extension payloadPublication/payloadPublicationExtension/publicationIdentifier,
     if they are specified in the constructor call.
     """
 
@@ -13,7 +13,7 @@ class SourceSetter(SituationRecordTransformer):
     publicationIdentifier: str | None = None
 
     def __init__(self, publicationIdentifier: str | None, sourceIdentification: str | None) -> None:
-        super().__init__('d2LogicalModel/payload/situation/situationRecord')
+        super().__init__('d2LogicalModel/payloadPublication/situation/situationRecord')
         self.publicationIdentifier = publicationIdentifier
         self.sourceIdentification = sourceIdentification
 
@@ -25,7 +25,7 @@ class SourceSetter(SituationRecordTransformer):
             publication = super().transform(publication)
 
         if self.publicationIdentifier is not None:
-            publication['d2LogicalModel']['payload'].setdefault('payloadPublicationExtension', {})['publicationIdentifier'] = (
+            publication['d2LogicalModel']['payloadPublication'].setdefault('payloadPublicationExtension', {})['publicationIdentifier'] = (
                 self.publicationIdentifier
             )
 
