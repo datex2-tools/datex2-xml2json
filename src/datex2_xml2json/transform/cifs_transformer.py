@@ -199,16 +199,16 @@ class CifsTransformer(JsonataTransformer):
             if highest_prio is None or current_prio > highest_prio:
                 logger.debug(
                     f'For {incident["id"]}, replace {highest_prio} {highest_prio_type} {highest_prio_subtype}'
-                    f' by {incident["type"]} {incident.get("subtype")}'
+                    f' by {incident.get("type")} {incident.get("subtype")}'
                 )
                 highest_prio = current_prio
-                highest_prio_type = incident['type']
+                highest_prio_type = incident.get('type')
                 highest_prio_subtype = incident.get('subtype')
                 highest_prio_incident = incident
             else:
                 logger.debug(
                     f'For {incident["id"]}, do not replace {highest_prio} {highest_prio_type} {highest_prio_subtype}'
-                    f' by {incident["type"]} {incident.get("subtype")}'
+                    f' by {incident.get("type")} {incident.get("subtype")}'
                 )
         return highest_prio_incident
 
