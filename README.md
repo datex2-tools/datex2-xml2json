@@ -138,8 +138,8 @@ Easiest way to learn about it, is starting with an existing transformation using
 
 E.g. you could start with the following to example transformations (which might not exactly reflect the latest code version of this project):
 
-* https://try.jsonata.org/Gk5r-kLek: Mapping DATEX3.7LiteJSON to DATEX2MostlyFlatGeoJSON (Current JSONata expression is in datex2_xml2json/transform/jsonata_transformer.py)
-* https://try.jsonata.org/QEnqmItyF: Mapping DATEX2MostlyFlatGeoJSON to (mostly) WAZE CIFS (Current JSONata expression is in datex2_xml2json/transform/cifs_transformer.py)
+* https://try.jsonata.org/Gk5r-kLek: Mapping DATEX3.7LiteJSON to DATEX2MostlyFlatGeoJSON (Current JSONata expression is in `src/datex2_xml2json/transform/jsonata_transformer.py`)
+* https://try.jsonata.org/QEnqmItyF: Mapping DATEX2MostlyFlatGeoJSON to (mostly) WAZE CIFS (Current JSONata expression is in `src/datex2_xml2json/transform/cifs_transformer.py`)
 
 ### Running tests
 
