@@ -1,4 +1,5 @@
 from .base import (
+    AbstractTransformer as AbstractTransformer,
     TransformerPipeline as TransformerPipeline,
     RulesTransformer as RulesTransformer,
 )
@@ -9,5 +10,5 @@ from .geojson_geometry_transformer import (
     GeoJSONGeometryTransformer as GeoJSONGeometryTransformer,
 )
 from .geoparquet_transformer import GeoparquetRenderer as GeoparquetRenderer
-from .cifs_transformer import CifsTransformer
-from .source_setter import SourceSetter
+from .cifs_transformer import CifsTransformer as CifsTransformer
+from .source_setter import SourceSetter as SourceSetter

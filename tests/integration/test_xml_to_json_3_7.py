@@ -3,6 +3,7 @@ import tempfile
 
 from datex2_xml2json.json_validator import JsonValidator
 from datex2_xml2json.transform import (
+    AbstractTransformer,
     GeoJSONGeometryTransformer,
     JsonataTransformer,
     RoadsRegioTransformer,
@@ -10,14 +11,14 @@ from datex2_xml2json.transform import (
     TransformationRuleFactory,
     TransformerPipeline,
 )
-from datex2_xml2json.util import load_as_json_using_schema, schema_path
+from datex2_xml2json.util import JsonDict, load_as_json_using_schema, schema_path
 
 DATEX2_XSD_2_2_0_SCHEMA = 'schema/DATEXIISchema_2_2_3.xsd'
 DATEX2_3_7_JSON_SCHEMA = 'schema/DATEXII_3.7_Profile/DATEXII_3_D2Payload.json'
 FIXTURES_DIR = 'tests/integration/data/'
 
 
-def load_and_transform(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: str):
+def load_and_transform(FIXTURE_NAME: str, overwrite: bool, transformer: AbstractTransformer, suffix: str) -> JsonDict:
     json_input = load_as_json_using_schema(FIXTURES_DIR + FIXTURE_NAME + '.xml', schema_path(DATEX2_XSD_2_2_0_SCHEMA))
     if overwrite:
         with open(FIXTURES_DIR + FIXTURE_NAME + '.json', 'w') as f:
@@ -39,7 +40,7 @@ def load_and_transform(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: 
     return json_output
 
 
-def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: str):
+def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer: AbstractTransformer, suffix: str) -> None:
     json_output = load_and_transform(FIXTURE_NAME, overwrite, transformer, suffix)
 
     with tempfile.NamedTemporaryFile(mode='w', delete_on_close=False) as fp:
@@ -50,7 +51,7 @@ def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer, suffix: 
         raise Exception('Failed validation')
 
 
-def transform_to_3_7_validate(inputfile: str, overwrite: bool):
+def transform_to_3_7_validate(inputfile: str, overwrite: bool) -> None:
     transform_validate(
         inputfile,
         overwrite,
@@ -59,7 +60,7 @@ def transform_to_3_7_validate(inputfile: str, overwrite: bool):
     )
 
 
-def transform_to_flat_geojson(inputfile: str, overwrite: bool):
+def transform_to_flat_geojson(inputfile: str, overwrite: bool) -> None:
     transformer = TransformerPipeline(
         [
             RulesTransformer(TransformationRuleFactory().xmlv2_to_json()),
@@ -72,66 +73,66 @@ def transform_to_flat_geojson(inputfile: str, overwrite: bool):
 
 
 # ----------
-def test_sitpub_comments_to_json3_7():
+def test_sitpub_comments_to_json3_7() -> None:
     transform_to_3_7_validate('sitpub_comments', False)
 
 
-def test_sitpub_linearExtension_to_json3_7():
+def test_sitpub_linearExtension_to_json3_7() -> None:
     transform_to_3_7_validate('sitpub_linearExtension', False)
 
 
-def test_sitpub_linearExtension_to_flat_geojson():
+def test_sitpub_linearExtension_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_linearExtension', False)
 
 
-def test_sitpub_linearExtended_to_json3_7():
+def test_sitpub_linearExtended_to_json3_7() -> None:
     transform_to_3_7_validate('sitpub_linearExtended', False)
 
 
-def test_sitpub_linearExtended_to_flat_geojson():
+def test_sitpub_linearExtended_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_linearExtended', False)
 
 
-def test_sitpub_pointCoordinate_to_3_7():
+def test_sitpub_pointCoordinate_to_3_7() -> None:
     transform_to_3_7_validate('sitpub_pointCoordinate', False)
 
 
-def test_sitpub_pointCoordinate_to_flat_geojson():
+def test_sitpub_pointCoordinate_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_pointCoordinate', False)
 
 
-def test_sitpub_sitpub_multi_linearExtended_to_flat_geojson():
+def test_sitpub_sitpub_multi_linearExtended_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_multi_linearExtended', False)
 
 
-def test_sitpub_linearByCoordinates_to_flat_geojson():
+def test_sitpub_linearByCoordinates_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_linearByCoordinates', False)
 
 
-def test_sitpub_only_coordinatesForDisplay_to_flat_geojson():
+def test_sitpub_only_coordinatesForDisplay_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_only_coordinatesForDisplay', False)
 
 
-def test_sitpub_multiple_lanerestrictions_to_flat_geojson():
+def test_sitpub_multiple_lanerestrictions_to_flat_geojson() -> None:
     transform_to_flat_geojson('sitpub_multiple_lanerestrictions', False)
 
 
-def test_sitpub_empty_linearElement_to_json3_7():
+def test_sitpub_empty_linearElement_to_json3_7() -> None:
     transform_to_3_7_validate('sitpub_empty_linearElement', False)
 
 
-def test_sitpub_point_along_linearElement():
+def test_sitpub_point_along_linearElement() -> None:
     transform_to_3_7_validate('sitpub_point_along_linearElement', False)
 
 
-def test_sitpub_source_to_json3_7():
+def test_sitpub_source_to_json3_7() -> None:
     """
     Tests, if a DATEXII 2.2 with  source and custom publicationId will converted to valid 3.7 JSON.
     """
     transform_to_3_7_validate('sitpub_source', False)
 
 
-def test_sitpub_source_to_flat_geojson():
+def test_sitpub_source_to_flat_geojson() -> None:
     """
     Tests, if a DATEXII 2.2 with  source and custom publicationId will converted to valid 3.7 JSON.
     """

@@ -1,27 +1,33 @@
 import json
+from collections.abc import Callable
 from importlib.resources import as_file, files
 from typing import Any
 
 from rs_xml2json import convert
 
+JsonDict = dict[str, Any]
+ValueTransform = dict[str, Callable[[Any], Any]]
 
-def schema_path(schema):
+
+def schema_path(schema: str) -> str:
     with as_file(files('datex2_xml2json').joinpath(schema)) as fspath:
         return str(fspath.resolve())
 
 
-def load_as_json_using_schema(filename: str, schemafile: str) -> dict:
+def load_as_json_using_schema(filename: str, schemafile: str) -> JsonDict:
     if filename.endswith('.xml'):
         json_string = convert(filename, schemafile)
-        json_input = json.loads(json_string)
+        json_input: JsonDict = json.loads(json_string)
+        return json_input
     elif filename.endswith('.json'):
         with open(filename) as f:
-            json_input = json.load(f)
+            json_from_file: JsonDict = json.load(f)
+            return json_from_file
+    else:
+        raise ValueError(f'Unsupported input file: {filename}')
 
-    return json_input
 
-
-def find(a_dict: dict[Any, Any], simplified_xpath: str, default_value: Any = None) -> Any:
+def find(a_dict: JsonDict, simplified_xpath: str, default_value: Any = None) -> Any:
     paths = simplified_xpath.split('/')
     elem: Any = a_dict
     for path in paths:
@@ -32,7 +38,7 @@ def find(a_dict: dict[Any, Any], simplified_xpath: str, default_value: Any = Non
     return elem
 
 
-def xpath_dict(data, path: str) -> Any:
+def xpath_dict(data: JsonDict, path: str) -> Any:
     """
     Simple XPath-like lookup for nested dict/list structures.
 
@@ -42,7 +48,7 @@ def xpath_dict(data, path: str) -> Any:
 
     parts = [p for p in path.strip('/').split('/') if p]
 
-    def _search(current: Any, remaining: list) -> Any:
+    def _search(current: Any, remaining: list[str]) -> Any:
         if not remaining:
             if isinstance(current, list):
                 return current
@@ -75,11 +81,11 @@ def replace(
     value: Any,
     current_key: str | None,
     renamings: dict[str, str],
-    value_transforms: dict,
+    value_transforms: ValueTransform,
     keys_to_drop: dict[str, list[str]],
     type_mappings: dict[str, str],
     keys_to_pull_up: dict[str, None | list[str]],
-):
+) -> Any:
     # renamings: dict of old keys which shall be replaced by new keys
     # keys_to_drop: dict of keys which should be removed from dicts, if their parent key equals keys_to_drop[key]'s value (or value is None)
     # type_mappings: dict of type values which, if present as 'type': type_mapping_key will result in an object {type_mapping_value: {} }

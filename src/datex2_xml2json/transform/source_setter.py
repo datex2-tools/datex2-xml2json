@@ -1,4 +1,5 @@
 from datex2_xml2json.transform.base import SituationRecordTransformer
+from datex2_xml2json.util import JsonDict
 
 
 class SourceSetter(SituationRecordTransformer):
@@ -11,15 +12,15 @@ class SourceSetter(SituationRecordTransformer):
     sourceIdentification: str | None = None
     publicationIdentifier: str | None = None
 
-    def __init__(self, publicationIdentifier: str | None, sourceIdentification: str | None):
+    def __init__(self, publicationIdentifier: str | None, sourceIdentification: str | None) -> None:
         super().__init__('d2LogicalModel/payload/situation/situationRecord')
         self.publicationIdentifier = publicationIdentifier
         self.sourceIdentification = sourceIdentification
 
-    def process_situation_record(self, situation_record: dict) -> None:
+    def process_situation_record(self, situation_record: JsonDict) -> None:
         situation_record['source'] = {'sourceIdentification': self.sourceIdentification}
 
-    def transform(self, publication: dict) -> dict:
+    def transform(self, publication: JsonDict) -> JsonDict:
         if self.sourceIdentification is not None:
             publication = super().transform(publication)
 

@@ -1,15 +1,17 @@
 import logging
 
+from datex2_xml2json.util import JsonDict
+
 from .base import SituationRecordTransformer
 
 logger = logging.getLogger(__name__)
 
 
 class RoadsRegioTransformer(SituationRecordTransformer):
-    def __init__(self, path: str = 'payload/sitSituationPublication/situation/situationRecord'):
+    def __init__(self, path: str = 'payload/sitSituationPublication/situation/situationRecord') -> None:
         super().__init__(path)
 
-    def _filter_empty_comments(self, situation_record: dict):
+    def _filter_empty_comments(self, situation_record: JsonDict) -> None:
         # Remove comments without value
         if 'generalPublicComment' in situation_record:
             comments = [
@@ -19,14 +21,14 @@ class RoadsRegioTransformer(SituationRecordTransformer):
             ]
             situation_record['generalPublicComment'] = comments
 
-    def _handle_originalNumberOfLanes(self, situation_record: dict):
+    def _handle_originalNumberOfLanes(self, situation_record: JsonDict) -> None:
         # Removes originalNumberOfLanes from impact.
 
         if 'impact' in situation_record:
             # TODO originalNumberOfLanes probably should they be added elsewhere
             situation_record['impact'].pop('originalNumberOfLanes', None)
 
-    def _handle_bemas_locations(self, situation_record: dict):
+    def _handle_bemas_locations(self, situation_record: JsonDict) -> None:
         # Removes originalNumberOfLanes from impact.
 
         # BEMaS
@@ -62,7 +64,7 @@ class RoadsRegioTransformer(SituationRecordTransformer):
             linearElement['locLinearElementByLineString'] = locLinearElementByLineString
             linearWithinLinearElements[0]['linearElement'] = linearElement
 
-    def _fix_missing_linearElement(self, situation_record: dict):
+    def _fix_missing_linearElement(self, situation_record: JsonDict) -> None:
         # Removes originalNumberOfLanes from impact.
 
         # BEMaS
@@ -81,7 +83,7 @@ class RoadsRegioTransformer(SituationRecordTransformer):
             if 'linearElement' not in linearWithinLinearElements[0]:
                 linearWithinLinearElements[0]['linearElement'] = {}
 
-    def process_situation_record(self, situation_record: dict) -> None:
+    def process_situation_record(self, situation_record: JsonDict) -> None:
         # self._handle_bemas_locations(situation_record)
         self._fix_missing_linearElement(situation_record)
         self._handle_originalNumberOfLanes(situation_record)

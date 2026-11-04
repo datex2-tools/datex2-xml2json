@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from check_jsonschema.checker import SchemaChecker
 from check_jsonschema.file_wrapper import BinaryFileInput
 from check_jsonschema.formats import FormatOptions
@@ -8,7 +10,7 @@ from check_jsonschema.schema_loader import SchemaLoader
 
 
 class JsonValidator:
-    def __init__(self, schema_path):
+    def __init__(self, schema_path: str) -> None:
         self.schema_loader = SchemaLoader(
             schema_path,
             disable_cache=False,
@@ -20,7 +22,7 @@ class JsonValidator:
         cls = REPORTER_BY_NAME[output_format]
         return cls(verbosity=verbosity)
 
-    def validate(self, filename):
+    def validate(self, filename: str | Path) -> int:
         checker = SchemaChecker(
             schema_loader=self.schema_loader,
             instance_loader=InstanceLoader([BinaryFileInput(filename)]),
@@ -33,4 +35,5 @@ class JsonValidator:
             regex_impl=RegexImplementation(RegexVariantName.default),
         )
 
-        return checker.run()
+        result: int = checker.run()
+        return result

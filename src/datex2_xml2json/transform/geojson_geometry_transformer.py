@@ -1,5 +1,7 @@
 import logging
 
+from datex2_xml2json.util import JsonDict
+
 from .base import SituationRecordTransformer
 
 logger = logging.getLogger(__name__)
@@ -14,7 +16,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
         super().__init__(situation_record_json_pointer)
         self.geom_container_element_json_point = geom_container_element_json_point
 
-    def _extract_coordinates_from_gmlLineString(self, gmlLineString: dict) -> list:
+    def _extract_coordinates_from_gmlLineString(self, gmlLineString: JsonDict) -> list[list[float]]:
         # Coordinate Order Confusion
         # There is often some confusion regarding the correct ordering of coordinate values.
         # While EPSG:4326 usually uses lat,lon ordering, and CRS84 (and GeoJSON) use lon/lat,
@@ -38,7 +40,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
         else:
             return [[lon, lat] for lon, lat in zipped_coords]
 
-    def _extract_line_geom(self, linearExtended: dict) -> None | dict:
+    def _extract_line_geom(self, linearExtended: JsonDict) -> None | JsonDict:
         gmlLineString = linearExtended.get('gmlLineString')
         if gmlLineString is None:
             logger.warning('No linearExtended/gmlLineString')
@@ -50,7 +52,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
             }
             return geometry
 
-    def _extract_point_geom(self, pointCoordinates: dict | None) -> dict | None:
+    def _extract_point_geom(self, pointCoordinates: JsonDict | None) -> JsonDict | None:
         if pointCoordinates is None:
             logger.warning('No pointCoordinates')
             return None
@@ -64,7 +66,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
             }
             return geometry
 
-    def _extract_multi_line_string(self, locationReference: dict) -> dict:
+    def _extract_multi_line_string(self, locationReference: JsonDict) -> JsonDict:
         locations = locationReference.get('locationContainedInGroup', {})
 
         lineStrings = []
@@ -82,7 +84,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
 
         return {'type': 'MultiLineString', 'coordinates': lineStrings}
 
-    def _extract_extendedLinear_geom(self, locationReference: dict) -> dict:
+    def _extract_extendedLinear_geom(self, locationReference: JsonDict) -> JsonDict:
         """
         Some publications use a custom extension extendedLinear to provide linear geometries using a verbose
         xml encoding.
@@ -119,7 +121,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
 
         return {'type': 'LineString', 'coordinates': coordinates}
 
-    def process_situation_record(self, situation_record: dict) -> None:
+    def process_situation_record(self, situation_record: JsonDict) -> None:
         locationReference = situation_record.get('locationReference')
         if locationReference is None:
             return
@@ -147,7 +149,7 @@ class GeoJSONGeometryTransformer(SituationRecordTransformer):
 
 
 class GeoJSONGeometryTransformer_DATEXII_3_7(GeoJSONGeometryTransformer):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             'payload/sitSituationPublication/situation/situationRecord',
             'linearExtended',
@@ -155,5 +157,5 @@ class GeoJSONGeometryTransformer_DATEXII_3_7(GeoJSONGeometryTransformer):
 
 
 class GeoJSONGeometryTransformer_Simplified(GeoJSONGeometryTransformer):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__('payload/situation/situationRecord', None)

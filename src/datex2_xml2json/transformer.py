@@ -16,7 +16,7 @@ from .transform import (
     TransformationRuleFactory,
     TransformerPipeline,
 )
-from .util import load_as_json_using_schema, schema_path
+from .util import JsonDict, load_as_json_using_schema, schema_path
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ OUTPUT_SCHEMAS = {
 }
 
 
-def build_transformer(input_format: InputFormat, output_format: OutputFormat):
+def build_transformer(input_format: InputFormat, output_format: OutputFormat) -> TransformerPipeline:
     if input_format == InputFormat.DATEX2_2_2_XML:
         if output_format == OutputFormat.DATEX2_3_7_JSON:
             return TransformerPipeline(
@@ -78,12 +78,14 @@ def build_transformer(input_format: InputFormat, output_format: OutputFormat):
             return build_transformer(input_format, OutputFormat.GEOJSON).add_transformer(CifsTransformer())
         elif output_format == OutputFormat.RAW:
             return TransformerPipeline([])
+        else:
+            raise ValueError(f'Unsupported output format {output_format}')
 
     else:
         return TransformerPipeline([RulesTransformer(TransformationRuleFactory().xmlv3_to_json3_7())])
 
 
-def write(stem: str, json_result: dict, output_format: OutputFormat, outDir: str, validate: bool = False):
+def write(stem: str, json_result: JsonDict, output_format: OutputFormat, outDir: str, validate: bool = False) -> None:
     suffix = FILE_SUFFIXES_PER_FORMAT[output_format]
     outfile_name = Path(outDir) / (stem + suffix)
     outfile_name.parent.mkdir(parents=True, exist_ok=True)
@@ -97,7 +99,7 @@ def write(stem: str, json_result: dict, output_format: OutputFormat, outDir: str
         GeoparquetRenderer().render(outfile_name, json_result)
 
 
-def generate_all(stem: str, json_input: dict, outDir: str, validate: bool):
+def generate_all(stem: str, json_input: JsonDict, outDir: str, validate: bool) -> None:
     write(stem, json_input, OutputFormat.RAW, outDir)
     jsonLiteTransformer = build_transformer(InputFormat.DATEX2_2_2_XML, OutputFormat.DATEX2_3_7_JSON_LITE)
     jsonLite_output = jsonLiteTransformer.transform(json_input)
@@ -113,11 +115,11 @@ def transform(
     filename: str,
     outDir: str,
     input_format: InputFormat,
-    output_format: OutputFormat,
+    output_format: OutputFormat | None,
     validate: bool,
-    sourceIdentification: str,
-    publicationIdentifier: str,
-):
+    sourceIdentification: str | None,
+    publicationIdentifier: str | None,
+) -> None:
     stem = Path(filename).stem
     json_input = load_as_json_using_schema(filename, schema_path(DEFAULT_SCHEMAS[input_format]))
 
