@@ -1,5 +1,7 @@
 import jsonata
 
+from datex2_xml2json.util import JsonDict
+
 from .base import AbstractTransformer
 
 # ruff: noqa: E501 (JSONata expressions are long...)
@@ -88,13 +90,13 @@ mostly_flat_geojson_expression = """
 
 
 class JsonataTransformer(AbstractTransformer):
-    def __init__(self, jsonata_expression=mostly_flat_geojson_expression):
+    def __init__(self, jsonata_expression: str = mostly_flat_geojson_expression) -> None:
         self.jsonata_expr = jsonata.Jsonata(jsonata_expression)
 
-    def transform(self, a_dict: dict) -> dict:
+    def transform(self, a_dict: JsonDict) -> JsonDict:
         result = self.jsonata_expr.evaluate(a_dict)
 
         return self.post_transform(result)
 
-    def post_transform(self, a_dict: dict) -> dict:
+    def post_transform(self, a_dict: JsonDict) -> JsonDict:
         return a_dict

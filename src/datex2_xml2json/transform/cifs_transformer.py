@@ -2,6 +2,8 @@ import copy
 import logging
 import re
 
+from datex2_xml2json.util import JsonDict
+
 from .jsonata_transformer import JsonataTransformer
 
 logger = logging.getLogger(__name__)
@@ -143,11 +145,11 @@ class CifsTransformer(JsonataTransformer):
     # 2. Any string/char prefix followed by dot + number
     situation_record_group_prefix_regexp = r'^(\d+-\d\d\d\dV\d+)$|^(\d+-\d+-\d+-\d+-gegen).*|^(\d+-\d+-\d+-\d+).*|^(.*)\.\d+$'
 
-    def __init__(self, **kwargs):
+    def __init__(self) -> None:
         super().__init__(cifs_expression)
 
-    def _group_by_common_situation_record_id_substring(self, incidents, pattern):
-        grouped_incidents = {}
+    def _group_by_common_situation_record_id_substring(self, incidents: list[JsonDict], pattern: str) -> dict[str, list[JsonDict]]:
+        grouped_incidents: dict[str, list[JsonDict]] = {}
         p = re.compile(pattern)
 
         for incident in incidents:
@@ -163,7 +165,7 @@ class CifsTransformer(JsonataTransformer):
 
         return grouped_incidents
 
-    def _get_type_sub_type_prio(self, incident):
+    def _get_type_sub_type_prio(self, incident: JsonDict) -> int:
         if incident.get('type') == 'ROAD_CLOSED':
             return 10
         if incident.get('subtype') == 'HAZARD_ON_ROAD_LANE_CLOSED':
@@ -175,7 +177,7 @@ class CifsTransformer(JsonataTransformer):
         else:
             return 2
 
-    def _merge_incident_group(self, incident_group):
+    def _merge_incident_group(self, incident_group: list[JsonDict]) -> JsonDict:
         # Assumptions: besides type and subtype, all properties are assumed to be equals
         # (TODO: we might check this explicitly)
         #
@@ -184,10 +186,13 @@ class CifsTransformer(JsonataTransformer):
         # * highest priority subtype/type wins
         # TODO: subtype for road_closed to be set according to other incidents
         # TODO: should jam be communicated in addition?
+        if not incident_group:
+            raise ValueError('incident_group must not be empty')
+
         highest_prio = None
         highest_prio_type = None
         highest_prio_subtype = None
-        highest_prio_incident = None
+        highest_prio_incident: JsonDict = incident_group[0]
 
         for incident in incident_group:
             current_prio = self._get_type_sub_type_prio(incident)
@@ -207,7 +212,7 @@ class CifsTransformer(JsonataTransformer):
                 )
         return highest_prio_incident
 
-    def _transform_polyline_geom(self, linestring_coordinates) -> str:
+    def _transform_polyline_geom(self, linestring_coordinates: list[list[float]]) -> str:
         """
         Converts GeoJSON linestring coordinates array into CIFS polyline string.
         The list of lon/lat coords (like [[10.0, 49.0], [11.0, 49.0]]) is converted into a
@@ -215,7 +220,7 @@ class CifsTransformer(JsonataTransformer):
         """
         return ' '.join([f'{coords[1]} {coords[0]}' for coords in linestring_coordinates])
 
-    def _transform_incident_geometry(self, incident: dict) -> list[dict]:
+    def _transform_incident_geometry(self, incident: JsonDict) -> list[JsonDict]:
         """
         Converts GeoJSON geometry of incident into a CIFS polyline.
         As the GeoJSON geometry might be a MultiLineString, we return an array
@@ -248,7 +253,7 @@ class CifsTransformer(JsonataTransformer):
 
         return [incident]
 
-    def _merge_grouped_incidents_and_handle_geometry(self, grouped_incidents):
+    def _merge_grouped_incidents_and_handle_geometry(self, grouped_incidents: dict[str, list[JsonDict]]) -> list[JsonDict]:
         incidents = []
         for key in grouped_incidents:
             try:
@@ -260,7 +265,7 @@ class CifsTransformer(JsonataTransformer):
 
         return incidents
 
-    def post_transform(self, a_dict: dict) -> dict:
+    def post_transform(self, a_dict: JsonDict) -> JsonDict:
         """
         Retains the most expressive incident of a group of incidents describing
         the same situation.

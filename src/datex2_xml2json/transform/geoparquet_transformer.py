@@ -1,10 +1,14 @@
 import json
 import logging
 from datetime import datetime, timezone
+from pathlib import Path
 from tempfile import NamedTemporaryFile
+from typing import Any
 
 import geoparquet_io as gpio
 import pyarrow as pa
+
+from datex2_xml2json.util import JsonDict
 
 logger = logging.getLogger(__name__)
 
@@ -88,10 +92,10 @@ class GeoparquetRenderer:
       happend in situ, no deep copy of the GeoJSON dict is created.
     """
 
-    def __init__(self, target_schema=MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA):
+    def __init__(self, target_schema: pa.Schema = MOSTLY_FLAT_SITUATION_RECORD_TARGET_SCHEMA) -> None:
         self.target_schema = target_schema
 
-    def _get_timestamp_fieldnames(self):
+    def _get_timestamp_fieldnames(self) -> list[str]:
         """
         Return a list of all fieldnames of self.target_schema, whose type is pyarrow.TimestampType.
         """
@@ -101,7 +105,7 @@ class GeoparquetRenderer:
                 fieldnames.append(self.target_schema.names[index])
         return fieldnames
 
-    def _set_timestamps_to_UTC(self, a_geojson_dict: dict):
+    def _set_timestamps_to_UTC(self, a_geojson_dict: JsonDict) -> None:
         """
         Adds/subtracts optional timezone offset for
         all timestamp properties to assure they are in UTC.
@@ -122,7 +126,7 @@ class GeoparquetRenderer:
                         dt.replace(tzinfo=timezone.utc)
                     props[ts_property] = dt.astimezone(timezone.utc).isoformat()
 
-    def _cast_fields_and_add_missing(self, table) -> None:
+    def _cast_fields_and_add_missing(self, table: Any) -> None:
         """
         Replaces table's pyarrow table by a new one which
         has expected columns in expected order and type.
@@ -143,7 +147,7 @@ class GeoparquetRenderer:
         patable = pa.Table.from_arrays(arrays, schema=self.target_schema)
         table._table = patable
 
-    def _as_table(self, a_geojson_dict: dict):
+    def _as_table(self, a_geojson_dict: JsonDict) -> Any:
         """
         Writes a_geojson_dict to a tempory file which is then read
         via geoparquet-io as pyarrow table.
@@ -153,7 +157,7 @@ class GeoparquetRenderer:
             f.close()
             return gpio.convert(f.name)
 
-    def render(self, filename, a_geojson_dict: dict) -> None:
+    def render(self, filename: str | Path, a_geojson_dict: JsonDict) -> None:
         self._set_timestamps_to_UTC(a_geojson_dict)
         table = self._as_table(a_geojson_dict)
         self._cast_fields_and_add_missing(table)

@@ -1,7 +1,7 @@
 from datex2_xml2json.transform import CifsTransformer
 
 
-def test_post_transform():
+def test_post_transform() -> None:
     transformer = CifsTransformer()
     incidents = {
         'incidents': [

@@ -1,6 +1,8 @@
 import logging
 from dataclasses import dataclass
-from typing import Callable
+from typing import Any
+
+from datex2_xml2json.util import JsonDict, ValueTransform
 
 logger = logging.getLogger(__name__)
 
@@ -8,13 +10,13 @@ logger = logging.getLogger(__name__)
 @dataclass
 class TransformationRules:
     renamings: dict[str, str]
-    value_transforms: dict[str, Callable]
+    value_transforms: ValueTransform
     keys_to_drop: dict[str, list[str]]
     type_mappings: dict[str, str]
     keys_to_pull_up: dict[str, None | list[str]]
 
 
-def push_down_vms_configuration(vms: dict) -> dict:
+def push_down_vms_configuration(vms: JsonDict) -> JsonDict:
     vmsConfiguration = {}
     if 'numberOfPictogramDisplayAreas' in vms:
         vmsConfiguration['numberOfDisplayAreas'] = vms.pop('numberOfPictogramDisplayAreas')
@@ -67,7 +69,7 @@ GEOGRAPHIC_CHARACATERISTIC_VALUES = {
 }
 
 
-def transform_supplementaryPositionalDescription(v: dict):
+def transform_supplementaryPositionalDescription(v: JsonDict) -> JsonDict:
     # locationDescriptior needs to be split in multiple properties
     if 'locationDescriptor' in v:
         locationDescriptors = v.pop('locationDescriptor')
@@ -109,7 +111,7 @@ def transform_supplementaryPositionalDescription(v: dict):
     return v
 
 
-def wrap_lroffset(lr_dict: dict):
+def wrap_lroffset(lr_dict: JsonDict) -> JsonDict:
     new_dict = {}
     for k in lr_dict:
         if k == 'openlrPositiveOffset':
@@ -119,7 +121,7 @@ def wrap_lroffset(lr_dict: dict):
     return new_dict
 
 
-def transform_alertc(v: dict, shouldWrapWithValue: bool):
+def transform_alertc(v: JsonDict, shouldWrapWithValue: bool) -> JsonDict:
     """
     In v2, alertCDirection did not distinguish between encoding and affected direction.
     We assume, as apparently NDW mandated explictly, that for encoding matches affected direction and,
@@ -234,10 +236,10 @@ class TransformationRuleFactory:
         'PlaceStatus': 'prkPlaceStatus',
     }
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
-    def xmlv2_to_json(self):
+    def xmlv2_to_json(self) -> TransformationRules:
         renamings = {
             # xml2json artifact
             '$': 'value',
@@ -277,11 +279,11 @@ class TransformationRuleFactory:
             '@extensionVersion': 'extensionVersionG',
         }
 
-        def add_def_lang_if_missing(v):
+        def add_def_lang_if_missing(v: Any) -> JsonDict:
             return v if isinstance(v, dict) else {'lang': DEFAULT_LANGUAGE, 'value': v}
 
         # TODO move value wrapping down to datex transform, here we should use them unwrapped
-        value_transforms = {
+        value_transforms: ValueTransform = {
             # type transformations
             'offsetDistance': lambda v: int(v) if not isinstance(v, dict) else v,
             # value transformations
@@ -336,10 +338,10 @@ class TransformationRuleFactory:
             'carParkIdentity': [],
         }
 
-        geojson_drops = {'situationExtension': []}
+        geojson_drops: dict[str, list[str]] = {'situationExtension': []}
 
         # keys_to_pull_up convert { ..., '<value>': { <nested properties> } } in { ..., <nested properties>}
-        keys_to_pull_up = {
+        keys_to_pull_up: dict[str, list[str] | None] = {
             'linearExtension': None,
             'linearExtended': None,
             'linearLineStringExtension': None,
@@ -360,7 +362,7 @@ class TransformationRuleFactory:
             keys_to_pull_up,
         )
 
-    def xmlv3_to_json3_7(self):
+    def xmlv3_to_json3_7(self) -> TransformationRules:
         datex_json_renamings = {
             # Assumed DATEXII JSON Schema Artifacts
             '@modelBaseVersion': 'modelBaseVersionG',
@@ -373,17 +375,17 @@ class TransformationRuleFactory:
             '@extensionVersion': 'extensionVersionG',
         }
 
-        def wrap_with_value(v):
+        def wrap_with_value(v: Any) -> JsonDict:
             return {'value': v}
 
-        value_transforms = {
+        value_transforms: ValueTransform = {
             # Value wrapping for parking ...
             'status': wrap_with_value,
             'operationStatus': wrap_with_value,
             'informationStatus': wrap_with_value,
             'confidentiality': wrap_with_value,
         }
-        keys_to_drop = {
+        keys_to_drop: dict[str, list[str]] = {
             '@xsi:schemaLocation': [],
             '@xmlns': [],
             '@xmlns:d2': [],
@@ -394,7 +396,8 @@ class TransformationRuleFactory:
             '@xmlns:xsi': [],
             '@xsi:type': [],
         }
-        keys_to_pull_up = {'modelBaseVersion': None}
+        keys_to_pull_up: dict[str, list[str] | None] = {'modelBaseVersion': None}
+
         return TransformationRules(
             datex_json_renamings,
             value_transforms,
@@ -403,7 +406,7 @@ class TransformationRuleFactory:
             keys_to_pull_up,
         )
 
-    def xmlv2_to_json3_7(self):
+    def xmlv2_to_json3_7(self) -> TransformationRules:
         datex_json_renamings = {
             # Assumed DATEXII JSON Schema Artifacts
             '@modelBaseVersion': 'modelBaseVersionG',
@@ -432,7 +435,7 @@ class TransformationRuleFactory:
         }
 
         # A couple of text properties are wrapped in an object, presumably for extendability
-        def wrap_with_value(v):
+        def wrap_with_value(v: Any) -> JsonDict:
             return {'value': v}
 
         value_transforms = {
@@ -510,7 +513,7 @@ class TransformationRuleFactory:
             'lane': lambda v: {'laneNumber': int(v[4:])} if v.startswith('lane') else {'laneUsage': {'value': v}},
         }
 
-        keys_to_drop = {
+        keys_to_drop: dict[str, list[str]] = {
             '@xsi:schemaLocation': [],
             '@xmlns:xsd': [],
             '@xsi:type': [],
