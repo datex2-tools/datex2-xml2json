@@ -82,7 +82,33 @@ def build_transformer(input_format: InputFormat, output_format: OutputFormat) ->
             raise ValueError(f'Unsupported output format {output_format}')
 
     else:
-        return TransformerPipeline([RulesTransformer(TransformationRuleFactory().xmlv3_to_json3_7())])
+        if output_format == OutputFormat.DATEX2_3_7_JSON:
+            return TransformerPipeline([RulesTransformer(TransformationRuleFactory().xmlv3_to_json3_7())])
+        elif output_format == OutputFormat.RAW:
+            return TransformerPipeline([])
+        else:
+            raise ValueError(f'Unsupported output format {output_format} for input format {input_format}')
+
+
+class UnsupportedOptionsError(ValueError):
+    """Raised if the requested combination of options is not supported."""
+
+
+def check_options(
+    input_format: InputFormat,
+    output_format: OutputFormat | None,
+    validate: bool,
+    sourceIdentification: str | None,
+    publicationIdentifier: str | None,
+) -> None:
+    if validate and output_format is not None and output_format not in OUTPUT_SCHEMAS:
+        raise UnsupportedOptionsError(f'Validation is not supported for format {output_format}')
+
+    if input_format != InputFormat.DATEX2_2_2_XML:
+        if output_format not in (OutputFormat.DATEX2_3_7_JSON, OutputFormat.RAW):
+            raise UnsupportedOptionsError(f'Input format {input_format} only supports output formats datex2_3_7_json and raw')
+        if sourceIdentification or publicationIdentifier:
+            raise UnsupportedOptionsError(f'Setting source or publication identifiers is not supported for input format {input_format}')
 
 
 def write(stem: str, json_result: JsonDict, output_format: OutputFormat, outDir: str, validate: bool = False) -> None:
@@ -100,7 +126,6 @@ def write(stem: str, json_result: JsonDict, output_format: OutputFormat, outDir:
 
 
 def generate_all(stem: str, json_input: JsonDict, outDir: str, validate: bool) -> None:
-    write(stem, json_input, OutputFormat.RAW, outDir)
     jsonLiteTransformer = build_transformer(InputFormat.DATEX2_2_2_XML, OutputFormat.DATEX2_3_7_JSON_LITE)
     jsonLite_output = jsonLiteTransformer.transform(json_input)
     write(stem, jsonLite_output, OutputFormat.DATEX2_3_7_JSON_LITE, outDir)
@@ -120,8 +145,16 @@ def transform(
     sourceIdentification: str | None,
     publicationIdentifier: str | None,
 ) -> None:
+    check_options(input_format, output_format, validate, sourceIdentification, publicationIdentifier)
+
     stem = Path(filename).stem
     json_input = load_as_json_using_schema(filename, schema_path(DEFAULT_SCHEMAS[input_format]))
+
+    # RAW reflects the input, so it is written before source information is set
+    if output_format is None or output_format == OutputFormat.RAW:
+        write(stem, json_input, OutputFormat.RAW, outDir)
+        if output_format == OutputFormat.RAW:
+            return
 
     if sourceIdentification or publicationIdentifier:
         SourceSetter(publicationIdentifier, sourceIdentification).transform(json_input)
@@ -184,16 +217,16 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if args.validate and args.output_format is not None and args.output_format not in OUTPUT_SCHEMAS:
-        logger.error('Validation is not supported for format %s', args.output_format)
+    try:
+        transform(
+            args.filename,
+            args.outputDir,
+            args.input_format,
+            args.output_format,
+            args.validate,
+            args.sourceIdentification,
+            args.publicationIdentifier,
+        )
+    except UnsupportedOptionsError as e:
+        logger.error('%s', e)
         exit(1)
-
-    transform(
-        args.filename,
-        args.outputDir,
-        args.input_format,
-        args.output_format,
-        args.validate,
-        args.sourceIdentification,
-        args.publicationIdentifier,
-    )
