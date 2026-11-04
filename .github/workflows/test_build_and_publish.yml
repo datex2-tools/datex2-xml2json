@@ -1,0 +1,78 @@
+name: Build wheels
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]+-*"
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      repository_url:
+        description: "Override PyPI repository URL (leave blank to use the environment's PYPI_REPOSITORY_URL variable, or fall back to PyPI prod)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+ 
+      - name: Install project and dev dependencies
+        run: uv sync --locked --all-extras --dev
+ 
+      - name: Run pytest
+        run: uv run pytest
+
+  build:
+    name: Build distributions
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+ 
+      - name: Build sdist and wheel
+        run: uv build
+ 
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/${{ github.event.repository.name }}/
+    permissions:
+      id-token: write   # required for trusted publishing (OIDC); uv picks the token up automatically.
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+ 
+      - name: Publish to PyPI
+        env:
+          UV_PUBLISH_URL: ${{ inputs.repository_url || vars.PYPI_REPOSITORY_URL || 'https://upload.pypi.org/legacy/' }}
+        run: uv publish --trusted-publishing always
