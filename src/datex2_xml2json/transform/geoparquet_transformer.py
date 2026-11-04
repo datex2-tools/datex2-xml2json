@@ -128,10 +128,10 @@ class GeoparquetRenderer:
                     logger.warning('Replacing invalid timestamp %r of property %s by null', value, ts_property)
                     props[ts_property] = None
                     continue
-                    # Assume datetime was given in UTC if no timezone was specified
-                    if not dt.tzinfo:
-                        dt = dt.replace(tzinfo=timezone.utc)
-                    props[ts_property] = dt.astimezone(timezone.utc).isoformat()
+                # Assume datetime was given in UTC if no timezone was specified
+                if not dt.tzinfo:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                props[ts_property] = dt.astimezone(timezone.utc).isoformat()
 
     def _cast_fields_and_add_missing(self, table: Any) -> None:
         """
@@ -167,7 +167,10 @@ class GeoparquetRenderer:
             return gpio.convert(f.name)
 
     def render(self, filename: str | Path, a_geojson_dict: JsonDict) -> None:
-        self._set_timestamps_to_UTC(a_geojson_dict)
-        table = self._as_table(a_geojson_dict)
+        # Only properties are modified, so a copy of them suffices to leave a_geojson_dict untouched
+        features = [{**feature, 'properties': dict(feature['properties'])} for feature in a_geojson_dict['features']]
+        geojson_copy = {**a_geojson_dict, 'features': features}
+        self._set_timestamps_to_UTC(geojson_copy)
+        table = self._as_table(geojson_copy)
         self._cast_fields_and_add_missing(table)
         table.write(filename)
