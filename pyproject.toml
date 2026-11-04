@@ -41,8 +41,7 @@ dev = [
     "pytest>=9.1.1,<10",
     "ruff~=0.17.2",
     "mypy~=2.3.1",
-    "pre-commit>=4.3.0,<5",
-    "pyarrow-stubs>=20.0.0.20260819",
+    "pre-commit>=4.3.0,<5"
 ]
 
 [project.urls]
@@ -146,5 +145,6 @@ module = [
     "geoparquet_io",
     "rs_xml2json",
     "pyarrow",
+    "pyarrow.parquet",
 ]
 ignore_missing_imports = true
