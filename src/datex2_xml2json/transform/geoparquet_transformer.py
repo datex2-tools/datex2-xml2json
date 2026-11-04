@@ -119,11 +119,18 @@ class GeoparquetRenderer:
         for feature in a_geojson_dict['features']:
             props = feature['properties']
             for ts_property in ts_fieldnames:
-                if ts_property in props:
-                    dt = datetime.fromisoformat(props[ts_property])
+                value = props.get(ts_property)
+                if value is None:
+                    continue
+                try:
+                    dt = datetime.fromisoformat(value)
+                except (TypeError, ValueError):
+                    logger.warning('Replacing invalid timestamp %r of property %s by null', value, ts_property)
+                    props[ts_property] = None
+                    continue
                     # Assume datetime was given in UTC if no timezone was specified
                     if not dt.tzinfo:
-                        dt.replace(tzinfo=timezone.utc)
+                        dt = dt.replace(tzinfo=timezone.utc)
                     props[ts_property] = dt.astimezone(timezone.utc).isoformat()
 
     def _cast_fields_and_add_missing(self, table: Any) -> None:
