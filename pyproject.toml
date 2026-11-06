@@ -4,6 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "datex2-xml2json"
+# The version is bumped from the git tag in CI via `uv version` on release; see .github/workflows/test_build_and_publish.yml
 version = "0.0.1"
 authors = [
   { name="Holger Bruch", email="hb@mfdz.de" },
