@@ -136,6 +136,12 @@ cifs_expression = """
 }
 """
 
+# In case multiple incidents describe the same situation, usually because of an caused/effect relation,
+# we pick the incident, whose type/subtype are ranked highest (most informative/important)
+DEFAULT_INCIDENT_PRIORITY = 1
+TYPE_PRIORITIES = {'ROAD_CLOSED': 10, 'ACCIDENT': 9, 'JAM': 8, 'HAZARD': 7, 'POLICE': 2, 'CHIT_CHAT': 1}
+SUBTYPE_PRIORITIES = {'ROAD_CLOSED': 10, 'ACCIDENT': 9, 'JAM': 8, 'HAZARD': 7, 'POLICE': 2, 'CHIT_CHAT': 1}
+
 
 class CifsTransformer(JsonataTransformer):
     # This pattern is used to exract the common ID prefix of all situation records which
@@ -166,16 +172,10 @@ class CifsTransformer(JsonataTransformer):
         return grouped_incidents
 
     def _get_type_sub_type_prio(self, incident: JsonDict) -> int:
-        if incident.get('type') == 'ROAD_CLOSED':
-            return 10
-        if incident.get('subtype') == 'HAZARD_ON_ROAD_LANE_CLOSED':
-            return 4
-        if incident.get('subtype') == 'HAZARD_ON_ROAD_CONSTRUCTION':
-            return 3
-        if incident.get('subtype') == 'HAZARD_ON_ROAD' or incident.get('type') in ['CHIT_CHAT']:
-            return 2
-        else:
-            return 1
+        return max(
+            TYPE_PRIORITIES.get(str(incident.get('type')), DEFAULT_INCIDENT_PRIORITY),
+            SUBTYPE_PRIORITIES.get(str(incident.get('subtype')), DEFAULT_INCIDENT_PRIORITY),
+        )
 
     def _merge_incident_group(self, incident_group: list[JsonDict]) -> JsonDict:
         # Assumptions: besides type and subtype, all properties are assumed to be equals
