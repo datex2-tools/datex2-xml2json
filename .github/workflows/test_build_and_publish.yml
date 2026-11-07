@@ -1,0 +1,107 @@
+name: Build wheels
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]+-*"
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      repository_url:
+        description: "Override PyPI repository URL (leave blank to use the environment's PYPI_REPOSITORY_URL variable, or fall back to PyPI prod)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint and type-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+ 
+      - name: Install project and dev dependencies
+        run: uv sync --locked --all-extras --dev
+ 
+      - name: Ruff lint
+        run: uv run ruff check .
+ 
+      - name: Ruff format check
+        run: uv run ruff format --check .
+ 
+      - name: Mypy
+        run: uv run mypy .
+
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+ 
+      - name: Install project and dev dependencies
+        run: uv sync --locked --all-extras --dev
+ 
+      - name: Run pytest
+        run: uv run pytest
+
+  build:
+    name: Build distributions
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [lint,test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+
+      - name: Set package version from release tag
+        env:
+          TAG: ${{ github.ref_name}}
+        run: |
+          uv version --no-sync "${TAG#v}"
+          printf "__version__ = '%s'\n" "${TAG#v}" > src/datex2_xml2json/_version.py
+
+      - name: Build sdist and wheel
+        run: uv build
+ 
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/${{ github.event.repository.name }}/
+    permissions:
+      id-token: write   # required for trusted publishing (OIDC); uv picks the token up automatically.
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: dist
+          path: dist/
+ 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+ 
+      - name: Publish to PyPI
+        env:
+          UV_PUBLISH_URL: ${{ inputs.repository_url || vars.PYPI_REPOSITORY_URL || 'https://upload.pypi.org/legacy/' }}
+        run: uv publish --trusted-publishing always
