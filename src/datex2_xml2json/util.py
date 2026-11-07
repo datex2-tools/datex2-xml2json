@@ -1,6 +1,8 @@
 import json
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
 from importlib.resources import as_file, files
+from pathlib import Path
 from typing import Any
 
 from rs_xml2json import convert
@@ -9,9 +11,16 @@ JsonDict = dict[str, Any]
 ValueTransform = dict[str, Callable[[Any], Any]]
 
 
-def schema_path(schema: str) -> str:
-    with as_file(files('datex2_xml2json').joinpath(schema)) as fspath:
-        return str(fspath.resolve())
+@contextmanager
+def schema_path(schema: str) -> Iterator[str]:
+    """
+    Yields a filesystem path to schema (given relative to the package, e.g. schema/cifs_schema.json).
+
+    The path is only valid inside the with block. If the package is imported from a zip file, the whole
+    schema directory is extracted temporarily, as schemas reference sibling files via relative paths.
+    """
+    with as_file(files('datex2_xml2json').joinpath('schema')) as schema_dir:
+        yield str(schema_dir / Path(schema).relative_to('schema'))
 
 
 def load_as_json_using_schema(filename: str, schemafile: str) -> JsonDict:
