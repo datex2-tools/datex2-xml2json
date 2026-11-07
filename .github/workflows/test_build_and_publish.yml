@@ -67,7 +67,7 @@ jobs:
 
       - name: Set package version from release tag
         env:
-          TAG: ${{ github.event.release.tag_name }}
+          TAG: ${{ github.ref_name}}
         run: |
           uv version --no-sync "${TAG#v}"
           printf "__version__ = '%s'\n" "${TAG#v}" > src/datex2_xml2json/_version.py
