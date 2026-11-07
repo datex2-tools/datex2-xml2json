@@ -19,7 +19,8 @@ FIXTURES_DIR = 'tests/integration/data/'
 
 
 def load_and_transform(FIXTURE_NAME: str, overwrite: bool, transformer: AbstractTransformer, suffix: str) -> JsonDict:
-    json_input = load_as_json_using_schema(FIXTURES_DIR + FIXTURE_NAME + '.xml', schema_path(DATEX2_XSD_2_2_0_SCHEMA))
+    with schema_path(DATEX2_XSD_2_2_0_SCHEMA) as schema:
+        json_input = load_as_json_using_schema(FIXTURES_DIR + FIXTURE_NAME + '.xml', schema)
     if overwrite:
         with open(FIXTURES_DIR + FIXTURE_NAME + '.json', 'w') as f:
             json.dump(json_input, f, indent=2)
@@ -46,7 +47,8 @@ def transform_validate(FIXTURE_NAME: str, overwrite: bool, transformer: Abstract
     with tempfile.NamedTemporaryFile(mode='w', delete_on_close=False) as fp:
         json.dump(json_output, fp)
         fp.close()
-        res = JsonValidator(schema_path(DATEX2_3_7_JSON_SCHEMA)).validate(fp.name)
+        with schema_path(DATEX2_3_7_JSON_SCHEMA) as schema:
+            res = JsonValidator(schema).validate(fp.name)
     if res != 0:
         raise Exception('Failed validation')
 

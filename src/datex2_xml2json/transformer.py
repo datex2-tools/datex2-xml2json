@@ -120,7 +120,9 @@ def write(stem: str, json_result: JsonDict, output_format: OutputFormat, outDir:
         with open(outfile_name, 'w') as f:
             json.dump(json_result, f, indent=2)
         if validate:
-            exit(JsonValidator(schema_path(OUTPUT_SCHEMAS[output_format])).validate(outfile_name))
+            with schema_path(OUTPUT_SCHEMAS[output_format]) as schema:
+                result = JsonValidator(schema).validate(outfile_name)
+            exit(result)
     else:
         GeoparquetRenderer().render(outfile_name, json_result)
 
@@ -148,7 +150,8 @@ def transform(
     check_options(input_format, output_format, validate, sourceIdentification, publicationIdentifier)
 
     stem = Path(filename).stem
-    json_input = load_as_json_using_schema(filename, schema_path(DEFAULT_SCHEMAS[input_format]))
+    with schema_path(DEFAULT_SCHEMAS[input_format]) as schema:
+        json_input = load_as_json_using_schema(filename, schema)
 
     # RAW reflects the input, so it is written before source information is set
     if output_format is None or output_format == OutputFormat.RAW:
